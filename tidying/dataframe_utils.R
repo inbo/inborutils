@@ -16,6 +16,7 @@
 #' @examples
 #' df_factors_to_char(PlantGrowth) # column group will be chars as well
 #'
+#' @importFrom dplyr %>% mutate_each_ funs
 df_factors_to_char <- function(rp){
     factors <- sapply(rp, is.factor)
     if (any(factors)) {
