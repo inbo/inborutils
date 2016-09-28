@@ -1,2 +1,2 @@
 # inbo-rutils
-Collection of useful python utilities and snippets 
+Collection of useful R utilities and snippets 
