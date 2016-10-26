@@ -1,0 +1,28 @@
+---
+title: "Requirements for continuous integration"
+maintainer: "Thierry Onkelinx"
+output: html_document
+---
+
+# Must have
+
+- start automatically when pushing a git repository on Github or Bitbucket
+- start automatically when creating a pull request on Github or Bitbucket
+- able to use a Docker image to setup the environment in which CI runs
+- able to set environment variables
+- able to check code style with lintr and report the results back to the SCM
+- able to check code coverage with covr and report the results back to the SCM
+- a succesful build creates a Docker image
+- a succesful build on specific branches can be pushed to Docker hub (e.g. https://hub.docker.com/r/inbonatura2000/n2khelper/tags/)
+- configuration of CI can be partially through a configuration file and partially through a webapplication
+- maintainer is notified in case of failed build
+
+# Nice to have
+
+- pipelines to specify workflows for different branches. See http://devcenter.wercker.com/learn/pipelines/introduction.html
+- badges to display current build status
+
+# Candidates
+
+- Wercker
+- Travis
