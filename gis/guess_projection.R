@@ -17,7 +17,7 @@ library(sp)
 library(rgdal)
 library(dplyr)
 library(leaflet) # used for easy background maps
-
+library(assertthat)
 
 #' reproject XY coordinates from dframe columns
 #'
@@ -102,11 +102,22 @@ plot_on_map <- function(df, col_long, col_lat, projection){
 #' data <- read.csv("data/example2.csv")
 #' guess_projection(data, "x", "y")
 #'
-#' @import leaflet
+#' @importFrom leaflet leaflet addTiles addCircleMarkers addLayerControls addLegend setView
+#' @importFrom assertthat is.string is.flag noNA
+#' @importFrom dplyr sample_n
 guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
                      projections=c("epsg:4326", "epsg:31370",
                                    "epsg:28992", "epsg:32631",
                                    "epsg:3812", "epsg:3035")){
+    assert_that(inhertis(df, "data.frame"))
+    assert_that(is.string(col_long))
+    assert_that(is.string(col_lat))
+    assert_that(has_name(df, col_long))
+    assert_that(has_name(df, col_lat))
+    assert_that(is.flag(belgium))
+    assert_that(noNA(belgium))
+    assert_that(is.character(projections)
+    assert_that(noNA(projections))
     # Create a color palette for the different projections
     color_pal <- colorFactor(palette = "RdYlBu",
                              levels = factor(projections))
@@ -124,7 +135,7 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
 
     # add the circle markers for each projection on the map
     for (prj in projections) {
-        print(prj)
+        message(prj)
         data_proj <- reproject_points(df, col_long, col_lat,
                                       CRS(paste("+init=", prj, sep = "")),
                                       CRS("+init=epsg:4326"))
