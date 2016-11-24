@@ -10,19 +10,31 @@ output: html_document
 - start automatically when creating a pull request on Github or Bitbucket
 - able to use a Docker image to setup the environment in which CI runs
 - able to set environment variables
-- able to check code style with lintr and report the results back to the SCM
-- able to check code coverage with covr and report the results back to the SCM
+- support for unit testing (cfr. testthat in R and pytest in python)
+- support for code syntax checklint (cfr. lintr in R and pylint in python)
+- support for test coverage evaluation (cfr. covr in R and coverage in python) and linked to a coverage reporting service such as codecov.io or coveralls
 - a succesful build creates a Docker image
 - a succesful build on specific branches can be pushed to Docker hub (e.g. https://hub.docker.com/r/inbonatura2000/n2khelper/tags/)
-- configuration of CI can be partially through a configuration file and partially through a webapplication
+- configuration of CI can fully configured with a configuration file which is completely self-containing
+- provide convenient solution to handle sensitive (e.g. usernames, 
+passwords, tokens) information which can not be placed in the configuration file (e.g. interface,...)
 - maintainer is notified in case of failed build
+- Ability to sepcify different versions and dependencies to test against (e.g. python 2.7 and 3.5) with minimal configuration
+- integration of github webhooks (e.g. start build html service on push)
 
 # Nice to have
 
 - pipelines to specify workflows for different branches. See http://devcenter.wercker.com/learn/pipelines/introduction.html
 - badges to display current build status
+- theh ability to do a dry-run on the tests, coverage, lintr (no actual push, just a check)
 
 # Candidates
 
+## Services
 - Wercker
 - Travis
+- Circle CI
+
+## Self hosted
+- Jenkins
+- Teamcity
