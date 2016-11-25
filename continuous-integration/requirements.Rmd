@@ -20,7 +20,12 @@ output: html_document
 passwords, tokens) information which can not be placed in the configuration file (e.g. interface,...)
 - maintainer is notified in case of failed build
 - Ability to sepcify different versions and dependencies to test against (e.g. python 2.7 and 3.5) with minimal configuration
-- integration of github webhooks (e.g. start build html service on push)
+- integration of github webhooks (e.g. start build html service on push, automatic builds)
+- bij pull requests,... buiilden en interactie met github: voorzien van feedback binnen github-omgeving (via badges, etc...) 
+- Ondersteuning java
+- Omgaan met bash-script gewijs geschreven 
+- Ondersteuning van .NET applicaties (ANB)
+
 
 # Nice to have
 
