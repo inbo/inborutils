@@ -116,7 +116,7 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
     assert_that(has_name(df, col_lat))
     assert_that(is.flag(belgium))
     assert_that(noNA(belgium))
-    assert_that(is.character(projections)
+    assert_that(is.character(projections))
     assert_that(noNA(projections))
     # Create a color palette for the different projections
     color_pal <- colorFactor(palette = "RdYlBu",
