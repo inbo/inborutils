@@ -23,21 +23,23 @@ library('assertable')
 #'
 #'@return df with GBIF information as additional columns
 #'
-request_species_information <- function(df, gbif_terms = c('usageKey',
-                                                           'scientificName',
-                                                           'rank',
-                                                           'status',
-                                                           'family')) {
+request_species_information <- function(df, name_col,
+                                        gbif_terms = c('usageKey',
+                                                       'scientificName',
+                                                       'rank',
+                                                       'status',
+                                                       'family')) {
 
     # test incoming arguments
     assert_that(is.data.frame(df))
-    assert_colnames(df, "scientificName", only_colnames = FALSE)
+    assert_colnames(df, name_col, only_colnames = FALSE) # colname exists in df
 
     # matching the GBiF matching information to the sample_data
     df %>% rowwise() %>%
-        do(as.data.frame(name_backbone(name = .$scientificName))) %>%
+        do(as.data.frame(name_backbone(name = .[[name_col]]))) %>%
         select(gbif_terms) %>%
         bind_cols(df)
+    # (remark I use here Standard evaluation (SE) do instead of the NSE do_,
+    # seel also:
+    # https://stackoverflow.com/questions/26739054/using-variable-column-names-in-dplyr-do)
 }
-
-
