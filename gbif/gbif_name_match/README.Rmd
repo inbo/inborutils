@@ -9,7 +9,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("./gbif_species_name_match.R")
 ```
 
 ## Introduction
@@ -24,10 +23,16 @@ This small utility provides the functionality to add the species information fro
 
 The `request_species_information` function extends the matching function provided by [Rgbif](https://github.com/ropensci/rgbif) to be compatible with a `data.frame` data structure.
 
-Consider the example file `example_species`:
+Loading the functionality can be done by sourcing the file with the function:
+
+```{r loadfunc, warning=FALSE}
+source("./gbif_species_name_match.R")
+```
+
+which provides the function `request_species_information`. Consider the example file `example_species`:
 
 ```{r read_data}
-my_data <- read.csv("../data/example_species.csv")
+my_data <- read.csv("../../data/example_species.csv")
 knitr::kable(my_data)
 ```
 
@@ -35,7 +40,7 @@ To add the species information, using the `scientificName` column, and the defau
 
 ```{r func_app, message=FALSE, warning=FALSE}
 
-my_data_update <- request_species_information(my_data)
+my_data_update <- request_species_information(my_data, name_col = "scientificName")
 knitr::kable(my_data_update)
 ```
 
@@ -43,6 +48,8 @@ When not satisfied by the default fields provided (`usageKey`, `scientificName`,
 
 ```{r gbif_terms,message=FALSE, warning=FALSE}
 gbif_terms_to_use <- c('scientificName', 'order')
-my_data_update <- request_species_information(my_data, gbif_terms = gbif_terms_to_use)
+my_data_update <- request_species_information(my_data, 
+                                              name_col = "scientificName" , 
+                                              gbif_terms = gbif_terms_to_use)
 knitr::kable(my_data_update)
 ```
