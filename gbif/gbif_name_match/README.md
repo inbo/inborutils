@@ -13,10 +13,27 @@ Functionality
 
 The `request_species_information` function extends the matching function provided by [Rgbif](https://github.com/ropensci/rgbif) to be compatible with a `data.frame` data structure.
 
-Consider the example file `example_species`:
+Loading the functionality can be done by sourcing the file with the function:
 
 ``` r
-my_data <- read.csv("../data/example_species.csv")
+source("./gbif_species_name_match.R")
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+which provides the function `request_species_information`. Consider the example file `example_species`:
+
+``` r
+my_data <- read.csv("../../data/example_species.csv")
 knitr::kable(my_data)
 ```
 
@@ -29,7 +46,7 @@ knitr::kable(my_data)
 To add the species information, using the `scientificName` column, and the default fields:
 
 ``` r
-my_data_update <- request_species_information(my_data)
+my_data_update <- request_species_information(my_data, name_col = "scientificName")
 ```
 
     ## [1] "All column names present"
@@ -48,7 +65,9 @@ When not satisfied by the default fields provided (`usageKey`, `scientificName`,
 
 ``` r
 gbif_terms_to_use <- c('scientificName', 'order')
-my_data_update <- request_species_information(my_data, gbif_terms = gbif_terms_to_use)
+my_data_update <- request_species_information(my_data, 
+                                              name_col = "scientificName" , 
+                                              gbif_terms = gbif_terms_to_use)
 ```
 
     ## [1] "All column names present"
