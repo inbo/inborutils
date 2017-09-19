@@ -40,6 +40,6 @@ request_species_information <- function(df, name_col,
         select(gbif_terms) %>%
         bind_cols(df)
     # (remark I use here Standard evaluation (SE) do instead of the NSE do_,
-    # seel also:
+    # see also:
     # https://stackoverflow.com/questions/26739054/using-variable-column-names-in-dplyr-do)
 }
