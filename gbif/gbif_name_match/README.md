@@ -61,7 +61,7 @@ knitr::kable(my_data_update)
 |   3025989| Cotoneaster ganghobaensis J. Fryer & B. Hylmö | SPECIES | SYNONYM  | Rosaceae | Cotoneaster ganghobaensis | Plantae  |                     |
 |   3025758| Cotoneaster hylmoei K.E. Flinck & J. Fryer    | SPECIES | SYNONYM  | Rosaceae | Cotoneaster hylmoei       | Plantae  |                     |
 
-When not satisfied by the default fields provided (`usageKey`, `scientificName`, `rank`, `status`, `family`), you can alter these by the `gbif_terms` argument, for example:
+When not satisfied by the default fields provided ´('usageKey','scientificName','rank','order','matchType','phylum', 'kingdom','genus', 'class','confidence', 'synonym', 'status','family')´, you can alter these by the `gbif_terms` argument, for example:
 
 ``` r
 gbif_terms_to_use <- c('scientificName', 'order')
