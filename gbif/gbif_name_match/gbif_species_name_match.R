@@ -41,6 +41,7 @@ request_species_information <- function(df, name_col,
     # test incoming arguments
     assert_that(is.data.frame(df))
     assert_colnames(df, name_col, only_colnames = FALSE) # colname exists in df
+    gbif_terms <- match.arg(gbif_terms)
 
     # matching the GBiF matching information to the sample_data
     df %>% rowwise() %>%
