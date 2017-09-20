@@ -42,11 +42,11 @@ request_species_information <- function(df, name_col,
                                                        'status',
                                                        'family')){
 
-    API_terms = c('usageKey', 'scientificName', 'canonicalName', 'rank',
-                  'status', 'confidence', 'matchType', 'kingdom', 'phylum',
-                  'order', 'family', 'genus', 'species', 'kingdomKey',
-                  'phylumKey', 'classKey', 'orderKey', 'familyKey', 'genusKey',
-                  'speciesKey', 'synonym', 'class')
+    API_terms <- c('usageKey', 'scientificName', 'canonicalName', 'rank',
+                   'status', 'confidence', 'matchType', 'kingdom', 'phylum',
+                   'order', 'family', 'genus', 'species', 'kingdomKey',
+                   'phylumKey', 'classKey', 'orderKey', 'familyKey', 'genusKey',
+                   'speciesKey', 'synonym', 'class')
 
     # test incoming arguments
     assert_that(is.data.frame(df))
