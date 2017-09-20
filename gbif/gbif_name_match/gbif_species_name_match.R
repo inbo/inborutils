@@ -19,14 +19,18 @@ library('assertable')
 #' @param df data.frame with species information
 #' @param name_col char column name of the column containing the scientific
 #' names used for the name matching with the GBIF taxonomic backbone.
-#' @param list list of valid GBIF terms
+#' @param list list of valid GBIF terms to add as additional columns to the
+#' data.frame
 #'
 #'@return df with GBIF information as additional columns
 #'
+#' @importFrom assertthat assert_that
+#' @importFrom assertable assert_colnames
+#' @importFrom dplyr %>% rowwise do select bind_cols
 request_species_information <- function(df, name_col,
                                         gbif_terms = c('usageKey',
                                                        'scientificName',
-                                                       'rank',                                                         
+                                                       'rank',
                                                        'order',
                                                        'matchType',
                                                        'phylum',
@@ -38,16 +42,25 @@ request_species_information <- function(df, name_col,
                                                        'status',
                                                        'family')){
 
+    API_terms <- c('usageKey', 'scientificName', 'canonicalName', 'rank',
+                   'status', 'confidence', 'matchType', 'kingdom', 'phylum',
+                   'order', 'family', 'genus', 'species', 'kingdomKey',
+                   'phylumKey', 'classKey', 'orderKey', 'familyKey', 'genusKey',
+                   'speciesKey', 'synonym', 'class')
+
     # test incoming arguments
     assert_that(is.data.frame(df))
     assert_colnames(df, name_col, only_colnames = FALSE) # colname exists in df
+    gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
 
     # matching the GBiF matching information to the sample_data
     df %>% rowwise() %>%
         do(as.data.frame(name_backbone(name = .[[name_col]]))) %>%
         select(gbif_terms) %>%
         bind_cols(df)
-    # (remark I use here Standard evaluation (SE) do instead of the NSE do_,
+    # (remark I use here Non Standard evaluation (NSE) do instead of the SE do_,
     # see also:
+    # https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html and
     # https://stackoverflow.com/questions/26739054/using-variable-column-names-in-dplyr-do)
+
 }
