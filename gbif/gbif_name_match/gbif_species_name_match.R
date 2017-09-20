@@ -26,9 +26,17 @@ library('assertable')
 request_species_information <- function(df, name_col,
                                         gbif_terms = c('usageKey',
                                                        'scientificName',
-                                                       'rank',
+                                                       'rank',                                                         
+                                                       'order',
+                                                       'matchType',
+                                                       'phylum',
+                                                       'kingdom',
+                                                       'genus',
+                                                       'class',
+                                                       'confidence',
+                                                       'synonym',
                                                        'status',
-                                                       'family')) {
+                                                       'family')){
 
     # test incoming arguments
     assert_that(is.data.frame(df))
