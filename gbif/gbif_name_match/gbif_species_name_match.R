@@ -57,7 +57,7 @@ request_species_information <- function(df, name_col,
         do(as.data.frame(name_backbone(name = .[[name_col]]))) %>%
         select(gbif_terms) %>%
         bind_cols(df)
-    # (remark I use here Non Standard evaluation (SE) do instead of the SE do_,
+    # (remark I use here Non Standard evaluation (NSE) do instead of the SE do_,
     # see also:
     # https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html and
     # https://stackoverflow.com/questions/26739054/using-variable-column-names-in-dplyr-do)
