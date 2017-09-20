@@ -5,12 +5,6 @@ library('assertthat')
 library('assertable')
 
 
-API_terms = c('usageKey', 'scientificName', 'canonicalName', 'rank',
-              'status', 'confidence', 'matchType', 'kingdom', 'phylum',
-              'order', 'family', 'genus', 'species', 'kingdomKey',
-              'phylumKey', 'classKey', 'orderKey', 'familyKey', 'genusKey',
-              'speciesKey', 'synonym', 'class')
-
 #' Add species information provided by the GBIF taxonomic backbone API
 #'
 #' This functions extends an existing dataframe with additional columns provided
@@ -25,7 +19,8 @@ API_terms = c('usageKey', 'scientificName', 'canonicalName', 'rank',
 #' @param df data.frame with species information
 #' @param name_col char column name of the column containing the scientific
 #' names used for the name matching with the GBIF taxonomic backbone.
-#' @param list list of valid GBIF terms
+#' @param list list of valid GBIF terms to add as additional columns to the
+#' data.frame
 #'
 #'@return df with GBIF information as additional columns
 #'
@@ -46,6 +41,12 @@ request_species_information <- function(df, name_col,
                                                        'synonym',
                                                        'status',
                                                        'family')){
+
+    API_terms = c('usageKey', 'scientificName', 'canonicalName', 'rank',
+                  'status', 'confidence', 'matchType', 'kingdom', 'phylum',
+                  'order', 'family', 'genus', 'species', 'kingdomKey',
+                  'phylumKey', 'classKey', 'orderKey', 'familyKey', 'genusKey',
+                  'speciesKey', 'synonym', 'class')
 
     # test incoming arguments
     assert_that(is.data.frame(df))
