@@ -23,6 +23,9 @@ library('assertable')
 #'
 #'@return df with GBIF information as additional columns
 #'
+#' @importFrom assertthat assert_that
+#' @importFrom assertable assert_colnames
+#' @importFrom dplyr %>% rowwise do select bind_cols
 request_species_information <- function(df, name_col,
                                         gbif_terms = c('usageKey',
                                                        'scientificName',
