@@ -1,76 +1,12 @@
-#
-# INBO R-utils
-# Author: S. Van Hoey
-#
-#
-# Projection checker
-#
-# When retrieving a number of data-points, but the kind of projection is not
-# provided/known (for any reason), this utility plots the data for different
-# projections on a map to make comparison possible. The main function is
-# `guess_projection ` which creates the map with different options.
-#
-# Custom projections can be provided by the user as well.
-####
-
-library(sp)
-library(rgdal)
-library(dplyr)
-library(leaflet) # used for easy background maps
-library(assertthat)
-
-#' reproject XY coordinates from dframe columns
-#'
-#' @param df data.frame with a x and y coordinate column
-#' @param col_long (char) name of the x (longitude) column
-#' @param col_lang (char) name of the y (latitude) column
-#' @param project_input projection string of class CRS-class defining the
-#' current projection
-#' @param project_output projection string of class CRS-class defining the
-#' projection to convert to
-#'
-#' @return data.frame with the same columns, but adapted coordinates for the
-#' x and y column values
-#'
-reproject_points <- function(df, col_long, col_lat,
-                             project_input, project_output){
-    df_spat <- SpatialPoints(df[c(col_long, col_lat)],
-                        proj4string = project_input)
-    df_reproj <- spTransform(df_spat, project_output)
-    df[c(col_long, col_lat)] <- as.data.frame(df_reproj)[c(col_long, col_lat)]
-    # rename the columns to have them in the data as well
-    return(df)
-}
-
-
-#' plot x/y coordinates on a map, from given projection
-#'
-#' This function first converts the x/y coordinates of the given the data.frame
-#' to GWS84 in order to map the data with leaflet
-#'
-#' @param df data.frame with a x and y coordinate column
-#' @param col_long (char) name of the x (longitude) column
-#' @param col_lang (char) name of the y (latitude) column
-#' @param projection projection string of class CRS-class defining the
-#' current projection
-#'
-#' @return leaflet map with coordinates added as dots
-#'
-#' @import leaflet
-plot_on_map <- function(df, col_long, col_lat, projection){
-    data_proj <- reproject_points(df, col_long, col_lat,
-                                  projection,
-                                  CRS("+init=epsg:4326"))
-    mapt <- leaflet(data = data_proj) %>%
-        addTiles() %>%
-        addCircleMarkers(data_proj[[col_long]], data_proj[[col_lat]],
-                         stroke = FALSE)
-    return(mapt)
-}
-
 
 #' Take a dataset and plot in different projections on a leaflet map to
 #' check the expected projection
+#'
+#' When retrieving a number of data-points, but the kind of projection is not
+#' provided/known (for any reason), this utility plots the data for different
+#' projections on a map to make comparison possible. The main function is
+#' `guess_projection ` which creates the map with different options.
+#' Custom projections can be provided by the user as well.
 #'
 #' For each of the given projections, the coordinates columns are given the
 #' the specified projection. In a next step, these projections are converted to
@@ -79,7 +15,7 @@ plot_on_map <- function(df, col_long, col_lat, projection){
 #'
 #' @param df data.frame with a x and y coordinate column
 #' @param col_long (char) name of the x (longitude) column
-#' @param col_lang (char) name of the y (latitude) column
+#' @param col_lat (char) name of the y (latitude) column
 #' @param belgium (bool) If TRUE, coordinates are expected to be in Belgium
 #' @param projections (list) epsg codes of the different projections to evaluate
 #' By default, the following six projections are added to the map:
@@ -99,17 +35,22 @@ plot_on_map <- function(df, col_long, col_lat, projection){
 #' }
 #'
 #' @examples
-#' data <- read.csv("data/example2.csv")
+#'\dontrun{
 #' guess_projection(data, "x", "y")
+#' }
 #'
-#' @importFrom leaflet leaflet addTiles addCircleMarkers addLayerControls addLegend setView
-#' @importFrom assertthat is.string is.flag noNA
+#' @export
+#' @importFrom leaflet leaflet addTiles addCircleMarkers addLayersControl
+#' addLegend setView colorFactor layersControlOptions
+#' @importFrom assertthat is.string is.flag noNA has_name
 #' @importFrom dplyr sample_n
+#' @importFrom sp CRS
+#'
 guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
-                     projections=c("epsg:4326", "epsg:31370",
-                                   "epsg:28992", "epsg:32631",
-                                   "epsg:3812", "epsg:3035")){
-    assert_that(inhertis(df, "data.frame"))
+                     projections = c("epsg:4326", "epsg:31370",
+                                     "epsg:28992", "epsg:32631",
+                                     "epsg:3812", "epsg:3035")) {
+    assert_that(inherits(df, "data.frame"))
     assert_that(is.string(col_long))
     assert_that(is.string(col_lat))
     assert_that(has_name(df, col_long))
@@ -136,9 +77,9 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
     # add the circle markers for each projection on the map
     for (prj in projections) {
         message(prj)
-        data_proj <- reproject_points(df, col_long, col_lat,
-                                      CRS(paste("+init=", prj, sep = "")),
-                                      CRS("+init=epsg:4326"))
+        data_proj <- reproject_coordinates(df, col_long, col_lat,
+                                           CRS(paste("+init=", prj, sep = "")),
+                                           CRS("+init=epsg:4326"))
 
         mapt <- addCircleMarkers(mapt, data_proj[[col_long]],
                                  data_proj[[col_lat]], stroke = FALSE,
