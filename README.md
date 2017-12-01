@@ -5,7 +5,7 @@ Some of these functions will be targeted to INBO usage itself, but maybe some of
 
 ## Installation
 
-You can install wateRinfo from github with:
+You can install inborutils from github with:
 
 ```r
 # install.packages("devtools")
