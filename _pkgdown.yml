@@ -43,7 +43,7 @@ reference:
       - species_example
 
 articles:
-  - title: "Verify point coordinate refernce system"
+  - title: "Verify point coordinate reference system"
     contents:
     - guess_projection
   - title: "Matching scientific names in data.frame to GBIF backbone"
