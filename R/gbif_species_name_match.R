@@ -1,10 +1,4 @@
 
-library('rgbif')
-library('dplyr')
-library('assertthat')
-library('assertable')
-
-
 #' Add species information provided by the GBIF taxonomic backbone API
 #'
 #' This functions extends an existing dataframe with additional columns provided
@@ -19,28 +13,30 @@ library('assertable')
 #' @param df data.frame with species information
 #' @param name_col char column name of the column containing the scientific
 #' names used for the name matching with the GBIF taxonomic backbone.
-#' @param list list of valid GBIF terms to add as additional columns to the
-#' data.frame
+#' @param gbif_terms list of valid GBIF terms to add as additional columns to
+#' the data.frame
 #'
-#'@return df with GBIF information as additional columns
+#' @return df with GBIF information as additional columns
 #'
+#' @export
 #' @importFrom assertthat assert_that
 #' @importFrom assertable assert_colnames
 #' @importFrom dplyr %>% rowwise do select bind_cols
-request_species_information <- function(df, name_col,
-                                        gbif_terms = c('usageKey',
-                                                       'scientificName',
-                                                       'rank',
-                                                       'order',
-                                                       'matchType',
-                                                       'phylum',
-                                                       'kingdom',
-                                                       'genus',
-                                                       'class',
-                                                       'confidence',
-                                                       'synonym',
-                                                       'status',
-                                                       'family')){
+#' @importFrom rgbif name_backbone
+gbif_species_name_match <- function(df, name_col,
+                                    gbif_terms = c('usageKey',
+                                                   'scientificName',
+                                                   'rank',
+                                                   'order',
+                                                   'matchType',
+                                                   'phylum',
+                                                   'kingdom',
+                                                   'genus',
+                                                   'class',
+                                                   'confidence',
+                                                   'synonym',
+                                                   'status',
+                                                   'family')){
 
     API_terms <- c('usageKey', 'scientificName', 'canonicalName', 'rank',
                    'status', 'confidence', 'matchType', 'kingdom', 'phylum',
