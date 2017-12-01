@@ -1,8 +1,3 @@
-#
-## Functions useful within the context of data-frame handling
-## and cleaning/adapting data sets
-#
-
 
 #' Convert all factors of a dataframe to characters
 #'
@@ -16,6 +11,7 @@
 #' @examples
 #' df_factors_to_char(PlantGrowth) # column group will be chars as well
 #'
+#' @export
 #' @importFrom dplyr %>% mutate_each_ funs
 df_factors_to_char <- function(rp){
     factors <- sapply(rp, is.factor)
