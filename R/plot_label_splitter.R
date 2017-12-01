@@ -1,13 +1,9 @@
-#
-# These functions are useful within the contect of any plotting/visualisation
-# routine and not bound to a specific package
-#
 
-
-#' Split a long label into a two-liner
+#' Split a long (plot) label into a two-liner
 #'
 #' When a label exceeds the maximum length as defined by the user, the function
-#' splits the text/label on the first space after the center of the string.
+#' splits the text/label on the first space after the center of the string. This
+#' is very useful for long labels in a plot
 #'
 #' The function can be easily applied to a data.frame by using e.g. sapply
 #'
@@ -15,10 +11,11 @@
 #' @param maxlength When the label exceeds this length, it will be splitted into
 #' a two-line label
 #'
+#' @export
 #' @examples
-#' label.splitter("Exotic long label", 10)
+#' plot_label_splitter("Exotic long label", 10)
 #'
-label.splitter <- function(label, maxlength){
+plot_label_splitter <- function(label, maxlength){
     label <- as.character(label)
     if (nchar(label) > maxlength) {
         # find space closest to center of string

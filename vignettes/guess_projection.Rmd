@@ -1,0 +1,69 @@
+---
+title: "Check coordinate system"
+author: "Stijn Van Hoey"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
+## Introduction
+
+When retrieving a number of data-points, but the kind of projection is not provided/known (for any reason), the `guess_projection` function plots the data for different projections on a map to make comparison possible. The main function is `guess_projection` which creates the map with different options. The `reproject_points` function can be useful as well, as it supports reprojection of coordinate columns in a `data.frame`.
+
+## Aim
+
+The aim is to quickly check the coordinate system by plotting the coordinates on a leaflet map with a list of given coordinate systems.
+
+## Functionality
+
+### Dependencies
+
+In order to run the functionalities, some R packags need to be installed. The set of required libraries is handled by the `inborutils` package itself. 
+
+Loading the functionality can be done by loading the `inborutils` package:
+
+```{r}
+library(inborutils)
+```
+
+### Projection function
+
+The `guess_projection` function requires as minimal inputs:
+
+1.  a `data.frame`
+2.  the longitude column name
+3.  the latitude column name. 
+
+For example:
+
+```{r fig.width=7, message=FALSE}
+# my_dataframe has the columns "longitude" and "latitude"
+guess_projection(coordinate_example, "longitude", "latitude")
+```
+
+Furthermore, the optional argument `belgium` is a boolean value (TRUE/FALSE) defining if the data is expectd to be in Belgium. Finally, the `epsg` codes of the corresponding coordinate systems to check can be customised. 
+
+By default, the following CRS-systems are tested:
+
+* `epsg:4326`
+* `epsg:31370`
+* `epsg:28992`
+* `epsg:32631`
+* `epsg:3812`
+* `epsg:3035`
+
+Which can be overridden by adapting the `projections` argument:
+
+```{r fig.width=7, message=FALSE}
+guess_projection(coordinate_example, "longitude", "latitude", belgium = TRUE, 
+                 projections = c("epsg:2000", "epsg:2805", "epsg:4326"))
+```
+
+Check the [spatial reference](http://spatialreference.org) for the available codes.

@@ -1,0 +1,29 @@
+Package: inborutils
+Title: Collection of useful R utilities and snippets
+Version: 0.0.0.9000
+Authors@R: c(person("Stijn", "Van Hoey", role = c("aut", "cre"),
+    email = "stijnvanhoey@gmail.com",
+    comment = "http://orcid.org/0000-0001-6413-3185"), 
+             person("Pieter", "Verschelde", role = c("aut")))
+Description: While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
+Depends: R (>= 3.4.2)
+Imports:
+    assertable,
+    assertthat,
+    dplyr,
+    leaflet,
+    sp,
+    rgbif
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+
+
+
+
