@@ -1,0 +1,55 @@
+
+navbar:
+  title: inbo R utils
+  type: default
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Tutorials
+    href: articles/index.html
+    menu:
+    - text: Verify point coordinate refernce system
+      href: articles/guess_projection.html
+    - text: Matching scientific names in data.frame to GBIF backbone
+      href: articles/gbif_name_match.html
+  - text: Functions
+    href: reference/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/inbo/inborutils
+
+reference:
+  - title: "GIS utilities"
+    desc: "Functions for working with GIS data and maps"
+    contents:
+      - reproject_coordinates
+      - guess_projection
+      - plot_coordinates_on_map
+  - title: "Plot utilities"
+    desc: "Functions for working with plots"
+    contents:
+      - plot_label_splitter
+  - title: "GBIF interaction utilities"
+    desc: "Functions for working with GBIF data, beyond rgbif functionalities"
+    contents:
+      - gbif_species_name_match
+  - title: "Tidy data and data.frame handling"
+    desc: "Functions to support work with data.frames"
+    contents:
+      - df_factors_to_char
+  - title: "Example datasets"
+    contents:
+      - coordinate_example
+      - species_example
+
+articles:
+  - title: "Verify point coordinate refernce system"
+    contents:
+    - guess_projection
+  - title: "Matching scientific names in data.frame to GBIF backbone"
+    contents:
+    - gbif_name_match
+
+template:
+  params:
+    bootswatch: yeti
