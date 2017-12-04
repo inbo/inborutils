@@ -10,7 +10,7 @@ before_script:
   - "Rscript -e 'devtools::install_github('hadley/pkgdown')'"
 
 script:
-  - "Rscript -e 'pkgdown::build_site()'"
+  - "Rscript -e 'pkgdown::build_site(path = ".", preview = FALSE)'"
 
 deploy:
   provider: pages
