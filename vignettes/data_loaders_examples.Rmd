@@ -105,7 +105,7 @@ A lot of the information is provided in the header, which we would like to combi
 fpath <- system.file("extdata", "mow_example.txt", package = "inborutils")
 ```
 ```{r eval=FALSE, include=TRUE}
-fpath <- "my_mow_data_set.txt"
+fpath <- "mow_example.txt"
 ```
 ```{r}
 conductivity_mow <- read_mow_data(fpath)
@@ -122,6 +122,40 @@ ggplot(conductivity_mow, aes(x = datetime, y = value)) +
     xlab("") + ylab("µS/cm") + 
     scale_x_datetime(date_labels = "%H:%M\n%Y-%m-%d", date_breaks = "4 hours")
 ```
+
+## KMI data
+
+When receiving data from the Belgian Meteorological Institute, KMI, the format of the data file looks as follows (at least for some project we did):
+
+```
+date;JAAR;MAAND;DAG;UUR;STATION;NEERSLAG(mm)
+2012-1-1_1;2012;1;1;1;SINT_KATELIJNE_WAVER;0
+2012-1-1_2;2012;1;1;2;SINT_KATELIJNE_WAVER;0
+2012-1-1_3;2012;1;1;3;SINT_KATELIJNE_WAVER;0
+2012-1-1_4;2012;1;1;4;SINT_KATELIJNE_WAVER;0
+2012-1-1_5;2012;1;1;5;SINT_KATELIJNE_WAVER;1.1
+2012-1-1_6;2012;1;1;6;SINT_KATELIJNE_WAVER;0.2
+2012-1-1_7;2012;1;1;7;SINT_KATELIJNE_WAVER;0
+2012-1-1_8;2012;1;1;8;SINT_KATELIJNE_WAVER;0
+2012-1-1_9;2012;1;1;9;SINT_KATELIJNE_WAVER;0
+2012-1-1_10;2012;1;1;10;SINT_KATELIJNE_WAVER;0.8
+2012-1-1_11;2012;1;1;11;SINT_KATELIJNE_WAVER;0.1
+...
+```
+
+To read the data and provide it into a similar format as the previous time series, the function `load_kmi_data` is available in the `inborutils` package:
+
+```{r include=FALSE}
+rpath <- system.file("extdata", "kmi_example.txt", package = "inborutils")
+```
+```{r eval=FALSE, include=TRUE}
+rpath <- "kmi_example.txt"
+```
+```{r}
+rainfall_kmi <- read_kmi_data(rpath)
+head(rainfall_kmi)
+```
+(*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
 
 ## Closure
 
