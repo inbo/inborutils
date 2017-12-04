@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^docs$
 ^_pkgdown\.yml$
+CONDUCT.md
+CONTRIBUTING.md
