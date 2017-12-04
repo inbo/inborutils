@@ -18,11 +18,13 @@ Imports:
     iterators,
     lubridate,
     readr,
-    lazyeval
+    lazyeval,
+    rlang
 Suggests:
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    ggplot2
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
