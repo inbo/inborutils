@@ -101,8 +101,13 @@ Date	Time	Cond [µS/cm]	Quality flag	Comments
 
 A lot of the information is provided in the header, which we would like to combine with the time series itself. The function `read_mow_data` is a tailor-made function to load this file format into a data.frame:
 
-```{r}
+```{r include=FALSE}
 fpath <- system.file("extdata", "mow_example.txt", package = "inborutils")
+```
+```{r eval=FALSE, include=TRUE}
+fpath <- "my_mow_data_set.txt"
+```
+```{r}
 conductivity_mow <- read_mow_data(fpath)
 head(conductivity_mow)
 ```
