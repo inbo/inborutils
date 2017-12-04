@@ -11,9 +11,10 @@
 #' @importFrom readr read_delim cols col_character col_double col_integer
 #' col_datetime
 #' @importFrom dplyr select mutate %>%
+#' @importFrom rlang .data
+#' @importFrom lubridate tz
 #'
-#' TODO: adapt to SE!!
-load_kmi_data <- function(filename, n_max = Inf) {
+read_kmi_data <- function(filename, n_max = Inf) {
     col_types <- cols(date = col_datetime("%Y-%m-%d_%H"),
                       JAAR = col_integer(),
                       MAAND = col_integer(),
@@ -31,9 +32,9 @@ load_kmi_data <- function(filename, n_max = Inf) {
     # currently assumes KMI data is ALWAYS precipitation data...
     sprintf("Time zone of data is %s", tz(raw_data$date))
     kmi_data <- raw_data %>%
-        select(datetime = date,
-               location_name = STATION,
-               value = `NEERSLAG(mm)`) %>%
+        select(datetime = .data$date,
+               location_name = .data$STATION,
+               value = .data$`NEERSLAG(mm)`) %>%
         mutate(unit = "mm") %>%
         mutate(variable_name = "precipitation") %>%
         mutate(source_filename = basename(filename)) %>%

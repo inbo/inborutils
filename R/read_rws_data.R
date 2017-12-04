@@ -11,13 +11,13 @@
 #' unit,variable_name, latitude, longitude and source_filename
 #'
 #' @export
-#' @importFrom readr read_delim cols col_character col_number
+#' @importFrom readr read_delim cols col_character col_number read_lines
 #' @importFrom dplyr select mutate %>%
 #' @importFrom assertthat are_equal
 #' @importFrom lubridate force_tz dmy_hm
+#' @importFrom rlang .data
 #'
-#' TODO: adapt to SE!!
-load_rws_data <- function(filename, n_max = Inf) {
+read_rws_data <- function(filename, n_max = Inf) {
 
     # Extract variable info
     rws_con <- file(filename, "rb")
@@ -27,7 +27,8 @@ load_rws_data <- function(filename, n_max = Inf) {
     # Extract location_name from file
     file_only <- basename(filename)
     location_name <- tolower(strsplit(file_only, "_")[[1]][[1]])
-    var_name <- tolower(strsplit(strsplit(file_only, "_")[[1]][[2]], "\\.")[[1]][[1]])
+    var_name <- tolower(strsplit(strsplit(file_only, "_")[[1]][[2]],
+                                 "\\.")[[1]][[1]])
 
     # prepare reading in function of variable type in header
     if (grepl("temp", header)) {
@@ -46,7 +47,7 @@ load_rws_data <- function(filename, n_max = Inf) {
         variable_longname <- "conductivity"
         variable_shortname <- "cond"
         variable_unit <- "" # TODO, still unclear
-        variable_factor <- 10. # recalculation factor # TODO: CHECK WITH PJ
+        variable_factor <- 10. # recalculation factor
         col_types <- cols(
             Date = col_character(),
             Time = col_character(),
@@ -56,11 +57,6 @@ load_rws_data <- function(filename, n_max = Inf) {
         stop("Header contains unknown variable for RWS parser")
     }
 
-    # compare the header name and file name variable
-    if (!are_equal(var_name, variable_shortname)) {
-        stop("Header variable name and file name variable are inconsistent")
-    }
-
     # Note: RWS uses a * to define missing values
     rws_data <- read_delim(filename, delim = ", ", trim_ws = TRUE,
                            n_max = n_max, col_types = col_types,
@@ -68,9 +64,11 @@ load_rws_data <- function(filename, n_max = Inf) {
 
     rws_data <- rws_data %>%
         # for RWS, the MET is default time zone: convert to UTC with force_tz
-        mutate(datetime = force_tz(dmy_hm(paste(Date, Time)), tzone = "UTC")) %>%
-        select(datetime, value = variable_shortname) %>%
-        mutate(value = value * variable_factor) %>%
+        mutate(datetime = force_tz(dmy_hm(paste(.data$Date,
+                                                .data$Time)),
+                                   tzone = "UTC")) %>%
+        select(.data$datetime, value = variable_shortname) %>%
+        mutate(value = .data$value * variable_factor) %>%
         mutate(unit = variable_unit) %>%
         mutate(variable_name = variable_longname) %>%
         mutate(location_name = location_name) %>%
