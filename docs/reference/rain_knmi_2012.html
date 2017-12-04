@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>reproject XY coordinates from dframe columns — reproject_coordinates • inborutils</title>
+<title>Example data.frame with KNMI downloaded data — rain_knmi_2012 • inborutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -98,55 +98,37 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>reproject XY coordinates from dframe columns</h1>
+    <h1>Example data.frame with KNMI downloaded data</h1>
     </div>
 
     
-    <p>reproject XY coordinates from dframe columns</p>
+    <p>A dataset containing the rainfall from January 1st till February 1st for
+Vlissingen and Westdorpe, as downloaded from KNMI</p>
     
 
-    <pre class="usage"><span class='fu'>reproject_coordinates</span>(<span class='no'>df</span>, <span class='no'>col_long</span>, <span class='no'>col_lat</span>, <span class='no'>crs_input</span>, <span class='no'>crs_output</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df</th>
-      <td><p>data.frame with a x and y coordinate column</p></td>
-    </tr>
-    <tr>
-      <th>col_long</th>
-      <td><p>(char) name of the x (longitude) column</p></td>
-    </tr>
-    <tr>
-      <th>col_lat</th>
-      <td><p>(char) name of the y (latitude) column</p></td>
-    </tr>
-    <tr>
-      <th>crs_input</th>
-      <td><p>projection string of class CRS-class defining the
-current projection</p></td>
-    </tr>
-    <tr>
-      <th>crs_output</th>
-      <td><p>projection string of class CRS-class defining the
-projection to convert to</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='no'>rain_knmi_2012</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>data.frame with the same columns, but adapted coordinates for the
-x and y column values</p>
+    <p>A data frame with 1536 rows and 9 variables:</p><dl class='dl-horizontal'>
+  <dt>value</dt><dd><p>measured value</p></dd>
+  <dt>datetime</dt><dd><p>datetime of the measurement</p></dd>
+  <dt>unit</dt><dd><p>unit (mm)</p></dd>
+  <dt>variable_name</dt><dd><p>precipitation</p></dd>
+  <dt>longitude</dt><dd><p>coordinate</p></dd>
+  <dt>latitude</dt><dd><p>coordinate</p></dd>
+  <dt>location_name</dt><dd><p>station name</p></dd>
+  <dt>source_filename</dt><dd><p>filename from which the data was read</p></dd>
+  <dt>quality_code</dt><dd><p>Nan as KNMI does not provide this</p></dd>
+</dl>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
           </ul>
 
   </div>
