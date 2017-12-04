@@ -15,6 +15,7 @@
 #' @importFrom iterators ireadLines nextElem
 #' @importFrom sp CRS
 #' @importFrom lubridate dmy_hms
+#' @importFrom rlang .data
 #'
 read_mow_data <- function(filename, n_max = Inf) {
     # Extract data from header by reading the header lines
@@ -72,9 +73,11 @@ read_mow_data <- function(filename, n_max = Inf) {
                            col_types = col_types)
     colnames(mow_data) <- header
     mow_data %>%
-        mutate_(datetime = dmy_hms(paste(~Date, ~Time))) %>% # UTC by default
-        select_(~datetime, value = header[[3]],
-               quality_code = "Quality flag") %>%
+        mutate(datetime = dmy_hms(paste(.data$Date,
+                                        .data$Time))) %>% # UTC by default
+        select(.data$datetime, value = header[[3]],
+               quality_code = .data$`Quality flag`,
+               quality_comments = .data$Comments) %>%
         mutate(location_name = station_name) %>%
         mutate(variable_name = variable_name_mapped) %>%
         mutate(unit = variable_unit) %>%
