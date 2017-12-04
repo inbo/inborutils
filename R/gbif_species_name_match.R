@@ -21,8 +21,9 @@
 #' @export
 #' @importFrom assertthat assert_that
 #' @importFrom assertable assert_colnames
-#' @importFrom dplyr %>% rowwise do select bind_cols
+#' @importFrom dplyr %>% rowwise do select bind_cols do_
 #' @importFrom rgbif name_backbone
+#' @importFrom lazyeval interp
 gbif_species_name_match <- function(df, name_col,
                                     gbif_terms = c('usageKey',
                                                    'scientificName',
@@ -51,10 +52,11 @@ gbif_species_name_match <- function(df, name_col,
 
     # matching the GBiF matching information to the sample_data
     df %>% rowwise() %>%
-        do(as.data.frame(name_backbone(name = .[[name_col]]))) %>%
+        do_(interp(~ as.data.frame(name_backbone(name = .$x)),
+                   x = as.name(name_col))) %>%
         select(gbif_terms) %>%
         bind_cols(df)
-    # (remark I use here Non Standard evaluation (NSE) do instead of the SE do_,
+    # (remark I use here Standard evaluation (SE) with do_,
     # see also:
     # https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html and
     # https://stackoverflow.com/questions/26739054/using-variable-column-names-in-dplyr-do)

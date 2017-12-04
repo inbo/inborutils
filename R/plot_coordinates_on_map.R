@@ -16,9 +16,8 @@
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
 #'
 plot_coordinates_on_map <- function(df, col_long, col_lat, projection) {
-    data_proj <- reproject_points(df, col_long, col_lat,
-                                  projection,
-                                  CRS("+init=epsg:4326"))
+    data_proj <- reproject_coordinates(df, col_long, col_lat, projection,
+                                       CRS("+init=epsg:4326"))
     mapt <- leaflet(data = data_proj) %>%
         addTiles() %>%
         addCircleMarkers(data_proj[[col_long]], data_proj[[col_lat]],

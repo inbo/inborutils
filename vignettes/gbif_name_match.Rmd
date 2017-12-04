@@ -37,7 +37,7 @@ To add the species information, using the `scientificName` column, and the defau
 
 ```{r warning=FALSE}
 my_data_update <- gbif_species_name_match(species_example, 
-                                              name_col = "scientificName")
+                                          name_col = "scientificName")
 ```
 
 ```{r}

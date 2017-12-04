@@ -33,6 +33,12 @@ reference:
     desc: "Functions for working with GBIF data, beyond rgbif functionalities"
     contents:
       - gbif_species_name_match
+  - title: "Data loaders"
+    desc: "Functions to download/read specific data formats"
+    contents:
+      - read_mow_data
+      - download_knmi_data_hour
+      - read_knmi_rainfall
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:

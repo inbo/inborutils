@@ -13,7 +13,12 @@ Imports:
     dplyr,
     leaflet,
     sp,
-    rgbif
+    rgbif,
+    httr,
+    iterators,
+    lubridate,
+    readr,
+    lazyeval
 Suggests:
     knitr,
     rmarkdown,
