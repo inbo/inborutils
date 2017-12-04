@@ -7,13 +7,16 @@
 #' @param stations list of integers, for an overview, see
 #' http://projects.knmi.nl/klimatologie/metadata/stationslijst.html
 #' @param variables list of variables, options are:
-#'     WIND = DD:FH:FF:FX     Wind
-#'     TEMP = T:T10N:TD       Temperatuur
-#'     SUNR = SQ:Q            Zonneschijnduur en globale straling
-#'     PRCP = DR:RH           Neerslag en potentiële verdamping
-#'     VICL = VV:N:U          Zicht, bewolking en relatieve vochtigheid
-#'     WEER = M:R:S:O:Y:WW    Weerverschijnselen, weertypen
-#'     ALL alle variabelen
+#' \itemize{
+#'  \item{"WIND = DD:FH:FF:FX"}{Wind}
+#'  \item{"TEMP = T:T10N:TD"}{Temperatuur}
+#'  \item{"SUNR = SQ:Q"}{Zonneschijnduur en globale straling}
+#'  \item{"PRCP = DR:RH"}{Neerslag en potentiële verdamping}
+#'  \item{"VICL = VV:N:U"}{Zicht, bewolking en relatieve vochtigheid}
+#'  \item{"WEER = M:R:S:O:Y:WW"}{Weerverschijnselen, weertypen}
+#'  \item{"ALL"}{alle variabelen}
+#' }
+#'
 #' @param start_date date interpretable string to define start of the period
 #' @param end_date date interpretable string to define end of the period
 #' @param output_file path/filename of the output_file_name

@@ -12,13 +12,15 @@ download_knmi_data_hour(stations, variables, start_date, end_date,
 http://projects.knmi.nl/klimatologie/metadata/stationslijst.html}
 
 \item{variables}{list of variables, options are:
-WIND = DD:FH:FF:FX     Wind
-TEMP = T:T10N:TD       Temperatuur
-SUNR = SQ:Q            Zonneschijnduur en globale straling
-PRCP = DR:RH           Neerslag en potentiële verdamping
-VICL = VV:N:U          Zicht, bewolking en relatieve vochtigheid
-WEER = M:R:S:O:Y:WW    Weerverschijnselen, weertypen
-ALL alle variabelen}
+\itemize{
+ \item{"WIND = DD:FH:FF:FX"}{Wind}
+ \item{"TEMP = T:T10N:TD"}{Temperatuur}
+ \item{"SUNR = SQ:Q"}{Zonneschijnduur en globale straling}
+ \item{"PRCP = DR:RH"}{Neerslag en potentiële verdamping}
+ \item{"VICL = VV:N:U"}{Zicht, bewolking en relatieve vochtigheid}
+ \item{"WEER = M:R:S:O:Y:WW"}{Weerverschijnselen, weertypen}
+ \item{"ALL"}{alle variabelen}
+}}
 
 \item{start_date}{date interpretable string to define start of the period}
 
