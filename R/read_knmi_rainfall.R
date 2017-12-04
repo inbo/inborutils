@@ -13,8 +13,9 @@
 #' @export
 #' @importFrom iterators ireadLines nextElem
 #' @importFrom readr read_delim cols col_character col_number
-#' @importFrom dplyr select_ mutate %>% mutate_
+#' @importFrom dplyr select_ mutate %>% mutate_ quo
 #' @importFrom lubridate ymd_h
+#' @importFrom rlang .data
 #'
 read_knmi_rainfall <- function(filename, n_max = Inf) {
     # Extract data from header by reading the header lines
@@ -52,8 +53,8 @@ read_knmi_rainfall <- function(filename, n_max = Inf) {
     coordinates <- as.data.frame(coordinate_info, row.names = coordinate_header)
     coordinates <- coordinates %>%
         t() %>% as.data.frame() %>%
-        select_(station = quote(STN), longitude = "LON(east)",
-                latitude = "LAT(north)", location_name = quote(NAME))
+        select_(station = quote(STN), longitude = quo("LON(east)"),
+                latitude = quo("LAT(north)"), location_name = quote(NAME))
 
     # Read the KNMI data format
     col_types <- cols(
@@ -68,14 +69,14 @@ read_knmi_rainfall <- function(filename, n_max = Inf) {
                             n_max = n_max, col_types = col_types)
 
     knmi_data %>%
-        mutate(datetime = ymd_h(paste(~YYYYMMDD, ~HH))) %>%
+        mutate(datetime = ymd_h(paste(.data$YYYYMMDD, .data$HH))) %>%
         select_(station = quote(STN), value = quote(RH), quote(datetime)) %>%
         mutate(unit = "mm") %>%
-        mutate_(value = ifelse(~value == -1, -1, ~value/10.)) %>%
+        mutate(value = ifelse(.data$value == -1, -1, .data$value/10.)) %>%
         mutate(variable_name = "precipitation") %>%
         merge(coordinates, by = "station") %>%
-        mutate_(source_filename = basename(~filename)) %>%
-        select_(-~station) %>%
+        mutate(source_filename = basename(filename)) %>%
+        select(-.data$station) %>%
         mutate(quality_code = "")
 
 }
