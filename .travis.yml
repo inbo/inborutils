@@ -3,6 +3,9 @@ sudo: false
 cache: packages
 warnings_are_errors: true
 
+r_binary_packages:
+ - rgdal
+
 before_script:
 - Rscript -e "install.packages('devtools')"
 - Rscript -e "devtools::install_github('hadley/pkgdown')"
