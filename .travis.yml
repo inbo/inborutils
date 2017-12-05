@@ -1,21 +1,16 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: R
 sudo: false
 cache: packages
 warnings_are_errors: true
 
 before_script:
-  - "Rscript -e 'install.packages('devtools')'"
-  - "Rscript -e 'devtools::install_github('hadley/pkgdown')'"
-
-script:
-  - "Rscript -e 'pkgdown::build_site(path = ".", preview = FALSE)'"
+- Rscript -e "install.packages('devtools')"
+- Rscript -e "devtools::install_github('hadley/pkgdown')"
 
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  github_token: "$GH_TOKEN"
   on:
     branch: master
 
