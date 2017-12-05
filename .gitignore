@@ -26,3 +26,6 @@ vignettes/*.pdf
 *.knit.md
 .Rproj.user
 inst/doc
+
+# we manager pkgdown on gh-pages repo
+docs/
