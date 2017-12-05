@@ -11,6 +11,9 @@ before_script:
   - Rscript -e "devtools::install_github('hadley/pkgdown')"
 
 script:
+  - R CMD build .
+  - R CMD check *tar.gz
+  - R CMD INSTALL --no-docs --no-help .
   - Rscript -e "pkgdown::build_site(path = 'docs', preview = FALSE)"
 
 after_success:
