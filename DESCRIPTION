@@ -19,7 +19,8 @@ Imports:
     lubridate,
     readr,
     lazyeval,
-    rlang
+    rlang,
+    rgdal
 Suggests:
     knitr,
     rmarkdown,
