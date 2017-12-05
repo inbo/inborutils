@@ -1,6 +1,6 @@
 # inborutils package
 
-[![Travis-CI Build Status](https://travis-ci.org/inbo/inborutils.svg?branch=master)](https://travis-ci.org/inbo/inborutils)
+[![Travis-CI Build Status](https://travis-ci.org/inbo/inborutils.svg?branch=master)](https://travis-ci.org/inbo/inborutils) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/stijnvanhoey/inborutils?branch=master&svg=true)](https://ci.appveyor.com/project/stijnvanhoey/inborutils)
 
 This `inborutils` pacakge provides a collection of useful R utilities and snippets that we consider recyclable for multiple projects. Thee functions are either out of scope or just not mature enough to include as extensions to existing packages. 
 
