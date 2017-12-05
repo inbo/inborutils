@@ -1,6 +1,6 @@
 # inborutils package
 
-[![Travis-CI Build Status](https://travis-ci.org/inbo/inbo-rutils.svg?branch=master)](https://travis-ci.org/inbo/inbo-rutils)
+[![Travis-CI Build Status](https://travis-ci.org/inbo/inborutils.svg?branch=master)](https://travis-ci.org/inbo/inborutils)
 
 This `inborutils` pacakge provides a collection of useful R utilities and snippets that we consider recyclable for multiple projects. Thee functions are either out of scope or just not mature enough to include as extensions to existing packages. 
 
