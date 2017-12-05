@@ -3,6 +3,10 @@ set -o errexit -o nounset
 PKG_REPO=$PWD
 cd ..
 
+CURRENT_VERSION=$(grep 'Version: .*' DESCRIPTION | awk '{print $2}')
+CURRENT_PACKAGE=$(grep 'Package: .*' DESCRIPTION | awk '{print $2}')
+export PKG_TARBALL=$CURRENT_PACKAGE'_'$CURRENT_VERSION'.tar.gz'
+
 addToDrat(){
   mkdir drat; cd drat
 

@@ -18,7 +18,6 @@ script:
 
 # See https://github.com/csgillespie/dratTravis/blob/master/deploy.sh
 after_success:
-  - echo $PKG_TARBALL
   - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
 
 deploy:
