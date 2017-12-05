@@ -25,7 +25,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    ggplot2
+    ggplot2,
+    drat
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
