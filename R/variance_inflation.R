@@ -1,44 +1,33 @@
 
-#' Title
+#' Variance inflation factor
 #'
 #' @param mod A model object (or data.frame). For the moment only lm and a plain dataset is implemented
-#' @param ...
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @param ... not used
+#' @rdname vif
+#' @return a matrix with for each variable de variance inflation factor, the degrees of freedom  en the rescaled variance inflation factor based on the degrees of freedom.
+
 vif <- function(mod, ...){
   UseMethod("vif")
 }
 
-#' Title
+#---------------------------
+
+#' Variance inflaction factor (lm model)
 #'
-#' @param mod linear model object
-#' @param ...
-#'
-#' @return
 #' @export
-#'
-#' @examples
+#' @method vif lm
+#' @rdname vif
 vif.lm <- function(mod, ...){
   vif.default(mod, ...)
 }
 
 
 
-#' Variance inflation factors of a data frame
+#' Variance inflaction factor (data.frame)
 #'
-#'Contains a wrapper function around car::vif to calculate the variance inflation of data.frames
-#'
-#' @param mod A data.frame with numerical and factor variables
-#'
-#' @return A matrix containing the VIF and standardised VIF factors
 #' @export
-#' @importFrom car vif
 #' @method vif data.frame
-#'
-#' @examples
+#' @rdname vif
 vif.data.frame <- function(mod, ...){
   mod <- cbind(dummyResponse = 1, mod)
   my_formula <- as.formula(mod)
@@ -47,15 +36,15 @@ vif.data.frame <- function(mod, ...){
 }
 
 
-#' Title
+#' Variance inflation factor (default routine)
 #'
-#' @param mod An object like lm which supports the functions coef, terms and model.matrix
-#' @param ...
-#'
-#' @return
 #' @export
-#'
-#' @examples
+#' @method vif default
+#' @rdname vif
+#' #' @examples{
+#' vif(airquality)
+#' }
+#' @importFrom stats as.formula coef coefficients cov2cor lm model.matrix vcov
 vif.default <- function (mod, ...)
 {
   if (any(is.na(coef(mod))))
