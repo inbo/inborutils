@@ -1,0 +1,58 @@
+---
+title: "GBIF scientific name matching"
+author: "Stijn Van Hoey"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+Working with different partners/institutes/researchers results in a diversity of taxonomic names to define species. This hardens comparison amongst datasets, as in many occasions, aggregation is aimed for or filtering on specific species. By translating all species names to a common taxonomic backbone (ensuring unique ID's for each species name), this can be done. The `gbif_species_name_match` function supports matching with the GBIF taxonomic backbone.
+
+## Aim
+
+This function provides the functionality to add the species information from the GBIF backbone to **any data table (`data.frame`)** by requesting this information via the GBIF API. For each match, the corresponding accepted name is looked for. Nevertheless there will always be errors and control is still required!
+
+## Functionality
+
+The `gbif_species_name_match` function extends the matching function provided by [Rgbif](https://github.com/ropensci/rgbif) to be compatible with a `data.frame` data structure.
+
+Loading the functionality can be done by loading the `inborutils` package:
+
+```{r}
+library(inborutils)
+```
+
+Consider the example data set `species_example`:
+
+```{r}
+knitr::kable(species_example)
+```
+
+To add the species information, using the `scientificName` column, and the default fields:
+
+```{r warning=FALSE}
+my_data_update <- gbif_species_name_match(species_example, 
+                                          name_col = "scientificName")
+```
+
+```{r}
+knitr::kable(my_data_update)
+```
+
+When not satisfied by the default fields provided ´('usageKey','scientificName','rank','order','matchType','phylum', 'kingdom','genus', 'class','confidence', 'synonym', 'status','family')´, you can alter these by the `gbif_terms` argument, for example:
+
+```{r message=FALSE, warning=FALSE}
+gbif_terms_to_use <- c('scientificName', 'order')
+my_data_update <- gbif_species_name_match(species_example, 
+                                              name_col = "scientificName" , 
+                                              gbif_terms = gbif_terms_to_use)
+```
+
+```{r}
+knitr::kable(my_data_update)
+```
