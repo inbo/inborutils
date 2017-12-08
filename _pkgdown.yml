@@ -50,6 +50,10 @@ reference:
     contents:
       - coordinate_example
       - species_example
+  - title: "statistical modelling"
+    desc: "Functions for handling statistical modelling tasks"
+    contents:
+      - vif
 
 articles:
   - title: "Verify point coordinate reference system"
