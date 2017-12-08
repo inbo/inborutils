@@ -46,15 +46,15 @@ reference:
     desc: "Functions to support work with data.frames"
     contents:
       - df_factors_to_char
+  - title: "Statistical modelling"
+    desc: "Functions for handling statistical modelling tasks"
+    contents:
+      - vif
   - title: "Example datasets"
     contents:
       - coordinate_example
       - species_example
-  - title: "statistical modelling"
-    desc: "Functions for handling statistical modelling tasks"
-    contents:
-      - vif
-
+      
 articles:
   - title: "Verify point coordinate reference system"
     contents:
