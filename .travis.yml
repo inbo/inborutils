@@ -16,10 +16,6 @@ script:
   - R CMD INSTALL --no-docs --no-help .
   - Rscript -e "pkgdown::build_site(path = 'docs', preview = FALSE)"
 
-# See https://github.com/csgillespie/dratTravis/blob/master/deploy.sh
-after_success:
-  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
-
 deploy:
   provider: pages
   skip_cleanup: true
@@ -27,10 +23,4 @@ deploy:
   github_token: "$GH_TOKEN"
   on:
     branch: master
-
-env:
-  global:
-    secure: C5/IYeXBPN9jnK0IrQEyRd3/1Hxf9hx+E9WUBaiwiEmdgS06fNgOdjuGC4/nRGhuVHp96nWxSrhb6JxJSjUNfjy+227cG+djK8IzTb0K4iLX/Sjy/IYodc4MShd16fBKZBaPvNVT+kotDi0ifmWrMWx2WOkQ+bm+FJV9IGWp8FCIX6SlsuM9BnLOVuFQoE5jZ0YO8Vgr5DfV4m0zW0gMgGidhUWIRO89DxZUpEEiMKvUN9twUkCITJrpwmEPFGLhSHzcTb+RnFptxgWCHKISepYe7iejKNghgvln2bVTAMT7eGg6cyzS051b7UUVJekczrqfmC1Evdak7VyN8ZKTi583MM+RlbAv8FUJ90U9K2X9Xiy5dmGntg1zY9DZTAceaQI8/7sVsmnFQFwyTyEUlFHvLm9eztcoYRuHGM4bYNLKVhW/nmEy6gNqWiH/TU7wNIu1zSdq4BgVbylStnaXpghvDtkL7oBEkAIbOI2PWKx0mXB1r9YlYzduuvpq4DIY+sWlXegVP1Aelt1ypeb4kNY+ZQ0DC0aPXXVviwC0LKVPmlyE0fdVUwWthj6shcPgm6c5qeGmg8/sNE1Bhx8ddO/vnsCg/BvpqEE7UI2eeToZQVw/aRC7dl438+RgFZ8LzkhtpPcZdxuaRDcD4crsTuD/isgtqzIYTK9kjD+1rLA=
-
-
 

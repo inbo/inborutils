@@ -6,4 +6,3 @@ CONDUCT.md
 CONTRIBUTING.md
 ^\.travis\.yml$
 ^appveyor\.yml$
-deploy.sh
