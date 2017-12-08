@@ -20,7 +20,8 @@ Imports:
     readr,
     lazyeval,
     rlang,
-    rgdal
+    rgdal,
+    stats
 Suggests:
     knitr,
     rmarkdown,
