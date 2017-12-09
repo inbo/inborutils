@@ -27,6 +27,7 @@ Suggests:
     rmarkdown,
     testthat,
     ggplot2,
+    htmlwidgets,
     drat
 License: MIT + file LICENSE
 Encoding: UTF-8
