@@ -7,6 +7,7 @@ vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{htmlwidgets}
 ---
 
 ```{r, echo=FALSE}
@@ -42,6 +43,12 @@ The `guess_projection` function requires as minimal inputs:
 3.  the latitude column name. 
 
 For example:
+
+```{r echo = FALSE}
+library(htmlwidgets)
+setWidgetIdSeed(20171209)
+```
+
 
 ```{r fig.width=7, message=FALSE}
 # my_dataframe has the columns "longitude" and "latitude"
