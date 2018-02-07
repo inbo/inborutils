@@ -5,6 +5,7 @@
 #' @param ... not used
 #' @rdname vif
 #' @return a matrix with for each variable de variance inflation factor, the degrees of freedom  en the rescaled variance inflation factor based on the degrees of freedom.
+#' @export
 
 vif <- function(mod, ...){
   UseMethod("vif")
@@ -45,7 +46,7 @@ vif.data.frame <- function(mod, ...){
 #' vif(airquality)
 #' }
 #' @importFrom stats as.formula coef coefficients cov2cor lm model.matrix vcov
-vif.default <- function (mod, ...)
+vif.default <- function(mod, ...)
 {
   if (any(is.na(coef(mod))))
     stop("there are aliased coefficients in the model")
