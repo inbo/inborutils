@@ -1,13 +1,18 @@
-#' Get plant overview list from INBOVEG
+#' Provide accepted names list from INBOVEG database
 #'
-#' In order to exclude the synonyms from the plant list, this table provides a
-#' taxonlist overview of the INBOVEG taxa.
+#' Get all taxon names available from an INBOVEG database taxon list
+#' (identified with the `TaxonListGIVID`) and give for each name the corresponding
+#' preferred taxon name as available in the specified reference list
+#' (identified by `ListName`)
 #'
 #' @param connection odb
+#' @param TaxonListGIVID char
+#' @param ListName char
 #'
 #' @return DBIConnection-class, using DBI-ODBC like connectors
 #' @export
-#' @importFrom DBI dbGetQuery
+#' @importFrom DBI dbSendQuery dbBind dbFetch dbClearResult
+#' @importFrom assertthat assert_that is.string
 #'
 #' @examples
 #' \dontrun{
@@ -15,7 +20,12 @@
 #' con <- dbConnect(odbc::odbc(), dsn="Cydonia")
 #' plant_overview <- inboveg_get_synonym(con)
 #' }
-inboveg_get_synonym <- function(connection) {
+inboveg_synonym_list <- function(connection,
+                                 TaxonListGIVID = 'TL2011092815101010',
+                                 ListName = 'INBO-2011 Sci') {
+
+    assert_that(is.string(TaxonListGIVID))
+    assert_that(is.string(ListName))
 
     query <- "SELECT ftt.TaxonName AS TaxonFullText
                   , COALESCE([qry_B_GetSyn].TaxonName, ftt.TaxonName) AS ScientificName
@@ -32,11 +42,14 @@ inboveg_get_synonym <- function(connection) {
             				FROM dbo.ftActionGroupList
             					INNER JOIN dbo.ftTaxonListItem ON ftTaxonListItem.TaxonListGIVID = ftActionGroupList.ListGIVID
             					LEFT JOIN dbo.ftTaxon ON ftTaxon.TaxonGIVID = ftTaxonListItem.TaxonGIVID
-            				WHERE ftActionGroupList.ListName = 'INBO-2011 Sci'
+            				WHERE ftActionGroupList.ListName = ?
             	) qry_B_GetSyn ON tli.PreferedListItemGIVID = qry_B_GetSyn.TaxonListItemGIVID
-            WHERE tli.TaxonListGIVID = 'TL2011092815101010'
+            WHERE tli.TaxonListGIVID = ?
             ORDER BY ftt.TaxonName;
             "
-    dbGetQuery(connection, query)
+    query <- dbSendQuery(connection, query)
+    dbBind(query, list(TaxonListGIVID, ListName))
+    synonym_list <- dbFetch(query)
+    dbClearResult(query)
+    synonym_list
 }
-
