@@ -17,8 +17,10 @@
 #' @examples
 #' \dontrun{
 #' library(DBI)
-#' con <- dbConnect(odbc::odbc(), dsn="Cydonia")
-#' plant_overview <- inboveg_get_synonym(con)
+#' con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+#' plant_overview <- inboveg_synonym_list(con,
+#'                            TaxonListGIVID = 'TL2011092815101010',
+#'                            ListName = 'INBO-2011 Sci')
 #' }
 inboveg_synonym_list <- function(connection,
                                  TaxonListGIVID = 'TL2011092815101010',
