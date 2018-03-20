@@ -8,14 +8,14 @@ inboveg_synonym_list(connection, TaxonListGIVID = "TL2011092815101010",
   ListName = "INBO-2011 Sci")
 }
 \arguments{
-\item{connection}{odb}
+\item{connection}{odb DBIConnection-class, using DBI-ODBC like connectors}
 
-\item{TaxonListGIVID}{char}
+\item{TaxonListGIVID}{char taxon list}
 
-\item{ListName}{char}
+\item{ListName}{char preferred name list}
 }
 \value{
-DBIConnection-class, using DBI-ODBC like connectors
+data.frame
 }
 \description{
 Get all taxon names available from an INBOVEG database taxon list

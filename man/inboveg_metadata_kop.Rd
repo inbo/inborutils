@@ -8,7 +8,7 @@ inboveg_metadata_kop(connection, recording_type = c("Classic",
   "Classic-emmer", "Classic-ketting"), survey_name = NULL)
 }
 \arguments{
-\item{connection}{odb}
+\item{connection}{odb DBIConnection-class, using DBI-ODBC like connectors}
 
 \item{recording_type}{vector of char, default c('Classic', 'Classic-emmer',
 'Classic-ketting')}
@@ -17,7 +17,7 @@ inboveg_metadata_kop(connection, recording_type = c("Classic",
 i.e. all surveys are taken into account}
 }
 \value{
-DBIConnection-class, using DBI-ODBC like connectors
+data.frame
 }
 \description{
 For each vegetation recording identified by RecordingGivid, the metadata is
