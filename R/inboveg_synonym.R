@@ -5,11 +5,11 @@
 #' preferred taxon name as available in the specified reference list
 #' (identified by `ListName`)
 #'
-#' @param connection odb
-#' @param TaxonListGIVID char
-#' @param ListName char
+#' @param connection odb DBIConnection-class, using DBI-ODBC like connectors
+#' @param TaxonListGIVID char taxon list
+#' @param ListName char preferred name list
 #'
-#' @return DBIConnection-class, using DBI-ODBC like connectors
+#' @return data.frame
 #' @export
 #' @importFrom DBI dbSendQuery dbBind dbFetch dbClearResult
 #' @importFrom assertthat assert_that is.string
@@ -29,22 +29,27 @@ inboveg_synonym_list <- function(connection,
     assert_that(is.string(TaxonListGIVID))
     assert_that(is.string(ListName))
 
-    query <- "SELECT ftt.TaxonName AS TaxonFullText
-                  , COALESCE([qry_B_GetSyn].TaxonName, ftt.TaxonName) AS ScientificName
-                  , COALESCE([qry_B_GetSyn].TaxonGIVID, ftt.TaxonGIVID) AS TAXON_LIST_ITEM_KEY
-                  , COALESCE([qry_B_GetSyn].TaxonQuickCode, ftt.TaxonQuickCode) AS QuickCode
-              FROM dbo.ftTaxon ftt
-            	INNER JOIN dbo.ftTaxonListItem tli ON tli.TaxonGIVID = ftt.TaxonGIVID
-            	INNER JOIN (SELECT ftTaxonListItem.TaxonListItemGIVID
-            						, ftTaxon.TaxonGIVID
-            						, ftTaxon.TaxonName
-            						, ftTaxon.TaxonQuickCode
-            						, ftActionGroupList.ListName
-            						, ftTaxonListItem.PreferedListItemGIVID
-            				FROM dbo.ftActionGroupList
-            					INNER JOIN dbo.ftTaxonListItem ON ftTaxonListItem.TaxonListGIVID = ftActionGroupList.ListGIVID
-            					LEFT JOIN dbo.ftTaxon ON ftTaxon.TaxonGIVID = ftTaxonListItem.TaxonGIVID
-            				WHERE ftActionGroupList.ListName = ?
+    query <- "
+        SELECT ftt.TaxonName AS TaxonFullText,
+            COALESCE([qry_B_GetSyn].TaxonName, ftt.TaxonName) AS ScientificName,
+            COALESCE([qry_B_GetSyn].TaxonGIVID, ftt.TaxonGIVID) AS
+                TAXON_LIST_ITEM_KEY,
+            COALESCE([qry_B_GetSyn].TaxonQuickCode, ftt.TaxonQuickCode) AS
+                QuickCode
+            FROM dbo.ftTaxon ftt
+            INNER JOIN dbo.ftTaxonListItem tli ON
+                tli.TaxonGIVID = ftt.TaxonGIVID
+            INNER JOIN (SELECT ftTaxonListItem.TaxonListItemGIVID,
+                            ftTaxon.TaxonGIVID,
+                            ftTaxon.TaxonName,
+                            ftTaxon.TaxonQuickCode,
+                            ftActionGroupList.ListName,
+                            ftTaxonListItem.PreferedListItemGIVID
+                        FROM dbo.ftActionGroupList
+            			INNER JOIN dbo.ftTaxonListItem ON
+                            ftTaxonListItem.TaxonListGIVID = ftActionGroupList.ListGIVID
+            			LEFT JOIN dbo.ftTaxon ON ftTaxon.TaxonGIVID = ftTaxonListItem.TaxonGIVID
+            			WHERE ftActionGroupList.ListName = ?
             	) qry_B_GetSyn ON tli.PreferedListItemGIVID = qry_B_GetSyn.TaxonListItemGIVID
             WHERE tli.TaxonListGIVID = ?
             ORDER BY ftt.TaxonName;
