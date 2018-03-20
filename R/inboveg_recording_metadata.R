@@ -12,7 +12,7 @@
 #' @return data.frame
 #' @export
 #' @importFrom DBI dbSendQuery dbBind dbFetch dbClearResult
-#' @importFrom assertthat assert_that is.string is.null
+#' @importFrom assertthat assert_that is.string
 #'
 #' @examples
 #' \dontrun{
