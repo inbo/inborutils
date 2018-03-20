@@ -42,6 +42,14 @@ reference:
       - download_knmi_data_hour
       - read_knmi_rainfall
       - read_kmi_data
+  - title: "INBOVEG data interaction"
+    desc: "Functions to read data from INBOVEG database"
+    contents:
+      - inboveg_survey
+      - inboveg_classification
+      - inboveg_synonym_list
+      - inboveg_metadata_kop
+      - inboveg_coverage
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:
@@ -54,7 +62,7 @@ reference:
     contents:
       - coordinate_example
       - species_example
-      
+
 articles:
   - title: "Verify point coordinate reference system"
     contents:
