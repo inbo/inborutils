@@ -1,0 +1,71 @@
+---
+title: "INBOVEG queries als functies"
+author: "Stijn Van Hoey"
+date: "March 23, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(DBI)
+opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+We have INBOVEG...
+
+We need data from INBOVEG and use **SQL queries** to do so...
+
+We want to avoid copy paste work from queries, zo we create **R-functions** that wraps these queries...
+
+# The database connection
+
+In order to query data from INBOVEG, a database connection is required...
+
+You have to make sure you are allowed to set up this connection. For more information, see [link to more general database connection tutorial](...)...
+
+When the database name (the technical term is the [DSN](https://en.wikipedia.org/wiki/Data_source_name)) is known on your computer, you can make the connection as follows...
+
+```{r connection, eval = FALSE}
+con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd") 
+```
+
+This connection will be the input argument for each of the INBOVEG query functions.
+
+
+# Functionalities
+
+### Survey overview
+
+...
+
+```{r eval = FALSE}
+surveys <- inboveg_coverage(con)
+```
+
+
+### Vegetation recording metadata
+
+...
+
+When interested in all surveys:
+
+```{r eval = FALSE}
+metadata <- inboveg_metadata_kop(con)
+```
+
+or focusing on a specific survey, for example `Sigma_LSVI_2012`:
+
+```{r eval = FALSE}
+metadata <- inboveg_metadata_kop(con, 
+                                 survey_name = c("Sigma_LSVI_2012"))
+```
+
+### Coverage per vegetation layer
+
+...
+
+
+
