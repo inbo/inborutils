@@ -1,5 +1,5 @@
 ---
-title: "INBOVEG queries als functies"
+title: "INBOVEG queries as functions"
 author: "Stijn Van Hoey"
 date: "March 23, 2018"
 output: html_document
@@ -14,11 +14,9 @@ opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-We have INBOVEG...
+In this tutorial we show how to use helper functions to query data directly from the INBOVEG SQL Server database. These functions wrap **SQL queries** and so avoid having to write the queries yourself or copy-paste queries generated with the access-frontend for INBOVEG.
 
-We need data from INBOVEG and use **SQL queries** to do so...
-
-We want to avoid copy paste work from queries, zo we create **R-functions** that wraps these queries...
+We have provided functions to query information about surveys, metadata for relevés (= vegetation recording), the vegetation data and a query that helps to resolve taxonomic synonymy. 
 
 # The database connection
 
@@ -42,7 +40,7 @@ This connection will be the input argument for each of the INBOVEG query functio
 ...
 
 ```{r eval = FALSE}
-surveys <- inboveg_coverage(con)
+surveys <- inboveg_survey(con)
 ```
 
 
