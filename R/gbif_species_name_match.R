@@ -52,7 +52,8 @@ gbif_species_name_match <- function(df, name_col,
 
     # matching the GBiF matching information to the sample_data
     df %>% rowwise() %>%
-        do_(interp(~ as.data.frame(name_backbone(name = .$x)),
+        do_(interp(~ as.data.frame(name_backbone(name = .$x), 
+                                   stringsAsFactors = FALSE),
                    x = as.name(name_col))) %>%
         select(gbif_terms) %>%
         bind_cols(df)
