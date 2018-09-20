@@ -1,11 +1,11 @@
 library(tidyr)
 
 
-#' Load
+#' Extract date and coordinate information from Google Maps kml file
 #'
-#' @param filename (char)
+#' @param filename (char) filename/path of the kml file
 #'
-#' @return
+#' @return df with columns datum
 #' @export
 #'
 #' @examples
