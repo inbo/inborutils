@@ -1,0 +1,2092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>151.021 (BE1005)</name>
+    <Style id="icon-1556-FFEA00-normal">
+      <IconStyle>
+        <color>ff00eaff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1556-FFEA00-highlight">
+      <IconStyle>
+        <color>ff00eaff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1556-FFEA00">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1556-FFEA00-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1556-FFEA00-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-FFD600-normal">
+      <IconStyle>
+        <color>ff00d6ff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-FFD600-highlight">
+      <IconStyle>
+        <color>ff00d6ff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-FFD600">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-FFD600-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-FFD600-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-FFEA00-normal">
+      <IconStyle>
+        <color>ff00eaff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-FFEA00-highlight">
+      <IconStyle>
+        <color>ff00eaff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-FFEA00">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-FFEA00-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-FFEA00-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>18/02/2018 00:40</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0219<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Actief op meander in Haacht]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0219</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Actief op meander in Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6032863,50.9914292,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>18/02/2018 11:28</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0219<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: In burcht op meander Haacht]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0219</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>In burcht op meander Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6032058,50.9910193,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>18/02/2018 01:39</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0219<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: op meander in Haacht kortbij het tussenstuk.]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0219</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>op meander in Haacht kortbij het tussenstuk.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6033546,50.990953,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>20/02/2018 01:15</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): OP<br>Oever bij rust (LO/RO): <br>beschrijving: zwemmendstroomopwaarts]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>OP</value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>zwemmendstroomopwaarts</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.61261965334415,50.992820474778,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>20/02/2018  20:30</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op meander in Haacht]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op meander in Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6032677963376,50.9912592578172,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>21/02/2018 23:15</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: 151.0210<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op meander actief]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0210</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op meander actief</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6033144,50.9916976,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>22/02/2018 02:36</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op meander]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op meander</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.603368,50.9912181,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>27/02/2018 12:55</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: 151.0210<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Nieuwe plaats... enkele verse knaagsporen op deze kant van meander. Plekken in ijs te zien aan zijn hol]]></description>
+      <styleUrl>#icon-1899-FFD600</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0210</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Nieuwe plaats... enkele verse knaagsporen op deze kant van meander. Plekken in ijs te zien aan zijn hol</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6021356,50.9903638,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>28/02/2018 00:45</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.021<br>Actief/rust (A/R): <br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: op meander in Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.021</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value/>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>op meander in Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6027585119009,50.9899907039853,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>28/02/2018 01:50</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): <br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: op meander in Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value/>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>op meander in Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60228845477104,50.9903754312611,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>28/02/2018    19:46</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): RO<br>beschrijving: op meander in Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>RO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>op meander in Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60193373262882,50.9905413083017,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>03/03/2018 11:30</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.021<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): RO<br>beschrijving: rechteroever van grootste stuk van meander in Haacht.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.021</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>RO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>rechteroever van grootste stuk van meander in Haacht.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60227772593498,50.9903832397356,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>05/03/2018 10:40</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: 151.0210<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Moeilijk waarneembaar vanaf jaagpad]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0210</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Moeilijk waarneembaar vanaf jaagpad</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6021932,50.9903419,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>05/03/2018  23:42</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.021<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op klein stuk van meander in Haacht.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.021</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op klein stuk van meander in Haacht.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60332110524178,50.9911894048982,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>06/03/2018  01:08</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0207<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): OP<br>Oever bij rust (LO/RO): <br>beschrijving: Zwemmend stroomafwaarts]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0207</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>OP</value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zwemmend stroomafwaarts</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.59405306726694,51.0001134773658,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>07/03/2018   20:50</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: rondzwemmend op groot stuk van meander in Haacht.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>rondzwemmend op groot stuk van meander in Haacht.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60215099155903,50.9904427529305,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>08/03/2018    18:25</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): RO<br>beschrijving: Op groot stuk van de meander in Haacht.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>RO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op groot stuk van de meander in Haacht.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60230622440576,50.9904001229192,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>09/03/2018    17:45</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): RO<br>beschrijving: In de burcht op klein stuk van meander in Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>RO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>In de burcht op klein stuk van meander in Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60320375859737,50.9911237726036,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>11/03/2018 07:39</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): RO<br>beschrijving: In burcht op meander Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>RO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>In burcht op meander Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60323963314295,50.9911132207791,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>14/03/2018    07:05</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): LO<br>beschrijving: in burcht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>LO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>in burcht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6032664552331,50.9911138538886,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>19/03/2018   06:00</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op meander in Haacht, omgeving v/d burcht.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op meander in Haacht, omgeving v/d burcht.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60330534726381,50.9910231081,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>24/03/2018   12:35</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): RO<br>beschrijving: In burcht op meander van Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>RO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>In burcht op meander van Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60322286933661,50.9911598598253,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>28/03/2018   06:20</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: actief op meander in Haacht.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>actief op meander in Haacht.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60330367088318,50.9909000734102,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>28/03/2018 22:16</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: 151.0212<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op meander ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0212</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op meander </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6033278,50.9913295,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>29/03/2018 02:10</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Stroomopwaarts <br>Oever bij rust (LO/RO): <br>beschrijving: Zwemmend op Dijle... vermoedelijk stroomopwaarts]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Stroomopwaarts </value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zwemmend op Dijle... vermoedelijk stroomopwaarts</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6166933,50.9926903,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>03/04/2018 13:59</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: In burcht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>In burcht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6031964,50.9909885,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>13/04/2018    23:10</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Op<br>Oever bij rust (LO/RO): <br>beschrijving: Zat op rechteroever en is rustig int water gegaan en stroomopwaarts gezwommen.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Op</value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zat op rechteroever en is rustig int water gegaan en stroomopwaarts gezwommen.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.61426384747028,50.9925558439695,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>19/04/2018 23:55</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Joris<br>Frequentie gevonden: 151.021<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Stroomopwaarts <br>Oever bij rust (LO/RO): <br>beschrijving: Zwemmend stroomopwaarts ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.021</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Stroomopwaarts </value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zwemmend stroomopwaarts </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6011043,50.9933385,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>20/04/2018 00:56</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Joris<br>Frequentie gevonden: 151.021<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Zwemmend op Dijle ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.021</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zwemmend op Dijle </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.605031,50.9917448,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>26/04/2018   10:10</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60341800004244,50.9909429139996,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>26/04/2018 19:40</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: 151.0212<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0212</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6034076,50.9908969,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>26/04/2018 23:16</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: 151.0210<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Zwemmen op Dijle ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0210</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zwemmen op Dijle </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6089926,50.9925164,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>01/05/2018    08:40</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Jim & Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: in burcht.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value><![CDATA[Jim & Danny]]></value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>in burcht.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60342973470688,50.9909528327511,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>02/05/2018 18:31</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: 151.0210<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0210</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.603417,50.9909357,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>07/05/2018 15:11</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Joris<br>Frequentie gevonden: 151.0213<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: In burcht ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0213</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>In burcht </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6031923,50.9911227,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>08/05/2018 19:15</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: 151.0211<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Waargenomen een stuk verder op jaagpad. Goede ontvangst ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0211</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Waargenomen een stuk verder op jaagpad. Goede ontvangst </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.603191,50.9910839,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>09/05/2018 01:06</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: 151.0210<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Stroomopwaarts <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0210</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Stroomopwaarts </value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6327329,50.9921095,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>09/05/2018 01:16</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Stroomopwaarts<br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Stroomopwaarts</value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6350503,50.9923526,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>09/05/2018 01:54</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op vijver. Gevolgd via Dijle. Jaagpad overgestoken en dan in vijver gedoken.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op vijver. Gevolgd via Dijle. Jaagpad overgestoken en dan in vijver gedoken.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6342885,50.9916098,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>14/05/2018 15:20</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6032406,50.9911058,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>17/05/2018 05:08 </name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): Troomafwaarts<br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>Troomafwaarts</value>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6109748,50.9935816,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>17/05/2018 11:30</name>
+      <description><![CDATA[Bever: <br>Waarnemer: <br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Burcht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value/>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Burcht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.603242,50.9910991,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>23/05/2018 04:40</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Stak het jaagpad over en kwam uit visvijver.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Stak het jaagpad over en kwam uit visvijver.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6347767,50.9922024,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>24/05/2018 04:44</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Zit takken te eten vanop Dijle aan rechteroever]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zit takken te eten vanop Dijle aan rechteroever</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6450067,50.9855654,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>24/05/2018 08:32</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Burcht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Burcht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6032205,50.9910974,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>31/05/2018 04:33</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris <br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Zwemmend stroomaf <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris </value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Zwemmend stroomaf </value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6366543,50.991316,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>04/06/2018 23:10</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Stroomopwaarts <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Stroomopwaarts </value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6042156,50.992015,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>05/06/2018 00:49</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): Stroomopwaarts <br>Oever bij rust (LO/RO): <br>beschrijving: Rechteroever. aan het zwemmen langs kant ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>Stroomopwaarts </value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Rechteroever. aan het zwemmen langs kant </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6134531,50.9929942,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>05/06/2018 02:53</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op visvijver aan het zwemmen ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op visvijver aan het zwemmen </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6344441,50.9918259,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>05/06/2018 04:21</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Zwemmend op visvijver ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Zwemmend op visvijver </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6344441,50.9918259,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>07/06/2018 10:47</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Joris <br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris </value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60198,50.9905521,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>14/06/2018 11:55</name>
+      <description><![CDATA[Bever: <br>Waarnemer: Joris <br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value/>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris </value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6031923,50.9911227,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>19/06/2018   06:20</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 1510217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): LO<br>beschrijving: in burcht op meander van Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>1510217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>LO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>in burcht op meander van Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60343644022942,50.9909078817964,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>25/06/2018   06:30</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Rondzwemmend op meander]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Rondzwemmend op meander</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.60326444357634,50.9909462905961,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>28/06/2018 09:30</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: <br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value/>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6032245,50.991089,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>03/07/2018    06:05</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: Op meander in Haacht]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Op meander in Haacht</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6033838018775,50.9912928125053,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>13/07/2018   07:55</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): OP<br>Oever bij rust (LO/RO): <br>beschrijving: ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>OP</value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6255861222744,50.9932096101639,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>17/07/2018   07:15</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Danny<br>Frequentie gevonden: 151.0217<br>Actief/rust (A/R): A<br>Stroomop/stroomaf zwemmend (op/af): OP<br>Oever bij rust (LO/RO): <br>beschrijving: Visuele waarneming.]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Danny</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value>151.0217</value>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>A</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value>OP</value>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>Visuele waarneming.</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6239335462451,50.9926953345598,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>01/08/2018 12:00</name>
+      <description><![CDATA[Bever: Be1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): R<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): LO<br>beschrijving: In hol in Dijle ]]></description>
+      <styleUrl>#icon-1899-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>Be1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>R</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value>LO</value>
+        </Data>
+        <Data name="beschrijving">
+          <value>In hol in Dijle </value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.6266818,50.9923459,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>09/08/2018 11:00</name>
+      <description><![CDATA[Bever: BE1005<br>Waarnemer: Joris<br>Frequentie gevonden: <br>Actief/rust (A/R): mortaliteit<br>Stroomop/stroomaf zwemmend (op/af): <br>Oever bij rust (LO/RO): <br>beschrijving: zender uit de Dijle gehaald]]></description>
+      <styleUrl>#icon-1556-FFEA00</styleUrl>
+      <ExtendedData>
+        <Data name="Bever">
+          <value>BE1005</value>
+        </Data>
+        <Data name="Waarnemer">
+          <value>Joris</value>
+        </Data>
+        <Data name="Frequentie gevonden">
+          <value/>
+        </Data>
+        <Data name="Actief/rust (A/R)">
+          <value>mortaliteit</value>
+        </Data>
+        <Data name="Stroomop/stroomaf zwemmend (op/af)">
+          <value/>
+        </Data>
+        <Data name="Oever bij rust (LO/RO)">
+          <value/>
+        </Data>
+        <Data name="beschrijving">
+          <value>zender uit de Dijle gehaald</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          4.612391,50.9931731,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
