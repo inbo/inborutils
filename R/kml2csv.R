@@ -26,13 +26,15 @@ read_kml_file <- function(filename) {
     colnames(datum) <- c("datum")
     time <- extract(date, c("ruw"), into = c("hours", "minutes"),
                     "([[:digit:]]+):([[:digit:]]+)")
-    time$time <- paste(time$hours,time$minutes, sep = ":")
-    uur <- time[,3]
+    time$time <- paste(time$hours, time$minutes, sep = ":")
+    hour <- time[,3]
 
-    gegevens <- cbind(datum,uur,coords[,1:2])
-    gegevens$x <- as.numeric(gegevens$x)
-    gegevens$y <- as.numeric(gegevens$y)
-    return(gegevens)
+    data <- cbind(datum, hour, coords[,1:2])
+    data$x <- as.numeric(data$x)
+    data$y <- as.numeric(data$y)
+    return(data)
 }
+
+read_kml_file("data/kml_example_data/BE1002.kml")
 
 
