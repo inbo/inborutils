@@ -14,7 +14,7 @@ script:
   - R CMD build .
   - R CMD check *tar.gz
   - R CMD INSTALL --no-docs --no-help .
-  - Rscript -e "pkgdown::build_site(path = 'docs', preview = FALSE)"
+  - Rscript -e "pkgdown::build_site(preview = FALSE)"
 
 deploy:
   provider: pages
