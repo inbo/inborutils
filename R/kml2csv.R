@@ -1,5 +1,3 @@
-library(tidyr)
-
 
 #' Extract date and coordinate information from Google Maps kml file
 #'
@@ -7,6 +5,8 @@ library(tidyr)
 #'
 #' @return df with columns datum
 #' @export
+#'
+#' @importFrom tidyr separate
 #'
 #' @examples
 read_kml_file <- function(filename) {
