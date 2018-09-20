@@ -143,7 +143,7 @@ date;JAAR;MAAND;DAG;UUR;STATION;NEERSLAG(mm)
 ...
 ```
 
-To read the data and provide it into a similar format as the previous time series, the function `load_kmi_data` is available in the `inborutils` package:
+To read the data and provide it into a similar format as the previous time series, the function `read_kmi_data` is available in the `inborutils` package:
 
 ```{r include=FALSE}
 rpath <- system.file("extdata", "kmi_example.txt", package = "inborutils")
@@ -156,6 +156,25 @@ rainfall_kmi <- read_kmi_data(rpath)
 head(rainfall_kmi)
 ```
 (*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
+
+## Google maps kml files
+
+To extract coordinate and date information from a `kml` file, the function `load_kml`
+
+To read the data and provide it into a similar format as the previous time series, the function `read_kml_file` is available in the `inborutils` package:
+
+```{r include=FALSE}
+rpath <- system.file("extdata", "kml_example.kml", package = "inborutils")
+```
+```{r eval=FALSE, include=TRUE}
+rpath <- "kml_example.kml"
+```
+```{r}
+tracks <- read_kml_file(rpath)
+head(tracks)
+```
+(*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
+
 
 ## Closure
 
