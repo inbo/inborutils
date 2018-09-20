@@ -26,7 +26,8 @@ Imports:
     lazyeval,
     rlang,
     rgdal,
-    stats
+    stats,
+    tidyr
 Suggests:
     knitr,
     rmarkdown,
