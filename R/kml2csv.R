@@ -1,6 +1,15 @@
 library(tidyr)
 
-kml2csv <- function(filename) {
+
+#' Title
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
+kml2df <- function(filename) {
     kml.text <- readLines(filename)
     coords <- grep("<coordinates>", kml.text)
     coord <- as.data.frame(kml.text[coords + 1])
