@@ -9,6 +9,7 @@
 #' @importFrom tidyr separate
 #'
 #' @examples
+#' df <- read_kml_file("data/kml_example_data/BE1002.kml")
 read_kml_file <- function(filename) {
     kml.text <- readLines(filename)
     coords <- grep("<coordinates>", kml.text)
@@ -35,6 +36,6 @@ read_kml_file <- function(filename) {
     return(data)
 }
 
-read_kml_file("data/kml_example_data/BE1002.kml")
+
 
 
