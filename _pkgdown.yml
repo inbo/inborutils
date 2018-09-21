@@ -42,6 +42,7 @@ reference:
       - download_knmi_data_hour
       - read_knmi_rainfall
       - read_kmi_data
+      - read_kml_file
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:
