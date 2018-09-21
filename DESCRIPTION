@@ -4,12 +4,13 @@ Version: 0.0.1
 Date: 2017-12-09
 Authors@R: c(
   person("Stijn", "Van Hoey", role = c("aut", "cre"),
-    email = "stijnvanhoey@gmail.com",
+    email = "stijn.vanhoey@inbo.com",
     comment = "http://orcid.org/0000-0001-6413-3185"), 
   person("Pieter", "Verschelde", role = c("aut")),
   person("Thierry", "Onkelinx", role = c("aut"),
     email = "thierry.onkelinx@inbo.be",
-    comment = "http://orcid.org/0000-0001-8804-4216"))
+    comment = "http://orcid.org/0000-0001-8804-4216"),
+  person("Frank", "Huysentruyt", role = c("ctb")))
 Description: While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
 Depends: R (>= 3.4.2)
 Imports:
@@ -26,7 +27,8 @@ Imports:
     lazyeval,
     rlang,
     rgdal,
-    stats
+    stats,
+    tidyr
 Suggests:
     knitr,
     rmarkdown,
