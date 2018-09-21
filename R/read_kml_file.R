@@ -2,38 +2,35 @@
 #'
 #' @param filename (char) filename/path of the kml file
 #'
-#' @return df with columns date (as chars), hour (as char), x (numeric),
-#'     y (numeric)
+#' @return df with columns datetime, x (numeric), y (numeric)
 #' @export
 #'
 #' @importFrom tidyr separate extract
 #' @importFrom rlang .data
+#' @importFrom lubridate as_datetime
 #'
 #' @examples
 #' \dontrun{
 #' df <- read_kml_file("BE1002.kml")
 #' }
 read_kml_file <- function(filename) {
-    kml.text <- readLines(filename)
-    coords <- grep("<coordinates>", kml.text)
-    coord <- as.data.frame(kml.text[coords + 1])
+    kml_text <- readLines(filename)
+    coords <- grep("<coordinates>", kml_text)
+    coord <- as.data.frame(kml_text[coords + 1])
     colnames(coord) <- c("ruw")
     coords <- coord %>%
         separate(.data$ruw, c("x", "y", "z"), ",")
 
-    dates <- grep("<name>", kml.text)
-    dates <- as.data.frame(kml.text[dates])
-    dates <- dates[-1,]
-    dates <- as.data.frame(dates)
-    colnames(dates) <- c("ruw")
-    date <- as.data.frame(substr(dates$ruw, 13, 22))
-    colnames(date) <- c("date")
-    time <- extract(dates, c("ruw"), into = c("hours", "minutes"),
-                    "([[:digit:]]+):([[:digit:]]+)")
-    time$time <- paste(time$hours, time$minutes, sep = ":")
-    hour <- time[,3]
+    date_ids <- grep("<name>", kml_text)
+    dates_raw <- kml_text[date_ids][-1]
+    dates_matched <- regmatches(dates_raw,
+                        regexpr("[0-9]{2}/[0-9]{2}/[0-9]{4}.*[0-9]{2}:[0-9]{2}",
+                                dates_raw))
+    dates <- as_datetime(dates_matched)
+    datetime <- as.data.frame(dates)
+    colnames(datetime) <- c("datetime")
 
-    data <- cbind(date, hour, coords[,1:2])
+    data <- cbind(datetime, coords[,1:2])
     data$x <- as.numeric(data$x)
     data$y <- as.numeric(data$y)
     return(data)
