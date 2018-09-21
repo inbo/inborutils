@@ -7,7 +7,7 @@
 #'
 #' @importFrom tidyr separate extract
 #' @importFrom rlang .data
-#' @importFrom lubridate as_datetime
+#' @importFrom lubridate dmy_hm
 #'
 #' @examples
 #' \dontrun{
@@ -26,7 +26,7 @@ read_kml_file <- function(filename) {
     dates_matched <- regmatches(dates_raw,
                         regexpr("[0-9]{2}/[0-9]{2}/[0-9]{4}.*[0-9]{2}:[0-9]{2}",
                                 dates_raw))
-    dates <- as_datetime(dates_matched)
+    dates <- dmy_hm(dates_matched)
     datetime <- as.data.frame(dates)
     colnames(datetime) <- c("datetime")
 
