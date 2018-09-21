@@ -10,8 +10,7 @@ read_kml_file(filename)
 \item{filename}{(char) filename/path of the kml file}
 }
 \value{
-df with columns date (as chars), hour (as char), x (numeric),
-    y (numeric)
+df with columns datetime, x (numeric), y (numeric)
 }
 \description{
 Extract date and coordinate information from Google Maps kml file
