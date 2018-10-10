@@ -8,7 +8,7 @@ navbar:
   - text: Tutorials
     href: articles/index.html
     menu:
-    - text: Verify point coordinate refernce system
+    - text: Verify point coordinate reference system
       href: articles/guess_projection.html
     - text: Matching scientific names in data.frame to GBIF backbone
       href: articles/gbif_name_match.html
