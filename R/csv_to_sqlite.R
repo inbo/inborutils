@@ -15,8 +15,8 @@ library(lubridate)
 #' @importFrom DBI dbConnect dbDisconnect
 #' @importFrom RSQLite SQLite
 #' @importFrom readr read_delim
-#' @importFrom dplyr %>% select_if mutate_at db_write_table is.POSIXt
-#' @importFrom lubridate is.Date
+#' @importFrom dplyr %>% select_if mutate_at db_write_table
+#' @importFrom lubridate is.Date is.POSIXt
 csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
                           pre_process_size = 1000, chunk_size = 50000) {
     con <- dbConnect(SQLite(), dbname = sqlite_file)
