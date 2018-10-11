@@ -1,10 +1,12 @@
 #' Save a single CSV-table into a single table sqlite database
 #'
-#' @param csv_file name of the CSV file to convert
+#' @param csv_file name of the text file to convert
 #' @param sqlite_file name of the newly created sqlite file
 #' @param table_name name of the table to store the data table in the sqlite
 #'      dbase
 #' @param delim text file delimiter (default ",")
+#' @param escape_double same as in \code{readr::read_delim} (default FALSE)
+#' @param trim_ws same as in \code{readr::read_delim} (default FALSE)
 #' @param pre_process_size the number of lines to check the data types of the
 #'      individual columns (default 1000)
 #' @param chunk_size the number of lines to read for each chunk (default 50000)
@@ -18,7 +20,13 @@
 #' @importFrom dplyr %>% select_if mutate_at db_write_table
 #' @importFrom lubridate is.Date is.POSIXt
 csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
-                          pre_process_size = 1000, chunk_size = 50000) {
+                          pre_process_size = 1000, chunk_size = 50000,
+                          quote = "\"", escape_backslash = FALSE,
+                          col_names = TRUE, col_types = NULL,
+                          locale = default_locale(), na = c("", "NA"),
+                          quoted_na = TRUE, comment = "",
+                          trim_ws = FALSE, skip = 0,
+                          escape_double = TRUE) {
     con <- dbConnect(SQLite(), dbname = sqlite_file)
 
     # read an extract of the data to extract the colnames and types

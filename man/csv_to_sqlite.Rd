@@ -5,7 +5,8 @@
 \title{Save a single CSV-table into a single table sqlite database}
 \usage{
 csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
-  pre_process_size = 1000, chunk_size = 50000)
+  escape_double = TRUE, trim_ws = FALSE, pre_process_size = 1000,
+  chunk_size = 50000)
 }
 \arguments{
 \item{csv_file}{name of the CSV file to convert}
@@ -16,6 +17,11 @@ csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
 dbase}
 
 \item{delim}{text file delimiter (default ",")}
+
+\item{escape_double}{same as escape_double parameter of \code{readr::read_delim} input parameter. See \link{readr::read_delim}
+(default FALSE)}
+
+\item{trim_ws}{(default FALSE)}
 
 \item{pre_process_size}{the number of lines to check the data types of the
 individual columns (default 1000)}
