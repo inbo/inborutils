@@ -5,8 +5,8 @@
 \title{Add species information provided by the GBIF taxonomic backbone API}
 \usage{
 gbif_species_name_match(df, name_col, gbif_terms = c("usageKey",
-  "scientificName", "rank", "order", "matchType", "phylum", "kingdom", "genus",
-  "class", "confidence", "synonym", "status", "family"))
+  "scientificName", "rank", "order", "matchType", "phylum", "kingdom",
+  "genus", "class", "confidence", "synonym", "status", "family"))
 }
 \arguments{
 \item{df}{data.frame with species information}
