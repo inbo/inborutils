@@ -5,11 +5,20 @@
 #' @param table_name name of the table to store the data table in the sqlite
 #'      dbase
 #' @param delim text file delimiter (default ",")
-#' @param escape_double same as in \code{readr::read_delim} (default FALSE)
-#' @param trim_ws same as in \code{readr::read_delim} (default FALSE)
 #' @param pre_process_size the number of lines to check the data types of the
 #'      individual columns (default 1000)
 #' @param chunk_size the number of lines to read for each chunk (default 50000)
+#' @param quote same as in \code{readr::read_delim} (default "\"")
+#' @param escape_backslash same as in \code{readr::read_delim} (default FALSE)
+#' @param col_names same as in \code{readr::read_delim} (default TRUE)
+#' @param col_types same as in \code{readr::read_delim} (default NULL)
+#' @param locale same as in \code{readr::read_delim} (default default_locale())
+#' @param na same as in \code{readr::read_delim} (default c("", "NA"))
+#' @param quoted_na same as in \code{readr::read_delim} (default TRUE)
+#' @param comment same as in \code{readr::read_delim} (default "")
+#' @param trim_ws same as in \code{readr::read_delim} (default FALSE)
+#' @param skip same as in \code{readr::read_delim} (default 0)
+#' @param escape_double same as in \code{readr::read_delim} (default FALSE)
 #'
 #' @return a SQLite database
 #'

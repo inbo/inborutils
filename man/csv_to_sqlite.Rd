@@ -5,11 +5,13 @@
 \title{Save a single CSV-table into a single table sqlite database}
 \usage{
 csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
-  escape_double = TRUE, trim_ws = FALSE, pre_process_size = 1000,
-  chunk_size = 50000)
+  pre_process_size = 1000, chunk_size = 50000, quote = "\\"",
+  escape_backslash = FALSE, col_names = TRUE, col_types = NULL,
+  locale = default_locale(), na = c("", "NA"), quoted_na = TRUE,
+  comment = "", trim_ws = FALSE, skip = 0, escape_double = TRUE)
 }
 \arguments{
-\item{csv_file}{name of the CSV file to convert}
+\item{csv_file}{name of the text file to convert}
 
 \item{sqlite_file}{name of the newly created sqlite file}
 
@@ -18,15 +20,32 @@ dbase}
 
 \item{delim}{text file delimiter (default ",")}
 
-\item{escape_double}{same as escape_double parameter of \code{readr::read_delim} input parameter. See \link{readr::read_delim}
-(default FALSE)}
-
-\item{trim_ws}{(default FALSE)}
-
 \item{pre_process_size}{the number of lines to check the data types of the
 individual columns (default 1000)}
 
 \item{chunk_size}{the number of lines to read for each chunk (default 50000)}
+
+\item{quote}{same as in \code{readr::read_delim} (default "\"")}
+
+\item{escape_backslash}{same as in \code{readr::read_delim} (default FALSE)}
+
+\item{col_names}{same as in \code{readr::read_delim} (default TRUE)}
+
+\item{col_types}{same as in \code{readr::read_delim} (default NULL)}
+
+\item{locale}{same as in \code{readr::read_delim} (default default_locale())}
+
+\item{na}{same as in \code{readr::read_delim} (default c("", "NA"))}
+
+\item{quoted_na}{same as in \code{readr::read_delim} (default TRUE)}
+
+\item{comment}{same as in \code{readr::read_delim} (default "")}
+
+\item{trim_ws}{same as in \code{readr::read_delim} (default FALSE)}
+
+\item{skip}{same as in \code{readr::read_delim} (default 0)}
+
+\item{escape_double}{same as in \code{readr::read_delim} (default FALSE)}
 }
 \value{
 a SQLite database
