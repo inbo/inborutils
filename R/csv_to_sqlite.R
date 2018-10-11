@@ -1,0 +1,47 @@
+library(lubridate)
+
+#' Save a single CSV-table into a single table sqlite database
+#'
+#' @param csv_file name of the CSV file to convert
+#' @param sqlite_file name of the newly created sqlite file
+#' @param table_name name of the table to store the data table in the sqlite 
+#'      dbase
+#' @param pre_process_size the number of lines to check the data types of the 
+#'      individual columns (default 1000)
+#' @param chunk_size the number of lines to read for each chunk (default 50000)
+#'
+csv_to_sqlite <- function(csv_file, sqlite_file, table_name, 
+                          pre_process_size = 1000, chunk_size = 50000) {
+    con <- dbConnect(RSQLite::SQLite(), dbname = sqlite_file)
+
+    # read an extract of the data to extract the colnames and types
+    # to figure out the date ande datetime columns
+    df <- read_delim(csv_file, ",", n_max = pre_process_size)
+    date_cols <- df %>% 
+        select_if(lubridate::is.Date) %>% 
+        colnames()
+    datetime_cols <- df %>% 
+        select_if(lubridate::is.POSIXt) %>% 
+        colnames()    
+    # write this first batch of lines to SQLITE table, converting dates to string representation
+    df <- df %>%
+      mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
+      mutate_at(.vars = date_cols, .funs = as.character.POSIXt) %>%
+      as.data.frame()
+    dbWriteTable(con, table_name, df, overwrite = TRUE)
+    
+    # subfunction that appends new sections to the table
+    append_to_sqlite <- function(x, pos) {
+        x <- as.data.frame(x)
+        x[ , date_cols] <- as.character.Date(x[ , date_cols])
+        x[ , datetime_cols] <- as.character.POSIXt(x[ , datetime_cols])
+        dbWriteTable(con, table_name, x, append = TRUE)
+    }
+    
+    # readr chunk functionality
+    read_delim_chunked(csv_file, append_to_sqlite, delim = ",",
+                       skip = pre_process_size, col_names = colnames(df), 
+                       col_types = spec(df), chunk_size = chunk_size,
+                       progress = FALSE)
+    dbDisconnect(con)
+}
