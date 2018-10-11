@@ -6,6 +6,7 @@ library(lubridate)
 #' @param sqlite_file name of the newly created sqlite file
 #' @param table_name name of the table to store the data table in the sqlite
 #'      dbase
+#' @param delim text file delimiter (default ",")
 #' @param pre_process_size the number of lines to check the data types of the
 #'      individual columns (default 1000)
 #' @param chunk_size the number of lines to read for each chunk (default 50000)
@@ -18,13 +19,13 @@ library(lubridate)
 #' @importFrom readr read_delim
 #' @importFrom dplyr %>% select_if mutate_at db_write_table
 #' @importFrom lubridate is.Date is.POSIXt
-csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
+csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
                           pre_process_size = 1000, chunk_size = 50000) {
     con <- dbConnect(SQLite(), dbname = sqlite_file)
 
     # read an extract of the data to extract the colnames and types
     # to figure out the date and the datetime columns
-    df <- read_delim(csv_file, ",", n_max = pre_process_size)
+    df <- read_delim(csv_file, delim, n_max = pre_process_size)
     date_cols <- df %>%
         select_if(is.Date) %>%
         colnames()
@@ -47,7 +48,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
     }
 
     # readr chunk functionality
-    read_delim_chunked(csv_file, append_to_sqlite, delim = ",",
+    read_delim_chunked(csv_file, append_to_sqlite, delim = delim,
                        skip = pre_process_size, col_names = colnames(df),
                        col_types = spec(df), chunk_size = chunk_size,
                        progress = FALSE)
