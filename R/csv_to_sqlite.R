@@ -15,9 +15,9 @@
 #'
 #' @export
 #' @importFrom DBI dbConnect dbDisconnect
-#' @importFrom RSQLite SQLite
+#' @importFrom RSQLite SQLite dbWriteTable
 #' @importFrom readr read_delim
-#' @importFrom dplyr %>% select_if mutate_at db_write_table
+#' @importFrom dplyr %>% select_if mutate_at
 #' @importFrom lubridate is.Date is.POSIXt
 csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
                           pre_process_size = 1000, chunk_size = 50000,
@@ -43,14 +43,14 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
       mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
       mutate_at(.vars = date_cols, .funs = as.character.POSIXt) %>%
       as.data.frame()
-    db_write_table(con, table_name, df, overwrite = TRUE)
+    dbWriteTable(con, table_name, df, overwrite = TRUE)
 
     # subfunction that appends new sections to the table
     append_to_sqlite <- function(x, pos) {
         x <- as.data.frame(x)
         x[ , date_cols] <- as.character.Date(x[ , date_cols])
         x[ , datetime_cols] <- as.character.POSIXt(x[ , datetime_cols])
-        db_write_table()(con, table_name, x, append = TRUE)
+        dbWriteTable(con, table_name, x, append = TRUE)
     }
 
     # readr chunk functionality
