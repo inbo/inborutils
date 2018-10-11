@@ -12,6 +12,7 @@ library(lubridate)
 #'
 #' @return a SQLite database
 #'
+#' @export
 #' @importFrom DBI dbConnect dbDisconnect
 #' @importFrom RSQLite SQLite
 #' @importFrom readr read_delim

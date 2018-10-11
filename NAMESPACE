@@ -3,6 +3,7 @@
 S3method(vif,data.frame)
 S3method(vif,default)
 S3method(vif,lm)
+export(csv_to_sqlite)
 export(df_factors_to_char)
 export(download_knmi_data_hour)
 export(gbif_species_name_match)
