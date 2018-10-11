@@ -37,7 +37,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
       mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
       mutate_at(.vars = date_cols, .funs = as.character.POSIXt) %>%
       as.data.frame()
-    db_write_table()(con, table_name, df, overwrite = TRUE)
+    db_write_table(con, table_name, df, overwrite = TRUE)
 
     # subfunction that appends new sections to the table
     append_to_sqlite <- function(x, pos) {
