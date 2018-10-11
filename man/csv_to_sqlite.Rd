@@ -12,13 +12,16 @@ csv_to_sqlite(csv_file, sqlite_file, table_name, pre_process_size = 1000,
 
 \item{sqlite_file}{name of the newly created sqlite file}
 
-\item{table_name}{name of the table to store the data table in the sqlite 
+\item{table_name}{name of the table to store the data table in the sqlite
 dbase}
 
-\item{pre_process_size}{the number of lines to check the data types of the 
+\item{pre_process_size}{the number of lines to check the data types of the
 individual columns (default 1000)}
 
 \item{chunk_size}{the number of lines to read for each chunk (default 50000)}
+}
+\value{
+a SQLite database
 }
 \description{
 Save a single CSV-table into a single table sqlite database
