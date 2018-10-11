@@ -1,5 +1,3 @@
-library(lubridate)
-
 #' Save a single CSV-table into a single table sqlite database
 #'
 #' @param csv_file name of the CSV file to convert
