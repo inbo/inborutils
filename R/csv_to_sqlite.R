@@ -35,7 +35,8 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
                           locale = default_locale(), na = c("", "NA"),
                           quoted_na = TRUE, comment = "",
                           trim_ws = FALSE, skip = 0,
-                          escape_double = TRUE) {
+                          escape_double = TRUE,
+                          callback = append_to_sqlite) {
     con <- dbConnect(SQLite(), dbname = sqlite_file)
 
     # read an extract of the data to extract the colnames and types
@@ -57,18 +58,25 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
       mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
     dbWriteTable(con, table_name, df, overwrite = TRUE)
 
-    # subfunction that appends new sections to the table
-    append_to_sqlite <- function(x, pos) {
-        x <- as.data.frame(x)
-        x[ , date_cols] <- as.character.Date(x[ , date_cols])
-        x[ , datetime_cols] <- as.character.POSIXt(x[ , datetime_cols])
-        dbWriteTable(con, table_name, x, append = TRUE)
-    }
-
     # readr chunk functionality
-    read_delim_chunked(csv_file, append_to_sqlite, delim = delim,
+    read_delim_chunked(csv_file,
+                       callback = append_to_sqlite, delim = delim,
                        skip = pre_process_size, col_names = colnames(df),
                        col_types = spec(df), chunk_size = chunk_size,
                        progress = FALSE)
     dbDisconnect(con)
+}
+
+#' Callback function that appends new sections to the SQLite table
+#' @param x data frame
+#' @param data_cols name of columns containing Date objects
+#' @param datetime_cols name of columns containint POSIXt objects
+append_to_sqlite <- function(x, data_cols, datetime_cols) {
+
+  x <- as.data.frame(x)
+  x <- x %>%
+    mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
+    mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
+  # append data frame to table
+  dbWriteTable(con, table_name, x, append = TRUE)
 }
