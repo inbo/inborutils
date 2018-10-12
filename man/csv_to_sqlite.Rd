@@ -2,13 +2,14 @@
 % Please edit documentation in R/csv_to_sqlite.R
 \name{csv_to_sqlite}
 \alias{csv_to_sqlite}
-\title{Save a single CSV-table into a single table sqlite database}
+\title{Save a delimited text table into a single table sqlite database}
 \usage{
 csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
   pre_process_size = 1000, chunk_size = 50000, quote = "\\"",
   escape_backslash = FALSE, col_names = TRUE, col_types = NULL,
   locale = default_locale(), na = c("", "NA"), quoted_na = TRUE,
-  comment = "", trim_ws = FALSE, skip = 0, escape_double = TRUE)
+  comment = "", trim_ws = FALSE, skip = 0, escape_double = TRUE,
+  callback = append_to_sqlite)
 }
 \arguments{
 \item{csv_file}{name of the text file to convert}
@@ -46,10 +47,15 @@ individual columns (default 1000)}
 \item{skip}{same as in \code{readr::read_delim} (default 0)}
 
 \item{escape_double}{same as in \code{readr::read_delim} (default FALSE)}
+
+\item{callback}{A callback function to call on each chunk.}
 }
 \value{
 a SQLite database
 }
 \description{
-Save a single CSV-table into a single table sqlite database
+The table can be a comma separated (csv) or a tab separated (tsv) or any
+other delimited text file. The file is read in chunks. Each chunk is copied
+in the same sqlite table database before the next chunk is loaded into
+memory.
 }
