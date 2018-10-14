@@ -81,7 +81,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 #' @param x data frame
 #' @param data_cols name of columns containing Date objects
 #' @param datetime_cols name of columns containint POSIXt objects
-append_to_sqlite <- function(x, data_cols, datetime_cols) {
+append_to_sqlite <- function(x, date_cols, datetime_cols) {
 
   x <- as.data.frame(x)
   x <- x %>%
