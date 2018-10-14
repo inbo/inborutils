@@ -24,6 +24,7 @@
 #' @param skip same as in \code{readr::read_delim} (default 0)
 #' @param escape_double same as in \code{readr::read_delim} (default FALSE)
 #' @param callback A callback function to call on each chunk.
+#' @param show_progress_bar show progress bar (default TRUE)
 #'
 #' @return a SQLite database
 #'
@@ -33,7 +34,8 @@
 #' @importFrom readr read_delim
 #' @importFrom dplyr %>% select_if mutate_at
 #' @importFrom lubridate is.Date is.POSIXt
-csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
+csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
+                          callback = append_to_sqlite, delim = ",",
                           pre_process_size = 1000, chunk_size = 50000,
                           quote = "\"", escape_backslash = FALSE,
                           col_names = TRUE, col_types = NULL,
@@ -41,7 +43,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
                           quoted_na = TRUE, comment = "",
                           trim_ws = FALSE, skip = 0,
                           escape_double = TRUE,
-                          callback = append_to_sqlite) {
+                          show_progress_bar = TRUE) {
     con <- dbConnect(SQLite(), dbname = sqlite_file)
 
     # read an extract of the data to extract the colnames and types
@@ -69,7 +71,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name, delim = ",",
                        callback = append_to_sqlite, delim = delim,
                        skip = pre_process_size, col_names = colnames(df),
                        col_types = spec(df), chunk_size = chunk_size,
-                       progress = FALSE)
+                       progress = show_progress_bar)
     dbDisconnect(con)
 }
 
