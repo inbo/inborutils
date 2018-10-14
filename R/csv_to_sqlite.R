@@ -48,10 +48,12 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 
     # read an extract of the data to extract the colnames and types
     # to figure out the date and the datetime columns
-    df <- read_delim(csv_file, delim, quote,
-                     escape_backslash, col_names, col_types,
-                     locale, na, quoted_na, comment,
-                     trim_ws, skip, escape_double,
+    df <- read_delim(csv_file, delim = delim, quote = quote,
+                     escape_backslash = escape_backslash,
+                     col_names = col_names, col_types = col_types,
+                     locale = locale, na = na, quoted_na = quoted_na,
+                     comment = comment, trim_ws = trim_ws,
+                     skip = skip, escape_double = escape_double,
                      n_max = pre_process_size)
     date_cols <- df %>%
         select_if(is.Date) %>%
