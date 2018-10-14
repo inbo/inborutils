@@ -4,12 +4,13 @@
 \alias{csv_to_sqlite}
 \title{Save a delimited text table into a single table sqlite database}
 \usage{
-csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
-  pre_process_size = 1000, chunk_size = 50000, quote = "\\"",
-  escape_backslash = FALSE, col_names = TRUE, col_types = NULL,
-  locale = default_locale(), na = c("", "NA"), quoted_na = TRUE,
-  comment = "", trim_ws = FALSE, skip = 0, escape_double = TRUE,
-  callback = append_to_sqlite)
+csv_to_sqlite(csv_file, sqlite_file, table_name,
+  callback = append_to_sqlite, delim = ",", pre_process_size = 1000,
+  chunk_size = 50000, quote = "\\"", escape_backslash = FALSE,
+  col_names = TRUE, col_types = NULL, locale = default_locale(),
+  na = c("", "NA"), quoted_na = TRUE, comment = "",
+  trim_ws = FALSE, skip = 0, escape_double = TRUE,
+  show_progress_bar = TRUE)
 }
 \arguments{
 \item{csv_file}{name of the text file to convert}
@@ -18,6 +19,8 @@ csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
 
 \item{table_name}{name of the table to store the data table in the sqlite
 dbase}
+
+\item{callback}{A callback function to call on each chunk.}
 
 \item{delim}{text file delimiter (default ",")}
 
@@ -48,7 +51,7 @@ individual columns (default 1000)}
 
 \item{escape_double}{same as in \code{readr::read_delim} (default FALSE)}
 
-\item{callback}{A callback function to call on each chunk.}
+\item{show_progress_bar}{show progress bar (default TRUE)}
 }
 \value{
 a SQLite database
