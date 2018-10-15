@@ -69,11 +69,15 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
     dbWriteTable(con, table_name, df, overwrite = TRUE)
 
     # readr chunk functionality
-    read_delim_chunked(csv_file,
-                       callback = append_to_sqlite, delim = delim,
-                       skip = pre_process_size, col_names = colnames(df),
-                       col_types = spec(df), chunk_size = chunk_size,
-                       progress = show_progress_bar)
+    read_delim_chunked(
+      csv_file,
+      callback = append_to_sqlite(con = con, table_name = table_name,
+                                  date_cols = date_cols,
+                                  datetime_cols = datetime_cols),
+      delim = delim,
+      skip = pre_process_size, col_names = colnames(df),
+      col_types = spec(df), chunk_size = chunk_size,
+      progress = show_progress_bar)
     dbDisconnect(con)
 }
 
@@ -81,12 +85,16 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 #' @param x data frame
 #' @param data_cols name of columns containing Date objects
 #' @param datetime_cols name of columns containint POSIXt objects
-append_to_sqlite <- function(x, date_cols, datetime_cols) {
+append_to_sqlite <- function(con, table_name,
+                             date_cols, datetime_cols) {
+  function(x, pos) {
 
-  x <- as.data.frame(x)
-  x <- x %>%
-    mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
-    mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
-  # append data frame to table
-  dbWriteTable(con, table_name, x, append = TRUE)
+    x <- as.data.frame(x)
+    x <- x %>%
+      mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
+      mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
+    # append data frame to table
+    dbWriteTable(con, table_name, x, append = TRUE)
+
+  }
 }
