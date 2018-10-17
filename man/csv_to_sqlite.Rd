@@ -4,13 +4,9 @@
 \alias{csv_to_sqlite}
 \title{Save a delimited text table into a single table sqlite database}
 \usage{
-csv_to_sqlite(csv_file, sqlite_file, table_name,
-  callback = append_to_sqlite, delim = ",", pre_process_size = 1000,
-  chunk_size = 50000, quote = "\\"", escape_backslash = FALSE,
-  col_names = TRUE, col_types = NULL, locale = default_locale(),
-  na = c("", "NA"), quoted_na = TRUE, comment = "",
-  trim_ws = FALSE, skip = 0, escape_double = TRUE,
-  show_progress_bar = TRUE)
+csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
+  pre_process_size = 1000, chunk_size = 50000,
+  show_progress_bar = TRUE, ...)
 }
 \arguments{
 \item{csv_file}{name of the text file to convert}
@@ -20,8 +16,6 @@ csv_to_sqlite(csv_file, sqlite_file, table_name,
 \item{table_name}{name of the table to store the data table in the sqlite
 dbase}
 
-\item{callback}{A callback function to call on each chunk.}
-
 \item{delim}{text file delimiter (default ",")}
 
 \item{pre_process_size}{the number of lines to check the data types of the
@@ -29,29 +23,11 @@ individual columns (default 1000)}
 
 \item{chunk_size}{the number of lines to read for each chunk (default 50000)}
 
-\item{quote}{same as in \code{readr::read_delim} (default "\"")}
-
-\item{escape_backslash}{same as in \code{readr::read_delim} (default FALSE)}
-
-\item{col_names}{same as in \code{readr::read_delim} (default TRUE)}
-
-\item{col_types}{same as in \code{readr::read_delim} (default NULL)}
-
-\item{locale}{same as in \code{readr::read_delim} (default default_locale())}
-
-\item{na}{same as in \code{readr::read_delim} (default c("", "NA"))}
-
-\item{quoted_na}{same as in \code{readr::read_delim} (default TRUE)}
-
-\item{comment}{same as in \code{readr::read_delim} (default "")}
-
-\item{trim_ws}{same as in \code{readr::read_delim} (default FALSE)}
-
-\item{skip}{same as in \code{readr::read_delim} (default 0)}
-
-\item{escape_double}{same as in \code{readr::read_delim} (default FALSE)}
-
 \item{show_progress_bar}{show progress bar (default TRUE)}
+
+\item{...}{Further arguments to be passed to \code{read_delim}.}
+
+\item{callback}{A callback function to call on each chunk.}
 }
 \value{
 a SQLite database

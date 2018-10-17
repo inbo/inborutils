@@ -4,14 +4,14 @@
 \alias{append_to_sqlite}
 \title{Callback function that appends new sections to the SQLite table}
 \usage{
-append_to_sqlite(x, data_cols, datetime_cols)
+append_to_sqlite(con, table_name, date_cols, datetime_cols)
 }
 \arguments{
+\item{datetime_cols}{name of columns containint POSIXt objects}
+
 \item{x}{data frame}
 
 \item{data_cols}{name of columns containing Date objects}
-
-\item{datetime_cols}{name of columns containint POSIXt objects}
 }
 \description{
 Callback function that appends new sections to the SQLite table

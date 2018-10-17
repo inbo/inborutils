@@ -30,7 +30,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
                           show_progress_bar = TRUE, ...) {
     con <- dbConnect(SQLite(), dbname = sqlite_file)
 
-    # read an extract of the data to extract the colnames and types
+    # read a first chunk of data to extract the colnames and types
     # to figure out the date and the datetime columns
     df <- read_delim(csv_file, delim = delim, n_max = pre_process_size, ...)
     date_cols <- df %>%
