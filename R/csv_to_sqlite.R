@@ -12,19 +12,9 @@
 #' @param pre_process_size the number of lines to check the data types of the
 #'   individual columns (default 1000)
 #' @param chunk_size the number of lines to read for each chunk (default 50000)
-#' @param quote same as in \code{readr::read_delim} (default "\"")
-#' @param escape_backslash same as in \code{readr::read_delim} (default FALSE)
-#' @param col_names same as in \code{readr::read_delim} (default TRUE)
-#' @param col_types same as in \code{readr::read_delim} (default NULL)
-#' @param locale same as in \code{readr::read_delim} (default default_locale())
-#' @param na same as in \code{readr::read_delim} (default c("", "NA"))
-#' @param quoted_na same as in \code{readr::read_delim} (default TRUE)
-#' @param comment same as in \code{readr::read_delim} (default "")
-#' @param trim_ws same as in \code{readr::read_delim} (default FALSE)
-#' @param skip same as in \code{readr::read_delim} (default 0)
-#' @param escape_double same as in \code{readr::read_delim} (default FALSE)
 #' @param callback A callback function to call on each chunk.
 #' @param show_progress_bar show progress bar (default TRUE)
+#' @param ... Further arguments to be passed to \code{read_delim}.
 #'
 #' @return a SQLite database
 #'
@@ -35,32 +25,21 @@
 #' @importFrom dplyr %>% select_if mutate_at
 #' @importFrom lubridate is.Date is.POSIXt
 csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
-                          callback = append_to_sqlite, delim = ",",
+                          delim = ",",
                           pre_process_size = 1000, chunk_size = 50000,
-                          quote = "\"", escape_backslash = FALSE,
-                          col_names = TRUE, col_types = NULL,
-                          locale = default_locale(), na = c("", "NA"),
-                          quoted_na = TRUE, comment = "",
-                          trim_ws = FALSE, skip = 0,
-                          escape_double = TRUE,
-                          show_progress_bar = TRUE) {
+                          show_progress_bar = TRUE, ...) {
     con <- dbConnect(SQLite(), dbname = sqlite_file)
 
     # read an extract of the data to extract the colnames and types
     # to figure out the date and the datetime columns
-    df <- read_delim(csv_file, delim = delim, quote = quote,
-                     escape_backslash = escape_backslash,
-                     col_names = col_names, col_types = col_types,
-                     locale = locale, na = na, quoted_na = quoted_na,
-                     comment = comment, trim_ws = trim_ws,
-                     skip = skip, escape_double = escape_double,
-                     n_max = pre_process_size)
+    df <- read_delim(csv_file, delim = delim, n_max = pre_process_size, ...)
     date_cols <- df %>%
         select_if(is.Date) %>%
         colnames()
     datetime_cols <- df %>%
         select_if(is.POSIXt) %>%
         colnames()
+
     # write the first batch of lines to SQLITE table, converting dates to string
     # representation
     df <- df %>%
@@ -75,9 +54,9 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
                                   date_cols = date_cols,
                                   datetime_cols = datetime_cols),
       delim = delim,
-      skip = pre_process_size, col_names = colnames(df),
-      col_types = spec(df), chunk_size = chunk_size,
-      progress = show_progress_bar)
+      skip = pre_process_size, chunk_size = chunk_size,
+      progress = show_progress_bar,
+      col_names = colnames(df), ...)
     dbDisconnect(con)
 }
 
