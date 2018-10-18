@@ -3,7 +3,8 @@
 #' The table can be a comma separated (csv) or a tab separated (tsv) or any
 #' other delimited text file. The file is read in chunks. Each chunk is copied
 #' in the same sqlite table database before the next chunk is loaded into
-#' memory.
+#' memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R}
+#' to learn more about.
 #' @param csv_file name of the text file to convert
 #' @param sqlite_file name of the newly created sqlite file
 #' @param table_name name of the table to store the data table in the sqlite
@@ -18,6 +19,35 @@
 #'
 #' @return a SQLite database
 #'
+#' @examples
+#' \dontrun{
+#' library(R.utils)
+#' library(dplyr)
+#' csv.name <- "2016-04-20-processed-logs-big-file-example.csv"
+#' db.name <- "2016-04-20-processed-logs-big-file-example.db"
+#' # download the CSV file example
+#' csv.url <- paste("https://s3-eu-west-1.amazonaws.com/lw-birdtracking-data/",
+#'                  csv.name, ".gz", sep = "")
+#' download.file(csv.url, destfile = paste0(csv.name, ".gz"))
+#' gunzip(paste0(csv.name, ".gz"))
+#' # Make a SQLite database
+#' sqlite_file <- "example2.sqlite"
+#' table_name <- "birdtracks"
+#' csv_to_sqlite(csv_file = csv.name,
+#'               sqlite_file = sqlite_file,
+#'               table_name =table_name)
+#' # Get access to SQLite database
+#' my_db <- src_sqlite(sqlite_file, create = FALSE)
+#' bird_tracking <- tbl(my_db, "birdtracks")
+#' # Example query via dplyr
+#' results <- bird_tracking %>%
+#'   filter(device_info_serial == 860) %>%
+#'   select(date_time, latitude, longitude, altitude) %>%
+#'   filter(date_time < "2014-07-01") %>%
+#'   filter(date_time > "2014-03-01") %>%
+#'   as_tibble()
+#' head(results)
+#' }
 #' @export
 #' @importFrom DBI dbConnect dbDisconnect
 #' @importFrom RSQLite SQLite dbWriteTable
