@@ -10,7 +10,7 @@ Authors@R: c(
   person("Thierry", "Onkelinx", role = c("aut"),
     email = "thierry.onkelinx@inbo.be",
     comment = "http://orcid.org/0000-0001-8804-4216"),
-  person("Frank", "Huysentruyt", role = c("ctb"))),
+  person("Frank", "Huysentruyt", role = c("ctb")),
   person("Damiano", "Oldoni", role = c("ctb")))
 Description: While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
 Depends: R (>= 3.4.2)
