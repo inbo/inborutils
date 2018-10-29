@@ -2,17 +2,22 @@
 % Please edit documentation in R/csv_to_sqlite.R
 \name{append_to_sqlite}
 \alias{append_to_sqlite}
-\title{Callback function that appends new sections to the SQLite table}
+\title{Callback function that appends new sections to the SQLite table.}
 \usage{
 append_to_sqlite(con, table_name, date_cols, datetime_cols)
 }
 \arguments{
-\item{datetime_cols}{name of columns containint POSIXt objects}
+\item{con}{A valid connection to SQLite database.}
 
-\item{x}{data frame}
+\item{table_name}{Name of the table to store the data table in the sqlite
+database.}
 
-\item{data_cols}{name of columns containing Date objects}
+\item{date_cols}{Name of columns containing Date objects}
+
+\item{datetime_cols}{Name of columns containint POSIXt objects.}
+
+\item{x}{Data.frame we are reading from.}
 }
 \description{
-Callback function that appends new sections to the SQLite table
+Callback function that appends new sections to the SQLite table.
 }

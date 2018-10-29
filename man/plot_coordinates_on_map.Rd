@@ -2,24 +2,56 @@
 % Please edit documentation in R/plot_coordinates_on_map.R
 \name{plot_coordinates_on_map}
 \alias{plot_coordinates_on_map}
-\title{plot x/y coordinates on a map, from given projection}
+\title{Plot x/y coordinates on a map}
 \usage{
-plot_coordinates_on_map(df, col_long, col_lat, projection)
+plot_coordinates_on_map(df, col_long, col_lat, projection, ...)
 }
 \arguments{
-\item{df}{data.frame with a x and y coordinate column}
+\item{df}{A data.frame with a x and y coordinate columns.}
 
-\item{col_long}{(char) name of the x (longitude) column}
+\item{col_long, col_lat}{Column names or positions of the x (longitude) and y
+(latitude) column. They are passed to \code{\link[tidyselect]{vars_pull}}.
+These arguments are passed by expression and support
+\code{\link[rlang]{quasiquotation}} (you can unquote column names or column
+positions).}
 
-\item{col_lat}{(char) name of the y (latitude) column}
+\item{projection}{Projection string of class CRS-class (\code{sp} objects) or
+crs-class (\code{sf} objects) defining the current projection.}
 
-\item{projection}{projection string of class CRS-class defining the
-current projection}
+\item{...}{Additional arguments passed on to
+\code{\link[leaflet]{addCircleMarkers}} to customize points.}
 }
 \value{
-leaflet map with coordinates added as dots
+Leaflet map with coordinates added as dots.
 }
 \description{
-This function first converts the x/y coordinates of the given the data.frame
-to GWS84 in order to map the data with leaflet
+This function plots x/y coordinates from a data.frame on a (leaflet) map. The
+coordinates are first converted to GWS84 in order to map them correctly on
+the leaflet map (@seealso [reproject_coordinates()]). To do this, the
+original Coordinate Reference System (CRS) is asked.
+}
+\examples{
+\dontrun{
+data_pts <- data.frame(
+  id = c(1, 2, 3),
+  lat = c(51.23031, 50.76931, 50.21439),
+  lon = c(5.083980, 3.829593, 3.289044),
+  stringsAsFactors = FALSE
+)
+
+# projection is of class CRS-class (sp)
+library(sp)
+proj_crs_sp <- CRS("+init=epsg:4269")
+plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
+
+# projection is of class crs-class (sf)
+library(sf)
+proj_crs_sf <- st_crs("+init=epsg:4269")
+plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf)
+
+# customize circles
+plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf,
+  radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.75)
+}
+
 }
