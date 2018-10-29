@@ -5,16 +5,17 @@
 #' in the same sqlite table database before the next chunk is loaded into
 #' memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R}
 #' to learn more about.
-#' @param csv_file name of the text file to convert
-#' @param sqlite_file name of the newly created sqlite file
-#' @param table_name name of the table to store the data table in the sqlite
-#'   dbase
-#' @param delim text file delimiter (default ",")
-#' @param pre_process_size the number of lines to check the data types of the
-#'   individual columns (default 1000)
-#' @param chunk_size the number of lines to read for each chunk (default 50000)
+#'
+#' @param csv_file Name of the text file to convert.
+#' @param sqlite_file Name of the newly created sqlite file.
+#' @param table_name Name of the table to store the data table in the sqlite
+#'   database.
+#' @param delim Text file delimiter (default ",").
+#' @param pre_process_size Number of lines to check the data types of the
+#'   individual columns (default 1000).
+#' @param chunk_size Number of lines to read for each chunk (default 50000).
 #' @param callback A callback function to call on each chunk.
-#' @param show_progress_bar show progress bar (default TRUE)
+#' @param show_progress_bar Show progress bar (default TRUE).
 #' @param ... Further arguments to be passed to \code{read_delim}.
 #'
 #' @return a SQLite database
@@ -51,7 +52,7 @@
 #' @export
 #' @importFrom DBI dbConnect dbDisconnect
 #' @importFrom RSQLite SQLite dbWriteTable
-#' @importFrom readr read_delim
+#' @importFrom readr read_delim read_delim_chunked
 #' @importFrom dplyr %>% select_if mutate_at
 #' @importFrom lubridate is.Date is.POSIXt
 csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
@@ -90,10 +91,13 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
     dbDisconnect(con)
 }
 
-#' Callback function that appends new sections to the SQLite table
-#' @param x data frame
-#' @param data_cols name of columns containing Date objects
-#' @param datetime_cols name of columns containint POSIXt objects
+#' Callback function that appends new sections to the SQLite table.
+#' @param x Data.frame we are reading from.
+#' @param con A valid connection to SQLite database.
+#' @param table_name Name of the table to store the data table in the sqlite
+#'   database.
+#' @param date_cols Name of columns containing Date objects
+#' @param datetime_cols Name of columns containint POSIXt objects.
 append_to_sqlite <- function(con, table_name,
                              date_cols, datetime_cols) {
   function(x, pos) {
