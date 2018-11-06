@@ -31,6 +31,8 @@ given coordinate reference system (CRS), converts them to the new CRS and
 assign them back to the data.frame columns.
 }
 \examples{
+library(sp)
+library(sf)
 data_pts <- data.frame(
   id = c(1, 2),
   lat = c(51.23031, 50.76931),

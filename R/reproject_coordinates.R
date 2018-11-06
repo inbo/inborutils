@@ -20,6 +20,8 @@
 #'   and y column values.
 #'
 #' @examples
+#' library(sp)
+#' library(sf)
 #' data_pts <- data.frame(
 #'   id = c(1, 2),
 #'   lat = c(51.23031, 50.76931),
