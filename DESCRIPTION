@@ -25,14 +25,18 @@ Imports:
     lazyeval,
     leaflet,
     lubridate,
+    methods,
+    purrr,
     readr,
     rgbif,
     rgdal,
     rlang,
     RSQLite,
     sp,
+    sf,
     stats,
-    tidyr
+    tidyr,
+    tidyselect
 Suggests:
     knitr,
     rmarkdown,

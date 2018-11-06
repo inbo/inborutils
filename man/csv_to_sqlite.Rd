@@ -9,21 +9,21 @@ csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
   show_progress_bar = TRUE, ...)
 }
 \arguments{
-\item{csv_file}{name of the text file to convert}
+\item{csv_file}{Name of the text file to convert.}
 
-\item{sqlite_file}{name of the newly created sqlite file}
+\item{sqlite_file}{Name of the newly created sqlite file.}
 
-\item{table_name}{name of the table to store the data table in the sqlite
-dbase}
+\item{table_name}{Name of the table to store the data table in the sqlite
+database.}
 
-\item{delim}{text file delimiter (default ",")}
+\item{delim}{Text file delimiter (default ",").}
 
-\item{pre_process_size}{the number of lines to check the data types of the
-individual columns (default 1000)}
+\item{pre_process_size}{Number of lines to check the data types of the
+individual columns (default 1000).}
 
-\item{chunk_size}{the number of lines to read for each chunk (default 50000)}
+\item{chunk_size}{Number of lines to read for each chunk (default 50000).}
 
-\item{show_progress_bar}{show progress bar (default TRUE)}
+\item{show_progress_bar}{Show progress bar (default TRUE).}
 
 \item{...}{Further arguments to be passed to \code{read_delim}.}
 
