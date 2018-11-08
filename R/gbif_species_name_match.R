@@ -21,12 +21,17 @@
 #' @export
 #' @importFrom assertthat assert_that
 #' @importFrom assertable assert_colnames
-#' @importFrom dplyr %>% rowwise do select bind_cols do_
+#' @importFrom dplyr %>% select
 #' @importFrom rgbif name_backbone
 #' @importFrom lazyeval interp
+#' @importFrom purrr map
+#' @importFrom tibble as.tibble
+#' @importFrom tidyr unnest
+#' @importFrom rlang .data
 #'
 #' @examples
-#' \notrun {
+#'\dontrun{
+#' library(readr)
 #' species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
 #'                                 "/inbo-pyutils/master/gbif/gbif_name_match",
 #'                                 "/sample.csv"),
@@ -64,7 +69,7 @@ gbif_species_name_match <- function(df, name_col,
     df %>%
         mutate(
             scientific_name = df[[name_col]],
-            gbif = map(scientific_name, name_backbone) %>%
+            gbif = map(.data$scientific_name, name_backbone) %>%
                 map(as.tibble)
         ) %>%
         unnest() %>%
