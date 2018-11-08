@@ -24,6 +24,16 @@
 #' @importFrom dplyr %>% rowwise do select bind_cols do_
 #' @importFrom rgbif name_backbone
 #' @importFrom lazyeval interp
+#'
+#' @examples
+#' \notrun {
+#' species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
+#'                                 "/inbo-pyutils/master/gbif/gbif_name_match",
+#'                                 "/sample.csv"),
+#'                          trim_ws = TRUE, col_types = cols())
+#' species_list_matched <- species_list %>%
+#'     gbif_species_name_match(name_col = "name")
+#' }
 gbif_species_name_match <- function(df, name_col,
                                     gbif_terms = c('usageKey',
                                                    'scientificName',
