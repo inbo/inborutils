@@ -6,6 +6,11 @@
 #' memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R}
 #' to learn more about.
 #'
+#' @section Remark:
+#' The \code{callback} argument in the \code{read_delim_chunked} function call
+#' refers to the custom written callback function `append_to_sqlite` applied
+#' to each chunk.
+#'
 #' @param csv_file Name of the text file to convert.
 #' @param sqlite_file Name of the newly created sqlite file.
 #' @param table_name Name of the table to store the data table in the sqlite
@@ -14,7 +19,6 @@
 #' @param pre_process_size Number of lines to check the data types of the
 #'   individual columns (default 1000).
 #' @param chunk_size Number of lines to read for each chunk (default 50000).
-#' @param callback A callback function to call on each chunk.
 #' @param show_progress_bar Show progress bar (default TRUE).
 #' @param ... Further arguments to be passed to \code{read_delim}.
 #'
@@ -92,14 +96,16 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 }
 
 #' Callback function that appends new sections to the SQLite table.
-#' @param x Data.frame we are reading from.
 #' @param con A valid connection to SQLite database.
 #' @param table_name Name of the table to store the data table in the sqlite
 #'   database.
 #' @param date_cols Name of columns containing Date objects
 #' @param datetime_cols Name of columns containint POSIXt objects.
+#'
+#' @keywords internal
 append_to_sqlite <- function(con, table_name,
                              date_cols, datetime_cols) {
+  #' @param x Data.frame we are reading from.
   function(x, pos) {
 
     x <- as.data.frame(x)

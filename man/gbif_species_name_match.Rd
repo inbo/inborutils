@@ -31,3 +31,14 @@ functionality `name_lookup()` and extends the application to a data.frame.
 For more information on the name matching API of GBIF on which rgbif relies,
 see https://www.gbif.org/developer/species
 }
+\examples{
+\dontrun{
+library(readr)
+species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
+                                "/inbo-pyutils/master/gbif/gbif_name_match",
+                                "/sample.csv"),
+                         trim_ws = TRUE, col_types = cols())
+species_list_matched <- species_list \%>\%
+    gbif_species_name_match(name_col = "name")
+}
+}

@@ -21,9 +21,24 @@
 #' @export
 #' @importFrom assertthat assert_that
 #' @importFrom assertable assert_colnames
-#' @importFrom dplyr %>% rowwise do select bind_cols do_
+#' @importFrom dplyr %>% select
 #' @importFrom rgbif name_backbone
 #' @importFrom lazyeval interp
+#' @importFrom purrr map
+#' @importFrom tibble as.tibble
+#' @importFrom tidyr unnest
+#' @importFrom rlang .data
+#'
+#' @examples
+#'\dontrun{
+#' library(readr)
+#' species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
+#'                                 "/inbo-pyutils/master/gbif/gbif_name_match",
+#'                                 "/sample.csv"),
+#'                          trim_ws = TRUE, col_types = cols())
+#' species_list_matched <- species_list %>%
+#'     gbif_species_name_match(name_col = "name")
+#' }
 gbif_species_name_match <- function(df, name_col,
                                     gbif_terms = c('usageKey',
                                                    'scientificName',
@@ -51,15 +66,12 @@ gbif_species_name_match <- function(df, name_col,
     gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
 
     # matching the GBiF matching information to the sample_data
-    df %>% rowwise() %>%
-        do_(interp(~ as.data.frame(name_backbone(name = .$x), 
-                                   stringsAsFactors = FALSE),
-                   x = as.name(name_col))) %>%
-        select(gbif_terms) %>%
-        bind_cols(df)
-    # (remark I use here Standard evaluation (SE) with do_,
-    # see also:
-    # https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html and
-    # https://stackoverflow.com/questions/26739054/using-variable-column-names-in-dplyr-do)
-
+    df %>%
+        mutate(
+            scientific_name = df[[name_col]],
+            gbif = map(.data$scientific_name, name_backbone) %>%
+                map(as.tibble)
+        ) %>%
+        unnest() %>%
+        select(c(colnames(df), gbif_terms))
 }

@@ -21,3 +21,4 @@ database.}
 \description{
 Callback function that appends new sections to the SQLite table.
 }
+\keyword{internal}

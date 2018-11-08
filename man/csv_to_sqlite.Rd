@@ -26,8 +26,6 @@ individual columns (default 1000).}
 \item{show_progress_bar}{Show progress bar (default TRUE).}
 
 \item{...}{Further arguments to be passed to \code{read_delim}.}
-
-\item{callback}{A callback function to call on each chunk.}
 }
 \value{
 a SQLite database
@@ -39,6 +37,13 @@ in the same sqlite table database before the next chunk is loaded into
 memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R}
 to learn more about.
 }
+\section{Remark}{
+
+The \code{callback} argument in the \code{read_delim_chunked} function call
+refers to the custom written callback function `append_to_sqlite` applied
+to each chunk.
+}
+
 \examples{
 \dontrun{
 library(R.utils)
