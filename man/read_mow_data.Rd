@@ -18,3 +18,10 @@ unit,variable_name, latitude, longitude and source_filename
 \description{
 Coordinate data is contained in the header of the file
 }
+\examples{
+\dontrun{
+# see vignettes for more examples
+file_path <- "mow_file.txt"
+mow_data <- read_mow_data(file_path)
+}
+}
