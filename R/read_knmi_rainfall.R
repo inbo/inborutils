@@ -17,6 +17,12 @@
 #' @importFrom lubridate ymd_h
 #' @importFrom rlang .data
 #'
+#' @examples
+#'\dontrun{
+#' # see vignettes for more examples
+#' file_path <- "knmi_file.txt"
+#' knmi_data <- read_knmi_rainfall(file_path)
+#'}
 read_knmi_rainfall <- function(filename, n_max = Inf) {
     # Extract data from header by reading the header lines
     knmi_con <- file(filename, "r")
