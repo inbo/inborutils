@@ -46,7 +46,7 @@ response <- download_knmi_data_hour(c(310, 319), "PRCP",
 
 When chosen the rainfall data only, the package already includes a specific function to read the rainfall data (a more general functionality is on the `todo`-list, feel free to extend the existing function):
 ```{r eval=FALSE, include=TRUE}
-rain_knmi_2012 <- read_knmi_rainfall("./knmi_download.csv")
+rain_knmi_2012 <- read_knmi_data("./knmi_download.csv")
 ```
 ```{r include=FALSE}
 rain_knmi_2012 <- inborutils::rain_knmi_2012
