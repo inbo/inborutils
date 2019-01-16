@@ -14,6 +14,13 @@
 #' @importFrom rlang .data
 #' @importFrom lubridate tz
 #'
+#'
+#' @examples
+#' \dontrun{
+#' # see vignettes for more examples
+#' file_path <- "kmi_file.txt"
+#' precipation_kmi <- read_kmi_data(file_path)
+#' }
 read_kmi_data <- function(filename, n_max = Inf) {
     col_types <- cols(date = col_datetime("%Y-%m-%d_%H"),
                       JAAR = col_integer(),

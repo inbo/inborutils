@@ -18,3 +18,10 @@ unit,variable_name, latitude, longitude and source_filename
 \description{
 Load KMI data as data.frame
 }
+\examples{
+\dontrun{
+# see vignettes for more examples
+file_path <- "kmi_file.txt"
+precipation_kmi <- read_kmi_data(file_path)
+}
+}

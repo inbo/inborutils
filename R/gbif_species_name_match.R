@@ -30,7 +30,7 @@
 #' @importFrom rlang .data
 #'
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' library(readr)
 #' species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
 #'                                 "/inbo-pyutils/master/gbif/gbif_name_match",
