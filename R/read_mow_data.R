@@ -18,11 +18,11 @@
 #' @importFrom rlang .data
 #'
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' # see vignettes for more examples
 #' file_path <- "mow_file.txt"
 #' mow_data <- read_mow_data(file_path)
-#'}
+#' }
 read_mow_data <- function(filename, n_max = Inf) {
     # Extract data from header by reading the header lines
     # Apparently, the encoding for MOW data is not UTF8, the ISO is derived from

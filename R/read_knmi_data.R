@@ -18,11 +18,11 @@
 #' @importFrom rlang .data
 #'
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' # see vignettes for more examples
 #' file_path <- "knmi_file.txt"
 #' knmi_data <- read_knmi_data(file_path)
-#'}
+#' }
 read_knmi_data <- function(filename, n_max = Inf) {
     # Extract data from header by reading the header lines
     knmi_con <- file(filename, "r")
