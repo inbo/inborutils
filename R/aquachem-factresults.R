@@ -4,7 +4,7 @@
 #' the fieldsampling and date.
 #' 
 #'
-#' @param my_connection A valid connection to ETN database.
+#' @param my_connection A valid connection to database.
 #' @param code_name (string) code name of the measure.
 #' @param sampling_date (string) whole date of the measure.
 #' @param reportable (string) 0 or 1 if it is reportable.
