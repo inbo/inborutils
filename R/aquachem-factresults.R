@@ -19,8 +19,6 @@
 #' @importFrom tibble as_tibble
 #'
 #' @examples
-#' \dontrun{
-#' con <- connect_to_etn(your_username, your_password)
 #'
 #'# get all results where code = AN_BLA_001 , date = 20140630 , reportable = 1
 #'variabelen <- fact_result(my_connection, "AN_BLA_001" , "20140630", "1")
