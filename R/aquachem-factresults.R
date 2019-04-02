@@ -7,7 +7,6 @@
 #' @param my_connection A valid connection to database.
 #' @param code_name (string) code name of the measure.
 #' @param sampling_date (string) whole date of the measure.
-#' @param reportable (string) 0 or 1 if it is reportable.
 #'
 #' @return A tibble (tidyverse data.frame).
 #'
@@ -20,8 +19,8 @@
 #'
 #' @examples
 #'
-#'# get all results where code = AN_BLA_001 , date = 20140630 , reportable = 1
-#'variabelen <- fact_result(my_connection, "AN_BLA_001" , "20140630", "1")
+#'# get all results where code = AN_BLA_001 , date = 20140630 
+#'variabelen <- fact_result(my_connection, "AN_BLA_001" , "20140630")
 #'head(variabelen) %>% knitr::kable()
 #'
 #'
@@ -122,7 +121,7 @@ fact_result <- function(dbase_connection, code_name, sampling_date, reportable) 
     AND w.code = {code_name}
     AND FieldSamplingDateKey = {sampling_date}
     --and r.Component LIKE '%ph%'
-    AND r.IsReportable = {reportable}",
+    AND r.IsReportable = 1",
     code_name = code_name,
     sampling_date = sampling_date,
     reportable = reportable,
@@ -130,6 +129,6 @@ fact_result <- function(dbase_connection, code_name, sampling_date, reportable) 
 }
 
 
-variabelen <- fact_result(my_connection, "AN_BLA_001" , "20140630", "1")
+variabelen <- fact_result(my_connection, "AN_BLA_001" , "20140630")
 
 head(variabelen) %>% knitr::kable()
