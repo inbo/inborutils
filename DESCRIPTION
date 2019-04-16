@@ -14,7 +14,7 @@ Authors@R: c(
   person("Damiano", "Oldoni", role = c("ctb"), email = "damiano.oldoni@inbo.be", comment = c(ORCID = "0000-0003-3445-7562")),
   person("Peter", "Desmet", role = c("ctb"), email = "peter.desmet@inbo.be", comment = c(ORCID = "0000-0002-8442-8025")))
 Description: While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
-Depends: R (>= 3.4.2)
+Depends: R (>= 3.4.0)
 Imports:
     assertable,
     assertthat,
