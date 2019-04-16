@@ -34,7 +34,7 @@ which need to be an available column in the dataframe.
 This function is essentially a wrapper around the existing rgbif
 functionality \code{name_backbone()} and extends the application to a data.frame.
 For more information on the name matching API of GBIF on which rgbif relies,
-see \link{https://www.gbif.org/developer/species}.
+see \url{https://www.gbif.org/developer/species/#searching}.
 }
 \examples{
 \dontrun{

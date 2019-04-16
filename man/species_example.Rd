@@ -6,9 +6,9 @@
 \title{Example data.frame with species name column}
 \format{A data frame with 53940 rows and 10 variables:
 \describe{
-  \item{scientificName}{scientific name of the species}
-  \item{kingdom}{kingdom to which the species belongs}
-  \item{euConcernStatus}{level of concern according to EU directives}
+\item{scientificName}{scientific name of the species}
+\item{kingdom}{kingdom to which the species belongs}
+\item{euConcernStatus}{level of concern according to EU directives}
 }}
 \usage{
 species_example

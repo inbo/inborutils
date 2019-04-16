@@ -17,8 +17,8 @@
 #' @param gbif_terms list of valid GBIF terms to add as additional columns to
 #' the data.frame. Default: usageKey, scientificName, rank, order, matchType,
 #' phylum, kingdom, genus, class, confidence, synonym, status, family.
-#' @param ... any parameter to pass to rgbif function \code{name_bakbone}. See
-#'   \code{?name_backbone} for more informations about.
+#' @param ... any parameter to pass to rgbif function `name_bakbone`. See
+#'   `?name_backbone` for more informations about.
 #'
 #' @return a tibble data.frame with GBIF information as additional columns.
 #'

@@ -6,9 +6,9 @@
 \title{Example data.frame with species name column}
 \format{A data frame with 53940 rows and 10 variables:
 \describe{
-  \item{id}{resource identifier}
-  \item{latitude}{Latitude of the coordinates}
-  \item{longitude}{Longitude of the coordinates}
+\item{id}{resource identifier}
+\item{latitude}{Latitude of the coordinates}
+\item{longitude}{Longitude of the coordinates}
 }}
 \usage{
 coordinate_example

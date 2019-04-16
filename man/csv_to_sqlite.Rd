@@ -40,7 +40,7 @@ to learn more about.
 \section{Remark}{
 
 The \code{callback} argument in the \code{read_delim_chunked} function call
-refers to the custom written callback function `append_to_sqlite` applied
+refers to the custom written callback function \code{append_to_sqlite} applied
 to each chunk.
 }
 

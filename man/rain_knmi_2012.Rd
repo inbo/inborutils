@@ -6,15 +6,15 @@
 \title{Example data.frame with KNMI downloaded data}
 \format{A data frame with 1536 rows and 9 variables:
 \describe{
-  \item{value}{measured value}
-  \item{datetime}{datetime of the measurement}
-  \item{unit}{unit (mm)}
-  \item{variable_name}{precipitation}
-  \item{longitude}{coordinate}
-  \item{latitude}{coordinate}
-  \item{location_name}{station name}
-  \item{source_filename}{filename from which the data was read}
-  \item{quality_code}{Nan as KNMI does not provide this}
+\item{value}{measured value}
+\item{datetime}{datetime of the measurement}
+\item{unit}{unit (mm)}
+\item{variable_name}{precipitation}
+\item{longitude}{coordinate}
+\item{latitude}{coordinate}
+\item{location_name}{station name}
+\item{source_filename}{filename from which the data was read}
+\item{quality_code}{Nan as KNMI does not provide this}
 }}
 \usage{
 rain_knmi_2012
