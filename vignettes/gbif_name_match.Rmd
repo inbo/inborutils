@@ -37,7 +37,7 @@ To add the species information, using the `scientificName` column, and the defau
 
 ```{r warning=FALSE}
 my_data_update <- gbif_species_name_match(species_example, 
-                                          name_col = "scientificName")
+                                          name = "scientificName")
 ```
 
 ```{r}
@@ -49,8 +49,22 @@ When not satisfied by the default fields provided ´('usageKey','scientificName'
 ```{r message=FALSE, warning=FALSE}
 gbif_terms_to_use <- c('scientificName', 'order')
 my_data_update <- gbif_species_name_match(species_example, 
-                                              name_col = "scientificName" , 
-                                              gbif_terms = gbif_terms_to_use)
+                                          name = "scientificName" , 
+                                          gbif_terms = gbif_terms_to_use)
+```
+
+```{r}
+knitr::kable(my_data_update)
+```
+
+Sometimes, a scientific name can occur in different kingdoms, the so-called *hemihomonyms*. To avoid a taxon being misidentified, it is then sometimes useful to specify kingdom it belongs to. Or, even better, you could add other taxonomic related parameters such as rank, family or genus. It is also possible to pass other not taxonomic related parameters, e.g. `strict` which allows more control on the match. For more information about all parameters accepted by GBIF, see documentation on [GBIF match](https://www.gbif.org/developer/species#searching).
+
+```{r show_use_extra_GBIF_params, message=FALSE, warning=FALSE}
+gbif_terms_to_use <- c('scientificName', 'order')
+my_data_update <- gbif_species_name_match(species_example, 
+                                          name = "scientificName" , 
+                                          gbif_terms = gbif_terms_to_use,
+                                          kingdom = "kingdom")
 ```
 
 ```{r}
