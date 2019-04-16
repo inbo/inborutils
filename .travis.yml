@@ -1,5 +1,4 @@
 language: r
-sudo: required
 cache: packages
 
 r_binary_packages:
@@ -8,14 +7,9 @@ r_binary_packages:
 r_github_packages:
   - r-lib/pkgdown
 
-addons:
-  apt:
-    packages:
-      - libudunits2-dev
-
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install libgdal1-dev
+apt_packages:
+  - libudunits2-dev
+  - libgdal1-dev
   
 after_success:
   - Rscript -e "pkgdown::build_site(preview = FALSE)"
