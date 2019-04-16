@@ -6,9 +6,9 @@
 #' which need to be an available column in the dataframe.
 #'
 #' This function is essentially a wrapper around the existing rgbif
-#' functionality \code{name_backbone()} and extends the application to a data.frame.
-#' For more information on the name matching API of GBIF on which rgbif relies,
-#' see \link{https://www.gbif.org/developer/species}.
+#' `name_backbone` and extends the application to a data.frame. For more
+#' information on the name matching API of GBIF on which rgbif relies, see
+#' <https://www.gbif.org/developer/species/#searching>.
 #'
 #' @param df data.frame with species information
 #' @param name char column name of the column containing the scientific names
@@ -25,8 +25,8 @@
 #' @export
 #' @importFrom assertthat assert_that
 #' @importFrom assertable assert_colnames
-#' @importFrom dplyr %>%
-#' @importFrom purrr pmap_dfr
+#' @importFrom dplyr %>% bind_cols select
+#' @importFrom purrr pmap_dfr map_chr
 #' @importFrom tibble as_tibble
 #'
 #' @examples
@@ -115,7 +115,7 @@ gbif_species_name_match <- function(df,
     otherargs <- inargs[which(!names(inargs) %in% taxa_terms)]
     other_terms <- names(otherargs)
     if (length(taxa_terms) > 0) {
-      taxa_df <- df[,map_chr(taxaargs, function(x) x[[1]])]
+      taxa_df <- select(df, eval(map_chr(taxaargs, function(x) x[[1]])))
       names(taxa_df) <- taxa_terms
       name_df <- bind_cols(name_df, taxa_df)
     }
