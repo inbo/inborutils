@@ -17,8 +17,9 @@
 #' @param gbif_terms list of valid GBIF terms to add as additional columns to
 #' the data.frame. Default: usageKey, scientificName, rank, order, matchType,
 #' phylum, kingdom, genus, class, confidence, synonym, status, family.
-#' @param ... any parameter to pass to rgbif function `name_bakbone`. See
-#'   `?name_backbone` for more informations about.
+#' @param ... any parameter to pass to rgbif function `name_bakbone`. One of:
+#'   rank, kingdom, phylum, class, order, family, genus, strict, verbose, start,
+#'   limit, curlopts. See `?name_backbone` for more details.
 #'
 #' @return a tibble data.frame with GBIF information as additional columns.
 #'
@@ -39,11 +40,13 @@
 #'                          trim_ws = TRUE, col_types = cols())
 #' # basic usage
 #' species_list %>%
-#'   gbif_species_name_match
+#'   gbif_species_name_match()
 #' # pass optional parameters to name_backbone
 #' species_list %>%
 #'   gbif_species_name_match(name = "name", kingdom = "kingdom", strict = TRUE)
 #' # select GBIF terms
+#' species_list %>%
+#'   gbif_species_name_match(gbif_terms = c('scientificName','rank'))
 #' }
 gbif_species_name_match <- function(df,
                                     name = "name",
@@ -78,7 +81,7 @@ gbif_species_name_match <- function(df,
   assert_colnames(df, name, only_colnames = FALSE) # colname exists in df
   # GBIF terms to add as additional columns to df
   gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
-  # make df with name only
+  # make df with names only
   name_df <- select(df, eval(name))
   colnames(name_df) <- "name" # rename to "name"
   # optional fields accepted by name_backbone
@@ -94,12 +97,15 @@ gbif_species_name_match <- function(df,
                             "start",
                             "limit",
                             "curlopts")
-  # optional fields of name_backbone_fields defined by user
+  # Check optional parameters are all search name parameters
+  assert_that(all(names(inargs) %in% name_backbone_fields),
+              msg = paste0(
+                "Only optional parameters of GBIF name search allowed: ",
+                paste(name_backbone_fields, collapse = ", "),
+                ". Check ?name_backbone for more details."))
+  # optional fields defined by user
   search_terms <- names(inargs)[which(names(inargs) %in% name_backbone_fields)]
   if (length(search_terms) > 0) {
-    search_terms <- match.arg(search_terms,
-                              name_backbone_fields,
-                              several.ok = TRUE)
     inargs <- inargs[which(names(inargs) %in% search_terms)]
     # subset with taxonomic related fields accepted by name_backbone
     taxa_terms <- c("rank",

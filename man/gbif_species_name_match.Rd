@@ -19,8 +19,9 @@ used for the name matching with the GBIF taxonomic backbone. Default:
 the data.frame. Default: usageKey, scientificName, rank, order, matchType,
 phylum, kingdom, genus, class, confidence, synonym, status, family.}
 
-\item{...}{any parameter to pass to rgbif function \code{name_bakbone}. See
-\code{?name_backbone} for more informations about.}
+\item{...}{any parameter to pass to rgbif function \code{name_bakbone}. One of:
+rank, kingdom, phylum, class, order, family, genus, strict, verbose, start,
+limit, curlopts. See \code{?name_backbone} for more details.}
 }
 \value{
 a tibble data.frame with GBIF information as additional columns.
@@ -32,9 +33,9 @@ which need to be an available column in the dataframe.
 }
 \details{
 This function is essentially a wrapper around the existing rgbif
-functionality \code{name_backbone()} and extends the application to a data.frame.
-For more information on the name matching API of GBIF on which rgbif relies,
-see \url{https://www.gbif.org/developer/species/#searching}.
+\code{name_backbone} and extends the application to a data.frame. For more
+information on the name matching API of GBIF on which rgbif relies, see
+\url{https://www.gbif.org/developer/species/#searching}.
 }
 \examples{
 \dontrun{
@@ -46,10 +47,12 @@ species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
                          trim_ws = TRUE, col_types = cols())
 # basic usage
 species_list \%>\%
-  gbif_species_name_match
+  gbif_species_name_match()
 # pass optional parameters to name_backbone
 species_list \%>\%
   gbif_species_name_match(name = "name", kingdom = "kingdom", strict = TRUE)
 # select GBIF terms
+species_list \%>\%
+  gbif_species_name_match(gbif_terms = c('scientificName','rank'))
 }
 }
