@@ -19,7 +19,7 @@ This function provides the functionality to add the species information from the
 
 ## Functionality
 
-The `gbif_species_name_match` function extends the matching function provided by [Rgbif](https://github.com/ropensci/rgbif) to be compatible with a `data.frame` data structure.
+The `gbif_species_name_match` function extends the matching function provided by [rgbif](https://github.com/ropensci/rgbif) to be compatible with a `data.frame` data structure.
 
 Loading the functionality can be done by loading the `inborutils` package:
 
@@ -57,8 +57,8 @@ my_data_update <- gbif_species_name_match(species_example,
 knitr::kable(my_data_update)
 ```
 
-Sometimes, a scientific name can occur in different kingdoms, the so-called *hemihomonyms*. To avoid a taxon being misidentified, it is then sometimes useful to specify kingdom it belongs to. Or, even better, you could add other taxonomic related parameters such as rank, family or genus. It is also possible to pass other not taxonomic related parameters, e.g. `strict` which allows more control on the match. For more information about all parameters accepted by GBIF, see documentation on [GBIF match](https://www.gbif.org/developer/species#searching).
-
+Sometimes, a scientific name can occur in different kingdoms, the so-called *hemihomonyms*. To avoid a taxon being misidentified, it is then sometimes useful to specify kingdom it belongs to. You could also add other taxonomic related parameters such as rank, family or genus. It is also possible to pass other not taxonomic related parameters, e.g. `strict` which allows more control on the match behavior. For more information about all parameters accepted by GBIF, see documentation on [GBIF match](https://www.gbif.org/developer/species#searching).
+ 
 ```{r message=FALSE, warning=FALSE}
 my_data_update <- gbif_species_name_match(species_example, 
                                           name = "scientificName",
