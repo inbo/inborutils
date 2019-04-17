@@ -143,6 +143,8 @@ gbif_species_name_match <- function(df,
 #' @keywords internal
 get_name_gbif <- function(...) {
   args <- list(...)
+  # NA are accepted at dev level (devtools::install_github("ropensci/rgbif"),
+  # but still not in CRAN version. Only NULL accepted.
   args[which(is.na(args))] <- NULL
   do.call(name_backbone, args)
 }
