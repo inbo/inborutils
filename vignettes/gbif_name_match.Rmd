@@ -1,10 +1,12 @@
 ---
 title: "GBIF scientific name matching"
-author: "Stijn Van Hoey"
+author: 
+- Stijn Vanhoey
+- Damiano Oldoni
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{GBIF scientific name matching}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -37,7 +39,7 @@ To add the species information, using the `scientificName` column, and the defau
 
 ```{r warning=FALSE}
 my_data_update <- gbif_species_name_match(species_example, 
-                                          name = "scientificName")
+                                          name = "speciesName")
 ```
 
 ```{r}
@@ -49,7 +51,7 @@ When not satisfied by the default fields provided ´('usageKey','scientificName'
 ```{r message=FALSE, warning=FALSE}
 gbif_terms_to_use <- c('scientificName', 'order')
 my_data_update <- gbif_species_name_match(species_example, 
-                                          name = "scientificName" , 
+                                          name = "speciesName" , 
                                           gbif_terms = gbif_terms_to_use)
 ```
 
@@ -61,7 +63,7 @@ Sometimes, a scientific name can occur in different kingdoms, the so-called *hem
  
 ```{r message=FALSE, warning=FALSE}
 my_data_update <- gbif_species_name_match(species_example, 
-                                          name = "scientificName",
+                                          name = "speciesName",
                                           kingdom = "kingdom",
                                           strict = TRUE)
 ```
