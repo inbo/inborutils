@@ -23,8 +23,8 @@
 #'   `?name_backbone` for more details.
 #'
 #' @return a tibble data.frame with GBIF information as additional columns. If
-#'   none of the taxa in  `df` is matched, only the columns `confidence`,
-#'   `matchType` and `synonym` are added. This behavior is inherited by
+#'   none of the taxa in  `df` is matched, only the columns \'confidence\',
+#'   \'matchType\' and \'synonym\' are added. This behavior is inherited by
 #'   `rgbif::name_backbone`.
 #'
 #' @export
@@ -85,6 +85,14 @@ gbif_species_name_match <- function(df,
   assert_colnames(df, name, only_colnames = FALSE) # colname exists in df
   # GBIF terms to add as additional columns to df
   gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
+  if (name %in% gbif_terms) {
+    warning(paste0("Column with names \'",
+                   name,
+                   "\' is also one of the returned gbif_terms. ",
+                   "GBIF column name is authomatically recalled \'",
+                   name,
+                   "1\'."))
+  }
   # make df with names only
   name_df <- select(df, eval(name))
   colnames(name_df) <- "name" # rename to "name"
