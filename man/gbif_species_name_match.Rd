@@ -24,7 +24,10 @@ rank, kingdom, phylum, class, order, family, genus, strict, verbose, start,
 limit, curlopts. See \code{?name_backbone} for more details.}
 }
 \value{
-a tibble data.frame with GBIF information as additional columns.
+a tibble data.frame with GBIF information as additional columns. If
+none of the taxa in  \code{df} is matched, only the columns \code{confidence},
+\code{matchType} and \code{synonym} are added. This behavior is inherited by
+\code{rgbif::name_backbone}.
 }
 \description{
 This functions extends an existing dataframe with additional columns provided

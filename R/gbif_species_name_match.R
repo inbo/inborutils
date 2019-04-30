@@ -21,7 +21,10 @@
 #'   rank, kingdom, phylum, class, order, family, genus, strict, verbose, start,
 #'   limit, curlopts. See `?name_backbone` for more details.
 #'
-#' @return a tibble data.frame with GBIF information as additional columns.
+#' @return a tibble data.frame with GBIF information as additional columns. If
+#'   none of the taxa in  `df` is matched, only the columns `confidence`,
+#'   `matchType` and `synonym` are added. This behavior is inherited by
+#'   `rgbif::name_backbone`.
 #'
 #' @export
 #' @importFrom assertthat assert_that
