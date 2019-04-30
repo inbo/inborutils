@@ -133,8 +133,13 @@ gbif_species_name_match <- function(df,
     name_df %>%
     pmap_dfr(get_name_gbif) %>%
     as_tibble()
-  bind_cols(df, name_df) %>%
-    select(c(colnames(df), gbif_terms))
+  df <- bind_cols(df, name_df)
+  if (all(gbif_terms %in% names(df))) {
+    df %>%
+      select(c(colnames(df), gbif_terms))
+  } else {
+    df
+  }
 }
 
 #' Helper function for retrieving informations from GBIF Taxonomy Backbone
