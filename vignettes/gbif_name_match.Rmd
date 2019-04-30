@@ -1,10 +1,12 @@
 ---
 title: "GBIF scientific name matching"
-author: "Stijn Van Hoey"
+author: 
+- Stijn Vanhoey
+- Damiano Oldoni
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{GBIF scientific name matching}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +21,7 @@ This function provides the functionality to add the species information from the
 
 ## Functionality
 
-The `gbif_species_name_match` function extends the matching function provided by [Rgbif](https://github.com/ropensci/rgbif) to be compatible with a `data.frame` data structure.
+The `gbif_species_name_match` function extends the matching function provided by [rgbif](https://github.com/ropensci/rgbif) to be compatible with a `data.frame` data structure.
 
 Loading the functionality can be done by loading the `inborutils` package:
 
@@ -37,7 +39,7 @@ To add the species information, using the `scientificName` column, and the defau
 
 ```{r warning=FALSE}
 my_data_update <- gbif_species_name_match(species_example, 
-                                          name_col = "scientificName")
+                                          name = "speciesName")
 ```
 
 ```{r}
@@ -49,8 +51,21 @@ When not satisfied by the default fields provided ´('usageKey','scientificName'
 ```{r message=FALSE, warning=FALSE}
 gbif_terms_to_use <- c('scientificName', 'order')
 my_data_update <- gbif_species_name_match(species_example, 
-                                              name_col = "scientificName" , 
-                                              gbif_terms = gbif_terms_to_use)
+                                          name = "speciesName" , 
+                                          gbif_terms = gbif_terms_to_use)
+```
+
+```{r}
+knitr::kable(my_data_update)
+```
+
+Sometimes, a scientific name can occur in different kingdoms, the so-called *hemihomonyms*. To avoid a taxon being misidentified, it is then sometimes useful to specify kingdom it belongs to. You could also add other taxonomic related parameters such as rank, family or genus. It is also possible to pass other not taxonomic related parameters, e.g. `strict` which allows more control on the match behavior. For more information about all parameters accepted by GBIF, see documentation on [GBIF match](https://www.gbif.org/developer/species#searching).
+ 
+```{r message=FALSE, warning=FALSE}
+my_data_update <- gbif_species_name_match(species_example, 
+                                          name = "speciesName",
+                                          kingdom = "kingdom",
+                                          strict = TRUE)
 ```
 
 ```{r}
