@@ -73,7 +73,7 @@ gbif_species_name_match <- function(df,
   # test incoming arguments
   assert_that(is.data.frame(df))
   if (!is.null(inargs$name_col)) {
-    inargs$name <- inargs$name_col
+    name <- inargs$name_col
     warning("\'name_col\' is deprecated. Use \'name\' instead.")
     inargs$name_col <- NULL
   }
