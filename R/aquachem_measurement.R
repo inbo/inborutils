@@ -16,7 +16,6 @@
 #' @importFrom glue glue_sql
 #' @importFrom DBI dbGetQuery
 #' @importFrom dplyr pull %>%
-#' @importFrom tibble as_tibble
 #'
 #' @examples
 #' \dontrun{
