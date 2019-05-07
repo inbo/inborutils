@@ -4,17 +4,17 @@
 \name{species_example}
 \alias{species_example}
 \title{Example data.frame with species name column}
-\format{A data frame with 53940 rows and 10 variables:
-\describe{
-  \item{scientificName}{scientific name of the species}
-  \item{kingdom}{kingdom to which the species belongs}
-  \item{euConcernStatus}{level of concern according to EU directives}
+\format{A data frame with 3 rows and 3 variables
+\itemize{
+\item {speciesName: name of the species}
+\item {kingdom: kingdom to which the species belongs}
+\item {euConcernStatus: level of concern according to EU directives}
 }}
 \usage{
 species_example
 }
 \description{
-A dataset containing the prices and other attributes of almost 54,000
-diamonds.
+A dataset containing 3 taxa to be matched with GBIF Taxonomy Backbone. The
+variable are as follows:
 }
 \keyword{datasets}

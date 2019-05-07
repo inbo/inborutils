@@ -3,18 +3,17 @@
 \docType{data}
 \name{coordinate_example}
 \alias{coordinate_example}
-\title{Example data.frame with species name column}
-\format{A data frame with 53940 rows and 10 variables:
-\describe{
-  \item{id}{resource identifier}
-  \item{latitude}{Latitude of the coordinates}
-  \item{longitude}{Longitude of the coordinates}
+\title{Example data.frame with coorindates}
+\format{A data frame with 52 rows and 3 variables:
+\itemize{
+\item{id: resource identifier}
+\item{latitude: Latitude of the coordinates}
+\item{longitude: Longitude of the coordinates}
 }}
 \usage{
 coordinate_example
 }
 \description{
-A dataset containing the prices and other attributes of almost 54,000
-diamonds.
+A dataset containing 52 coordinates as latitude and longitude
 }
 \keyword{datasets}

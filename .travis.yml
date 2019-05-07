@@ -1,35 +1,24 @@
-language: R
-sudo: required
+language: r
 cache: packages
-warnings_are_errors: true
 
 r_binary_packages:
  - rgdal
 
-addons:
-  apt:
-    packages:
-      - libudunits2-dev
+r_github_packages:
+  - r-lib/pkgdown
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install libgdal1-dev
+apt_packages:
+  - libudunits2-dev
+  - libgdal1-dev
   
-before_script:
-  - Rscript -e "install.packages('devtools')"
-  - Rscript -e "devtools::install_github('hadley/pkgdown')"
-
-script:
-  - R CMD build .
-  - R CMD check *tar.gz
-  - R CMD INSTALL --no-docs --no-help .
+after_success:
   - Rscript -e "pkgdown::build_site(preview = FALSE)"
 
 deploy:
   provider: pages
-  skip_cleanup: true
   local_dir: docs
-  github_token: "$GH_TOKEN"
+  skip_cleanup: true
+  keep_history: true
+  github_token: $GH_TOKEN
   on:
     branch: master
-

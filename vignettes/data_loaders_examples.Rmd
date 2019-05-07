@@ -1,10 +1,10 @@
 ---
 title: "(Down)load data from external partners"
-author: "S. Van Hoey"
+author: "Stijn Van Hoey"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{(Down)load data from external partners}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

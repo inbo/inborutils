@@ -27,7 +27,7 @@ Leaflet map with coordinates added as dots.
 \description{
 This function plots x/y coordinates from a data.frame on a (leaflet) map. The
 coordinates are first converted to GWS84 in order to map them correctly on
-the leaflet map (@seealso [reproject_coordinates()]). To do this, the
+the leaflet map (@seealso \code{\link[=reproject_coordinates]{reproject_coordinates()}}). To do this, the
 original Coordinate Reference System (CRS) is asked.
 }
 \examples{
