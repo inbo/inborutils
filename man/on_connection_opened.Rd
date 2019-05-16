@@ -4,7 +4,7 @@
 \alias{on_connection_opened}
 \title{Rstudio Viewer integration}
 \usage{
-on_connection_opened(connection, code, server)
+on_connection_opened(connection, code, type)
 }
 \arguments{
 \item{connection}{odbc connection}

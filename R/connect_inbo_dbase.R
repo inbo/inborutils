@@ -101,7 +101,6 @@ setMethod(
 #' @importFrom odbc odbcListObjectTypes odbcListObjects odbcListColumns
 #' odbcPreviewObject odbcConnectionActions
 #' @importFrom DBI dbDisconnect
-#'
 on_connection_opened <- function(connection, code, type) {
     # make sure we have an observer
     observer <- getOption("connectionObserver")
