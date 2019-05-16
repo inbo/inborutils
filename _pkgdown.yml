@@ -38,8 +38,9 @@ reference:
     contents:
       - gbif_species_name_match
   - title: "Data loaders"
-    desc: "Functions to download/read specific data formats"
+    desc: "Functions to download/read data or specific data formats"
     contents:
+      - connect_inbo_dbase
       - read_mow_data
       - download_knmi_data_hour
       - read_knmi_data
