@@ -50,15 +50,6 @@ connect_inbo_dbase <- function(database_name, sql_driver = "SQL Server") {
     return(conn)
 }
 
-# use the existing odbc package methods for the Rstudio Viewer
-#on_connection_closed <- function(conn) {
-# odbc:::on_connection_closed(conn)
-#}
-#
-# on_connection_updated <- function(connection, hint) {
-#     odbc:::on_connection_updated(connection, hint)
-# }
-
 on_connection_closed <- function(connection) {
     # make sure we have an observer
     observer <- getOption("connectionObserver")
@@ -76,8 +67,12 @@ on_connection_closed <- function(connection) {
 }
 
 #' Overwrite the odbc function
+#'
+#' @inheritParams DBI::dbDisconnect
+#'
 #' @importFrom odbc dbIsValid
 #' @importFrom utils getFromNamespace
+#' @export
 setMethod(
     "dbDisconnect", "OdbcConnection",
     function(conn, ...) {

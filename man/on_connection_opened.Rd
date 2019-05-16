@@ -11,7 +11,7 @@ on_connection_opened(connection, code, type)
 
 \item{code}{dbase connection code}
 
-\item{server}{INBO database server name}
+\item{type}{INBO database server name}
 }
 \description{
 See https://stackoverflow.com/questions/48936851/calling-odbc-connection-within-function-does-not-display-in-rstudio-connection and https://rstudio.github.io/rstudio-extensions/connections-contract.html#persistence
