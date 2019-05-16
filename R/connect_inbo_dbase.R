@@ -26,8 +26,10 @@ connect_inbo_dbase <- function(database_name, sql_driver = "SQL Server") {
     # transactional (sql07) with a D (by agreement with dba's)
     if (any(startsWith(database_name, c("M", "S", "W")))) {
         server = "inbo-sql08-prd.inbo.be"  # DWH server
+        type <- "INBO DWH Server"
     } else {
         server = "inbo-sql07-prd.inbo.be"  # SQL transactional server
+        type <- "INBO PRD Server"
     }
 
     # connect to database
@@ -43,23 +45,64 @@ connect_inbo_dbase <- function(database_name, sql_driver = "SQL Server") {
     code_call <- paste(c("library(inborutils)",
                          paste("con <-", gsub(", ", ",\n\t", code_call))),
                        collapse = "\n")
-    on_connection_opened(conn, code_call, server)
+    on_connection_opened(conn, code_call, type)
 
     return(conn)
 }
+
+# use the existing odbc package methods for the Rstudio Viewer
+#on_connection_closed <- function(conn) {
+# odbc:::on_connection_closed(conn)
+#}
+#
+# on_connection_updated <- function(connection, hint) {
+#     odbc:::on_connection_updated(connection, hint)
+# }
+
+on_connection_closed <- function(connection) {
+    # make sure we have an observer
+    observer <- getOption("connectionObserver")
+    if (is.null(observer))
+        return(invisible(NULL))
+
+    # provide information no DWH or database
+    if (grepl("08", connection@info$servername)) {
+        type <- "INBO DWH Server"
+    } else if (grepl("07", connection@info$servername)) {
+        type <- "INBO PRD Server"
+    }
+
+    observer$connectionClosed(type, connection@info$dbname)
+}
+
+#' Overwrite the odbc function
+#' @importFrom odbc dbIsValid
+#' @importFrom utils getFromNamespace
+setMethod(
+    "dbDisconnect", "OdbcConnection",
+    function(conn, ...) {
+        if (!dbIsValid(conn)) {
+            warning("Connection already closed.", call. = FALSE)
+        }
+
+        on_connection_closed(conn)
+        conn_release = getFromNamespace("connection_release", "odbc")
+        conn_release(conn@ptr)
+        invisible(TRUE)
+    })
 
 #' Rstudio Viewer integration
 #'
 #' See https://stackoverflow.com/questions/48936851/calling-odbc-connection-within-function-does-not-display-in-rstudio-connection and https://rstudio.github.io/rstudio-extensions/connections-contract.html#persistence
 #' @param connection odbc connection
 #' @param code dbase connection code
-#' @param server INBO database server name
+#' @param type INBO database server name
 #'
 #' @importFrom odbc odbcListObjectTypes odbcListObjects odbcListColumns
 #' odbcPreviewObject odbcConnectionActions
 #' @importFrom DBI dbDisconnect
 #'
-on_connection_opened <- function(connection, code, server) {
+on_connection_opened <- function(connection, code, type) {
     # make sure we have an observer
     observer <- getOption("connectionObserver")
     if (is.null(observer))
@@ -68,13 +111,6 @@ on_connection_opened <- function(connection, code, server) {
     # use the database name as the display name
     display_name <- paste("INBO Databases -", connection@info$dbname)
     server_name <- connection@info$servername
-
-    # provide information no DWH or database
-    if (grepl("08", server)) {
-        type <- "INBO DWH Server"
-    } else if (grepl("07", server)) {
-        type <- "INBO PRD Server"
-    }
 
     # let observer know that connection has opened
     observer$connectionOpened(
