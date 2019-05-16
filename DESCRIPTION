@@ -26,6 +26,7 @@ Imports:
     leaflet,
     lubridate,
     methods,
+    odbc,
     purrr,
     readr,
     rgbif,
