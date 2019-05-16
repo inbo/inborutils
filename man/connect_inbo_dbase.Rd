@@ -15,8 +15,13 @@ connect_inbo_dbase(database_name, sql_driver = "SQL Server")
 odbc connection
 }
 \description{
-Connect to an INBO database
+By default, INBO/windows users will have the \code{SQL Server} driver available
+and do not have to adapt the second argument. However, for other operating
+systems or users with other drivers installed, the \code{sql_driver} option
+can be used.
 }
 \examples{
+\dontrun{
 connection <- connect_inbo_dbase("D0021_00_userFlora")
+}
 }

@@ -4,13 +4,15 @@
 \alias{on_connection_opened}
 \title{Rstudio Viewer integration}
 \usage{
-on_connection_opened(connection, code)
+on_connection_opened(connection, code, server)
 }
 \arguments{
 \item{connection}{odbc connection}
 
 \item{code}{dbase connection code}
+
+\item{server}{INBO database server name}
 }
 \description{
-Rstudio Viewer integration
+See https://stackoverflow.com/questions/48936851/calling-odbc-connection-within-function-does-not-display-in-rstudio-connection and https://rstudio.github.io/rstudio-extensions/connections-contract.html#persistence
 }
