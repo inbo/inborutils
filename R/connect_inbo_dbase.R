@@ -103,7 +103,7 @@ on_connection_opened <- function(connection, code, type) {
         return(invisible(NULL))
 
     # use the database name as the display name
-    display_name <- paste("INBO Databases -", connection@info$dbname)
+    display_name <- paste("INBO Database -", connection@info$dbname)
     server_name <- connection@info$servername
 
     # let observer know that connection has opened
