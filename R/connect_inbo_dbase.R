@@ -20,6 +20,7 @@
 #' @examples
 #' \dontrun{
 #' connection <- connect_inbo_dbase("D0021_00_userFlora")
+#' connection <- connect_inbo_dbase("W0003_00_Lims")
 #' }
 connect_inbo_dbase <- function(database_name) {
 
