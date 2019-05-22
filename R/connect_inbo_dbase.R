@@ -1,26 +1,28 @@
 
 #' Connect to an INBO database
 #'
-#' By default, INBO/windows users will have the `SQL Server` driver available
-#' and do not have to adapt the second argument. However, for other operating
-#' systems or users with other drivers installed, the `sql_driver` option
-#' can be used.
+#' Connects to an INBO database by simply providing the database's name as an
+#' argument.
+#' The function can only be used from within the INBO network.
+#'
+#' For more information, refer to
+#' \href{https://inbo.github.io/tutorials/tutorials/r_database_access/}{this tutorial}.
 #'
 #' @param database_name char Name of the INBO database you want to connect
-#' @param sql_driver char Driver (`SQL Server` by default) to use for connection
 #'
 #' @return odbc connection
 #'
 #' @export
 #'
 #' @importFrom DBI dbGetQuery dbConnect dbListTables
-#' @importFrom odbc odbc
+#' @importFrom odbc odbc odbcListDrivers
 #'
 #' @examples
 #' \dontrun{
 #' connection <- connect_inbo_dbase("D0021_00_userFlora")
+#' connection <- connect_inbo_dbase("W0003_00_Lims")
 #' }
-connect_inbo_dbase <- function(database_name, sql_driver = "SQL Server") {
+connect_inbo_dbase <- function(database_name) {
 
     # datawarehouse databases (sql08) start with an M, S or W; most
     # transactional (sql07) with a D (by agreement with dba's)
@@ -31,6 +33,15 @@ connect_inbo_dbase <- function(database_name, sql_driver = "SQL Server") {
         server = "inbo-sql07-prd.inbo.be"  # SQL transactional server
         type <- "INBO PRD Server"
     }
+
+    sql_driver <- if (.Platform$OS.type == "unix") {
+                        driversdf <- odbcListDrivers()
+                        driversvec <-
+                            driversdf[driversdf$attribute == "Driver", "name"]
+                        driversvec[grepl("SQL Server", driversvec)][1]
+                } else {
+                        "SQL Server"
+                }
 
     # connect to database
     conn <- dbConnect(odbc(),
