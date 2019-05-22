@@ -1,10 +1,12 @@
 
 #' Connect to an INBO database
 #'
-#' By default, INBO/windows users will have the `SQL Server` driver available
-#' and do not have to adapt the second argument. However, for other operating
-#' systems or users with other drivers installed, the `sql_driver` option
-#' can be used.
+#' Connects to an INBO database by simply providing the database's name as an
+#' argument.
+#' The function can only be used from within the INBO network.
+#'
+#' For more information, refer to
+#' \href{https://inbo.github.io/tutorials/tutorials/r_database_access/}{this tutorial}.
 #'
 #' @param database_name char Name of the INBO database you want to connect
 #'

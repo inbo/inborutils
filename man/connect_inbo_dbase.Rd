@@ -13,10 +13,13 @@ connect_inbo_dbase(database_name)
 odbc connection
 }
 \description{
-By default, INBO/windows users will have the \code{SQL Server} driver available
-and do not have to adapt the second argument. However, for other operating
-systems or users with other drivers installed, the \code{sql_driver} option
-can be used.
+Connects to an INBO database by simply providing the database's name as an
+argument.
+The function can only be used from within the INBO network.
+}
+\details{
+For more information, refer to
+\href{https://inbo.github.io/tutorials/tutorials/r_database_access/}{this tutorial}.
 }
 \examples{
 \dontrun{
