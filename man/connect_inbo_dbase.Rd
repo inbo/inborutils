@@ -4,12 +4,10 @@
 \alias{connect_inbo_dbase}
 \title{Connect to an INBO database}
 \usage{
-connect_inbo_dbase(database_name, sql_driver = "SQL Server")
+connect_inbo_dbase(database_name)
 }
 \arguments{
 \item{database_name}{char Name of the INBO database you want to connect}
-
-\item{sql_driver}{char Driver (\code{SQL Server} by default) to use for connection}
 }
 \value{
 odbc connection
