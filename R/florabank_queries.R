@@ -25,6 +25,7 @@
 #' filter
 #' select
 #' rename
+#'@importFrom rlang .data
 #'
 #' @export
 #'
@@ -45,9 +46,9 @@ florabank_traits <- function(trait_name) {
 
   if (missing(trait_name)) {
     traitnames <- tbl(db_connectie, "tblTaxonKenmerk") %>%
-      distinct(Naam) %>%
+      distinct(.data$Naam) %>%
       collect() %>%
-      pull(Naam)
+      pull(.data$Naam)
     dbDisconnect(db_connectie)
     message(paste(traitnames, collapse = ", "))
     stop("Please provide (part of) a trait name from the above list.")
@@ -62,46 +63,48 @@ florabank_traits <- function(trait_name) {
 
   query_result <- rel_taxon_taxon_kenmerk_waarde %>%
     inner_join(fb_taxon_kenmerk %>%
-                 filter(tolower(Naam) %LIKE% paste0("%", trait_name, "%")) %>%
-                 select(ID, Naam),
+                 filter(tolower(.data$Naam) %LIKE%
+                          paste0("%", trait_name, "%")) %>%
+                 select(.data$ID, .data$Naam),
                by = c("TaxonKenmerkID" = "ID")) %>%
-    select(-Omschrijving) %>%
+    select(-.data$Omschrijving) %>%
     left_join(fb_taxon_kenmerk_waarde %>%
-                distinct(ID, Code, TaxonKenmerkID, Omschrijving, Rekenwaarde),
+                distinct(.data$ID, .data$Code, .data$TaxonKenmerkID,
+                         .data$Omschrijving, .data$Rekenwaarde),
               by = c("TaxonKenmerkID" = "TaxonKenmerkID",
                      "TaxonKenmerkWaardeID" = "ID")) %>%
     left_join(fb_taxon %>%
-                rename(NaamAfkorting = Code),
+                rename(NaamAfkorting = .data$Code),
               by = c("TaxonID" = "ID")) %>%
-    distinct(TaxonID,
-             TaxonAfkorting = NaamAfkorting,
-             TaxonWetenschappelijk = NaamWetenschappelijk,
-             TaxonNederlands = NaamNederlands,
-             Kenmerk = Naam,
-             Code,
-             Omschrijving,
-             Rekenwaarde
+    distinct(.data$TaxonID,
+             TaxonAfkorting = .data$NaamAfkorting,
+             TaxonWetenschappelijk = .data$NaamWetenschappelijk,
+             TaxonNederlands = .data$NaamNederlands,
+             Kenmerk = .data$Naam,
+             .data$Code,
+             .data$Omschrijving,
+             .data$Rekenwaarde
     ) %>%
     collect()
   dbDisconnect(db_connectie)
   return(query_result)
 }
 
-#' Get all validated observations for a species from the florabank database
+#' Get all validated observations for a taxon from the florabank database
 #'
 #' This function takes as input either (part of) a scientific name or (part of)
-#' the Dutch name for a species, queries the florabank, and returns a dataframe
-#' observation level information about the matching species. The following
+#' the Dutch name for a taxon, queries the florabank, and returns a dataframe
+#' observation level information about the matching taxa. The following
 #' wildcards may be used within the input parameters:
-#' %: #' Represents zero or more characters;
-#' _: Represents a single character;
-#' []: Represents any single character within the brackets, e.g. [sp]
-#' ^:Represents any character not in the brackets, e.g. [^sp]
-#' -: Represents a range of characters, e.g. [a-z]
+#' `%`: Represents zero or more characters;
+#' `_`: Represents a single character;
+#' `[]`: Represents any single character within the brackets, e.g. `[sp]`
+#' `^`: Represents any character not in the brackets, e.g. `[^sp]`
+#' `-`: Represents a range of characters, e.g. `[a-z]`
 #'
 #'
-#' @param scient_name (Part of) a scientific species name
-#' @param dutch_name (Part of) a Dutch species name, may contain wildcards
+#' @param scient_name (Part of) a scientific taxon name
+#' @param dutch_name (Part of) a Dutch taxon name, may contain wildcards
 #'
 #' @return A dataframe with the following variables: "NaamNederlands",
 #' "NaamWetenschappelijk", "Bron", "BeginDatum", "EindDatum", "hok",
@@ -118,7 +121,7 @@ florabank_traits <- function(trait_name) {
 #' Dactmacu1 <-	florabank_observations(scient_name = 'Dactylorhiza maculata (L.) Soó')
 #' Dactmacu2 <-	florabank_observations(dutch_name = 'Gevlekte orchis')
 #' all.equal(Dactmacu1, Dactmacu2)
-#' # use wildcards to retrieve all partial matches to a species
+#' # use wildcards to retrieve all partial matches to a name
 #' Dactmacu3 <-	florabank_observations(scient_name = 'Dactylorhiza maculata%')
 #' }
 
@@ -243,7 +246,7 @@ florabank_observations <- function(scient_name, dutch_name) {
 #' all nested squares with observations for the taxon in the corresponding year.
 #' This can be nested 1 x 1 squares as well as the corresponding 4 x 4 square
 #' (the latter is the case if the original resolution of the observation is at
-#' 4 x 4 resolution). In addition, the variableifbl_number_squares gives the
+#' 4 x 4 resolution). In addition, the variable ifbl_number_squares gives the
 #' number of unique nested squares where the taxon was observed for that year
 #' and 4 x 4 square combination.
 #'
@@ -252,6 +255,7 @@ florabank_observations <- function(scient_name, dutch_name) {
 #' @importFrom assertthat assert_that
 #' @importFrom stringr str_sub
 #' @importFrom dplyr %>% tbl_df group_by summarize n ungroup
+#' @importFrom rlang .data
 #'
 #' @export
 #'
@@ -311,11 +315,12 @@ florabank_taxon_ifbl_year <- function(begin_year = 2010,
 
     query_result <- query_result %>%
       tbl_df %>%
-      mutate(ifbl_4by4 = str_sub(hok, start = 1, end = 5))
+      mutate(ifbl_4by4 = str_sub(.data$hok, start = 1, end = 5))
 
     query_result <- query_result %>%
-      group_by(ifbl_4by4, Jaar, TaxonIDParent, Taxoncode) %>%
-      summarize(ifbl_squares = paste(hok, collapse = "|"),
+      group_by(.data$ifbl_4by4, .data$Jaar, .data$TaxonIDParent,
+               .data$Taxoncode) %>%
+      summarize(ifbl_squares = paste(.data$hok, collapse = "|"),
                 ifbl_number_squares = n()) %>%
       ungroup
 
@@ -354,7 +359,7 @@ florabank_taxon_ifbl_year <- function(begin_year = 2010,
 
   query_result <- query_result %>%
     tbl_df %>%
-    mutate(ifbl_4by4 = str_sub(ifbl_1by1, start = 1, end = 5))
+    mutate(ifbl_4by4 = str_sub(.data$ifbl_1by1, start = 1, end = 5))
 
   return(query_result)
 }
