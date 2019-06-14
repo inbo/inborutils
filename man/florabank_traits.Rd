@@ -4,9 +4,12 @@
 \alias{florabank_traits}
 \title{Query the florabank to get taxon trait values for (a) taxon trait(s)}
 \usage{
-florabank_traits(trait_name)
+florabank_traits(connection, trait_name)
 }
 \arguments{
+\item{connection}{A connection to the florabank database. See the example section
+for how to connect and disconnect to the database.}
+
 \item{trait_name}{A (part of) a trait name for which you want to get the
 associated taxon-specific trait values. If this is missing, the function
 returns an error and prints a message showing all possible trait names.}
@@ -24,13 +27,22 @@ and returns the taxon trait values in a tidy data format
 }
 \examples{
 \dontrun{
- # get all Ellenberg values via partial matching
-fb_ellenberg <- florabank_traits("llenberg")
+# connect to florabank
+db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
+
+# get all Ellenberg values via partial matching
+fb_ellenberg <- florabank_traits(db_connectie, "llenberg")
+
 # get all red lists via partial matching
-fb_rodelijsten <- florabank_traits("rode")
+fb_rodelijsten <- florabank_traits(db_connectie, "rode")
+
 # get only the red list for vascular plant species
-fb_rodelijstvaatplanten <- florabank_traits("Rode lijst Vaatplanten")
+fb_rodelijstvaatplanten <- florabank_traits(db_connectie, "Rode lijst Vaatplanten")
+
 #if the trait_name argument is missing, a list of possible names is printed
-florabank_traits()
+florabank_traits(db_connectie)
+
+#disconnect from florabank
+dbDisconnect(db_connectie)
 }
 }

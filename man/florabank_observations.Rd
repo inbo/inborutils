@@ -4,9 +4,12 @@
 \alias{florabank_observations}
 \title{Get all validated observations for a taxon from the florabank database}
 \usage{
-florabank_observations(scient_name, dutch_name)
+florabank_observations(connection, scient_name, dutch_name)
 }
 \arguments{
+\item{connection}{A connection to the florabank database. See the example section
+for how to connect and disconnect to the database.}
+
 \item{scient_name}{(Part of) a scientific taxon name}
 
 \item{dutch_name}{(Part of) a Dutch taxon name, may contain wildcards}
@@ -30,10 +33,22 @@ wildcards may be used within the input parameters:
 }
 \examples{
 \dontrun{
-Dactmacu1 <-	florabank_observations(scient_name = 'Dactylorhiza maculata (L.) SoÃ³')
-Dactmacu2 <-	florabank_observations(dutch_name = 'Gevlekte orchis')
+# connect to florabank
+db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
+
+Dactmacu1 <-	florabank_observations(db_connectie,
+scient_name = 'Dactylorhiza maculata (L.) SoÃ³')
+
+Dactmacu2 <-	florabank_observations(db_connectie,
+dutch_name = 'Gevlekte orchis')
+
 all.equal(Dactmacu1, Dactmacu2)
+
 # use wildcards to retrieve all partial matches to a name
-Dactmacu3 <-	florabank_observations(scient_name = 'Dactylorhiza maculata\%')
+Dactmacu3 <-	florabank_observations(db_connectie,
+scient_name = 'Dactylorhiza maculata\%')
+
+# disconnect from florabank
+dbDisconnect(db_connectie)
 }
 }

@@ -4,12 +4,15 @@
 \alias{florabank_taxon_ifbl_year}
 \title{Get unique combinations of taxon, IFBL-square and year.}
 \usage{
-florabank_taxon_ifbl_year(begin_year = 2010,
+florabank_taxon_ifbl_year(connection, begin_year = 2010,
   ifbl_resolution = c("1km-by-1km", "4km-by-4km"),
   taxongroup = c("Vaatplanten", "Mossen", "Lichenen (korstmossen)",
   "Kranswieren"))
 }
 \arguments{
+\item{connection}{A connection to the florabank database. See the example section
+for how to connect and disconnect to the database.}
+
 \item{begin_year}{Filter for observations that start from this year onwards.
 Default is 2010.}
 
@@ -42,8 +45,17 @@ group can be chosen.
 }
 \examples{
 \dontrun{
-fb_kwartier <- florabank_taxon_ifbl_year()
-fb_uur <- florabank_taxon_ifbl_year(begin_year = 2000,
+# connect to florabank
+db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
+
+# get records at 1 km x 1 km resolution for vascular plants from 2010 (default)
+fb_kwartier <- florabank_taxon_ifbl_year(db_connectie)
+
+# get records at 4 km x 4 km resoltion starting from 2000
+fb_uur <- florabank_taxon_ifbl_year(db_connectie, begin_year = 2000,
  ifbl_resolution = "4km-by-4km", taxongroup = "Mossen")
+
+# disconnect from florabank
+dbDisconnect(db_connectie)
 }
 }
