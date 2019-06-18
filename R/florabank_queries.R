@@ -186,35 +186,37 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
          but not both.")
   }
 
+  select_from <- "SELECT DISTINCT
+      tblTaxon.NaamNederlands
+  , tblTaxon.NaamWetenschappelijk
+  , cdeBron.Omschrijving AS Bron
+  , tblWaarneming.BeginDatum
+  , tblWaarneming.EindDatum
+  , tblIFBLHok.Code AS hok
+  , tblWaarneming.Opmerking AS Toponiem
+  , tblMeting.CommentaarTaxon
+  , tblMeting.CommentaarHabitat
+  , tblMedewerker.Voornaam
+  , tblMedewerker.Achternaam
+  , tblWaarneming.ID
+  , tblWaarneming.Cor_X AS X_waarneming
+  , tblWaarneming.Cor_Y AS Y_waarneming
+  , tblMeting.Cor_X AS X_meting
+  , tblMeting.Cor_Y AS Y_meting
+  FROM dbo.tblWaarneming
+  INNER JOIN dbo.tblMeting ON tblWaarneming.ID = tblMeting.WaarnemingID
+  INNER JOIN dbo.relTaxonTaxon ON relTaxonTaxon.TaxonIDChild = tblMeting.TaxonID
+  INNER JOIN dbo.tblTaxon ON tblTaxon.ID = relTaxonTaxon.TaxonIDParent
+  INNER JOIN dbo.relTaxonTaxonGroep ON relTaxonTaxonGroep.TaxonID = tblTaxon.ID
+  INNER JOIN dbo.tblIFBLHok ON tblIFBLHok.ID = tblWaarneming.IFBLHokID
+  INNER JOIN dbo.relWaarnemingMedewerker ON relWaarnemingMedewerker.WaarnemingID = tblWaarneming.ID
+  INNER JOIN dbo.tblMedewerker ON tblMedewerker.ID = relWaarnemingMedewerker.MedewerkerID
+  INNER JOIN dbo.cdeBron ON cdeBron.Code = tblWaarneming.BronCode"
+
   if (!missing(scient_name)) {
     glue_statement <- glue_sql(
-      "SELECT DISTINCT
-      tblTaxon.NaamNederlands
-      , tblTaxon.NaamWetenschappelijk
-      , cdeBron.Omschrijving AS Bron
-      , tblWaarneming.BeginDatum
-      , tblWaarneming.EindDatum
-      , tblIFBLHok.Code AS hok
-      , tblWaarneming.Opmerking AS Toponiem
-      , tblMeting.CommentaarTaxon
-      , tblMeting.CommentaarHabitat
-      , tblMedewerker.Voornaam
-      , tblMedewerker.Achternaam
-      , tblWaarneming.ID
-      , tblWaarneming.Cor_X AS X_waarneming
-      , tblWaarneming.Cor_Y AS Y_waarneming
-      , tblMeting.Cor_X AS X_meting
-      , tblMeting.Cor_Y AS Y_meting
-      FROM dbo.tblWaarneming
-      INNER JOIN dbo.tblMeting ON tblWaarneming.ID = tblMeting.WaarnemingID
-      INNER JOIN dbo.relTaxonTaxon ON relTaxonTaxon.TaxonIDChild = tblMeting.TaxonID
-      INNER JOIN dbo.tblTaxon ON tblTaxon.ID = relTaxonTaxon.TaxonIDParent
-      INNER JOIN dbo.relTaxonTaxonGroep ON relTaxonTaxonGroep.TaxonID = tblTaxon.ID
-      INNER JOIN dbo.tblIFBLHok ON tblIFBLHok.ID = tblWaarneming.IFBLHokID
-      INNER JOIN dbo.relWaarnemingMedewerker ON relWaarnemingMedewerker.WaarnemingID = tblWaarneming.ID
-      INNER JOIN dbo.tblMedewerker ON tblMedewerker.ID = relWaarnemingMedewerker.MedewerkerID
-      INNER JOIN dbo.cdeBron ON cdeBron.Code = tblWaarneming.BronCode
-      WHERE 1=1
+      select_from,
+      " WHERE 1=1
       AND (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
       AND tblTaxon.NaamWetenschappelijk LIKE {scient_name}
       ORDER BY tblWaarneming.BeginDatum DESC;",
@@ -228,33 +230,8 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 
   if (!missing(dutch_name)) {
     glue_statement <- glue_sql(
-      "SELECT DISTINCT
-      tblTaxon.NaamNederlands
-      , tblTaxon.NaamWetenschappelijk
-      , cdeBron.Omschrijving AS Bron
-      , tblWaarneming.BeginDatum
-      , tblWaarneming.EindDatum
-      , tblIFBLHok.Code AS hok
-      , tblWaarneming.Opmerking AS Toponiem
-      , tblMeting.CommentaarTaxon
-      , tblMeting.CommentaarHabitat
-      , tblMedewerker.Voornaam
-      , tblMedewerker.Achternaam
-      , tblWaarneming.ID
-      , tblWaarneming.Cor_X AS X_waarneming
-      , tblWaarneming.Cor_Y AS Y_waarneming
-      , tblMeting.Cor_X AS X_meting
-      , tblMeting.Cor_Y AS Y_meting
-      FROM dbo.tblWaarneming
-      INNER JOIN dbo.tblMeting ON tblWaarneming.ID = tblMeting.WaarnemingID
-      INNER JOIN dbo.relTaxonTaxon ON relTaxonTaxon.TaxonIDChild = tblMeting.TaxonID
-      INNER JOIN dbo.tblTaxon ON tblTaxon.ID = relTaxonTaxon.TaxonIDParent
-      INNER JOIN dbo.relTaxonTaxonGroep ON relTaxonTaxonGroep.TaxonID = tblTaxon.ID
-      INNER JOIN dbo.tblIFBLHok ON tblIFBLHok.ID = tblWaarneming.IFBLHokID
-      INNER JOIN dbo.relWaarnemingMedewerker ON relWaarnemingMedewerker.WaarnemingID = tblWaarneming.ID
-      INNER JOIN dbo.tblMedewerker ON tblMedewerker.ID = relWaarnemingMedewerker.MedewerkerID
-      INNER JOIN dbo.cdeBron ON cdeBron.Code = tblWaarneming.BronCode
-      WHERE 1=1
+      select_from,
+      " WHERE 1=1
       AND (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
       AND tblTaxon.NaamNederlands LIKE {dutch_name}
       ORDER BY tblWaarneming.BeginDatum DESC;",
