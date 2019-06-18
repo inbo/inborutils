@@ -258,7 +258,7 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 #' @param connection A connection to the florabank database. See the example section
 #' for how to connect and disconnect to the database.
 #'
-#' @param begin_year Filter for observations that start from this year onwards.
+#' @param starting_year Filter for observations that start from this year onwards.
 #' Default is 2010.
 #'
 #' @param ifbl_resolution The requested spatial resolution can be either
@@ -299,7 +299,7 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 #' fb_kwartier <- florabank_taxon_ifbl_year(db_connectie)
 #'
 #' # get records at 4 km x 4 km resoltion starting from 2000
-#' fb_uur <- florabank_taxon_ifbl_year(db_connectie, begin_year = 2000,
+#' fb_uur <- florabank_taxon_ifbl_year(db_connectie, starting_year = 2000,
 #'  ifbl_resolution = "4km-by-4km", taxongroup = "Mossen")
 #'
 #' # disconnect from florabank
@@ -307,7 +307,7 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 #' }
 
 florabank_taxon_ifbl_year <- function(connection,
-                                      begin_year = 2010,
+                                      starting_year = 2010,
                                       ifbl_resolution = c("1km-by-1km",
                                                           "4km-by-4km"),
                                       taxongroup = c("Vaatplanten",
@@ -319,8 +319,8 @@ florabank_taxon_ifbl_year <- function(connection,
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
-  assert_that(is.numeric(begin_year))
-  assert_that(begin_year <= as.numeric(format(Sys.Date(), '%Y')))
+  assert_that(is.numeric(starting_year))
+  assert_that(starting_year <= as.numeric(format(Sys.Date(), '%Y')))
 
   ifbl_resolution = match.arg(ifbl_resolution)
   taxongroup = match.arg(taxongroup)
@@ -345,13 +345,13 @@ florabank_taxon_ifbl_year <- function(connection,
     WHERE
     tblIFBLHok.Code LIKE '%-%' AND
     tblTaxon.Code NOT LIKE '%-sp' AND
-    Year([tblWaarneming].[BeginDatum]) >={begin_year} AND
+    Year([tblWaarneming].[BeginDatum]) >={starting_year} AND
     (Year([tblWaarneming].[BeginDatum])=Year([tblWaarneming].[EindDatum])) AND
     (tblTaxonGroep.Naam={taxongroup}) AND
     (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
     ORDER BY
     Year(tblWaarneming.BeginDatum) DESC;",
-      begin_year = begin_year,
+      starting_year = starting_year,
       taxongroup = taxongroup,
       .con = connection)
     glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
@@ -389,13 +389,13 @@ florabank_taxon_ifbl_year <- function(connection,
     WHERE
     tblIFBLHok.Code LIKE '%-%-%' AND
     tblTaxon.Code NOT LIKE '%-sp' AND
-    Year([tblWaarneming].[BeginDatum]) >={begin_year} AND
+    Year([tblWaarneming].[BeginDatum]) >={starting_year} AND
     (Year([tblWaarneming].[BeginDatum])=Year([tblWaarneming].[EindDatum])) AND
     (tblTaxonGroep.Naam={taxongroup}) AND
     (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
     ORDER BY
     Year(tblWaarneming.BeginDatum) DESC;",
-    begin_year = begin_year,
+    starting_year = starting_year,
     taxongroup = taxongroup,
     .con = connection)
   glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
