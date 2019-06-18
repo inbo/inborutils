@@ -10,7 +10,14 @@
 #' associated taxon-specific trait values. If this is missing, the function
 #' returns an error and prints a message showing all possible trait names.
 #'
-#' @return A dataframe containing the trait values for each species and for all
+#' @param collect If FALSE (the default), a remote tbl object is returned. This
+#' is like a reference to the result of the query but the full result of the
+#' query is not brought into memory. If TRUE the full result of the query is
+#' collected (fetched) from the database and brought into memory of the working
+#' environment.
+#'
+#' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
+#' = TRUE) containing the trait values for each species and for all
 #' partially matched traits. The dataframe contains the variables TaxonID,
 #' TaxonAfkorting, TaxonWetenschappelijk, TaxonNederlands, Kenmerk, Code,
 #' Omschrijving en Rekenwaarde. The first four variables identify the taxon,
@@ -37,8 +44,12 @@
 #' # connect to florabank
 #' db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 #'
-#' # get all Ellenberg values via partial matching
+#' # get all Ellenberg values via partial matching, return as lazy query
 #' fb_ellenberg <- florabank_traits(db_connectie, "llenberg")
+#' # collect the data
+#' fb_ellenberg <- fb_ellenberg %>% collect()
+#' # the same can be done by using the collect parameter
+#' fb_ellenberg <- florabank_traits(db_connectie, "llenberg", collect = TRUE)
 #'
 #' # get all red lists via partial matching
 #' fb_rodelijsten <- florabank_traits(db_connectie, "rode")
@@ -98,10 +109,14 @@ florabank_traits <- function(connection, trait_name) {
              .data$Code,
              .data$Omschrijving,
              .data$Rekenwaarde
-    ) %>%
-    collect()
-
-  return(query_result)
+    )
+  if (!isTRUE(collect)) {
+    return(query_result)
+  } else {
+    query_result <- query_result %>%
+      collect()
+    return(query_result)
+  }
 }
 
 #' Get all validated observations for a taxon from the florabank database
