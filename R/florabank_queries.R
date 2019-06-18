@@ -66,7 +66,7 @@
 
 florabank_traits <- function(connection, trait_name) {
 
-  assert_that(class(connection)[1] == "Microsoft SQL Server",
+  assert_that(inherits(connection), "Microsoft SQL Server",
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
@@ -75,8 +75,8 @@ florabank_traits <- function(connection, trait_name) {
       distinct(.data$Naam) %>%
       collect() %>%
       pull(.data$Naam)
-    message(paste(traitnames, collapse = ", "))
-    stop("Please provide (part of) a trait name from the above list.")
+    stop(paste0("Please provide (part of) a trait name from this list: ",
+                paste(traitnames, collapse = ", ")))
   }
 
   trait_name <- tolower(trait_name)
@@ -173,7 +173,7 @@ florabank_traits <- function(connection, trait_name) {
 
 florabank_observations <- function(connection, scient_name, dutch_name) {
 
-  assert_that(class(connection)[1] == "Microsoft SQL Server",
+  assert_that(inherits(connection), "Microsoft SQL Server",
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
@@ -338,7 +338,7 @@ florabank_taxon_ifbl_year <- function(connection,
                                                      "Lichenen (korstmossen)",
                                                      "Kranswieren")) {
 
-  assert_that(class(connection)[1] == "Microsoft SQL Server",
+  assert_that(inherits(connection), "Microsoft SQL Server",
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
@@ -390,7 +390,7 @@ florabank_taxon_ifbl_year <- function(connection,
                .data$Taxoncode) %>%
       summarize(ifbl_squares = paste(.data$hok, collapse = "|"),
                 ifbl_number_squares = n()) %>%
-      ungroup
+      ungroup()
 
     return(query_result)
   }
@@ -423,7 +423,6 @@ florabank_taxon_ifbl_year <- function(connection,
     .con = connection)
   glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
   query_result <- dbGetQuery(db_connectie, glue_statement)
-  dbDisconnect(connection)
 
   query_result <- query_result %>%
     as_tibble %>%
