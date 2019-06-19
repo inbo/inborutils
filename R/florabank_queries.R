@@ -1,3 +1,5 @@
+globalVariables("%LIKE%")
+
 #' Query the florabank to get taxon trait values for (a) taxon trait(s)
 #'
 #' This function takes as input (part of) a taxon trait, queries the florabank
