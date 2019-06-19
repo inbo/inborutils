@@ -64,9 +64,9 @@
 #' dbDisconnect(db_connectie)
 #' }
 
-florabank_traits <- function(connection, trait_name) {
+florabank_traits <- function(connection, trait_name, collect = FALSE) {
 
-  assert_that(inherits(connection), "Microsoft SQL Server",
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
@@ -173,7 +173,7 @@ florabank_traits <- function(connection, trait_name) {
 
 florabank_observations <- function(connection, scient_name, dutch_name) {
 
-  assert_that(inherits(connection), "Microsoft SQL Server",
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
@@ -283,7 +283,6 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 #' @importFrom DBI dbDisconnect dbGetQuery
 #' @importFrom glue glue_sql
 #' @importFrom assertthat assert_that
-#' @importFrom stringr str_sub
 #' @importFrom dplyr %>% group_by summarize n ungroup
 #' @importFrom rlang .data
 #' @importFrom tibble as_tibble
@@ -315,7 +314,7 @@ florabank_taxon_ifbl_year <- function(connection,
                                                      "Lichenen (korstmossen)",
                                                      "Kranswieren")) {
 
-  assert_that(inherits(connection), "Microsoft SQL Server",
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
@@ -330,7 +329,8 @@ florabank_taxon_ifbl_year <- function(connection,
   if (ifbl_resolution == "4km-by-4km") {
     glue_statement <- glue_sql(
       "SELECT DISTINCT
-             tblIFBLHok.Code AS hok
+    tblIFBLHok.Code AS hok
+    , SUBSTRING(tblIFBLHok.Code, 1, 5) AS ifbl_4by4
     , Year(tblWaarneming.BeginDatum) AS Jaar
     , relTaxonTaxon.TaxonIDParent
     , tblTaxon.Code AS Taxoncode
@@ -360,9 +360,6 @@ florabank_taxon_ifbl_year <- function(connection,
 
     query_result <- query_result %>%
       as_tibble %>%
-      mutate(ifbl_4by4 = str_sub(.data$hok, start = 1, end = 5))
-
-    query_result <- query_result %>%
       group_by(.data$ifbl_4by4, .data$Jaar, .data$TaxonIDParent,
                .data$Taxoncode) %>%
       summarize(ifbl_squares = paste(.data$hok, collapse = "|"),
@@ -375,6 +372,7 @@ florabank_taxon_ifbl_year <- function(connection,
   glue_statement <- glue_sql(
     "SELECT DISTINCT
     tblIFBLHok.Code AS ifbl_1by1
+    , SUBSTRING(tblIFBLHok.Code, 1, 5) AS ifbl_4by4
     , Year(tblWaarneming.BeginDatum) AS Jaar
     , relTaxonTaxon.TaxonIDParent
     , tblTaxon.Code AS Taxoncode
@@ -399,11 +397,10 @@ florabank_taxon_ifbl_year <- function(connection,
     taxongroup = taxongroup,
     .con = connection)
   glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
-  query_result <- dbGetQuery(db_connectie, glue_statement)
+  query_result <- dbGetQuery(connection, glue_statement)
 
   query_result <- query_result %>%
-    as_tibble %>%
-    mutate(ifbl_4by4 = str_sub(.data$ifbl_1by1, start = 1, end = 5))
+    as_tibble()
 
   return(query_result)
 }
