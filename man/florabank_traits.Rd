@@ -29,7 +29,7 @@ Omschrijving en Rekenwaarde. The first four variables identify the taxon,
 the latter four variables relate to the taxon traits.
 }
 \description{
-This function takes as input (part of) a taxon trait, queries the florabank
+This function takes as input (part of) a taxon trait name, queries the florabank
 and returns the taxon trait values in a tidy data format
 }
 \examples{

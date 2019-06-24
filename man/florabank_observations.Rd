@@ -4,7 +4,8 @@
 \alias{florabank_observations}
 \title{Get all validated observations for a taxon from the florabank database}
 \usage{
-florabank_observations(connection, scient_name, dutch_name)
+florabank_observations(connection, scient_name, dutch_name,
+  collect = FALSE)
 }
 \arguments{
 \item{connection}{A connection to the florabank database. See the example section
@@ -13,6 +14,12 @@ for how to connect and disconnect to the database.}
 \item{scient_name}{(Part of) a scientific taxon name}
 
 \item{dutch_name}{(Part of) a Dutch taxon name, may contain wildcards}
+
+\item{collect}{If FALSE (the default), a remote tbl object is returned. This
+is like a reference to the result of the query but the full result of the
+query is not brought into memory. If TRUE the full result of the query is
+collected (fetched) from the database and brought into memory of the working
+environment.}
 }
 \value{
 A dataframe with the following variables: "NaamNederlands",
@@ -36,17 +43,23 @@ wildcards may be used within the input parameters:
 # connect to florabank
 db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 
+# query and collect the data using scientific name
 Dactmacu1 <-	florabank_observations(db_connectie,
-scient_name = 'Dactylorhiza maculata (L.) SoÃ³')
+scient_name = 'Dactylorhiza maculata (L.) SoÃ³', collect = TRUE)
 
+# the same species but using Dutch name
 Dactmacu2 <-	florabank_observations(db_connectie,
-dutch_name = 'Gevlekte orchis')
+dutch_name = 'Gevlekte orchis', collect = TRUE)
 
 all.equal(Dactmacu1, Dactmacu2)
 
 # use wildcards to retrieve all partial matches to a name
+# using default for collect will return a lazy query
 Dactmacu3 <-	florabank_observations(db_connectie,
 scient_name = 'Dactylorhiza maculata\%')
+
+# to collect the data for a lazy query you can also do:
+Dactmacu3 <- collect(Dactmacu3)
 
 # disconnect from florabank
 dbDisconnect(db_connectie)

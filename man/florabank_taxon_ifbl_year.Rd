@@ -7,7 +7,7 @@
 florabank_taxon_ifbl_year(connection, starting_year = 2010,
   ifbl_resolution = c("1km-by-1km", "4km-by-4km"),
   taxongroup = c("Vaatplanten", "Mossen", "Lichenen (korstmossen)",
-  "Kranswieren"))
+  "Kranswieren"), collect = FALSE)
 }
 \arguments{
 \item{connection}{A connection to the florabank database. See the example section
@@ -22,6 +22,12 @@ Default is 2010.}
 \item{taxongroup}{Choose for which taxonomic group you want the unique
 combinations. One of "Vaatplanten" (the default), "Mossen", "Korstmossen"
 of "Kranswieren".}
+
+\item{collect}{If FALSE (the default), a remote tbl object is returned. This
+is like a reference to the result of the query but the full result of the
+query is not brought into memory. If TRUE the full result of the query is
+collected (fetched) from the database and brought into memory of the working
+environment.}
 }
 \value{
 A dataframe with one line for each combination of taxon, IFBL-square
@@ -48,10 +54,13 @@ group can be chosen.
 # connect to florabank
 db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 
-# get records at 1 km x 1 km resolution for vascular plants from 2010 (default)
+# get records at 1 km x 1 km resolution for vascular plants from 2010
+# (default) without collecting all data into memory (default).
 fb_kwartier <- florabank_taxon_ifbl_year(db_connectie)
+# to collect the data in memory set collect to TRUE or do
+fb_kwartier <- collect(fb_kwartier)
 
-# get records at 4 km x 4 km resoltion starting from 2000
+# get records at 4 km x 4 km resolution starting from 2000
 fb_uur <- florabank_taxon_ifbl_year(db_connectie, starting_year = 2000,
  ifbl_resolution = "4km-by-4km", taxongroup = "Mossen")
 
