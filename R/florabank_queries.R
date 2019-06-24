@@ -2,7 +2,7 @@ globalVariables("%LIKE%")
 
 #' Query the florabank to get taxon trait values for (a) taxon trait(s)
 #'
-#' This function takes as input (part of) a taxon trait, queries the florabank
+#' This function takes as input (part of) a taxon trait name, queries the florabank
 #' and returns the taxon trait values in a tidy data format
 #'
 #' @param connection A connection to the florabank database. See the example section
