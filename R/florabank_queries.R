@@ -140,15 +140,23 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #'
 #' @param dutch_name (Part of) a Dutch taxon name, may contain wildcards
 #'
+#' @param collect If FALSE (the default), a remote tbl object is returned. This
+#' is like a reference to the result of the query but the full result of the
+#' query is not brought into memory. If TRUE the full result of the query is
+#' collected (fetched) from the database and brought into memory of the working
+#' environment.
+#'
 #' @return A dataframe with the following variables: "NaamNederlands",
 #' "NaamWetenschappelijk", "Bron", "BeginDatum", "EindDatum", "hok",
 #' "Toponiem", "CommentaarTaxon", "CommentaarHabitat", "Voornaam", "Achternaam",
 #' "ID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 #'
-#' @importFrom DBI dbGetQuery
 #' @importFrom glue glue_sql
 #' @importFrom assertthat assert_that
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr
+#' tbl
+#' collect
+#' sql
 #'
 #' @export
 #'
@@ -157,23 +165,30 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' # connect to florabank
 #' db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 #'
+#' # query and collect the data using scientific name
 #' Dactmacu1 <-	florabank_observations(db_connectie,
-#' scient_name = 'Dactylorhiza maculata (L.) Soó')
+#' scient_name = 'Dactylorhiza maculata (L.) Soó', collect = TRUE)
 #'
+#' # the same species but using Dutch name
 #' Dactmacu2 <-	florabank_observations(db_connectie,
-#' dutch_name = 'Gevlekte orchis')
+#' dutch_name = 'Gevlekte orchis', collect = TRUE)
 #'
 #' all.equal(Dactmacu1, Dactmacu2)
 #'
 #' # use wildcards to retrieve all partial matches to a name
+#' # using default for collect will return a lazy query
 #' Dactmacu3 <-	florabank_observations(db_connectie,
 #' scient_name = 'Dactylorhiza maculata%')
+#'
+#' # to collect the data for a lazy query you can also do:
+#' Dactmacu3 <- collect(Dactmacu3)
 #'
 #' # disconnect from florabank
 #' dbDisconnect(db_connectie)
 #' }
 
-florabank_observations <- function(connection, scient_name, dutch_name) {
+florabank_observations <- function(connection, scient_name,
+                                   dutch_name, collect = FALSE) {
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
@@ -221,13 +236,18 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
       " WHERE 1=1
       AND (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
       AND tblTaxon.NaamWetenschappelijk LIKE {scient_name}
-      ORDER BY tblWaarneming.BeginDatum DESC;",
+      ORDER BY tblWaarneming.BeginDatum DESC OFFSET 0 ROWS",
       scient_name = scient_name,
       .con = connection)
     glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
-    query_result <- dbGetQuery(connection, glue_statement)
-    query_result <- as_tibble(query_result)
-    return(query_result)
+    query_result <- tbl(connection, sql(glue_statement))
+    if (!isTRUE(collect)) {
+      return(query_result)
+    } else {
+      query_result <- query_result %>%
+        collect()
+      return(query_result)
+    }
   }
 
   if (!missing(dutch_name)) {
@@ -236,13 +256,18 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
       " WHERE 1=1
       AND (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
       AND tblTaxon.NaamNederlands LIKE {dutch_name}
-      ORDER BY tblWaarneming.BeginDatum DESC;",
+      ORDER BY tblWaarneming.BeginDatum DESC OFFSET 0 ROWS",
       dutch_name = dutch_name,
       .con = connection)
     glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
-    query_result <- dbGetQuery(connection, glue_statement)
-    query_result <- as_tibble(query_result)
-    return(query_result)
+    query_result <- tbl(connection, sql(glue_statement))
+    if (!isTRUE(collect)) {
+      return(query_result)
+    } else {
+      query_result <- query_result %>%
+        collect()
+      return(query_result)
+    }
   }
 }
 
@@ -270,6 +295,12 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 #' combinations. One of "Vaatplanten" (the default), "Mossen", "Korstmossen"
 #' of "Kranswieren".
 #'
+#' @param collect If FALSE (the default), a remote tbl object is returned. This
+#' is like a reference to the result of the query but the full result of the
+#' query is not brought into memory. If TRUE the full result of the query is
+#' collected (fetched) from the database and brought into memory of the working
+#' environment.
+#'
 #' @return A dataframe with one line for each combination of taxon, IFBL-square
 #' (either at 1 km x 1 km or 4 km x 4 km resolution) and year. In case the
 #' resolution is 1 km x 1 km, a variable ifbl_4by4 gives the corresponding
@@ -282,12 +313,10 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 #' number of unique nested squares where the taxon was observed for that year
 #' and 4 x 4 square combination.
 #'
-#' @importFrom DBI dbDisconnect dbGetQuery
 #' @importFrom glue glue_sql
 #' @importFrom assertthat assert_that
-#' @importFrom dplyr %>% group_by summarize n ungroup
+#' @importFrom dplyr %>% group_by summarize n ungroup sql collect
 #' @importFrom rlang .data
-#' @importFrom tibble as_tibble
 #'
 #' @export
 #'
@@ -296,10 +325,13 @@ florabank_observations <- function(connection, scient_name, dutch_name) {
 #' # connect to florabank
 #' db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 #'
-#' # get records at 1 km x 1 km resolution for vascular plants from 2010 (default)
+#' # get records at 1 km x 1 km resolution for vascular plants from 2010
+#' # (default) without collecting all data into memory (default).
 #' fb_kwartier <- florabank_taxon_ifbl_year(db_connectie)
+#' # to collect the data in memory set collect to TRUE or do
+#' fb_kwartier <- collect(fb_kwartier)
 #'
-#' # get records at 4 km x 4 km resoltion starting from 2000
+#' # get records at 4 km x 4 km resolution starting from 2000
 #' fb_uur <- florabank_taxon_ifbl_year(db_connectie, starting_year = 2000,
 #'  ifbl_resolution = "4km-by-4km", taxongroup = "Mossen")
 #'
@@ -314,7 +346,8 @@ florabank_taxon_ifbl_year <- function(connection,
                                       taxongroup = c("Vaatplanten",
                                                      "Mossen",
                                                      "Lichenen (korstmossen)",
-                                                     "Kranswieren")) {
+                                                     "Kranswieren"),
+                                      collect = FALSE) {
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
@@ -352,23 +385,32 @@ florabank_taxon_ifbl_year <- function(connection,
     (tblTaxonGroep.Naam={taxongroup}) AND
     (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
     ORDER BY
-    Year(tblWaarneming.BeginDatum) DESC;",
+    Year(tblWaarneming.BeginDatum) DESC OFFSET 0 ROWS",
       starting_year = starting_year,
       taxongroup = taxongroup,
       .con = connection)
     glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
-    query_result <- dbGetQuery(connection, glue_statement)
+    query_result <- tbl(connection, sql(glue_statement))
 
 
     query_result <- query_result %>%
-      as_tibble %>%
       group_by(.data$ifbl_4by4, .data$Jaar, .data$TaxonIDParent,
                .data$Taxoncode) %>%
-      summarize(ifbl_squares = paste(.data$hok, collapse = "|"),
+      #paste with collapse does not translate to sql
+      #str_flatten() is not available for Microsoft SQL Server
+      #sql(STRING_AGG("hok", ",")) also does not work
+      #fix this later
+      summarize(#ifbl_squares = paste(hok, collapse = '|'),
                 ifbl_number_squares = n()) %>%
       ungroup()
 
-    return(query_result)
+    if (!isTRUE(collect)) {
+      return(query_result)
+    } else {
+      query_result <- query_result %>%
+        collect()
+      return(query_result)
+    }
   }
 
   glue_statement <- glue_sql(
@@ -394,17 +436,19 @@ florabank_taxon_ifbl_year <- function(connection,
     (tblTaxonGroep.Naam={taxongroup}) AND
     (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
     ORDER BY
-    Year(tblWaarneming.BeginDatum) DESC;",
+    Year(tblWaarneming.BeginDatum) DESC OFFSET 0 ROWS",
     starting_year = starting_year,
     taxongroup = taxongroup,
     .con = connection)
   glue_statement <- iconv(glue_statement, from =  "UTF-8", to = "latin1")
-  query_result <- dbGetQuery(connection, glue_statement)
-
-  query_result <- query_result %>%
-    as_tibble()
-
-  return(query_result)
+  query_result <- tbl(connection, sql(glue_statement))
+  if (!isTRUE(collect)) {
+    return(query_result)
+  } else {
+    query_result <- query_result %>%
+      collect()
+    return(query_result)
+  }
 }
 
 
