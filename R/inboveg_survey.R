@@ -20,7 +20,7 @@ inboveg_survey <- function(connection) {
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
 
-  iv_survey <- dbReadTable(con, "ivSurvey")
+  iv_survey <- dbReadTable(connection, "ivSurvey")
   iv_survey
 
 }
