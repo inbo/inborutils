@@ -2,27 +2,41 @@
 % Please edit documentation in R/inboveg_classification.R
 \name{inboveg_classification}
 \alias{inboveg_classification}
-\title{Provide vegetation classifications}
+\title{Query Classification information from INBOVEG}
 \usage{
-inboveg_classification(connection, survey_name)
+inboveg_classification(connection, survey_name, classif, collect = FALSE)
 }
 \arguments{
-\item{connection}{odb DBIConnection-class, using DBI-ODBC like connectors}
+\item{collect}{If FALSE (the default), a remote tbl object is returned. This
+is like a reference to the result of the query but the full result of the
+query is not brought into memory. If TRUE the full result of the query is
+collected (fetched) from the database and brought into memory of the working
+environment.}
 
-\item{survey_name}{vector of char or NULL (default NULL),
-i.e. all surveys are taken into account}
+\item{SurveyName}{A character vector giving the names of the surveys for which
+you want to extract Classification information. If missing, all surveys are returned.}
+
+\item{Classif}{A character vector giving the Classification code of the vegetation type for which
+you want to extract information. If missing, all classifications are returned.}
+
+\item{con}{dbconnection with the database 'Cydonia' on the inbo-sql07-prd server}
 }
 \value{
-data.frame
+A remote tbl object (collect = FALSE) or a tibble dataframe (collect
+= TRUE) with variables Id, SurveyName, Classification-code, BWK or N2000-list, LocalClassification, Description of the Habitattype, Cover-code, Cover in percentage.
 }
 \description{
-Get the available vegatation classifications for the vegetation surveys
+This function queries the INBOVEG database for information on the field classification (N2000 or BWK-code) of the relevé for one or more survey(s) by the name of the survey. See the examples for how to get information for all surveys.
 }
 \examples{
 \dontrun{
 con <- connect_inbo_dbase("D0010_00_Cydonia")
-classifications <- inboveg_classification(con,
-                           survey_name = c('Sigma_LSVI_2012'))
+# get a specific classification from a survey and collect the data
+classif_info <- inboveg_classification(con, survey_name = "MILKLIM_Heischraal2012", 
+classif = "4010", collect = TRUE)
+# get all surveys, all classifications,  don't collect the data
+allecodes <- inboveg_classification(con)
 dbDisconnect(con)
+rm(con)
 }
 }
