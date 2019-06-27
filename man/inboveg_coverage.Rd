@@ -4,8 +4,8 @@
 \alias{inboveg_coverage}
 \title{Taxa and coverage per vegetation layer}
 \usage{
-inboveg_coverage(connection, recording_type = c("Classic", "Classic-emmer",
-  "Classic-ketting"), survey_name = NULL)
+inboveg_coverage(connection, recording_type = c("Classic",
+  "Classic-emmer", "Classic-ketting"), survey_name)
 }
 \arguments{
 \item{connection}{odb DBIConnection-class, using DBI-ODBC like connectors}
@@ -25,10 +25,10 @@ layer is provided.
 }
 \examples{
 \dontrun{
-library(DBI)
-con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+con <- connect_inbo_dbase("D0010_00_Cydonia")
 coverage <- inboveg_coverage(con, survey_name = c('Sigma_LSVI_2012'))
 coverage <- inboveg_coverage(con, recording_type = c('Classic',
     'Classic-emmer', 'Classic-ketting'), survey_name = c('Sigma_LSVI_2012'))
+ dbDisconnect(con)
 }
 }

@@ -18,7 +18,8 @@ Survey overview
 \examples{
 \dontrun{
 library(DBI)
-con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+con <- connect_inbo_dbase("D0010_00_Cydonia")
 surveys <- inboveg_coverage(con)
+dbDisconnect(con)
 }
 }

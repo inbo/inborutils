@@ -5,7 +5,7 @@
 \title{Provide metadata about the vegetation recordings of the INBOVEG database}
 \usage{
 inboveg_metadata_kop(connection, recording_type = c("Classic",
-  "Classic-emmer", "Classic-ketting"), survey_name = NULL)
+  "Classic-emmer", "Classic-ketting"), survey_name)
 }
 \arguments{
 \item{connection}{odb DBIConnection-class, using DBI-ODBC like connectors}
@@ -26,8 +26,9 @@ provided in the resulting output table
 \examples{
 \dontrun{
 library(DBI)
-con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
-metadata <- inboveg_metadata_kop(con, survey_name = NULL)
+con <- connect_inbo_dbase("D0010_00_Cydonia")
+metadata <- inboveg_metadata_kop(con)
 metadata <- inboveg_metadata_kop(con, survey_name = c("Sigma_LSVI_2012"))
+dbDisconnect(con)
 }
 }

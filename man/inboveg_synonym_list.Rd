@@ -19,16 +19,17 @@ data.frame
 }
 \description{
 Get all taxon names available from an INBOVEG database taxon list
-(identified with the `TaxonListGIVID`) and give for each name the corresponding
+(identified with the \code{TaxonListGIVID}) and give for each name the corresponding
 preferred taxon name as available in the specified reference list
-(identified by `ListName`)
+(identified by \code{ListName})
 }
 \examples{
 \dontrun{
-library(DBI)
-con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+con <- connect_inbo_dbase("D0013_00_Futon")
 plant_overview <- inboveg_synonym_list(con,
                            TaxonListGIVID = 'TL2011092815101010',
                            ListName = 'INBO-2011 Sci')
+dbDisconnect(con)
 }
+
 }

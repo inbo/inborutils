@@ -4,7 +4,7 @@
 \alias{inboveg_classification}
 \title{Provide vegetation classifications}
 \usage{
-inboveg_classification(connection, survey_name = NULL)
+inboveg_classification(connection, survey_name)
 }
 \arguments{
 \item{connection}{odb DBIConnection-class, using DBI-ODBC like connectors}
@@ -20,9 +20,9 @@ Get the available vegatation classifications for the vegetation surveys
 }
 \examples{
 \dontrun{
-library(DBI)
-con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+con <- connect_inbo_dbase("D0010_00_Cydonia")
 classifications <- inboveg_classification(con,
                            survey_name = c('Sigma_LSVI_2012'))
+dbDisconnect(con)
 }
 }
