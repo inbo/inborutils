@@ -21,25 +21,25 @@ guess_projection(df, col_long, col_lat, belgium = TRUE,
 \item{projections}{(list) epsg codes of the different projections to evaluate
 By default, the following six projections are added to the map:
 \itemize{
- \item{"epsg:4326"}{WGS 84,
- http://spatialreference.org/ref/epsg/wgs-84/}
- \item{"epsg:31370"}{Belge 1972/Belgian Lambert 72,
- http://spatialreference.org/ref/epsg/31370/}
- \item{"epsg:28992"}{Amersfoort/Rijksdriehoek nieuw,
- http://spatialreference.org/ref/epsg/28992/}
- \item{"epsg:32631"}{WGS 84 / UTM zone 31N,
- http://spatialreference.org/ref/epsg/32631/}
- \item{"epsg:3812"}{ETRS89/Belgian Lambert 2008,
- http://spatialreference.org/ref/epsg/3812/}
- \item{"epsg:3035"}{ETRS89 / ETRS-LAEA,
- http://spatialreference.org/ref/epsg/3035/}
+\item{"epsg:4326"}{WGS 84,
+http://spatialreference.org/ref/epsg/wgs-84/}
+\item{"epsg:31370"}{Belge 1972/Belgian Lambert 72,
+http://spatialreference.org/ref/epsg/31370/}
+\item{"epsg:28992"}{Amersfoort/Rijksdriehoek nieuw,
+http://spatialreference.org/ref/epsg/28992/}
+\item{"epsg:32631"}{WGS 84 / UTM zone 31N,
+http://spatialreference.org/ref/epsg/32631/}
+\item{"epsg:3812"}{ETRS89/Belgian Lambert 2008,
+http://spatialreference.org/ref/epsg/3812/}
+\item{"epsg:3035"}{ETRS89 / ETRS-LAEA,
+http://spatialreference.org/ref/epsg/3035/}
 }}
 }
 \description{
 When retrieving a number of data-points, but the kind of projection is not
 provided/known (for any reason), this utility plots the data for different
 projections on a map to make comparison possible. The main function is
-`guess_projection ` which creates the map with different options.
+\code{guess_projection } which creates the map with different options.
 Custom projections can be provided by the user as well.
 }
 \details{

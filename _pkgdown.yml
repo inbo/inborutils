@@ -8,7 +8,7 @@ navbar:
   - text: Tutorials
     href: articles/index.html
     menu:
-    - text: Verify point coordinate refernce system
+    - text: Verify point coordinate reference system
       href: articles/guess_projection.html
     - text: Matching scientific names in data.frame to GBIF backbone
       href: articles/gbif_name_match.html
@@ -16,6 +16,8 @@ navbar:
       href: articles/data_loaders_examples.html
   - text: Functions
     href: reference/index.html
+  - text: Contributing
+    href: CONTRIBUTING.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/inbo/inborutils
@@ -36,12 +38,14 @@ reference:
     contents:
       - gbif_species_name_match
   - title: "Data loaders"
-    desc: "Functions to download/read specific data formats"
+    desc: "Functions to download/read data or specific data formats"
     contents:
+      - connect_inbo_dbase
       - read_mow_data
       - download_knmi_data_hour
-      - read_knmi_rainfall
+      - read_knmi_data
       - read_kmi_data
+      - read_kml_file
   - title: "INBOVEG data interaction"
     desc: "Functions to read data from INBOVEG database"
     contents:
@@ -54,6 +58,7 @@ reference:
     desc: "Functions to support work with data.frames"
     contents:
       - df_factors_to_char
+      - csv_to_sqlite
   - title: "Statistical modelling"
     desc: "Functions for handling statistical modelling tasks"
     contents:

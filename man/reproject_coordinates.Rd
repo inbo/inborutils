@@ -2,27 +2,69 @@
 % Please edit documentation in R/reproject_coordinates.R
 \name{reproject_coordinates}
 \alias{reproject_coordinates}
-\title{reproject XY coordinates from dframe columns}
+\title{Reproject x-y coordinates from data.frame columns.}
 \usage{
 reproject_coordinates(df, col_long, col_lat, crs_input, crs_output)
 }
 \arguments{
-\item{df}{data.frame with a x and y coordinate column}
+\item{df}{A data.frame with a x and y coordinate column.}
 
-\item{col_long}{(char) name of the x (longitude) column}
+\item{col_long, col_lat}{Column names or positions of the x (longitude) and y
+(latitude) column. They are passed to \code{\link[tidyselect]{vars_pull}}.
+These arguments are passed by expression and support
+\code{\link[rlang]{quasiquotation}} (you can unquote column names or column
+positions).}
 
-\item{col_lat}{(char) name of the y (latitude) column}
+\item{crs_input}{Projection string of class CRS-class (\code{sp} compatible)
+or crs-class (\code{sf} compatible) defining the current projection.}
 
-\item{crs_input}{projection string of class CRS-class defining the
-current projection}
-
-\item{crs_output}{projection string of class CRS-class defining the
-projection to convert to}
+\item{crs_output}{Projection string of class CRS-class (\code{sp} compatible)
+or crs-class (\code{sf} compatible) defining the projection to convert to.}
 }
 \value{
-data.frame with the same columns, but adapted coordinates for the
-x and y column values
+A data.frame with the same columns, but adapted coordinates for the x
+and y column values.
 }
 \description{
-reproject XY coordinates from dframe columns
+This function extracts x-y coordinates from a data.frame by means of the
+given coordinate reference system (CRS), converts them to the new CRS and
+assign them back to the data.frame columns.
+}
+\examples{
+library(sp)
+library(sf)
+data_pts <- data.frame(
+  id = c(1, 2),
+  lat = c(51.23031, 50.76931),
+  lon = c(5.083980, 3.829593),
+  stringsAsFactors = FALSE
+)
+
+# CRS-class (use sp package)
+sp_crs1 <- CRS("+init=epsg:4269")
+sp_crs2 <- CRS("+init=epsg:3857")
+reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+  crs_input = sp_crs1, crs_output = sp_crs2)
+# crs-class (use sf package)
+sf_crs1 <- st_crs("+init=epsg:4269")
+sf_crs2 <- st_crs("+init=epsg:3857")
+reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+  crs_input = sf_crs1, crs_output = sf_crs2)
+# input projection is CRS-class (sp) and output projection crs-class (sf)
+reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+  crs_input = sp_crs1, crs_output = sf_crs2)
+# input projection is crs-class (spf and output projection CRS-class (sp)
+reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+  crs_input = sf_crs1, crs_output = sp_crs2)
+
+# use names (character) of x-y columns
+reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+  crs_input = sf_crs1, crs_output = sf_crs2)
+# use NSE of x-y columns
+reproject_coordinates(data_pts, col_long = lon, col_lat = lat,
+  crs_input = sf_crs1, crs_output = sf_crs2)
+# use position of x-y columns
+reproject_coordinates(data_pts, col_long = 3, col_lat = 2,
+  crs_input = sf_crs1, crs_output = sf_crs2)
+
 }

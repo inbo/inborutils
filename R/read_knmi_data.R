@@ -1,14 +1,14 @@
 
-#' Read KNMI rainfall datafile as data.frame
+#' Read KNMI datafile (precipitation) as data.frame
 #'
-#' Remark that this function is specifically to extract the rainfall (RH) data,
-#' coordinates are extracted from the header of the KNMI data file
+#' Remark that this function is specifically to extract the precipitation (RH)
+#' data, coordinates are extracted from the header of the KNMI data file
 #'
 #' @param filename path/filename of the KMI datafile
 #' @param n_max int shortcut for testing, loading just a section of the data
 #'
 #' @return data.frame with the headers location_name, datetime (UTC), value,
-#' unit,variable_name, latitude, longitude and source_filename
+#' unit, variable_name, latitude, longitude and source_filename
 #'
 #' @export
 #' @importFrom iterators ireadLines nextElem
@@ -17,7 +17,13 @@
 #' @importFrom lubridate ymd_h
 #' @importFrom rlang .data
 #'
-read_knmi_rainfall <- function(filename, n_max = Inf) {
+#' @examples
+#' \dontrun{
+#' # see vignettes for more examples
+#' file_path <- "knmi_file.txt"
+#' knmi_data <- read_knmi_data(file_path)
+#' }
+read_knmi_data <- function(filename, n_max = Inf) {
     # Extract data from header by reading the header lines
     knmi_con <- file(filename, "r")
     header_it <- ireadLines(knmi_con)

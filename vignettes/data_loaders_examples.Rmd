@@ -1,10 +1,10 @@
 ---
 title: "(Down)load data from external partners"
-author: "S. Van Hoey"
+author: "Stijn Van Hoey"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{(Down)load data from external partners}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -46,7 +46,7 @@ response <- download_knmi_data_hour(c(310, 319), "PRCP",
 
 When chosen the rainfall data only, the package already includes a specific function to read the rainfall data (a more general functionality is on the `todo`-list, feel free to extend the existing function):
 ```{r eval=FALSE, include=TRUE}
-rain_knmi_2012 <- read_knmi_rainfall("./knmi_download.csv")
+rain_knmi_2012 <- read_knmi_data("./knmi_download.csv")
 ```
 ```{r include=FALSE}
 rain_knmi_2012 <- inborutils::rain_knmi_2012
@@ -143,7 +143,7 @@ date;JAAR;MAAND;DAG;UUR;STATION;NEERSLAG(mm)
 ...
 ```
 
-To read the data and provide it into a similar format as the previous time series, the function `load_kmi_data` is available in the `inborutils` package:
+To read the data and provide it into a similar format as the previous time series, the function `read_kmi_data` is available in the `inborutils` package:
 
 ```{r include=FALSE}
 rpath <- system.file("extdata", "kmi_example.txt", package = "inborutils")
@@ -156,6 +156,25 @@ rainfall_kmi <- read_kmi_data(rpath)
 head(rainfall_kmi)
 ```
 (*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
+
+## Google maps kml files
+
+To extract coordinate and date information from a `kml` file, the function `load_kml`
+
+To read the data and provide it into a similar format as the previous time series, the function `read_kml_file` is available in the `inborutils` package:
+
+```{r include=FALSE}
+rpath <- system.file("extdata", "kml_example.kml", package = "inborutils")
+```
+```{r eval=FALSE, include=TRUE}
+rpath <- "kml_example.kml"
+```
+```{r}
+tracks <- read_kml_file(rpath)
+head(tracks)
+```
+(*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
+
 
 ## Closure
 
