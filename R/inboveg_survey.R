@@ -14,10 +14,14 @@
 #' surveys <- inboveg_coverage(con)
 #' dbDisconnect(con)
 #' }
+
 inboveg_survey <- function(connection) {
 
-    iv_survey <- dbReadTable(con, "ivSurvey")
-    iv_survey
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
+              msg = "Not a connection object to database.")
+
+  iv_survey <- dbReadTable(con, "ivSurvey")
+  iv_survey
 
 }
 

@@ -27,10 +27,12 @@ inboveg_synonym_list <- function(connection,
                                  TaxonListGIVID = 'TL2011092815101010',
                                  ListName = 'INBO-2011 Sci') {
 
-    assert_that(is.string(TaxonListGIVID))
-    assert_that(is.string(ListName))
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
+              msg = "Not a connection object to database.")
+  assert_that(is.string(TaxonListGIVID))
+  assert_that(is.string(ListName))
 
-    query <- "
+  query <- "
         SELECT ftt.TaxonName AS TaxonFullText,
             COALESCE([qry_B_GetSyn].TaxonName, ftt.TaxonName) AS ScientificName,
             COALESCE([qry_B_GetSyn].TaxonGIVID, ftt.TaxonGIVID) AS
@@ -55,9 +57,9 @@ inboveg_synonym_list <- function(connection,
             WHERE tli.TaxonListGIVID = ?
             ORDER BY ftt.TaxonName;
             "
-    query <- dbSendQuery(connection, query)
-    dbBind(query, list(TaxonListGIVID, ListName))
-    synonym_list <- dbFetch(query)
-    dbClearResult(query)
-    synonym_list
+  query <- dbSendQuery(connection, query)
+  dbBind(query, list(TaxonListGIVID, ListName))
+  synonym_list <- dbFetch(query)
+  dbClearResult(query)
+  synonym_list
 }

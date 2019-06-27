@@ -18,11 +18,19 @@
 #'                            survey_name = c('Sigma_LSVI_2012'))
 #' dbDisconnect(con)
 #' }
-inboveg_classification <- function(connection, survey_name = NULL) {
+inboveg_classification <- function(connection, survey_name) {
 
-    assert_that(is.vector(survey_name) | is.null(survey_name))
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
+              msg = "Not a connection object to database.")
 
-    query <- "
+  if (missing(survey_name)) {
+    survey_name <- NULL
+  } else {
+    assert_that(is.character(survey_name))
+  }
+
+
+  query <- "
         SELECT ivRecording.RecordingGivid
             , ivRLClassification.*
             , ftaClassif.Description as ClassifDescription
@@ -42,10 +50,10 @@ inboveg_classification <- function(connection, survey_name = NULL) {
         WHERE ivSurvey.Name IN ?
         ORDER BY ivRecording.RecordingGivid;
         "
-    query <- dbSendQuery(connection, query)
-    dbBind(query, survey = survey_name)
-    classification_list <- dbFetch(query)
-    dbClearResult(query)
-    classification_list
+  query <- dbSendQuery(connection, query)
+  dbBind(query, survey = survey_name)
+  classification_list <- dbFetch(query)
+  dbClearResult(query)
+  classification_list
 }
 

@@ -18,17 +18,25 @@
 #' \dontrun{
 #' library(DBI)
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
-#' metadata <- inboveg_metadata_kop(con, survey_name = NULL)
+#' metadata <- inboveg_metadata_kop(con)
 #' metadata <- inboveg_metadata_kop(con, survey_name = c("Sigma_LSVI_2012"))
 #' dbDisconnect(con)
 #' }
 inboveg_metadata_kop <- function(connection,
                                  recording_type = c('Classic', 'Classic-emmer',
                                                     'Classic-ketting'),
-                                 survey_name = NULL) {
+                                 survey_name) {
 
-    assert_that(is.vector(recording_type))
-    assert_that(is.null(survey_name) | is.vector(survey_name))
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
+              msg = "Not a connection object to database.")
+
+  assert_that(is.vector(recording_type))
+
+  if (missing(survey_name)) {
+    survey_name <- NULL
+  } else {
+    assert_that(is.character(survey_name))
+  }
 
     query <- "
             SELECT ivRecording.RecordingGivid, ivRecording.UserReference,

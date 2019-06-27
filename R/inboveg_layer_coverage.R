@@ -25,10 +25,18 @@
 inboveg_coverage <- function(connection,
                             recording_type = c('Classic', 'Classic-emmer',
                                                'Classic-ketting'),
-                            survey_name = NULL) {
+                            survey_name) {
 
-    assert_that(is.vector(recording_type))
-    assert_that(is.vector(survey_name) | is.null(survey_name))
+  assert_that(inherits(connection, what = "Microsoft SQL Server"),
+              msg = "Not a connection object to database.")
+
+  assert_that(is.vector(recording_type))
+
+  if (missing(survey_name)) {
+    survey_name <- NULL
+  } else {
+    assert_that(is.character(survey_name))
+  }
 
     query <- "
         SELECT ivRecording.RecordingGivid, ivRecording.LocationCode,
