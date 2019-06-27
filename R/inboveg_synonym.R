@@ -16,12 +16,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(DBI)
-#' con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+#' con <- connect_inbo_dbase("D0013_00_Futon")
 #' plant_overview <- inboveg_synonym_list(con,
 #'                            TaxonListGIVID = 'TL2011092815101010',
 #'                            ListName = 'INBO-2011 Sci')
+#' dbDisconnect(con)
 #' }
+#'
 inboveg_synonym_list <- function(connection,
                                  TaxonListGIVID = 'TL2011092815101010',
                                  ListName = 'INBO-2011 Sci') {

@@ -13,10 +13,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(DBI)
-#' con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+#' con <- connect_inbo_dbase("D0010_00_Cydonia")
 #' classifications <- inboveg_classification(con,
 #'                            survey_name = c('Sigma_LSVI_2012'))
+#' dbDisconnect(con)
 #' }
 inboveg_classification <- function(connection, survey_name = NULL) {
 

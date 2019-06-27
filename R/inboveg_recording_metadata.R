@@ -17,9 +17,10 @@
 #' @examples
 #' \dontrun{
 #' library(DBI)
-#' con <- dbConnect(odbc::odbc(), dsn="Cydonia-prd")
+#' con <- connect_inbo_dbase("D0010_00_Cydonia")
 #' metadata <- inboveg_metadata_kop(con, survey_name = NULL)
 #' metadata <- inboveg_metadata_kop(con, survey_name = c("Sigma_LSVI_2012"))
+#' dbDisconnect(con)
 #' }
 inboveg_metadata_kop <- function(connection,
                                  recording_type = c('Classic', 'Classic-emmer',
