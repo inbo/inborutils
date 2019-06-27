@@ -19,7 +19,7 @@
 #' @importFrom glue glue_sql
 #' @importFrom DBI dbGetQuery
 #' @importFrom assertthat assert_that
-#' @importFrom dplyr collect
+#' @importFrom dplyr collect tbl sql
 #' 
 #' @export
 #' 
