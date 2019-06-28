@@ -46,6 +46,11 @@ reference:
       - read_knmi_data
       - read_kmi_data
       - read_kml_file
+  - title: "Florabank data interaction"
+    desc: "Functions to read data from Florabank database"
+      - florabank_traits
+      - florabank_observations
+      - florabank_taxon_ifbl_year
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:
