@@ -28,6 +28,7 @@
 #' @importFrom DBI dbGetQuery
 #' @importFrom assertthat assert_that
 #' @importFrom dplyr collect tbl sql
+#' @importFrom inborutils connect_inbo_dbase
 #'
 #' @examples
 #' \dontrun{
@@ -53,7 +54,6 @@
 #' dbDisconnect(con)
 #' rm(con)
 #' }
-
 
 inboveg_recordings <- function(connection,
                         survey_name,
@@ -157,7 +157,3 @@ inboveg_recordings <- function(connection,
     return(query_result)
   }
 }
-
-
-## werkt nog niet, de pctvalue wordt niet gegeven in dit script, in MsqlSMS wel
-## verder uitzoeken, als je op recordingGIVID werkt, lukt het ook
