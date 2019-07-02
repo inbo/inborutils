@@ -33,27 +33,27 @@
 #'
 #' @examples
 #' \dontrun{
-#' connection <- connect_inbo_dbase("D0010_00_Cydonia")
+#' con <- connect_inbo_dbase("D0010_00_Cydonia")
 #'
 #' # get the relevés from one survey and collect the data
-#' recording_heischraal2012 <- inboveg_recordings_extended(connection, survey_name =
+#' recording_heischraal2012 <- inboveg_recordings_extended(con, survey_name =
 #' "MILKLIM_Heischraal2012", collect = TRUE)
 #'
 #' # get all recordings from MILKLIM surveys (partial matching), don't collect
-#' recording_milkim <- inboveg_recordings_extended(connection, survey_name = "%MILKLIM%",
+#' recording_milkim <- inboveg_recordings_extended(con, survey_name = "%MILKLIM%",
 #' collect = TRUE)
 #'
 #' # get recordings from several specific surveys
-#' recording_severalsurveys <- inboveg_recordings_extended(connection, survey_name =
+#' recording_severalsurveys <- inboveg_recordings_extended(con, survey_name =
 #' c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE,
 #' collect = TRUE)
 #'
 #' # get all relevés of all surveys,  don't collect the data
-#' allrecordings <- inboveg_recordings_extended(connection)
+#' allrecordings <- inboveg_recordings_extended(con)
 #'
-#' # Close the connection when done
-#' dbDisconnect(connection)
-#' rm(connection)
+#' # Close the con when done
+#' dbDisconnect(con)
+#' rm(con)
 #' }
 
 inboveg_recordings_extended <- function(connection,
