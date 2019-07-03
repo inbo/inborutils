@@ -49,11 +49,11 @@ reference:
   - title: "INBOVEG data interaction"
     desc: "Functions to read data from INBOVEG database"
     contents:
-      - inboveg_survey
-      - inboveg_classification
-      - inboveg_synonym_list
-      - inboveg_metadata_kop
-      - inboveg_coverage
+      - has_concept("inboveg")
+  - title: "Florabank data interaction"
+    desc: "Functions to read data from Florabank database"
+    contents:
+      - has_concept("florabank")
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:

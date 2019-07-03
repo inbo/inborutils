@@ -20,6 +20,7 @@ Imports:
     assertthat,
     DBI,
     dplyr,
+    glue,
     httr,
     iterators,
     lazyeval,
@@ -36,6 +37,7 @@ Imports:
     sp,
     sf,
     stats,
+    stringr,
     tibble,
     tidyr,
     tidyselect
