@@ -57,3 +57,8 @@ florabank_traits(db_connectie)
 dbDisconnect(db_connectie)
 }
 }
+\seealso{
+Other florabank: \code{\link{florabank_observations}},
+  \code{\link{florabank_taxon_ifbl_year}}
+}
+\concept{florabank}

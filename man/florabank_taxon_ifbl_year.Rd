@@ -68,3 +68,8 @@ fb_uur <- florabank_taxon_ifbl_year(db_connectie, starting_year = 2000,
 dbDisconnect(db_connectie)
 }
 }
+\seealso{
+Other florabank: \code{\link{florabank_observations}},
+  \code{\link{florabank_traits}}
+}
+\concept{florabank}
