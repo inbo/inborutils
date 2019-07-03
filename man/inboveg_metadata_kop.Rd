@@ -32,3 +32,12 @@ metadata <- inboveg_metadata_kop(con, survey_name = c("Sigma_LSVI_2012"))
 dbDisconnect(con)
 }
 }
+\seealso{
+Other inboveg: \code{\link{inboveg_classification}},
+  \code{\link{inboveg_coverage}},
+  \code{\link{inboveg_header}},
+  \code{\link{inboveg_recordings}},
+  \code{\link{inboveg_survey}},
+  \code{\link{inboveg_synonym_list}}
+}
+\concept{inboveg}

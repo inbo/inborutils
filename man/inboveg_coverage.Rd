@@ -32,3 +32,12 @@ coverage <- inboveg_coverage(con, recording_type = c('Classic',
  dbDisconnect(con)
 }
 }
+\seealso{
+Other inboveg: \code{\link{inboveg_classification}},
+  \code{\link{inboveg_header}},
+  \code{\link{inboveg_metadata_kop}},
+  \code{\link{inboveg_recordings}},
+  \code{\link{inboveg_survey}},
+  \code{\link{inboveg_synonym_list}}
+}
+\concept{inboveg}

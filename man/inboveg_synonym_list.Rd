@@ -33,3 +33,12 @@ dbDisconnect(con)
 }
 
 }
+\seealso{
+Other inboveg: \code{\link{inboveg_classification}},
+  \code{\link{inboveg_coverage}},
+  \code{\link{inboveg_header}},
+  \code{\link{inboveg_metadata_kop}},
+  \code{\link{inboveg_recordings}},
+  \code{\link{inboveg_survey}}
+}
+\concept{inboveg}
