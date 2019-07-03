@@ -20,7 +20,7 @@
 #' include wildcarts to allow partial matches
 #'
 #' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
-#' = TRUE) with variables RecordingGivid (uniek Id), LocationCode (list of community or nature reserve), 
+#' = TRUE) with variables RecordingGivid (uniek Id), LocationCode (list of community or nature reserve),
 #' Latitude, Longitude, date (as VagueDateType, VagueDateBegin, VagueDateEnd), LayerCode, CoverCode,
 #' OrignalName, ScientificName, PhenologyCode, CoverageCode, PctValue
 #' (percentage coverage), RecordingScale (name of the scale of coverage)
@@ -29,7 +29,6 @@
 #' @importFrom DBI dbGetQuery
 #' @importFrom assertthat assert_that
 #' @importFrom dplyr collect tbl sql
-#' @importFrom inborutils connect_inbo_dbase
 #'
 #' @examples
 #' \dontrun{
@@ -60,19 +59,19 @@ inboveg_recordings_extended <- function(connection,
                                survey_name,
                                collect = FALSE,
                                multiple = FALSE) {
-  
+
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
-  
+
   if (missing(survey_name) & !multiple) {
     survey_name <- "%"
   }
-  
+
   if (missing(survey_name) & multiple) {
     stop("Please provide one or more survey names to survey_name when multiple
          = TRUE")
   }
-  
+
   if (!missing(survey_name)) {
     if (!multiple) {
       assert_that(is.character(survey_name))
@@ -80,7 +79,7 @@ inboveg_recordings_extended <- function(connection,
       assert_that(is.vector(survey_name, mode = "character"))
     }
   }
-  
+
   common_part <- "SELECT ivS.Name
   , ivR.[RecordingGivid]
   , ivR.UserReference
@@ -142,22 +141,22 @@ inboveg_recordings_extended <- function(connection,
   AND ivRL_Taxon.CoverageCode = ftCover.Code collate Latin1_General_CI_AI
   WHERE 1=1
   AND ivRL_Iden.Preferred = 1"
-  
+
   if (!multiple) {
     sql_statement <- glue_sql(common_part,
                               "AND ivS.Name LIKE {survey_name}",
                               survey_name = survey_name,
                               .con = connection)
-    
+
   } else {
     sql_statement <- glue_sql(common_part,
                               "AND ivS.Name IN ({survey_name*})",
                               survey_name = survey_name,
                               .con = connection)
   }
-  
+
   query_result <- tbl(connection, sql(sql_statement))
-  
+
   if (!isTRUE(collect)) {
     return(query_result)
   } else {
