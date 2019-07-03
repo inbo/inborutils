@@ -24,8 +24,8 @@ environment.}
 \value{
 A dataframe with the following variables: "NaamNederlands",
 "NaamWetenschappelijk", "Bron", "BeginDatum", "EindDatum", "hok",
-"Toponiem", "CommentaarTaxon", "CommentaarHabitat", "Voornaam", "Achternaam",
-"ID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
+"Toponiem", "CommentaarTaxon", "CommentaarHabitat", "MedewerkerID",
+"WaarnemingID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 }
 \description{
 This function takes as input either (part of) a scientific name or (part of)
@@ -65,3 +65,8 @@ Dactmacu3 <- collect(Dactmacu3)
 dbDisconnect(db_connectie)
 }
 }
+\seealso{
+Other florabank: \code{\link{florabank_taxon_ifbl_year}},
+  \code{\link{florabank_traits}}
+}
+\concept{florabank}
