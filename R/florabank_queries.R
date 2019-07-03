@@ -40,7 +40,7 @@ globalVariables("%LIKE%")
 #' @importFrom assertthat assert_that
 #'
 #' @export
-#'
+#' @family florabank
 #' @examples
 #' \dontrun{
 #' # connect to florabank
@@ -159,7 +159,7 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' sql
 #'
 #' @export
-#'
+#' @family florabank
 #' @examples
 #' \dontrun{
 #' # connect to florabank
@@ -318,7 +318,7 @@ florabank_observations <- function(connection, scient_name,
 #' @importFrom rlang .data
 #'
 #' @export
-#'
+#' @family florabank
 #' @examples
 #' \dontrun{
 #' # connect to florabank
