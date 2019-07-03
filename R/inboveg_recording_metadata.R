@@ -13,7 +13,7 @@
 #' @export
 #' @importFrom DBI dbSendQuery dbBind dbFetch dbClearResult
 #' @importFrom assertthat assert_that is.string
-#'
+#' @family inboveg
 #' @examples
 #' \dontrun{
 #' library(DBI)

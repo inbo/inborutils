@@ -28,7 +28,9 @@
 #' @importFrom DBI dbGetQuery
 #' @importFrom assertthat assert_that
 #' @importFrom dplyr collect tbl sql
-#' @importFrom inborutils connect_inbo_dbase
+#'
+#' @export
+#' @family inboveg
 #'
 #' @examples
 #' \dontrun{

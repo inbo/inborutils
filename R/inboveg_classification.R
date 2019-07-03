@@ -30,7 +30,7 @@
 #' @importFrom dplyr collect tbl sql
 #'
 #' @export
-#'
+#' @family inboveg
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")

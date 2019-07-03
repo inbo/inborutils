@@ -13,7 +13,7 @@
 #' @export
 #' @importFrom DBI dbSendQuery dbBind dbFetch dbClearResult
 #' @importFrom assertthat assert_that
-#'
+#' @family inboveg
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
