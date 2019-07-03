@@ -148,8 +148,8 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #'
 #' @return A dataframe with the following variables: "NaamNederlands",
 #' "NaamWetenschappelijk", "Bron", "BeginDatum", "EindDatum", "hok",
-#' "Toponiem", "CommentaarTaxon", "CommentaarHabitat", "Voornaam", "Achternaam",
-#' "ID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
+#' "Toponiem", "CommentaarTaxon", "CommentaarHabitat", "MedewerkerID",
+#' "WaarnemingID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 #'
 #' @importFrom glue glue_sql
 #' @importFrom assertthat assert_that
@@ -213,9 +213,8 @@ florabank_observations <- function(connection, scient_name,
   , tblWaarneming.Opmerking AS Toponiem
   , tblMeting.CommentaarTaxon
   , tblMeting.CommentaarHabitat
-  , tblMedewerker.Voornaam
-  , tblMedewerker.Achternaam
-  , tblWaarneming.ID
+  , tblMedewerker.ID AS MedewerkerID
+  , tblWaarneming.ID AS WaarnemingID
   , tblWaarneming.Cor_X AS X_waarneming
   , tblWaarneming.Cor_Y AS Y_waarneming
   , tblMeting.Cor_X AS X_meting
