@@ -24,16 +24,18 @@
 #'
 #' @export
 #' @family inboveg
-#'
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
-#' survey <- "OudeLanden_1979"
-#' get information of a specific survey and collect data
+#' 
+#' # get information of a specific survey and collect data
 #' survey_info <- inboveg_survey(con, survey_name = "OudeLanden_1979",
 #' collect = TRUE)
-#' get information of all surveys and collect data
+#' 
+#' # get information of all surveys and collect data
 #' allsurveys <- inboveg_survey(con)
+#' 
+#' # Close the connection when done
 #' dbDisconnect(con)
 #' rm(con)
 #' }
@@ -45,7 +47,7 @@ inboveg_survey <- function(connection,
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
 
-  if (missing(survey_name)){
+  if (missing(survey_name)) {
     survey_name <- "%"
   } else {
     assert_that(is.character(survey_name))

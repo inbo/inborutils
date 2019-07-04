@@ -6,10 +6,10 @@
 #' information for all surveys.
 #'
 #' @param survey_name A character vector giving the name of the survey for which
-#' you want to extract header information.
+#' you want to extract header information. If missing, all surveys are returned.
 #' @param rec_type A character vector giving the name of record type for which
 #' you want to extract header information e.g. 'Classic', 'Classic-emmer',
-#' 'Classic-ketting', 'BioHab', 'ABS'.
+#' 'Classic-ketting', 'BioHab', 'ABS'. If missing, all recording types are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
 #' @param collect If FALSE (the default), a remote tbl object is returned.
@@ -32,12 +32,16 @@
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
+#' 
 #' # get header information from a specific survey and a specific recording type
 #' and collect the data
 #' header_info <- inboveg_header(con, survey_name = "OudeLanden_1979",
 #' rec_type = "Classic", collect = TRUE)
+#' 
 #' # get header information of all surveys,  don't collect the data
 #' all_header_info <- inboveg_header(con)
+#' 
+#' # Close the connection when done
 #' dbDisconnect(con)
 #' rm(con)
 #' }

@@ -1,4 +1,4 @@
-#' @title Query Classification information from INBOVEG
+#' @title Query classification information from INBOVEG
 #'
 #' @description This function queries the INBOVEG database for information
 #' on the field classification (N2000 or BWK-code) of the relevé for one
@@ -9,7 +9,7 @@
 #' which you want to extract Classification information. If missing, all
 #' surveys are returned.
 #' @param classif A character vector giving the Classification code of the
-#' vegetation type for which #' you want to extract information. If missing,
+#' vegetation type for which you want to extract information. If missing,
 #' all classifications are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
@@ -34,11 +34,15 @@
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
+#' 
 #' # get a specific classification from a survey and collect the data
 #' classif_info <- inboveg_classification(con,
 #' survey_name = "MILKLIM_Heischraal2012", classif = "4010", collect = TRUE)
+#' 
 #' # get all surveys, all classifications,  don't collect the data
 #' allecodes <- inboveg_classification(con)
+#' 
+#' # Close the connection when done
 #' dbDisconnect(con)
 #' rm(con)
 #' }

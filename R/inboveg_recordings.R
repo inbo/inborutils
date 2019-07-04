@@ -6,7 +6,8 @@
 #'
 #' @param survey_name A character string or a character vector, depending on
 #' multiple parameter, giving the name or names of the
-#' survey(s) for which you want to extract relevé information.
+#' survey(s) for which you want to extract relevé information. If missing, all
+#' surveys are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
 #' @param collect If FALSE (the default), a remote tbl object is returned.
@@ -31,7 +32,6 @@
 #'
 #' @export
 #' @family inboveg
-#'
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
