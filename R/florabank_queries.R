@@ -222,7 +222,7 @@ florabank_observations <- function(connection, scient_name,
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
   if (missing(scient_name) & missing(dutch_name)) {
-    stop("Please provide either a scientific name or a Dutch species name.")
+    stop("Please provide scient_name and / or dutch_name.")
   }
 
   sql_statement <- "SELECT DISTINCT
