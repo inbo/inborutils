@@ -246,7 +246,7 @@ florabank_observations <- function(connection, scient_name,
   INNER JOIN dbo.relTaxonTaxon ON relTaxonTaxon.TaxonIDChild = tblMeting.TaxonID
   INNER JOIN dbo.tblTaxon ON tblTaxon.ID = relTaxonTaxon.TaxonIDParent
   INNER JOIN dbo.relTaxonTaxonGroep ON relTaxonTaxonGroep.TaxonID = tblTaxon.ID
-  INNER JOIN dbo.tblIFBLHok ON tblIFBLHok.ID = tblWaarneming.IFBLHokID
+  LEFT JOIN dbo.tblIFBLHok ON tblIFBLHok.ID = tblWaarneming.IFBLHokID
   INNER JOIN dbo.relWaarnemingMedewerker ON relWaarnemingMedewerker.WaarnemingID = tblWaarneming.ID
   INNER JOIN dbo.tblMedewerker ON tblMedewerker.ID = relWaarnemingMedewerker.MedewerkerID
   INNER JOIN dbo.cdeBron ON cdeBron.Code = tblWaarneming.BronCode
