@@ -155,7 +155,7 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #'
 #' @return A dataframe with the following variables: "NaamNederlands",
 #' "NaamWetenschappelijk", "Bron", "BeginDatum", "EindDatum", "hok",
-#' "Toponiem", "CommentaarTaxon", "CommentaarHabitat", "MedewerkerID",
+#' "Toponiem", "CommentaarTaxon", "CommentaarHabitat",
 #' "WaarnemingID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 #'
 #' @importFrom glue glue_sql
@@ -235,7 +235,7 @@ florabank_observations <- function(connection, scient_name,
   , tblWaarneming.Opmerking AS Toponiem
   , tblMeting.CommentaarTaxon
   , tblMeting.CommentaarHabitat
-  , tblMedewerker.ID AS MedewerkerID
+  --, tblMedewerker.ID AS MedewerkerID
   , tblWaarneming.ID AS WaarnemingID
   , tblWaarneming.Cor_X AS X_waarneming
   , tblWaarneming.Cor_Y AS Y_waarneming
@@ -247,8 +247,8 @@ florabank_observations <- function(connection, scient_name,
   INNER JOIN dbo.tblTaxon ON tblTaxon.ID = relTaxonTaxon.TaxonIDParent
   INNER JOIN dbo.relTaxonTaxonGroep ON relTaxonTaxonGroep.TaxonID = tblTaxon.ID
   LEFT JOIN dbo.tblIFBLHok ON tblIFBLHok.ID = tblWaarneming.IFBLHokID
-  INNER JOIN dbo.relWaarnemingMedewerker ON relWaarnemingMedewerker.WaarnemingID = tblWaarneming.ID
-  INNER JOIN dbo.tblMedewerker ON tblMedewerker.ID = relWaarnemingMedewerker.MedewerkerID
+  --INNER JOIN dbo.relWaarnemingMedewerker ON relWaarnemingMedewerker.WaarnemingID = tblWaarneming.ID
+  --INNER JOIN dbo.tblMedewerker ON tblMedewerker.ID = relWaarnemingMedewerker.MedewerkerID
   INNER JOIN dbo.cdeBron ON cdeBron.Code = tblWaarneming.BronCode
   WHERE 1=1
   AND (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
