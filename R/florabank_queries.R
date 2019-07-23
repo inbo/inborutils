@@ -143,10 +143,10 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #'
 #' @param scient_name Default missing. Can be either a character vector with
 #' exact scientific names (including authorship) or a character string with
-#' (part) of a taxon name which may contain wildcards
+#' (part of) a taxon name which may contain wildcards
 #'
 #' @param dutch_name Default missing. Can be either a character vector with
-#' exact Dutch names or a character string with (part) of a taxon name which
+#' exact Dutch names or a character string with (part of) a taxon name which
 #' may contain wildcards
 #'
 #' @param collect If FALSE (the default), a remote tbl object is returned. This
