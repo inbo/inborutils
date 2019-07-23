@@ -2,18 +2,22 @@
 % Please edit documentation in R/florabank_queries.R
 \name{florabank_observations}
 \alias{florabank_observations}
-\title{Get all validated observations for a taxon from the florabank database}
+\title{Get all validated observations for one or more taxa from the florabank database}
 \usage{
 florabank_observations(connection, scient_name, dutch_name,
   collect = FALSE)
 }
 \arguments{
-\item{connection}{A connection to the florabank database. See the example section
-for how to connect and disconnect to the database.}
+\item{connection}{A connection to the florabank database. See the example
+section for how to connect and disconnect to the database.}
 
-\item{scient_name}{(Part of) a scientific taxon name}
+\item{scient_name}{Default missing. Can be either a character vector with
+exact scientific names (including authorship) or a character string with
+(part) of a taxon name which may contain wildcards}
 
-\item{dutch_name}{(Part of) a Dutch taxon name, may contain wildcards}
+\item{dutch_name}{Default missing. Can be either a character vector with
+exact Dutch names or a character string with (part) of a taxon name which
+may contain wildcards}
 
 \item{collect}{If FALSE (the default), a remote tbl object is returned. This
 is like a reference to the result of the query but the full result of the
@@ -24,14 +28,17 @@ environment.}
 \value{
 A dataframe with the following variables: "NaamNederlands",
 "NaamWetenschappelijk", "Bron", "BeginDatum", "EindDatum", "hok",
-"Toponiem", "CommentaarTaxon", "CommentaarHabitat", "MedewerkerID",
+"Toponiem", "CommentaarTaxon", "CommentaarHabitat",
 "WaarnemingID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 }
 \description{
-This function takes as input either (part of) a scientific name or (part of)
-the Dutch name for a taxon, queries the florabank, and returns a dataframe
-observation level information about the matching taxa. The following
-wildcards may be used within the input parameters:
+This function takes as input either a character vector or a character string
+of scientific names and/or Dutch names. In case of a character string,
+partial matching will be used so that part of a scientific name or Dutch name
+can be given and wildcards can be used. The function queries the florabank,
+and returns a dataframe with observation level information about the matching taxa.
+The following wildcards may be used within the input parameters in case a
+a character string is given:
 \code{\%}: Represents zero or more characters;
 \code{_}: Represents a single character;
 \code{[]}: Represents any single character within the brackets, e.g. \code{[sp]}
@@ -51,15 +58,35 @@ scient_name = 'Dactylorhiza maculata (L.) SoÃ³', collect = TRUE)
 Dactmacu2 <-	florabank_observations(db_connectie,
 dutch_name = 'Gevlekte orchis', collect = TRUE)
 
+# providing both a Dutch name and scientific name will not duplicate records
+# if they are the same species
+Dactmacu3 <- florabank_observations(db_connectie,
+scient_name = 'Dactylorhiza maculata (L.) SoÃ³',
+dutch_name = 'Gevlekte orchis', collect = TRUE)
+
 all.equal(Dactmacu1, Dactmacu2)
+all.equal(Dactmacu1, Dactmacu3)
+
+# passing dutch names and scientific names for different species
+# is possible (records for each species is returned)
+myspecies1 <- florabank_observations(db_connectie,
+scient_name = 'Dactylorhiza maculata (L.) SoÃ³',
+dutch_name = 'Blauwe knoop', collect = TRUE)
+
+# passing multiple scientific names
+myspecies2 <- florabank_observations(db_connectie,
+scient_name = c('Dactylorhiza maculata (L.) SoÃ³', 'Succisa pratensis Moench'),
+collect = TRUE)
+
+all.equal(myspecies1, myspecies2)
 
 # use wildcards to retrieve all partial matches to a name
 # using default for collect will return a lazy query
-Dactmacu3 <-	florabank_observations(db_connectie,
+Dactmacu4 <-	florabank_observations(db_connectie,
 scient_name = 'Dactylorhiza maculata\%')
 
 # to collect the data for a lazy query you can also do:
-Dactmacu3 <- collect(Dactmacu3)
+Dactmacu4 <- collect(Dactmacu4)
 
 # disconnect from florabank
 dbDisconnect(db_connectie)
