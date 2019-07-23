@@ -130,11 +130,13 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' and returns a dataframe with observation level information about the matching taxa.
 #' The following wildcards may be used within the input parameters in case a
 #' a character string is given:
-#' `%`: Represents zero or more characters;
-#' `_`: Represents a single character;
-#' `[]`: Represents any single character within the brackets, e.g. `[sp]`
-#' `^`: Represents any character not in the brackets, e.g. `[^sp]`
-#' `-`: Represents a range of characters, e.g. `[a-z]`
+#' \itemize{
+#'   \item `%`: Represents zero or more characters;
+#'   \item `_`: Represents a single character;
+#'   \item `[]`: Represents any single character within the brackets, e.g. `[sp]`
+#'   \item `^`: Represents any character not in the brackets, e.g. `[^sp]`
+#'   \item `-`: Represents a range of characters, e.g. `[a-z]`
+#' }
 #'
 #' @param connection A connection to the florabank database. See the example
 #' section for how to connect and disconnect to the database.
@@ -169,6 +171,7 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' @family florabank
 #' @examples
 #' \dontrun{
+#' # code can only be run if a connection to the database is possible
 #' # connect to florabank
 #' db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 #'
