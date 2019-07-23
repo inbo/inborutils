@@ -39,54 +39,57 @@ can be given and wildcards can be used. The function queries the florabank,
 and returns a dataframe with observation level information about the matching taxa.
 The following wildcards may be used within the input parameters in case a
 a character string is given:
-\code{\%}: Represents zero or more characters;
-\code{_}: Represents a single character;
-\code{[]}: Represents any single character within the brackets, e.g. \code{[sp]}
-\code{^}: Represents any character not in the brackets, e.g. \code{[^sp]}
-\code{-}: Represents a range of characters, e.g. \code{[a-z]}
+\itemize{
+\item \code{\%}: Represents zero or more characters;
+\item \code{_}: Represents a single character;
+\item \code{[]}: Represents any single character within the brackets, e.g. \code{[sp]}
+\item \code{^}: Represents any character not in the brackets, e.g. \code{[^sp]}
+\item \code{-}: Represents a range of characters, e.g. \code{[a-z]}
+}
 }
 \examples{
 \dontrun{
+# code can only be run if a connection to the database is possible
 # connect to florabank
 db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 
 # query and collect the data using scientific name
-Dactmacu1 <-	florabank_observations(db_connectie,
-scient_name = 'Dactylorhiza maculata (L.) SoÃ³', collect = TRUE)
+succprat1 <-	florabank_observations(db_connectie,
+scient_name = 'Succisa pratensis Moench', collect = TRUE)
 
 # the same species but using Dutch name
-Dactmacu2 <-	florabank_observations(db_connectie,
-dutch_name = 'Gevlekte orchis', collect = TRUE)
+succprat2 <-	florabank_observations(db_connectie,
+dutch_name = 'Blauwe knoop', collect = TRUE)
 
 # providing both a Dutch name and scientific name will not duplicate records
 # if they are the same species
-Dactmacu3 <- florabank_observations(db_connectie,
-scient_name = 'Dactylorhiza maculata (L.) SoÃ³',
-dutch_name = 'Gevlekte orchis', collect = TRUE)
+succprat3 <- florabank_observations(db_connectie,
+scient_name = 'Succisa pratensis Moench',
+dutch_name = 'Blauwe knoop', collect = TRUE)
 
-all.equal(Dactmacu1, Dactmacu2)
-all.equal(Dactmacu1, Dactmacu3)
+all.equal(succprat1, succprat2)
+all.equal(succprat1, succprat3)
 
 # passing dutch names and scientific names for different species
 # is possible (records for each species is returned)
 myspecies1 <- florabank_observations(db_connectie,
-scient_name = 'Dactylorhiza maculata (L.) SoÃ³',
-dutch_name = 'Blauwe knoop', collect = TRUE)
+scient_name = 'Succisa pratensis Moench',
+dutch_name = 'Gevlekte orchis', collect = TRUE)
 
-# passing multiple scientific names
+# passing multiple dutch names
 myspecies2 <- florabank_observations(db_connectie,
-scient_name = c('Dactylorhiza maculata (L.) SoÃ³', 'Succisa pratensis Moench'),
+dutch_name = c('Gevlekte orchis', 'Blauwe knoop'),
 collect = TRUE)
 
 all.equal(myspecies1, myspecies2)
 
 # use wildcards to retrieve all partial matches to a name
 # using default for collect will return a lazy query
-Dactmacu4 <-	florabank_observations(db_connectie,
+dactmacu <-	florabank_observations(db_connectie,
 scient_name = 'Dactylorhiza maculata\%')
 
 # to collect the data for a lazy query you can also do:
-Dactmacu4 <- collect(Dactmacu4)
+dactmacu <- collect(dactmacu)
 
 # disconnect from florabank
 dbDisconnect(db_connectie)

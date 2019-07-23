@@ -176,42 +176,42 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 #'
 #' # query and collect the data using scientific name
-#' Dactmacu1 <-	florabank_observations(db_connectie,
-#' scient_name = 'Dactylorhiza maculata (L.) Soó', collect = TRUE)
+#' succprat1 <-	florabank_observations(db_connectie,
+#' scient_name = 'Succisa pratensis Moench', collect = TRUE)
 #'
 #' # the same species but using Dutch name
-#' Dactmacu2 <-	florabank_observations(db_connectie,
-#' dutch_name = 'Gevlekte orchis', collect = TRUE)
+#' succprat2 <-	florabank_observations(db_connectie,
+#' dutch_name = 'Blauwe knoop', collect = TRUE)
 #'
 #' # providing both a Dutch name and scientific name will not duplicate records
 #' # if they are the same species
-#' Dactmacu3 <- florabank_observations(db_connectie,
-#' scient_name = 'Dactylorhiza maculata (L.) Soó',
-#' dutch_name = 'Gevlekte orchis', collect = TRUE)
+#' succprat3 <- florabank_observations(db_connectie,
+#' scient_name = 'Succisa pratensis Moench',
+#' dutch_name = 'Blauwe knoop', collect = TRUE)
 #'
-#' all.equal(Dactmacu1, Dactmacu2)
-#' all.equal(Dactmacu1, Dactmacu3)
+#' all.equal(succprat1, succprat2)
+#' all.equal(succprat1, succprat3)
 #'
 #' # passing dutch names and scientific names for different species
 #' # is possible (records for each species is returned)
 #' myspecies1 <- florabank_observations(db_connectie,
-#' scient_name = 'Dactylorhiza maculata (L.) Soó',
-#' dutch_name = 'Blauwe knoop', collect = TRUE)
+#' scient_name = 'Succisa pratensis Moench',
+#' dutch_name = 'Gevlekte orchis', collect = TRUE)
 #'
-#' # passing multiple scientific names
+#' # passing multiple dutch names
 #' myspecies2 <- florabank_observations(db_connectie,
-#' scient_name = c('Dactylorhiza maculata (L.) Soó', 'Succisa pratensis Moench'),
+#' dutch_name = c('Gevlekte orchis', 'Blauwe knoop'),
 #' collect = TRUE)
 #'
 #' all.equal(myspecies1, myspecies2)
 #'
 #' # use wildcards to retrieve all partial matches to a name
 #' # using default for collect will return a lazy query
-#' Dactmacu4 <-	florabank_observations(db_connectie,
+#' dactmacu <-	florabank_observations(db_connectie,
 #' scient_name = 'Dactylorhiza maculata%')
 #'
 #' # to collect the data for a lazy query you can also do:
-#' Dactmacu4 <- collect(Dactmacu4)
+#' dactmacu <- collect(dactmacu)
 #'
 #' # disconnect from florabank
 #' dbDisconnect(db_connectie)
