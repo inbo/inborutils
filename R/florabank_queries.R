@@ -123,32 +123,21 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 
 #' Get all validated observations for one or more taxa from the florabank database
 #'
-#' This function takes as input either a character vector or a character string
-#' of scientific names and/or Dutch names. In case of a character string,
-#' partial matching will be used so that part of a scientific name or Dutch name
-#' can be given and wildcards can be used. The function queries the florabank,
-#' and returns a dataframe with observation level information about the matching taxa.
-#' The following wildcards may be used within the input parameters in case a
-#' a character string is given:
-#' \itemize{
-#'   \item `%`: Represents zero or more characters;
-#'   \item `_`: Represents a single character;
-#'   \item `[]`: Represents any single character within the brackets, e.g. `[sp]`
-#'   \item `^`: Represents any character not in the brackets, e.g. `[^sp]`
-#'   \item `-`: Represents a range of characters, e.g. `[a-z]`
-#' }
+#' This function takes as input a character vector with one or more names of
+#' species either as scientific names and/or Dutch names. By default (fixed = FALSE),
+#' partial matching will be used (the names are prepended with appended with %).
+#' The function queries the florabank, and returns a dataframe with observation
+#' level information about the matching taxa.
 #'
 #' @param connection A connection to the florabank database. See the example
 #' section for how to connect and disconnect to the database.
 #'
-#' @param scient_name Default missing. Can be either a character vector with
-#' exact scientific names (including authorship) or a character string with
-#' (part of) a taxon name which may contain wildcards
+#' @param names Default missing. A character vector with scientific names
+#' and/or Dutch names. If fixed = TRUE, character strings are matched exactly and
+#' scientific names must include authorship in order to match.
 #'
-#' @param dutch_name Default missing. Can be either a character vector with
-#' exact Dutch names or a character string with (part of) a taxon name which
-#' may contain wildcards
-#'
+#' @param fixed Logical. If TRUE, names is to be matched as is (no partial matching)
+#' .
 #' @param collect If FALSE (the default), a remote tbl object is returned. This
 #' is like a reference to the result of the query but the full result of the
 #' query is not brought into memory. If TRUE the full result of the query is
@@ -177,17 +166,16 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #'
 #' # query and collect the data using scientific name
 #' succprat1 <-	florabank_observations(db_connectie,
-#' scient_name = 'Succisa pratensis Moench', collect = TRUE)
+#' names = 'Succisa pratensis Moench', collect = TRUE)
 #'
 #' # the same species but using Dutch name
 #' succprat2 <-	florabank_observations(db_connectie,
-#' dutch_name = 'Blauwe knoop', collect = TRUE)
+#' names = 'Blauwe knoop', collect = TRUE)
 #'
 #' # providing both a Dutch name and scientific name will not duplicate records
 #' # if they are the same species
 #' succprat3 <- florabank_observations(db_connectie,
-#' scient_name = 'Succisa pratensis Moench',
-#' dutch_name = 'Blauwe knoop', collect = TRUE)
+#' names = c("Succisa pratensis Moench", "Blauwe knoop"), collect = TRUE)
 #'
 #' all.equal(succprat1, succprat2)
 #' all.equal(succprat1, succprat3)
@@ -195,37 +183,37 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' # passing dutch names and scientific names for different species
 #' # is possible (records for each species is returned)
 #' myspecies1 <- florabank_observations(db_connectie,
-#' scient_name = 'Succisa pratensis Moench',
-#' dutch_name = 'Gevlekte orchis', collect = TRUE)
+#' names = c('Succisa pratensis Moench', 'Gevlekte orchis'), collect = TRUE)
 #'
 #' # passing multiple dutch names
 #' myspecies2 <- florabank_observations(db_connectie,
-#' dutch_name = c('Gevlekte orchis', 'Blauwe knoop'),
+#' names = c('Gevlekte orchis', 'Blauwe knoop'),
 #' collect = TRUE)
 #'
 #' all.equal(myspecies1, myspecies2)
 #'
-#' # use wildcards to retrieve all partial matches to a name
 #' # using default for collect will return a lazy query
-#' dactmacu <-	florabank_observations(db_connectie,
-#' scient_name = 'Dactylorhiza maculata%')
+#' # fixed = TRUE for exact matches only
+#' myspecies3 <-	florabank_observations(db_connectie,
+#' names = c('Succisa pratensis Moench', 'Gevlekte orchis'),
+#' fixed = TRUE)
 #'
-#' # to collect the data for a lazy query you can also do:
-#' dactmacu <- collect(dactmacu)
+#' # to collect the data for a lazy query you can also use the collect() function:
+#' myspecies3 <- dplyr::collect(myspecies3)
 #'
 #' # disconnect from florabank
 #' dbDisconnect(db_connectie)
 #' }
 
-florabank_observations <- function(connection, scient_name,
-                                   dutch_name, collect = FALSE) {
+florabank_observations <- function(connection, names, fixed = FALSE,
+                                   collect = FALSE) {
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
   assert_that(connection@info$dbname == "D0021_00_userFlora")
 
-  if (missing(scient_name) & missing(dutch_name)) {
-    stop("Please provide scient_name and / or dutch_name.")
+  if (missing(names)) {
+    stop("Please provide names.")
   }
 
   sql_statement <- "SELECT DISTINCT
@@ -253,42 +241,25 @@ florabank_observations <- function(connection, scient_name,
   AND (tblMeting.MetingStatusCode='GDGA' OR tblMeting.MetingStatusCode='GDGK')
   "
 
-  if (!missing(scient_name) & !missing(dutch_name)) {
+  if (!fixed) {
+    like_string <-
+      paste0("AND (",
+             paste0(
+               c(paste0("tblTaxon.NaamNederlands", " LIKE ", "'%", names,"%'"),
+                 paste0("tblTaxon.NaamWetenschappelijk", " LIKE ", "'%", names,"%'")),
+               collapse = " OR "),
+             ")")
     sql_statement <- glue_sql(
       sql_statement,
-      ifelse(length(dutch_name) == 1 && length(scient_name) == 1,
-             "AND (tblTaxon.NaamWetenschappelijk LIKE {scient_name} OR
-              tblTaxon.NaamNederlands LIKE {dutch_name})
+      like_string,
+      .con = connection)
+  } else {
+    sql_statement <- glue_sql(
+      sql_statement,
+      "AND (tblTaxon.NaamWetenschappelijk IN ({names*}) OR
+             tblTaxon.NaamNederlands IN ({names*}))
              ",
-             "AND (tblTaxon.NaamWetenschappelijk IN ({scient_name*}) OR
-              tblTaxon.NaamNederlands IN ({dutch_name*})
-             "),
-      scient_name = scient_name,
-      dutch_name = dutch_name,
-      .con = connection)
-  }
-
-  if (!missing(scient_name) & missing(dutch_name)) {
-    sql_statement <- glue_sql(
-      sql_statement,
-      ifelse(length(scient_name) == 1,
-      "AND tblTaxon.NaamWetenschappelijk LIKE {scient_name}
-      ",
-      "AND tblTaxon.NaamWetenschappelijk IN ({scient_name*})
-      "),
-      scient_name = scient_name,
-      .con = connection)
-  }
-
-  if (!missing(dutch_name) & missing(scient_name)) {
-    sql_statement <- glue_sql(
-      sql_statement,
-      ifelse(length(dutch_name) == 1,
-      "AND tblTaxon.NaamNederlands LIKE {dutch_name}
-      ",
-      "AND tblTaxon.NaamNederlands IN ({dutch_name*})
-      "),
-      dutch_name = dutch_name,
+      names = names,
       .con = connection)
   }
 
