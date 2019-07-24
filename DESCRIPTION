@@ -11,6 +11,8 @@ Authors@R: c(
   person("Peter", "Desmet", role = c("ctb"), email = "peter.desmet@inbo.be", comment = c(ORCID = "0000-0002-8442-8025"))
   )
 License: MIT + file LICENSE
+URL: https://github.com/inbo/inborutils, https://inbo.github.io/inborutils
+BugReports: https://github.com/inbo/inborutils/issues
 Depends:
     R (>= 3.4.0)
 Imports:
