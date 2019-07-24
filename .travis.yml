@@ -12,6 +12,7 @@ apt_packages:
   - libgdal1-dev
   
 after_success:
+  - Rscript -e 'devtools::install()' # To install package
   - Rscript -e "pkgdown::build_site(preview = FALSE)"
 
 deploy:
