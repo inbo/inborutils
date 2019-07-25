@@ -21,13 +21,10 @@
 #' @export
 #' @importFrom assertthat assert_that
 #' @importFrom assertable assert_colnames
-#' @importFrom dplyr %>% select
-#' @importFrom rgbif name_backbone
-#' @importFrom lazyeval interp
-#' @importFrom purrr map
-#' @importFrom tibble as.tibble
-#' @importFrom tidyr unnest
-#' @importFrom rlang .data
+#' @importFrom dplyr %>% bind_cols select mutate_all mutate_at vars
+#' @importFrom purrr pmap_dfr map_chr
+#' @importFrom tibble as_tibble
+#' @importFrom tidyselect ends_with
 #'
 #' @examples
 #' \dontrun{
@@ -39,39 +36,152 @@
 #' species_list_matched <- species_list %>%
 #'     gbif_species_name_match(name_col = "name")
 #' }
-gbif_species_name_match <- function(df, name_col,
-                                    gbif_terms = c('usageKey',
-                                                   'scientificName',
-                                                   'rank',
-                                                   'order',
-                                                   'matchType',
-                                                   'phylum',
-                                                   'kingdom',
-                                                   'genus',
-                                                   'class',
-                                                   'confidence',
-                                                   'synonym',
-                                                   'status',
-                                                   'family')){
+gbif_species_name_match <- function(df,
+                                      name = "name",
+                                      gbif_terms = c('usageKey',
+                                                     'scientificName',
+                                                     'rank',
+                                                     'matchType',
+                                                     'kingdom',
+                                                     'phylum',
+                                                     'order',
+                                                     'class',
+                                                     'family',
+                                                     'genus',
+                                                     'species',
+                                                     'confidence',
+                                                     'synonym',
+                                                     'status'),
+                                      ...){
+  inargs <- list(...)
+  API_terms <- c('usageKey', 'scientificName', 'canonicalName', 'rank',
+                 'status', 'confidence', 'matchType', 'kingdom', 'phylum',
+                 'order', 'family', 'genus', 'species', 'kingdomKey',
+                 'phylumKey', 'classKey', 'orderKey', 'familyKey', 'genusKey',
+                 'speciesKey', 'synonym', 'class')
 
-    API_terms <- c('usageKey', 'scientificName', 'canonicalName', 'rank',
-                   'status', 'confidence', 'matchType', 'kingdom', 'phylum',
-                   'order', 'family', 'genus', 'species', 'kingdomKey',
-                   'phylumKey', 'classKey', 'orderKey', 'familyKey', 'genusKey',
-                   'speciesKey', 'synonym', 'class')
+  # test incoming arguments
+  assert_that(is.data.frame(df),
+              msg = paste0("Error: df. Expected a data.frame. Got an object of class ",
+                           class(df), ".")
+  )
+  assert_that(is.character(name),
+              msg = paste0("name. Expected a character. Got an object of class ",
+                           class(name), ".")
+  )
+  assert_that(is.character(gbif_terms),
+              msg = paste0("gbif_terms. Expected a character. Got an object of class ",
+                           class(gbif_terms), ".")
+  )
+  if (!is.null(inargs$name_col)) {
+    name <- inargs$name_col
+    warning("\'name_col\' is deprecated. Use \'name\' instead.")
+    inargs$name_col <- NULL
+  }
+  # column with names exists in  df
+  assert_colnames(df, name, only_colnames = FALSE) # colname exists in df
+  invalid_gbif_terms <- gbif_terms[!gbif_terms %in% API_terms]
+  if (length(invalid_gbif_terms) > 0) {
+    warning(paste0("Invalid GBIF terms discarded: ",
+                   paste(invalid_gbif_terms, collapse = ", "),
+                   "."))
+  }
+  # GBIF terms to add as additional columns to df
+  gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
+  if (name %in% gbif_terms) {
+    warning(paste0("Column with names \'",
+                   name,
+                   "\' is also one of the returned gbif_terms. ",
+                   "GBIF column name is authomatically recalled \'",
+                   name,
+                   "1\'."))
+  }
+  # make df with names only
+  name_df <- select(df, eval(name))
+  colnames(name_df) <- "name" # rename to "name"
+  # optional fields accepted by name_backbone
+  name_backbone_fields <- c("rank",
+                            "kingdom",
+                            "phylum",
+                            "class",
+                            "order",
+                            "family",
+                            "genus",
+                            "strict",
+                            "verbose",
+                            "start",
+                            "limit",
+                            "curlopts")
+  # Check optional parameters are all search name parameters
+  assert_that(all(names(inargs) %in% name_backbone_fields),
+              msg = paste0(
+                "Only optional parameters of GBIF name search allowed: ",
+                paste(name_backbone_fields, collapse = ", "),
+                ". Check ?name_backbone for more details."))
+  # optional fields defined by user
+  search_terms <- names(inargs)[which(names(inargs) %in% name_backbone_fields)]
+  if (length(search_terms) > 0) {
+    inargs <- inargs[which(names(inargs) %in% search_terms)]
+    # subset with taxonomic related fields accepted by name_backbone
+    taxa_terms <- c("rank",
+                    "kingdom",
+                    "phylum",
+                    "class",
+                    "order",
+                    "family",
+                    "genus")
+    taxaargs <- inargs[which(names(inargs) %in% taxa_terms)]
+    taxa_terms <- names(taxaargs)
+    # other not taxonomic related fields
+    otherargs <- inargs[which(!names(inargs) %in% taxa_terms)]
+    other_terms <- names(otherargs)
+    if (length(taxa_terms) > 0) {
+      taxa_df <- select(df, eval(map_chr(taxaargs, function(x) x[[1]])))
+      names(taxa_df) <- taxa_terms
+      name_df <- bind_cols(name_df, taxa_df)
+    }
+    if (length(other_terms) > 0) {
+      name_df[other_terms] <- as.data.frame(otherargs)
+    }
+  }
+  name_df <-
+    name_df %>%
+    pmap_dfr(get_name_gbif_t) %>%
+    as_tibble()
+  not_existent_gbif_terms <- gbif_terms[!gbif_terms %in% names(name_df)]
+  if (length(not_existent_gbif_terms) > 0) {
+    warning(paste0("The following terms are not returned by GBIF: ",
+                   paste(not_existent_gbif_terms, collapse = ", "),
+                   ". It is possible they refer to ranks ",
+                   "lower than rank of matched names."))
+  }
 
-    # test incoming arguments
-    assert_that(is.data.frame(df))
-    assert_colnames(df, name_col, only_colnames = FALSE) # colname exists in df
-    gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
+  df_not_existent_terms <- data.frame(
+    matrix(ncol = length(not_existent_gbif_terms),
+           nrow = nrow(name_df))) %>%
+    as_tibble()
+  names(df_not_existent_terms) <- not_existent_gbif_terms
+  df_not_existent_terms <-
+    df_not_existent_terms %>%
+    # set all NA to NA_character
+    mutate_all(as.character) %>%
+    # set all columns with keys to numeric (still NA)
+    mutate_at(vars(ends_with("Key")), as.numeric)
+  name_df <-
+    name_df %>%
+    bind_cols(df_not_existent_terms) %>%
+    select(gbif_terms)
+  df <- bind_cols(df, name_df)
+}
 
-    # matching the GBiF matching information to the sample_data
-    df %>%
-        mutate(
-            scientific_name = df[[name_col]],
-            gbif = map(.data$scientific_name, name_backbone) %>%
-                map(as.tibble)
-        ) %>%
-        unnest() %>%
-        select(c(colnames(df), gbif_terms))
+#' Helper function for retrieving informations from GBIF Taxonomy Backbone
+#'
+#' @importFrom rgbif name_backbone
+#' @keywords internal
+get_name_gbif_t <- function(...) {
+  args <- list(...)
+  # NA are accepted at dev level (devtools::install_github("ropensci/rgbif"),
+  # but still not in CRAN version. Only NULL accepted.
+  args[which(is.na(args))] <- NULL
+  do.call(name_backbone, args)
 }
