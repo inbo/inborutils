@@ -2,18 +2,21 @@
 % Please edit documentation in R/florabank_queries.R
 \name{florabank_observations}
 \alias{florabank_observations}
-\title{Get all validated observations for a taxon from the florabank database}
+\title{Get all validated observations for one or more taxa from the florabank database}
 \usage{
-florabank_observations(connection, scient_name, dutch_name,
+florabank_observations(connection, names, fixed = FALSE,
   collect = FALSE)
 }
 \arguments{
-\item{connection}{A connection to the florabank database. See the example section
-for how to connect and disconnect to the database.}
+\item{connection}{A connection to the florabank database. See the example
+section for how to connect and disconnect to the database.}
 
-\item{scient_name}{(Part of) a scientific taxon name}
+\item{names}{Default missing. A character vector with scientific names
+and/or Dutch names. If fixed = TRUE, character strings are matched exactly and
+scientific names must include authorship in order to match.}
 
-\item{dutch_name}{(Part of) a Dutch taxon name, may contain wildcards}
+\item{fixed}{Logical. If TRUE, names is to be matched as is (no partial matching)
+.}
 
 \item{collect}{If FALSE (the default), a remote tbl object is returned. This
 is like a reference to the result of the query but the full result of the
@@ -24,42 +27,58 @@ environment.}
 \value{
 A dataframe with the following variables: "NaamNederlands",
 "NaamWetenschappelijk", "Bron", "BeginDatum", "EindDatum", "hok",
-"Toponiem", "CommentaarTaxon", "CommentaarHabitat", "MedewerkerID",
+"Toponiem", "CommentaarTaxon", "CommentaarHabitat",
 "WaarnemingID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 }
 \description{
-This function takes as input either (part of) a scientific name or (part of)
-the Dutch name for a taxon, queries the florabank, and returns a dataframe
-observation level information about the matching taxa. The following
-wildcards may be used within the input parameters:
-\code{\%}: Represents zero or more characters;
-\code{_}: Represents a single character;
-\code{[]}: Represents any single character within the brackets, e.g. \code{[sp]}
-\code{^}: Represents any character not in the brackets, e.g. \code{[^sp]}
-\code{-}: Represents a range of characters, e.g. \code{[a-z]}
+This function takes as input a character vector with one or more names of
+species either as scientific names and/or Dutch names. By default (fixed = FALSE),
+partial matching will be used (the names are prepended with appended with %).
+The function queries the florabank, and returns a dataframe with observation
+level information about the matching taxa.
 }
 \examples{
 \dontrun{
+# code can only be run if a connection to the database is possible
 # connect to florabank
 db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 
 # query and collect the data using scientific name
-Dactmacu1 <-	florabank_observations(db_connectie,
-scient_name = 'Dactylorhiza maculata (L.) SoÃ³', collect = TRUE)
+succprat1 <-	florabank_observations(db_connectie,
+names = 'Succisa pratensis Moench', collect = TRUE)
 
 # the same species but using Dutch name
-Dactmacu2 <-	florabank_observations(db_connectie,
-dutch_name = 'Gevlekte orchis', collect = TRUE)
+succprat2 <-	florabank_observations(db_connectie,
+names = 'Blauwe knoop', collect = TRUE)
 
-all.equal(Dactmacu1, Dactmacu2)
+# providing both a Dutch name and scientific name will not duplicate records
+# if they are the same species
+succprat3 <- florabank_observations(db_connectie,
+names = c("Succisa pratensis Moench", "Blauwe knoop"), collect = TRUE)
 
-# use wildcards to retrieve all partial matches to a name
+all.equal(succprat1, succprat2)
+all.equal(succprat1, succprat3)
+
+# passing dutch names and scientific names for different species
+# is possible (records for each species is returned)
+myspecies1 <- florabank_observations(db_connectie,
+names = c('Succisa pratensis Moench', 'Gevlekte orchis'), collect = TRUE)
+
+# passing multiple dutch names
+myspecies2 <- florabank_observations(db_connectie,
+names = c('Gevlekte orchis', 'Blauwe knoop'),
+collect = TRUE)
+
+all.equal(myspecies1, myspecies2)
+
 # using default for collect will return a lazy query
-Dactmacu3 <-	florabank_observations(db_connectie,
-scient_name = 'Dactylorhiza maculata\%')
+# fixed = TRUE for exact matches only
+myspecies3 <-	florabank_observations(db_connectie,
+names = c('Succisa pratensis Moench', 'Gevlekte orchis'),
+fixed = TRUE)
 
-# to collect the data for a lazy query you can also do:
-Dactmacu3 <- collect(Dactmacu3)
+# to collect the data for a lazy query you can also use the collect() function:
+myspecies3 <- dplyr::collect(myspecies3)
 
 # disconnect from florabank
 dbDisconnect(db_connectie)
