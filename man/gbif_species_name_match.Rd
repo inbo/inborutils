@@ -4,18 +4,19 @@
 \alias{gbif_species_name_match}
 \title{Add species information provided by the GBIF taxonomic backbone API}
 \usage{
-gbif_species_name_match(df, name_col, gbif_terms = c("usageKey",
-  "scientificName", "rank", "order", "matchType", "phylum", "kingdom",
-  "genus", "class", "confidence", "synonym", "status", "family"))
+gbif_species_name_match(df, name = "name", gbif_terms = c("usageKey",
+  "scientificName", "rank", "matchType", "kingdom", "phylum", "order",
+  "class", "family", "genus", "species", "confidence", "synonym",
+  "status"), ...)
 }
 \arguments{
 \item{df}{data.frame with species information}
 
-\item{name_col}{char column name of the column containing the scientific
-names used for the name matching with the GBIF taxonomic backbone.}
-
 \item{gbif_terms}{list of valid GBIF terms to add as additional columns to
 the data.frame}
+
+\item{name_col}{char column name of the column containing the scientific
+names used for the name matching with the GBIF taxonomic backbone.}
 }
 \value{
 df with GBIF information as additional columns
