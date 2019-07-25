@@ -23,7 +23,7 @@ or crs-class (\code{sf} compatible) defining the projection to convert to.}
 }
 \value{
 A data.frame with the same columns, but adapted coordinates for the x
-  and y column values.
+and y column values.
 }
 \description{
 This function extracts x-y coordinates from a data.frame by means of the

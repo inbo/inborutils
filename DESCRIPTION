@@ -1,31 +1,56 @@
 Package: inborutils
 Title: Collection of useful R utilities and snippets
-Version: 0.0.1
+Description: While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
+Version: 0.0.1.9053
 Date: 2017-12-09
 Authors@R: c(
-  person("Stijn", "Van Hoey", role = c("aut", "cre"),
-    email = "stijn.vanhoey@inbo.com",
-    comment = "http://orcid.org/0000-0001-6413-3185"), 
-  person("Pieter", "Verschelde", role = c("aut")),
-  person("Thierry", "Onkelinx", role = c("aut"),
+  person("Stijn", "Van Hoey", 
+    role = c("aut", "cre"), 
+    email = "stijn.vanhoey@inbo.com", 
+    comment = c(ORCID = "0000-0001-6413-3185")), 
+  person("Pieter", "Verschelde", 
+    role = c("aut"),
+    email = "pieter.verschelde@inbo.be"),
+  person("Thierry", "Onkelinx", 
+    role = c("aut"),
     email = "thierry.onkelinx@inbo.be",
-    comment = "http://orcid.org/0000-0001-8804-4216"),
-  person("Frank", "Huysentruyt", role = c("ctb")),
-  person("Damiano", "Oldoni", role = c("ctb"), email = "damiano.oldoni@inbo.be", comment = c(ORCID = "0000-0003-3445-7562")),
-  person("Peter", "Desmet", role = c("ctb"), email = "peter.desmet@inbo.be", comment = c(ORCID = "0000-0002-8442-8025")))
-Description: While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
-Depends: R (>= 3.4.0)
+    comment = c(ORCID = "0000-0001-8804-4216")),
+  person("Frank", "Huysentruyt", 
+    role = c("ctb"),
+    email = "frank.huysentruyt@inbo.be"),
+  person("Damiano", "Oldoni", 
+    role = c("ctb"), 
+    email = "damiano.oldoni@inbo.be", 
+    comment = c(ORCID = "0000-0003-3445-7562")),
+  person("Peter", "Desmet", 
+    role = c("ctb"), 
+    email = "peter.desmet@inbo.be", 
+    comment = c(ORCID = "0000-0002-8442-8025")),
+  person("Hans", "Van Calster",
+    role = c("ctb"),
+    email = "hans.vancalster@inbo.be",
+    comment = c(ORCID = "0000-0001-8595-8426")),
+  person("Research Institute for Nature and Forest (INBO)", 
+    email = "info@inbo.be", 
+    role = "cph"))
+License: MIT + file LICENSE
+URL: https://github.com/inbo/inborutils, https://inbo.github.io/inborutils
+BugReports: https://github.com/inbo/inborutils/issues
+Depends:
+    R (>= 3.4.0)
 Imports:
     assertable,
     assertthat,
     DBI,
     dplyr,
+    glue,
     httr,
     iterators,
     lazyeval,
     leaflet,
     lubridate,
     methods,
+    odbc,
     purrr,
     readr,
     rgbif,
@@ -35,6 +60,7 @@ Imports:
     sp,
     sf,
     stats,
+    stringr,
     tibble,
     tidyr,
     tidyselect
@@ -45,8 +71,8 @@ Suggests:
     ggplot2,
     htmlwidgets,
     drat
-License: MIT + file LICENSE
-Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+Encoding: UTF-8
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
