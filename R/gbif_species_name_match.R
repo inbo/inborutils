@@ -188,6 +188,7 @@ gbif_species_name_match <- function(df,
     bind_cols(df_not_existent_terms) %>%
     select(gbif_terms)
   df <- bind_cols(df, name_df)
+  df
 }
 
 #' Helper function for retrieving informations from GBIF Taxonomy Backbone
