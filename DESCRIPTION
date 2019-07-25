@@ -1,15 +1,30 @@
 Package: inborutils
 Title: Collection of useful R utilities and snippets
-Version: 0.0.1
 Description: While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
+Version: 0.0.1.9054
+Date: 2017-12-09
 Authors@R: c(
   person("Stijn", "Van Hoey", role = c("aut", "cre"), email = "stijn.vanhoey@inbo.com", comment = c(ORCID = "0000-0001-6413-3185")), 
   person("Pieter", "Verschelde", role = c("aut")),
-  person("Thierry", "Onkelinx", role = c("aut"), email = "thierry.onkelinx@inbo.be", comment = c(ORCID = "0000-0001-8804-4216")),
-  person("Frank", "Huysentruyt", role = c("ctb")),
-  person("Damiano", "Oldoni", role = c("ctb"), email = "damiano.oldoni@inbo.be", comment = c(ORCID = "0000-0003-3445-7562")),
-  person("Peter", "Desmet", role = c("ctb"), email = "peter.desmet@inbo.be", comment = c(ORCID = "0000-0002-8442-8025"))
-  )
+  person("Thierry", "Onkelinx", role = c("aut"),
+    email = "thierry.onkelinx@inbo.be",
+    comment = "http://orcid.org/0000-0001-8804-4216"),
+  person("Frank", "Huysentruyt", 
+    role = c("ctb")),
+  person("Damiano", "Oldoni", role = c("ctb"), 
+    email = "damiano.oldoni@inbo.be", 
+    comment = c(ORCID = "0000-0003-3445-7562")),
+  person("Peter", "Desmet", 
+    role = c("ctb"), 
+    email = "peter.desmet@inbo.be", 
+    comment = c(ORCID = "0000-0002-8442-8025"))),
+  person("Hans", "Van Calster",
+    role = c("ctb"),
+    e-mail = "hans.vancalster@inbo.be",
+    comment = c(ORCID = "0000-0001-8595-8426")),
+  person("Research Institute for Nature and Forest (INBO)", 
+    email = "info@inbo.be", 
+    role = "cph"))
 License: MIT + file LICENSE
 URL: https://github.com/inbo/inborutils, https://inbo.github.io/inborutils
 BugReports: https://github.com/inbo/inborutils/issues
