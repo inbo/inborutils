@@ -5,7 +5,7 @@ Version: 0.1.0
 Date: 2017-12-09
 Authors@R: c(
   person("Stijn", "Van Hoey", 
-    role = c("aut", "cre"), 
+    role = c("aut"), 
     email = "stijn.vanhoey@inbo.com", 
     comment = c(ORCID = "0000-0001-6413-3185")), 
   person("Pieter", "Verschelde", 
@@ -27,7 +27,7 @@ Authors@R: c(
     email = "peter.desmet@inbo.be", 
     comment = c(ORCID = "0000-0002-8442-8025")),
   person("Hans", "Van Calster",
-    role = c("ctb"),
+    role = c("ctb", "cre"),
     email = "hans.vancalster@inbo.be",
     comment = c(ORCID = "0000-0001-8595-8426")),
   person("Research Institute for Nature and Forest (INBO)", 
