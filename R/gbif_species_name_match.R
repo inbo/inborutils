@@ -162,7 +162,7 @@ gbif_species_name_match <- function(df,
   }
   name_df <-
     name_df %>%
-    pmap_dfr(get_name_gbif_t) %>%
+    pmap_dfr(get_name_gbif) %>%
     as_tibble()
   not_existent_gbif_terms <- gbif_terms[!gbif_terms %in% names(name_df)]
   if (length(not_existent_gbif_terms) > 0) {
