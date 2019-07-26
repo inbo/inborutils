@@ -8,7 +8,7 @@ Description: While working on research projects, typical small functionalities
 Authors@R: c(
     person("Hans", "Van Calster", role = c("aut", "cre"), email = "hans.vancalster@inbo.be", comment = c(ORCID = "0000-0001-8595-8426")),
     person("Damiano", "Oldoni", role = c("aut"), email = "damiano.oldoni@inbo.be", comment = c(ORCID = "0000-0003-3445-7562")),
-    person("Stijn", "Van Hoey", role = c("aut"), email = "stijn.vanhoey@inbo.be", comment = c(ORCID = "0000-0001-6413-3185")),
+    person("Stijn", "Van Hoey", role = c("aut"), email = "stijnvanhoey@gmail.com", comment = c(ORCID = "0000-0001-6413-3185")),
     person("Dimitri", "Brosens", role = c("ctb"), email = "dimitri.brosens@inbo.be", comment = c(ORCID = "0000-0002-0846-9116")),
     person("Peter", "Desmet", role = c("ctb"), email = "peter.desmet@inbo.be", comment = c(ORCID = "0000-0002-8442-8025")),
     person("Frank", "Huysentruyt", role = c("ctb"), email = "frank.huysentruyt@inbo.be", comment = c(ORCID = "0000-0002-3071-9126")),
