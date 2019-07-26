@@ -1,8 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^README-.*\.png$
+.github/
 ^docs$
 ^_pkgdown\.yml$
-CONDUCT.md
-CONTRIBUTING.md
 ^\.travis\.yml$
 ^appveyor\.yml$
