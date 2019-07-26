@@ -12,7 +12,7 @@ apt_packages:
   - libgdal1-dev
   
 after_success:
-  - R CMD INSTALL . # Instal the package to build vignettes
+  - R CMD INSTALL . # Install the package to build vignettes
   - Rscript -e "pkgdown::build_site(preview = FALSE)"
 
 deploy:
