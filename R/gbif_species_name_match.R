@@ -30,9 +30,10 @@
 #' @export
 #' @importFrom assertthat assert_that
 #' @importFrom assertable assert_colnames
-#' @importFrom dplyr %>% bind_cols select
+#' @importFrom dplyr %>% bind_cols select mutate_all mutate_at vars
 #' @importFrom purrr pmap_dfr map_chr
 #' @importFrom tibble as_tibble
+#' @importFrom tidyselect ends_with
 #'
 #' @examples
 #' \dontrun{
@@ -67,6 +68,7 @@ gbif_species_name_match <- function(df,
                                                    'status',
                                                    'family'),
                                     ...){
+
   inargs <- list(...)
   API_terms <- c('usageKey', 'scientificName', 'canonicalName', 'rank',
                  'status', 'confidence', 'matchType', 'kingdom', 'phylum',
@@ -75,7 +77,18 @@ gbif_species_name_match <- function(df,
                  'speciesKey', 'synonym', 'class')
 
   # test incoming arguments
-  assert_that(is.data.frame(df))
+  assert_that(is.data.frame(df),
+              msg = paste0("Error: df. Expected a data.frame. Got an object of class ",
+                           class(df), ".")
+  )
+  assert_that(is.character(name),
+              msg = paste0("name. Expected a character. Got an object of class ",
+                           class(name), ".")
+  )
+  assert_that(is.character(gbif_terms),
+              msg = paste0("gbif_terms. Expected a character. Got an object of class ",
+                           class(gbif_terms), ".")
+  )
   if (!is.null(inargs$name_col)) {
     name <- inargs$name_col
     warning("\'name_col\' is deprecated. Use \'name\' instead.")
@@ -83,6 +96,12 @@ gbif_species_name_match <- function(df,
   }
   # column with names exists in  df
   assert_colnames(df, name, only_colnames = FALSE) # colname exists in df
+  invalid_gbif_terms <- gbif_terms[!gbif_terms %in% API_terms]
+  if (length(invalid_gbif_terms) > 0) {
+    warning(paste0("Invalid GBIF terms discarded: ",
+                   paste(invalid_gbif_terms, collapse = ", "),
+                   "."))
+  }
   # GBIF terms to add as additional columns to df
   gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
   if (name %in% gbif_terms) {
@@ -145,13 +164,31 @@ gbif_species_name_match <- function(df,
     name_df %>%
     pmap_dfr(get_name_gbif) %>%
     as_tibble()
-  df <- bind_cols(df, name_df)
-  if (all(gbif_terms %in% names(df))) {
-    df %>%
-      select(c(colnames(df), gbif_terms))
-  } else {
-    df
+  not_existent_gbif_terms <- gbif_terms[!gbif_terms %in% names(name_df)]
+  if (length(not_existent_gbif_terms) > 0) {
+    warning(paste0("The following terms are not returned by GBIF: ",
+                   paste(not_existent_gbif_terms, collapse = ", "),
+                   ". It is possible they refer to ranks ",
+                   "lower than rank of matched names."))
   }
+
+  df_not_existent_terms <- data.frame(
+    matrix(ncol = length(not_existent_gbif_terms),
+           nrow = nrow(name_df))) %>%
+    as_tibble()
+  names(df_not_existent_terms) <- not_existent_gbif_terms
+  df_not_existent_terms <-
+    df_not_existent_terms %>%
+    # set all NA to NA_character
+    mutate_all(as.character) %>%
+    # set all columns with keys to numeric (still NA)
+    mutate_at(vars(ends_with("Key")), as.numeric)
+  name_df <-
+    name_df %>%
+    bind_cols(df_not_existent_terms) %>%
+    select(gbif_terms)
+  df <- bind_cols(df, name_df)
+  df
 }
 
 #' Helper function for retrieving informations from GBIF Taxonomy Backbone
