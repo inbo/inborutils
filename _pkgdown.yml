@@ -35,6 +35,10 @@ reference:
     contents:
       - df_factors_to_char
       - csv_to_sqlite
+  - title: "Enhancing transparancy and reproducibility"
+    desc: "Functions to help in achieving transparancy and reproducibility"
+    contents:
+      - write_sessioninfo
   - title: "Statistical modelling"
     desc: "Functions for handling statistical modelling tasks"
     contents:
