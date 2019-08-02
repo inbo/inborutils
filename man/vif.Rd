@@ -4,6 +4,7 @@
 \alias{vif}
 \alias{vif.lm}
 \alias{vif.data.frame}
+\alias{vif.default}
 \title{Variance inflation factor}
 \usage{
 vif(mod, ...)
@@ -11,6 +12,8 @@ vif(mod, ...)
 \method{vif}{lm}(mod, ...)
 
 \method{vif}{data.frame}(mod, ...)
+
+\method{vif}{default}(mod, ...)
 }
 \arguments{
 \item{mod}{A model object (or data.frame). For the moment only lm and a plain dataset is implemented}
@@ -26,4 +29,11 @@ Variance inflation factor
 Variance inflaction factor (lm model)
 
 Variance inflaction factor (data.frame)
+
+Variance inflation factor (default routine)
+}
+\examples{
+{
+vif(airquality)
+}
 }
