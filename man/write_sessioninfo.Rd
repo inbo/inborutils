@@ -19,8 +19,8 @@ reproducibility.
 \details{
 The following information is written:
 \itemize{
-\item{essential platform info (version, os, system, ctype)}
-\item{essential info on loaded packages (package, loadedversion, date,
-source if different from CRAN).}
+\item{essential platform info: version, os, system, ctype}
+\item{essential info on loaded packages: package, loadedversion, date,
+source if different from CRAN.}
 }
 }
