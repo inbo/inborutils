@@ -26,7 +26,7 @@ Useful links:
 Authors:
 \itemize{
   \item Damiano Oldoni \email{damiano.oldoni@inbo.be} (0000-0003-3445-7562)
-  \item Stijn Van Hoey \email{stijn.vanhoey@inbo.be} (0000-0001-6413-3185)
+  \item Stijn Van Hoey \email{stijnvanhoey@gmail.com} (0000-0001-6413-3185)
 }
 
 Other contributors:
