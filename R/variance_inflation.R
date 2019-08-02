@@ -42,7 +42,7 @@ vif.data.frame <- function(mod, ...){
 #' @export
 #' @method vif default
 #' @rdname vif
-#' #' @examples{
+#' @examples{
 #' vif(airquality)
 #' }
 #' @importFrom stats as.formula coef coefficients cov2cor lm model.matrix vcov
