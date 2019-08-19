@@ -25,11 +25,13 @@ Depends:
 Imports:
     assertable,
     assertthat,
+    curl,
     DBI,
     dplyr,
     glue,
     httr,
     iterators,
+    jsonlite,
     lazyeval,
     leaflet,
     lubridate,
