@@ -28,7 +28,13 @@
 #' @importFrom dplyr
 #' mutate
 #' select
+#'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' write_sessioninfo(file = "./sessioninfo.txt")
+#' }
 write_sessioninfo <- function(file) {
 
   platform_info()[c("version",
