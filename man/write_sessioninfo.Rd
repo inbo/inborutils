@@ -24,3 +24,8 @@ The following information is written:
 source if different from CRAN.}
 }
 }
+\examples{
+\dontrun{
+write_sessioninfo(file = "./sessioninfo.txt")
+}
+}
