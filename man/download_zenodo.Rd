@@ -29,3 +29,7 @@ download_zenodo(".", "10.5281/zenodo.1172801")
 download_zenodo(".", "10.5281/zenodo.168478")
 }
 }
+\seealso{
+Other download: \code{\link{download_knmi_data_hour}}
+}
+\concept{download}

@@ -17,6 +17,7 @@
 #'
 #'
 #' @export
+#' @family download
 #'
 #' @examples
 #' \dontrun{
