@@ -15,6 +15,7 @@ Authors@R: c(
     person("Thierry", "Onkelinx", role = "ctb", email = "thierry.onkelinx@inbo.be", comment = c(ORCID = "0000-0001-8804-4216")),
     person("Floris", "Vanderhaeghe", role = "ctb", email = "floris.vanderhaeghe@inbo.be", comment = c(ORCID = "0000-0002-6378-6229")),
     person("Pieter", "Verschelde", role = "ctb", email = "pieter.verschelde@inbo.be", comment = c(ORCID = "0000-0002-9199-421X")),
+    person("Els", "De Bie", role = "ctb", email = "els.debie@inbo.be", comment = c(ORCID = "0000-0001-7679-743X")),
     person("Research Institute for Nature and Forest (INBO)", role = "cph", email = "info@inbo.be")
     )
 License: MIT + file LICENSE
