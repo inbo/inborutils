@@ -21,11 +21,10 @@ survey_name must be a single character string (one survey name) that can
 include wildcarts to allow partial matches}
 }
 \value{
-A remote tbl object (collect = FALSE) or a tibble dataframe (collect
-= TRUE) with variables RecordingGivid (unique Id), UserReference, Observer,
-QualifierType, QualifierCode, Description, 2nd QualifierCode, 2nd Description,
-3rd QualifierCode, 3rd Description, Elucidation, in case qualifier is 'NotSure'
-, ParentID, QualifierResource
+A dataframe with variables RecordingGivid (unique Id), UserReference,
+Observer, QualifierType, QualifierCode, Description, 2nd QualifierCode,
+2nd Description, 3rd QualifierCode, 3rd Description, Elucidation, in case
+qualifier is 'NotSure', ParentID, QualifierResource
 }
 \description{
 This function queries the INBOVEG database for
@@ -35,7 +34,7 @@ qualifier information on recordings  for one or more surveys.
 \dontrun{
 con <- connect_inbo_dbase("D0010_00_Cydonia")
 
-# get the qualifiers from one survey and collect the data
+# get the qualifiers from one survey
 qualifiers_heischraal2012 <- inboveg_qualifiers(con, survey_name =
 "MILKLIM_Heischraal2012")
 
