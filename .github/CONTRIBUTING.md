@@ -8,7 +8,7 @@ inborutils is an open source project, maintained by people who care.
 [issues]: https://github.com/inbo/inborutils/issues
 [new_issue]: https://github.com/inbo/inborutils/issues/new
 [website]: https://inbo.github.io/inborutils/
-[email]: mailto:stijn.vanhoey@inbo.be
+[email]: mailto:hans.vancalster@inbo.be
 
 ## Code of conduct
 
