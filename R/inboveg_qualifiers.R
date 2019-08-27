@@ -14,16 +14,14 @@
 #' survey_name must be a single character string (one survey name) that can
 #' include wildcarts to allow partial matches
 #'
-#' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
-#' = TRUE) with variables RecordingGivid (unique Id), UserReference, Observer, 
-#' QualifierType, QualifierCode, Description, 2nd QualifierCode, 2nd Description, 
-#' 3rd QualifierCode, 3rd Description, Elucidation, in case qualifier is 'NotSure'
-#' , ParentID, QualifierResource
+#' @return A dataframe with variables RecordingGivid (unique Id), UserReference,
+#' Observer, QualifierType, QualifierCode, Description, 2nd QualifierCode,
+#' 2nd Description, 3rd QualifierCode, 3rd Description, Elucidation, in case
+#' qualifier is 'NotSure', ParentID, QualifierResource
 #'
 #' @importFrom glue glue_sql
 #' @importFrom DBI dbGetQuery
 #' @importFrom assertthat assert_that
-#' @importFrom dplyr collect tbl sql
 #'
 #' @export
 #' @family inboveg
@@ -31,7 +29,7 @@
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
 #'
-#' # get the qualifiers from one survey and collect the data
+#' # get the qualifiers from one survey
 #' qualifiers_heischraal2012 <- inboveg_qualifiers(con, survey_name =
 #' "MILKLIM_Heischraal2012")
 #'
@@ -49,25 +47,25 @@
 #' dbDisconnect(con)
 #' rm(con)
 #' }
-#' 
+#'
 
 
 inboveg_qualifiers <- function(connection,
                                survey_name,
                                multiple = FALSE) {
-  
+
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
-  
+
   if (missing(survey_name) & !multiple) {
     survey_name <- "%"
   }
-  
+
   if (missing(survey_name) & multiple) {
     stop("Please provide one or more survey names to survey_name when multiple
          = TRUE")
   }
-  
+
   if (!missing(survey_name)) {
     if (!multiple) {
       assert_that(is.character(survey_name))
@@ -75,7 +73,7 @@ inboveg_qualifiers <- function(connection,
       assert_that(is.vector(survey_name, mode = "character"))
     }
   }
-  
+
   common_part <- "SELECT ivS.Name
       , ivR.RecordingGivid
       , ivR.UserReference
@@ -94,40 +92,40 @@ inboveg_qualifiers <- function(connection,
   FROM  dbo.ivSurvey ivS
   INNER JOIN dbo.ivRecording ivR  ON ivR.SurveyId = ivS.Id
   LEFT JOIN dbo.ivRLQualifier ivRLQ ON ivRLQ.RecordingID = ivR.Id
-  LEFT JOIN dbo.ivRLResources ivRLR ON 
+  LEFT JOIN dbo.ivRLResources ivRLR ON
                                   ivRLR.ResourceGIVID = ivRLQ.QualifierResource
   LEFT JOIN dbo.ivRLQualifier ivRLQ_P ON ivRLQ_P.ParentID = ivRLQ.ID
-  LEFT JOIN dbo.ivRLResources ivRLR_P ON 
+  LEFT JOIN dbo.ivRLResources ivRLR_P ON
                               ivRLR_P.ResourceGIVID = ivRLQ_P.QualifierResource
   LEFT JOIN dbo.ivRLQualifier ivRLQ_GP ON ivRLQ_GP.ParentID = ivRLQ_P.ID
-  LEFT JOIN dbo.ivRLResources ivRLR_GP ON 
+  LEFT JOIN dbo.ivRLResources ivRLR_GP ON
                             ivRLR_GP.ResourceGIVID = ivRLQ_GP.QualifierResource
-  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV ON 
+  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV ON
                   ftACV.Code = ivRLQ.QualifierCode COLLATE Latin1_General_CI_AI
   AND ftACV.ActionGroup = ivRLR.ActionGroup  COLLATE Latin1_General_CI_AI
   AND ftACV.ListName = ivRLR.ListName  COLLATE Latin1_General_CI_AI
-  
-  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV_P ON 
+
+  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV_P ON
               ftACV_P.Code = ivRLQ_P.QualifierCode  COLLATE Latin1_General_CI_AI
   AND ftACV_P.ActionGroup = ivRLR_P.ActionGroup  COLLATE Latin1_General_CI_AI
   AND ftACV_P.ListName = ivRLR_P.ListName  COLLATE Latin1_General_CI_AI
-  
-  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV_GP ON 
+
+  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV_GP ON
             ftACV_GP.Code = ivRLQ_GP.QualifierCode  COLLATE Latin1_General_CI_AI
   AND ftACV_GP.ActionGroup = ivRLR_GP.ActionGroup  COLLATE Latin1_General_CI_AI
   AND ftACV_GP.ListName = ivRLR_GP.ListName  COLLATE Latin1_General_CI_AI
-  
+
   WHERE ivRLQ.ParentID Is Null
   "
-  
-  
+
+
   if (!multiple) {
     sql_statement <- glue_sql(common_part,
                               "AND ivS.Name LIKE {survey_name}
                               ",
                               survey_name = survey_name,
                               .con = connection)
-    
+
   } else {
     sql_statement <- glue_sql(common_part,
                               "AND ivS.Name IN ({survey_name*})
@@ -135,18 +133,18 @@ inboveg_qualifiers <- function(connection,
                               survey_name = survey_name,
                               .con = connection)
   }
-  
+
   sql_statement <- glue_sql(
     sql_statement,
     "ORDER BY ivR.UserReference, ivRLQ.QualifierType, ivRLQ.QualifierCode OFFSET 0 ROWS",
     .con = connection)
-  
+
   sql_statement <- iconv(sql_statement, from =  "UTF-8", to = "latin1")
-  
+
   query_result <- dbGetQuery(connection, sql_statement)
-  
+
   return(query_result)
-  
+
 }
 
 
