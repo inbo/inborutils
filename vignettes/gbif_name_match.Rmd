@@ -49,9 +49,24 @@ knitr::kable(my_data_update)
 When not satisfied by the default fields provided ´('usageKey','scientificName','rank','order','matchType','phylum', 'kingdom','genus', 'class','confidence', 'synonym', 'status','family')´, you can alter these by the `gbif_terms` argument, for example:
 
 ```{r message=FALSE, warning=FALSE}
-gbif_terms_to_use <- c('scientificName', 'order')
+gbif_terms_to_use <- c('canonicalName', 'order')
 my_data_update <- gbif_species_name_match(species_example, 
-                                          name = "speciesName" , 
+                                              name = "speciesName" , 
+                                              gbif_terms = gbif_terms_to_use)
+```
+
+```{r}
+knitr::kable(my_data_update)
+```
+
+If the name of a GBIF field is already in use as column name in your data.frame, the suffix number `1` is added and a warning is returned. For example: 
+
+```{r message=FALSE, warning=TRUE}
+df <- species_example
+names(df) <- c("scientificName", names(species_example)[2:3])
+gbif_terms_to_use <- c('scientificName', 'order')
+my_data_update <- gbif_species_name_match(df,
+                                          name = "scientificName" , 
                                           gbif_terms = gbif_terms_to_use)
 ```
 
