@@ -11,11 +11,17 @@ inboveg_header(connection, survey_name, rec_type, collect = FALSE)
 on the inbo-sql07-prd server}
 
 \item{survey_name}{A character vector giving the name of the survey for which
-you want to extract header information.}
+you want to extract header information. If missing, all surveys are returned.}
 
 \item{rec_type}{A character vector giving the name of record type for which
 you want to extract header information e.g. 'Classic', 'Classic-emmer',
-'Classic-ketting', 'BioHab', 'ABS'.}
+'Classic-ketting', 'BioHab', 'ABS'. If missing, all recording types are returned.}
+
+\item{collect}{If FALSE (the default), a remote tbl object is returned.
+This is like a reference to the result of the query but the full result of
+the query is not brought into memory. If TRUE the full result of the query is
+collected (fetched) from the database and brought into memory of the working
+environment.}
 }
 \value{
 A remote tbl object (collect = FALSE) or a tibble dataframe (collect
@@ -31,22 +37,24 @@ information for all surveys.
 \examples{
 \dontrun{
 con <- connect_inbo_dbase("D0010_00_Cydonia")
+
 # get header information from a specific survey and a specific recording type
 and collect the data
 header_info <- inboveg_header(con, survey_name = "OudeLanden_1979",
 rec_type = "Classic", collect = TRUE)
+
 # get header information of all surveys,  don't collect the data
 all_header_info <- inboveg_header(con)
+
+# Close the connection when done
 dbDisconnect(con)
 rm(con)
 }
 }
 \seealso{
 Other inboveg: \code{\link{inboveg_classification}},
-  \code{\link{inboveg_coverage}},
-  \code{\link{inboveg_metadata_kop}},
+  \code{\link{inboveg_qualifiers}},
   \code{\link{inboveg_recordings}},
-  \code{\link{inboveg_survey}},
-  \code{\link{inboveg_synonym_list}}
+  \code{\link{inboveg_survey}}
 }
 \concept{inboveg}

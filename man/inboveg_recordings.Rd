@@ -13,7 +13,8 @@ on the inbo-sql07-prd server}
 
 \item{survey_name}{A character string or a character vector, depending on
 multiple parameter, giving the name or names of the
-survey(s) for which you want to extract relevé information.}
+survey(s) for which you want to extract relevé information. If missing, all
+surveys are returned.}
 
 \item{collect}{If FALSE (the default), a remote tbl object is returned.
 This is like a reference to the result of the query but the full result of
@@ -64,10 +65,8 @@ rm(con)
 }
 \seealso{
 Other inboveg: \code{\link{inboveg_classification}},
-  \code{\link{inboveg_coverage}},
   \code{\link{inboveg_header}},
-  \code{\link{inboveg_metadata_kop}},
-  \code{\link{inboveg_survey}},
-  \code{\link{inboveg_synonym_list}}
+  \code{\link{inboveg_qualifiers}},
+  \code{\link{inboveg_survey}}
 }
 \concept{inboveg}

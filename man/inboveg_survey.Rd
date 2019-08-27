@@ -31,22 +31,23 @@ See the examples for how to get information for all surveys.
 \examples{
 \dontrun{
 con <- connect_inbo_dbase("D0010_00_Cydonia")
-survey <- "OudeLanden_1979"
-get information of a specific survey and collect data
+
+# get information of a specific survey and collect data
 survey_info <- inboveg_survey(con, survey_name = "OudeLanden_1979",
 collect = TRUE)
-get information of all surveys and collect data
+
+# get information of all surveys and collect data
 allsurveys <- inboveg_survey(con)
+
+# Close the connection when done
 dbDisconnect(con)
 rm(con)
 }
 }
 \seealso{
 Other inboveg: \code{\link{inboveg_classification}},
-  \code{\link{inboveg_coverage}},
   \code{\link{inboveg_header}},
-  \code{\link{inboveg_metadata_kop}},
-  \code{\link{inboveg_recordings}},
-  \code{\link{inboveg_synonym_list}}
+  \code{\link{inboveg_qualifiers}},
+  \code{\link{inboveg_recordings}}
 }
 \concept{inboveg}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/inboveg_classification.R
 \name{inboveg_classification}
 \alias{inboveg_classification}
-\title{Query Classification information from INBOVEG}
+\title{Query classification information from INBOVEG}
 \usage{
 inboveg_classification(connection, survey_name, classif, collect = FALSE)
 }
@@ -15,7 +15,7 @@ which you want to extract Classification information. If missing, all
 surveys are returned.}
 
 \item{classif}{A character vector giving the Classification code of the
-vegetation type for which #' you want to extract information. If missing,
+vegetation type for which you want to extract information. If missing,
 all classifications are returned.}
 
 \item{collect}{If FALSE (the default), a remote tbl object is returned. This
@@ -39,21 +39,23 @@ for how to get information for all surveys.
 \examples{
 \dontrun{
 con <- connect_inbo_dbase("D0010_00_Cydonia")
+
 # get a specific classification from a survey and collect the data
 classif_info <- inboveg_classification(con,
 survey_name = "MILKLIM_Heischraal2012", classif = "4010", collect = TRUE)
+
 # get all surveys, all classifications,  don't collect the data
 allecodes <- inboveg_classification(con)
+
+# Close the connection when done
 dbDisconnect(con)
 rm(con)
 }
 }
 \seealso{
-Other inboveg: \code{\link{inboveg_coverage}},
-  \code{\link{inboveg_header}},
-  \code{\link{inboveg_metadata_kop}},
+Other inboveg: \code{\link{inboveg_header}},
+  \code{\link{inboveg_qualifiers}},
   \code{\link{inboveg_recordings}},
-  \code{\link{inboveg_survey}},
-  \code{\link{inboveg_synonym_list}}
+  \code{\link{inboveg_survey}}
 }
 \concept{inboveg}
