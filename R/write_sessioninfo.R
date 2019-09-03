@@ -33,7 +33,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' write_sessioninfo(file = "./sessioninfo.txt")
+#' write_sessioninfo(file = "sessioninfo.txt")
 #' }
 write_sessioninfo <- function(file) {
 

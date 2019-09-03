@@ -26,6 +26,6 @@ source if different from CRAN.}
 }
 \examples{
 \dontrun{
-write_sessioninfo(file = "./sessioninfo.txt")
+write_sessioninfo(file = "sessioninfo.txt")
 }
 }
