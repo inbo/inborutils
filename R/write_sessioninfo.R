@@ -10,62 +10,33 @@
 #' \itemize{
 #' \item{essential platform info: version, os, system, ctype}
 #' \item{essential info on loaded packages: package, loadedversion, date,
-#' source if different from CRAN.}
+#' source.}
 #' }
 #'
 #' @param file A file path or a \code{\link[base]{connection}}.
+#' @inheritParams sessioninfo::session_info
 #'
-#' @importFrom sessioninfo
-#' platform_info
-#' package_info
-#' @importFrom stringr
-#' str_detect
-#' @importFrom utils
-#' write.table
-#' capture.output
-#' @importFrom rlang
-#' .data
-#' @importFrom dplyr
-#' mutate
-#' select
+#' @importFrom sessioninfo session_info
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' write_sessioninfo(file = "sessioninfo.txt")
+#' write_sessioninfo(file = "./sessioninfo.yml")
 #' }
-write_sessioninfo <- function(file) {
-
-  platform_info()[c("version",
-                    "os",
-                    "system",
-                    "ctype")] %>%
-    unlist %>%
-    as.matrix() %>%
-    write.table(file = file,
-                quote = FALSE,
-                col.names = FALSE,
-                sep = "\t")
-
-  capture.output(cat("\n"),
-                 file = file,
-                 append = TRUE)
-
-  package_info() %>%
-    as.data.frame %>%
-    mutate(non_cran = ifelse(str_detect(source, "CRAN"),
-                             "",
-                             source)) %>%
-    select(.data$package,
-           .data$loadedversion,
-           .data$date,
-           .data$non_cran) %>%
-    write.table(file = file,
-                quote = FALSE,
-                row.names = FALSE,
-                col.names = FALSE,
-                sep = " ",
-                append = TRUE)
-
+write_sessioninfo <- function(file, pkgs = NULL, include_base = FALSE) {
+  si <- session_info()
+  si[["platform"]] <- si[["platform"]][c("version", "os", "system", "ctype")]
+  relevant <- c("loadedversion", "date", "source")
+  si[["packages"]] <- apply(
+    si[["packages"]],
+    1,
+    function(x) {
+      as.list(x[relevant])
+    }
+  )
+  if (!requireNamespace("yaml", quietly = TRUE)) {
+    stop("please install the 'yaml' package first")
+  }
+  yaml::write_yaml(si, file)
 }

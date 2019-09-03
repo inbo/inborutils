@@ -46,7 +46,6 @@ Imports:
     sp,
     sf,
     stats,
-    stringr,
     tibble,
     tidyr,
     tidyselect
@@ -56,7 +55,8 @@ Suggests:
     testthat,
     ggplot2,
     htmlwidgets,
-    drat
+    drat,
+    yaml
 LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
