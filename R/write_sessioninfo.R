@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' write_sessioninfo(file = "./sessioninfo.yml")
+#' write_sessioninfo(file = "sessioninfo.yml")
 #' }
 write_sessioninfo <- function(file, pkgs = NULL, include_base = FALSE) {
   si <- session_info()
