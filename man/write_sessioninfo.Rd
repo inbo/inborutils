@@ -4,10 +4,17 @@
 \alias{write_sessioninfo}
 \title{Write essential session info to a file or connection}
 \usage{
-write_sessioninfo(file)
+write_sessioninfo(file, pkgs = NULL, include_base = FALSE)
 }
 \arguments{
 \item{file}{A file path or a \code{\link[base]{connection}}.}
+
+\item{pkgs}{Either a vector of package names or NULL. If \code{NULL},
+displays all loaded packages. If a character vector, also, includes
+all dependencies of the package.}
+
+\item{include_base}{Include base packages in summary? By default this is
+false since base packages should always match the R version.}
 }
 \description{
 Writes essentials of
@@ -21,11 +28,11 @@ The following information is written:
 \itemize{
 \item{essential platform info: version, os, system, ctype}
 \item{essential info on loaded packages: package, loadedversion, date,
-source if different from CRAN.}
+source.}
 }
 }
 \examples{
 \dontrun{
-write_sessioninfo(file = "sessioninfo.txt")
+write_sessioninfo(file = "./sessioninfo.yml")
 }
 }
