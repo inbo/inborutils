@@ -37,6 +37,7 @@ Other contributors:
   \item Thierry Onkelinx \email{thierry.onkelinx@inbo.be} (0000-0001-8804-4216) [contributor]
   \item Floris Vanderhaeghe \email{floris.vanderhaeghe@inbo.be} (0000-0002-6378-6229) [contributor]
   \item Pieter Verschelde \email{pieter.verschelde@inbo.be} (0000-0002-9199-421X) [contributor]
+  \item Els De Bie \email{els.debie@inbo.be} (0000-0001-7679-743X) [contributor]
   \item Research Institute for Nature and Forest (INBO) \email{info@inbo.be} [copyright holder]
 }
 
