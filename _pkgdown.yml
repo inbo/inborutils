@@ -23,9 +23,11 @@ reference:
       - connect_inbo_dbase
       - read_mow_data
       - download_knmi_data_hour
+      - download_zenodo
       - read_knmi_data
       - read_kmi_data
       - read_kml_file
+      - has_concept("download")
   - title: "INBOVEG data interaction"
     desc: "Functions to read data from INBOVEG database"
     contents:
