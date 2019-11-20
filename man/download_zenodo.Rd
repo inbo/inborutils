@@ -22,11 +22,11 @@ example derived from Zookeys.)
 }
 \examples{
 \dontrun{
-# Single zip file deposition
+# Single zip file download
 download_zenodo(doi = "10.5281/zenodo.1283345")
-# Multiple files deposition
+# Multiple files download
 download_zenodo(doi = "10.5281/zenodo.1172801")
-# Single pdf file deposition
+# Single pdf file download
 download_zenodo(doi = "10.5281/zenodo.168478")
 }
 }
