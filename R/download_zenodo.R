@@ -4,7 +4,8 @@
 #' It only works for Zenodo created DOI (not when the DOI is for
 #' example derived from Zookeys.)
 #'
-#' @param path local path to where the data need to be written
+#' @param path Path where the data must be downloaded.
+#' Defaults to the working directory.
 #' @param doi a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.
 #'
 #' @return Downloaded file(s) in the specified folder.
@@ -22,16 +23,14 @@
 #' @examples
 #' \dontrun{
 #' # Single zip file deposition
-#' download_zenodo(".", "10.5281/zenodo.1283345")
+#' download_zenodo(doi = "10.5281/zenodo.1283345")
 #' # Multiple files deposition
-#' download_zenodo(".", "10.5281/zenodo.1172801")
+#' download_zenodo(doi = "10.5281/zenodo.1172801")
 #' # Single pdf file deposition
-#' download_zenodo(".", "10.5281/zenodo.168478")
+#' download_zenodo(doi = "10.5281/zenodo.168478")
 #' }
-download_zenodo <- function(path, doi) {
-  if (missing(path)) {
-    stop("Please provide a path to which the data need to be downloaded")
-  }
+download_zenodo <- function(path = ".",
+                            doi) {
   if (missing(doi)) {
     stop(paste0("Please provide a doi for a Zenodo archive. This is a ",
                 "string starting with '10.5281/zenodo.' followed by a ",

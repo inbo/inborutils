@@ -4,10 +4,11 @@
 \alias{download_zenodo}
 \title{Get data from a Zenodo archive}
 \usage{
-download_zenodo(path, doi)
+download_zenodo(path = ".", doi)
 }
 \arguments{
-\item{path}{local path to where the data need to be written}
+\item{path}{Path where the data must be downloaded.
+Defaults to the working directory.}
 
 \item{doi}{a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.}
 }
@@ -22,11 +23,11 @@ example derived from Zookeys.)
 \examples{
 \dontrun{
 # Single zip file deposition
-download_zenodo(".", "10.5281/zenodo.1283345")
+download_zenodo(doi = "10.5281/zenodo.1283345")
 # Multiple files deposition
-download_zenodo(".", "10.5281/zenodo.1172801")
+download_zenodo(doi = "10.5281/zenodo.1172801")
 # Single pdf file deposition
-download_zenodo(".", "10.5281/zenodo.168478")
+download_zenodo(doi = "10.5281/zenodo.168478")
 }
 }
 \seealso{
