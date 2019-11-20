@@ -29,8 +29,8 @@
 #' # Single pdf file download
 #' download_zenodo(doi = "10.5281/zenodo.168478")
 #' }
-download_zenodo <- function(path = ".",
-                            doi) {
+download_zenodo <- function(doi,
+                            path = ".") {
   if (missing(doi)) {
     stop(paste0("Please provide a doi for a Zenodo archive. This is a ",
                 "string starting with '10.5281/zenodo.' followed by a ",

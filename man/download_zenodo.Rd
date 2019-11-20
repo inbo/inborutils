@@ -4,13 +4,13 @@
 \alias{download_zenodo}
 \title{Get data from a Zenodo archive}
 \usage{
-download_zenodo(path = ".", doi)
+download_zenodo(doi, path = ".")
 }
 \arguments{
+\item{doi}{a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.}
+
 \item{path}{Path where the data must be downloaded.
 Defaults to the working directory.}
-
-\item{doi}{a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.}
 }
 \value{
 Downloaded file(s) in the specified folder.
