@@ -38,9 +38,7 @@ download_zenodo <- function(doi,
   assert_that(is.string(doi), is.string(path))
 
   # check for existence of the folder
-  if (!dir.exists(path)) {
-    stop("The path does not exist.")
-  }
+  stopifnot(dir.exists(path))
 
   record <- str_remove(doi, fixed("10.5281/zenodo."))
 
