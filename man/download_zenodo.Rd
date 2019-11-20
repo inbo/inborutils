@@ -16,17 +16,18 @@ Defaults to the working directory.}
 Downloaded file(s) in the specified folder.
 }
 \description{
-This function will download data from Zenodo (\url{https://zenodo.org}).
+This function will download an entire archive from Zenodo (\url{https://zenodo.org}).
 It only works for Zenodo created DOI (not when the DOI is for
 example derived from Zookeys.)
 }
 \examples{
 \dontrun{
-# Single zip file download
+# Example download of an archive containing a single zip
 download_zenodo(doi = "10.5281/zenodo.1283345")
-# Multiple files download
+# Example download of an archive containing multiple files
+# (all files will be downloaded)
 download_zenodo(doi = "10.5281/zenodo.1172801")
-# Single pdf file download
+# Example download of an archive containing a single pdf file
 download_zenodo(doi = "10.5281/zenodo.168478")
 }
 }
