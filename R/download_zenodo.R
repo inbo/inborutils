@@ -15,7 +15,9 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom tools md5sum
 #' @importFrom utils tail
-#'
+#' @importFrom assertthat
+#' assert_that
+#' is.string
 #'
 #' @export
 #' @family download
@@ -36,6 +38,8 @@ download_zenodo <- function(doi,
                 "string starting with '10.5281/zenodo.' followed by a ",
                 "unique number."))
   }
+
+  assert_that(is.string(doi), is.string(path))
 
   # check for existence of the folder
   if (!dir.exists(path)) {
