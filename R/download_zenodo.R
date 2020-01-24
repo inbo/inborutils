@@ -55,6 +55,17 @@ download_zenodo <- function(doi,
   file_md5 <- content$files$checksum
 
   # download files
+  message("Will download ",
+          length(filenames),
+          " files from DOI: ",
+          doi,
+          " (",
+          content$metadata$title,
+          "; version: ",
+          content$metadata$version,
+          ")\n"
+  )
+
 
   mapply(curl_download,
            file_urls,
@@ -68,14 +79,17 @@ download_zenodo <- function(doi,
     md5 <- unname(md5sum(destfile))
     zenodo_md5 <- str_split(file_md5[i], ":")[[1]][2]
     if (all.equal(md5, zenodo_md5)) {
-      print(paste0("md5sum ", md5, " for ", file_name," is correct."))
+      message(filename,
+              " was downloaded and its integrity verified (md5sum: ",
+              md5,
+              ")")
     } else {
-      warning(paste0("md5 sum ",
-                     md5,
-                     " for file",
-                     file_name,
-                     " does not match the Zenodo archived md5 sum ",
-                     zenodo_md5))
+      warning("Incorrect download! md5sum ",
+              md5,
+              " for file",
+              filename,
+              " does not match the Zenodo archived md5sum ",
+              zenodo_md5)
     }
   }
 }
