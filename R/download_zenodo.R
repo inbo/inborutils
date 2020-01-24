@@ -65,7 +65,7 @@ download_zenodo <- function(doi,
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
-  filenames <- str_match(file_urls, ".+/(\\w+\\.?\\w*)")[,2]
+  filenames <- str_match(file_urls, ".+/([^/]+)")[,2]
   destfiles <- file.path(path, filenames)
 
   # extract check-sum(s)
