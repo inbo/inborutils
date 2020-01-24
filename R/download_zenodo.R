@@ -14,8 +14,11 @@
 #' record, which otherwise would be downloaded sequentially.
 #' Of course, the operation is limited by bandwidth and traffic limitations.
 #'
-#' @importFrom stringr fixed str_remove str_split
-#' @importFrom stringr fixed str_remove str_split
+#' @importFrom stringr
+#' fixed
+#' str_remove
+#' str_split
+#' str_match
 #' @importFrom curl curl_fetch_memory curl_download
 #' @importFrom jsonlite fromJSON
 #' @importFrom tools md5sum
