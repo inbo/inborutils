@@ -120,6 +120,9 @@ download_zenodo <- function(doi,
   }
 
   # check each of the files
+
+  message("Verifying file integrity...\n")
+
   for (i in seq_along(file_urls)) {
     filename <- filenames[i]
     destfile <- destfiles[i]
