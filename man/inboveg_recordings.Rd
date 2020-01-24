@@ -4,8 +4,7 @@
 \alias{inboveg_recordings}
 \title{Query recording (relevé) information from INBOVEG}
 \usage{
-inboveg_recordings(connection, survey_name, collect = FALSE,
-  multiple = FALSE)
+inboveg_recordings(connection, survey_name, collect = FALSE, multiple = FALSE)
 }
 \arguments{
 \item{connection}{dbconnection with the database 'Cydonia'
@@ -64,9 +63,10 @@ rm(con)
 }
 }
 \seealso{
-Other inboveg: \code{\link{inboveg_classification}},
-  \code{\link{inboveg_header}},
-  \code{\link{inboveg_qualifiers}},
-  \code{\link{inboveg_survey}}
+Other inboveg: 
+\code{\link{inboveg_classification}()},
+\code{\link{inboveg_header}()},
+\code{\link{inboveg_qualifiers}()},
+\code{\link{inboveg_survey}()}
 }
 \concept{inboveg}
