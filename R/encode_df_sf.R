@@ -1,11 +1,15 @@
 #' Convert encoding of character and factor variables in a dataframe
 #'
-#' @param x A dataframe or an object (such as `sf`) with the `data.frame`
-#' class
-#' @param to Encoding string to convert to.
-#' All \code{R} platforms support \code{""} (for the encoding of the current
+#' @details
+#' Encoding strings: all \code{R} platforms support \code{""} (for the
+#' encoding of the current
 #' locale), \code{"latin1"} and \code{"UTF-8"}.
 #' See \code{\link[base]{iconv}} for more information.
+#'
+#' @param x A dataframe or an object (such as `sf`) with the `data.frame`
+#' class
+#'
+#' @inheritParams base::iconv
 #'
 #' @md
 #'
@@ -21,7 +25,9 @@
 #' assert_that
 #' is.string
 convertdf_enc <- function(x,
-                          to = "UTF-8") {
+                          from = "",
+                          to = "UTF-8",
+                          sub = NA) {
 
     assert_that(inherits(x, "data.frame"))
     assert_that(is.string(to))
@@ -32,18 +38,24 @@ convertdf_enc <- function(x,
         } else FALSE
     }
 
-    conv_levels <- function(fact, to) {
+    conv_levels <- function(fact, from, to, sub) {
         levels(fact) <- iconv(levels(fact),
-                              to = to)
+                              from = from,
+                              to = to,
+                              sub = sub)
         return(fact)
     }
 
     x %>%
         mutate_if(is.character,
                   iconv,
-                  to = to) %>%
+                  from = from,
+                  to = to,
+                  sub = sub) %>%
         mutate_if(is_chfact,
                   conv_levels,
-                  to = to)
+                  from = from,
+                  to = to,
+                  sub = sub)
 
 }

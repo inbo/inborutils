@@ -4,16 +4,20 @@
 \alias{convertdf_enc}
 \title{Convert encoding of character and factor variables in a dataframe}
 \usage{
-convertdf_enc(x, to = "UTF-8")
+convertdf_enc(x, from = "", to = "UTF-8", sub = NA)
 }
 \arguments{
 \item{x}{A dataframe or an object (such as \code{sf}) with the \code{data.frame}
 class}
 
-\item{to}{Encoding string to convert to.
-All \code{R} platforms support \code{""} (for the encoding of the current
-locale), \code{"latin1"} and \code{"UTF-8"}.
-See \code{\link[base]{iconv}} for more information.}
+\item{from}{A character string describing the current encoding.}
+
+\item{to}{A character string describing the target encoding.}
+
+\item{sub}{character string.  If not \code{NA} it is used to replace
+    any non-convertible bytes in the input.  (This would normally be a
+    single character, but can be more.)  If \code{"byte"}, the indication is
+    \code{"<xx>"} with the hex code of the byte.}
 }
 \value{
 The original object, with character variables (and levels of
@@ -21,4 +25,10 @@ The original object, with character variables (and levels of
 }
 \description{
 Convert encoding of character and factor variables in a dataframe
+}
+\details{
+Encoding strings: all \code{R} platforms support \code{""} (for the
+encoding of the current
+locale), \code{"latin1"} and \code{"UTF-8"}.
+See \code{\link[base]{iconv}} for more information.
 }
