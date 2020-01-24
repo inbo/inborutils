@@ -29,8 +29,9 @@ example derived from Zookeys.)
 # Example download of an archive containing a single zip
 download_zenodo(doi = "10.5281/zenodo.1283345")
 # Example download of an archive containing multiple files
-# (all files will be downloaded)
-download_zenodo(doi = "10.5281/zenodo.1172801")
+# using parallel download
+# (multiple files will be simultaneously downloaded)
+download_zenodo(doi = "10.5281/zenodo.1172801", parallel = TRUE)
 # Example download of an archive containing a single pdf file
 download_zenodo(doi = "10.5281/zenodo.168478")
 }
