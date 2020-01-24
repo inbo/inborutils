@@ -47,7 +47,7 @@ output_file = "knmi_output_download.txt")
 }
 }
 \seealso{
-Other download: 
+Other download functions: 
 \code{\link{download_zenodo}()}
 }
-\concept{download}
+\concept{download functions}

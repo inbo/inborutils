@@ -30,7 +30,7 @@
 #' stopCluster
 #'
 #' @export
-#' @family download
+#' @family download functions
 #'
 #' @examples
 #' \dontrun{
