@@ -4,9 +4,13 @@
 \alias{gbif_species_name_match}
 \title{Add species information provided by the GBIF taxonomic backbone API}
 \usage{
-gbif_species_name_match(df, name = "name", gbif_terms = c("usageKey",
-  "scientificName", "rank", "order", "matchType", "phylum", "kingdom",
-  "genus", "class", "confidence", "synonym", "status", "family"), ...)
+gbif_species_name_match(
+  df,
+  name = "name",
+  gbif_terms = c("usageKey", "scientificName", "rank", "order", "matchType", "phylum",
+    "kingdom", "genus", "class", "confidence", "synonym", "status", "family"),
+  ...
+)
 }
 \arguments{
 \item{df}{data.frame with species information}
@@ -16,19 +20,19 @@ used for the name matching with the GBIF taxonomic backbone. Default:
 "name".}
 
 \item{gbif_terms}{list of valid GBIF terms to add as additional columns to
-the data.frame. Default: 'usageKey', 'scientificName', 'rank',
-'order', 'matchType', 'phylum', 'kingdom', 'genus', 'class',
-'confidence', 'synonym', 'status', 'family'.}
+the data.frame. Default: \'usageKey\', \'scientificName\', \'rank\',
+\'order\', \'matchType\', \'phylum\', \'kingdom\', \'genus\', \'class\',
+\'confidence\', \'synonym\', \'status\', \'family\'.}
 
 \item{...}{any parameter to pass to rgbif function \code{name_bakbone}. One of:
-'rank', 'kingdom', 'phylum', 'class', 'order', 'family',
-'genus', 'strict', 'verbose', 'start', 'limit', 'curlopts'. See
+\'rank\', \'kingdom\', \'phylum\', \'class\', \'order\', \'family\',
+\'genus\', \'strict\', \'verbose\', \'start\', \'limit\', \'curlopts\'. See
 \code{?name_backbone} for more details.}
 }
 \value{
 a tibble data.frame with GBIF information as additional columns. If
-none of the taxa in  \code{df} is matched, only the columns 'confidence',
-'matchType' and 'synonym' are added. This behavior is inherited by
+none of the taxa in  \code{df} is matched, only the columns \'confidence\',
+\'matchType\' and \'synonym\' are added. This behavior is inherited by
 \code{rgbif::name_backbone}.
 }
 \description{

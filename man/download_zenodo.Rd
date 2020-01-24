@@ -32,6 +32,7 @@ download_zenodo(doi = "10.5281/zenodo.168478")
 }
 }
 \seealso{
-Other download: \code{\link{download_knmi_data_hour}}
+Other download: 
+\code{\link{download_knmi_data_hour}()}
 }
 \concept{download}

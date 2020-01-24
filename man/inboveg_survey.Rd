@@ -45,9 +45,10 @@ rm(con)
 }
 }
 \seealso{
-Other inboveg: \code{\link{inboveg_classification}},
-  \code{\link{inboveg_header}},
-  \code{\link{inboveg_qualifiers}},
-  \code{\link{inboveg_recordings}}
+Other inboveg: 
+\code{\link{inboveg_classification}()},
+\code{\link{inboveg_header}()},
+\code{\link{inboveg_qualifiers}()},
+\code{\link{inboveg_recordings}()}
 }
 \concept{inboveg}

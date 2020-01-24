@@ -52,9 +52,10 @@ rm(con)
 }
 }
 \seealso{
-Other inboveg: \code{\link{inboveg_classification}},
-  \code{\link{inboveg_qualifiers}},
-  \code{\link{inboveg_recordings}},
-  \code{\link{inboveg_survey}}
+Other inboveg: 
+\code{\link{inboveg_classification}()},
+\code{\link{inboveg_qualifiers}()},
+\code{\link{inboveg_recordings}()},
+\code{\link{inboveg_survey}()}
 }
 \concept{inboveg}
