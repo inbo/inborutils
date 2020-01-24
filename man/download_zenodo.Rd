@@ -4,13 +4,20 @@
 \alias{download_zenodo}
 \title{Get data from a Zenodo archive}
 \usage{
-download_zenodo(doi, path = ".")
+download_zenodo(doi, path = ".", parallel = FALSE)
 }
 \arguments{
 \item{doi}{a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.}
 
 \item{path}{Path where the data must be downloaded.
 Defaults to the working directory.}
+
+\item{parallel}{Logical (\code{FALSE} by default).
+If \code{TRUE}, will run a number of parallel processes, each downloading
+another file.
+This is useful when multiple large files are present in the Zenodo
+record, which otherwise would be downloaded sequentially.
+Of course, the operation is limited by bandwidth and traffic limitations.}
 }
 \description{
 This function will download an entire archive from Zenodo (\url{https://zenodo.org}).
