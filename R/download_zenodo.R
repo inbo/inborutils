@@ -8,8 +8,7 @@
 #' Defaults to the working directory.
 #' @param doi a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.
 #'
-#' @return Downloaded file(s) in the specified folder.
-#'
+#' @importFrom stringr fixed str_remove str_split
 #' @importFrom stringr fixed str_remove str_split
 #' @importFrom curl curl_fetch_memory curl_download
 #' @importFrom jsonlite fromJSON

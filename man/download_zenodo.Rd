@@ -12,9 +12,6 @@ download_zenodo(doi, path = ".")
 \item{path}{Path where the data must be downloaded.
 Defaults to the working directory.}
 }
-\value{
-Downloaded file(s) in the specified folder.
-}
 \description{
 This function will download an entire archive from Zenodo (\url{https://zenodo.org}).
 It only works for Zenodo created DOI (not when the DOI is for
