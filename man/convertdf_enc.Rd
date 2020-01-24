@@ -7,7 +7,8 @@
 convertdf_enc(x, to = "UTF-8")
 }
 \arguments{
-\item{x}{A dataframe.}
+\item{x}{A dataframe or an object (such as \code{sf}) with the \code{data.frame}
+class}
 
 \item{to}{Encoding string to convert to.
 All \code{R} platforms support \code{""} (for the encoding of the current
@@ -15,7 +16,7 @@ locale), \code{"latin1"} and \code{"UTF-8"}.
 See \code{\link[base]{iconv}} for more information.}
 }
 \value{
-The original dataframe, with character variables (and levels of
+The original object, with character variables (and levels of
 (character) factor variables) converted to the specified encoding.
 }
 \description{
