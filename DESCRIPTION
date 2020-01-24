@@ -38,6 +38,7 @@ Imports:
     lubridate,
     methods,
     odbc,
+    parallel,
     purrr,
     readr,
     rgbif,
