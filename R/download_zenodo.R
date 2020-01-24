@@ -48,17 +48,23 @@ download_zenodo <- function(doi,
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
+  filenames <- str_match(file_urls, ".+/(\\w+\\.?\\w*)")[,2]
+  destfiles <- file.path(path, filenames)
 
   # extract check-sum(s)
   file_md5 <- content$files$checksum
 
-  # donwload each of the files
+  # download files
+
+  mapply(curl_download,
+           file_urls,
+           destfiles,
+           MoreArgs = list(quiet = FALSE))
+
+  # check each of the files
   for (i in seq_along(file_urls)) {
-    file_name <- tail(str_split(file_urls[i], "/")[[1]], 1)
-    destfile <- file.path(path, file_name)
-    curl_download(url = file_urls[i],
-                  destfile = destfile,
-                  quiet = FALSE)
+    filename <- filenames[i]
+    destfile <- destfiles[i]
     md5 <- unname(md5sum(destfile))
     zenodo_md5 <- str_split(file_md5[i], ":")[[1]][2]
     if (all.equal(md5, zenodo_md5)) {
