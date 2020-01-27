@@ -4,10 +4,13 @@
 \alias{florabank_taxon_ifbl_year}
 \title{Get unique combinations of taxon, IFBL-square and year.}
 \usage{
-florabank_taxon_ifbl_year(connection, starting_year = 2010,
+florabank_taxon_ifbl_year(
+  connection,
+  starting_year = 2010,
   ifbl_resolution = c("1km-by-1km", "4km-by-4km"),
-  taxongroup = c("Vaatplanten", "Mossen", "Lichenen (korstmossen)",
-  "Kranswieren"), collect = FALSE)
+  taxongroup = c("Vaatplanten", "Mossen", "Lichenen (korstmossen)", "Kranswieren"),
+  collect = FALSE
+)
 }
 \arguments{
 \item{connection}{A connection to the florabank database. See the example section
@@ -69,7 +72,8 @@ dbDisconnect(db_connectie)
 }
 }
 \seealso{
-Other florabank: \code{\link{florabank_observations}},
-  \code{\link{florabank_traits}}
+Other florabank: 
+\code{\link{florabank_observations}()},
+\code{\link{florabank_traits}()}
 }
 \concept{florabank}

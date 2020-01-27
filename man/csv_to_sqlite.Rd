@@ -4,9 +4,16 @@
 \alias{csv_to_sqlite}
 \title{Save a delimited text table into a single table sqlite database}
 \usage{
-csv_to_sqlite(csv_file, sqlite_file, table_name, delim = ",",
-  pre_process_size = 1000, chunk_size = 50000,
-  show_progress_bar = TRUE, ...)
+csv_to_sqlite(
+  csv_file,
+  sqlite_file,
+  table_name,
+  delim = ",",
+  pre_process_size = 1000,
+  chunk_size = 50000,
+  show_progress_bar = TRUE,
+  ...
+)
 }
 \arguments{
 \item{csv_file}{Name of the text file to convert.}

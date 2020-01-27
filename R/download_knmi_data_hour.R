@@ -28,7 +28,7 @@
 #' @importFrom lubridate parse_date_time hour
 #' @importFrom httr POST content
 #'
-#' @family download
+#' @family download functions
 #'
 #' @examples
 #' \dontrun{
