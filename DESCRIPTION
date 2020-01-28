@@ -31,6 +31,7 @@ Imports:
     dplyr,
     glue,
     httr,
+    humanize,
     iterators,
     jsonlite,
     lazyeval,

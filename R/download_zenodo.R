@@ -23,6 +23,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom tools md5sum
 #' @importFrom utils tail
+#' @importFrom humanize natural_size
 #' @importFrom assertthat
 #' assert_that
 #' is.string
@@ -63,6 +64,10 @@ download_zenodo <- function(doi,
   req <- curl_fetch_memory(paste0(base_url, record))
   content <- fromJSON(rawToChar(req$content))
 
+  # Calculate total file size
+  totalsize <- sum(content$files$size) %>%
+                natural_size(suffix_type = "binary")
+
   # extract individual file names and urls
   file_urls <- content$files$links$self
   filenames <- str_match(file_urls, ".+/([^/]+)")[,2]
@@ -74,7 +79,9 @@ download_zenodo <- function(doi,
   # download files
   message("Will download ",
           length(filenames),
-          " files from DOI: ",
+          " files (total size: ",
+          totalsize,
+          ") from DOI: ",
           doi,
           " (",
           content$metadata$title,
