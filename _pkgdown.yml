@@ -2,6 +2,8 @@ template:
   params:
     bootswatch: yeti
 
+url: https://inbo.github.io/inborutils
+
 reference:
   - title: "GIS utilities"
     desc: "Functions for working with GIS data and maps"
