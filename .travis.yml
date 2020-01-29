@@ -1,16 +1,16 @@
 language: r
 cache: packages
 
-r_binary_packages:
- - rgdal
+r_packages:
+  - pkgdown
 
-r_github_packages:
-  - r-lib/pkgdown
+r_binary_packages:
+  - rgdal
 
 apt_packages:
   - libudunits2-dev
   - libgdal1-dev
-  
+
 after_success:
   - R CMD INSTALL . # Install the package to build vignettes
   - Rscript -e "pkgdown::build_site(preview = FALSE)"
