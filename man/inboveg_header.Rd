@@ -40,14 +40,14 @@ information for all surveys.
 con <- connect_inbo_dbase("D0010_00_Cydonia")
 
 # get header information from a specific survey and a specific recording type
-and collect the data
+# and collect the data
 header_info <- inboveg_header(con, survey_name = "OudeLanden_1979",
 rec_type = "Classic", collect = TRUE)
 
 # get header information of all surveys,  don't collect the data
 all_header_info <- inboveg_header(con)
 
-# Close the connection when done
+# close the connection when done
 dbDisconnect(con)
 rm(con)
 }
