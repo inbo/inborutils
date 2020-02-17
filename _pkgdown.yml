@@ -1,8 +1,8 @@
+url: https://inbo.github.io/inborutils
+
 template:
   params:
     bootswatch: yeti
-
-url: https://inbo.github.io/inborutils
 
 reference:
   - title: "GIS utilities"
