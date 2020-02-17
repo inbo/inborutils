@@ -26,7 +26,8 @@ environment.}
 \value{
 A remote tbl object (collect = FALSE) or a tibble dataframe (collect
 = TRUE) with variables RecordingGivid, Name, UserReference, LocationCode,
-Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), SurveyId, RecTypeID.
+Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), VagueDateType,
+VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
 }
 \description{
 This function queries the INBOVEG database for header
