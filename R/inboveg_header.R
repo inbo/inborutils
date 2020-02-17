@@ -20,7 +20,8 @@
 #'
 #' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
 #' = TRUE) with variables RecordingGivid, Name, UserReference, LocationCode,
-#' Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), SurveyId, RecTypeID.
+#' Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), VagueDateType,
+#' VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
 #'
 #' @importFrom glue glue_sql
 #' @importFrom DBI dbGetQuery
@@ -32,15 +33,15 @@
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
-#' 
+#'
 #' # get header information from a specific survey and a specific recording type
 #' and collect the data
 #' header_info <- inboveg_header(con, survey_name = "OudeLanden_1979",
 #' rec_type = "Classic", collect = TRUE)
-#' 
+#'
 #' # get header information of all surveys,  don't collect the data
 #' all_header_info <- inboveg_header(con)
-#' 
+#'
 #' # Close the connection when done
 #' dbDisconnect(con)
 #' rm(con)
@@ -78,6 +79,9 @@ inboveg_header <- function(connection,
       , COALESCE(ivR.Length * ivR.Width / 10000, try_convert(decimal, ivR.Area)) AS Area
       , ivR.Length
       , ivR.Width
+      , ivR.VagueDateType
+      , ivR.VagueDateBegin
+      , ivR.VagueDateEnd
       , ivR.SurveyId
       , ivR.RecTypeID
       FROM [dbo].[ivRecording] ivR
