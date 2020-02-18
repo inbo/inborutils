@@ -1,17 +1,21 @@
 #' @title Query header information from INBOVEG
 #'
 #' @description This function queries the INBOVEG database for header
-#' information (metadata for a vegetation-relevé) for one survey by the name
-#' of the survey and the recorder type. See the examples for how to get
-#' information for all surveys.
+#' information (metadata for a vegetation-relevé) for one or more surveys and
+#' the recorder type. See the examples for how to get information for all surveys.
 #'
-#' @param survey_name A character vector giving the name of the survey for which
-#' you want to extract header information. If missing, all surveys are returned.
+#' @param survey_name A character string or a character vector, depending on multiple parameter,
+#' giving the name or names of the survey(s) for which you want to extract header information.
+#' If missing, all surveys are returned.
 #' @param rec_type A character vector giving the name of record type for which
 #' you want to extract header information e.g. 'Classic', 'Classic-emmer',
 #' 'Classic-ketting', 'BioHab', 'ABS'. If missing, all recording types are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
+#' @param multiple If TRUE, survey_name can take a character vector with
+#' multiple survey names that must match exactly. If FALSE (the default),
+#' survey_name must be a single character string (one survey name) that can
+#' include wildcarts to allow partial matches
 #' @param collect If FALSE (the default), a remote tbl object is returned.
 #' This is like a reference to the result of the query but the full result of
 #' the query is not brought into memory. If TRUE the full result of the query is
@@ -19,7 +23,7 @@
 #' environment.
 #'
 #' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
-#' = TRUE) with variables RecordingGivid, Name, UserReference, LocationCode,
+#' = TRUE) with variables RecordingGivid, Name, UserReference, Observer, LocationCode,
 #' Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), VagueDateType,
 #' VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
 #'
@@ -39,6 +43,10 @@
 #' header_info <- inboveg_header(con, survey_name = "OudeLanden_1979",
 #' rec_type = "Classic", collect = TRUE)
 #'
+#' # get header information from several specific surveys
+#' header_severalsurveys <- inboveg_header(con, survey_name =
+#' c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE)
+#'
 #' # get header information of all surveys,  don't collect the data
 #' all_header_info <- inboveg_header(con)
 #'
@@ -51,16 +59,29 @@
 inboveg_header <- function(connection,
                            survey_name,
                            rec_type,
+                           multiple = FALSE,
                            collect = FALSE) {
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
 
-  if (missing(survey_name)) {
+  if (missing(survey_name) & !multiple) {
     survey_name <- "%"
-  } else {
-    assert_that(is.character(survey_name))
   }
+
+  if (missing(survey_name) & multiple) {
+    stop("Please provide one or more survey names to survey_name when multiple
+         = TRUE")
+  }
+
+  if (!missing(survey_name)) {
+    if (!multiple) {
+      assert_that(is.character(survey_name))
+    } else {
+      assert_that(is.vector(survey_name, mode = "character"))
+    }
+  }
+
 
   if (missing(rec_type)) {
     rec_type <- "%"
@@ -68,11 +89,11 @@ inboveg_header <- function(connection,
     assert_that(is.character(rec_type))
   }
 
-  sql_statement <- glue_sql(
-    "SELECT
-      ivR.[RecordingGivid]
+common_part <- "SELECT
+      ivR.RecordingGivid
       , ivS.Name
       , ivR.UserReference
+      , ivR.Observer
       , ivR.LocationCode
       , ivR.Latitude
       , ivR.Longitude
@@ -87,12 +108,24 @@ inboveg_header <- function(connection,
       FROM [dbo].[ivRecording] ivR
       INNER JOIN [dbo].[ivSurvey] ivS on ivS.Id = ivR.SurveyId
       INNER JOIN [dbo].[ivRecTypeD] ivRec on ivRec.ID = ivR.RecTypeID
-      where ivR.NeedsWork = 0
-      AND ivS.Name LIKE {survey_name}
-      AND ivREc.Name LIKE {rec_type}",
-    survey_name = survey_name,
-    rec_type = rec_type,
-    .con = connection)
+      where ivR.NeedsWork = 0"
+
+if (!multiple) {
+  sql_statement <- glue_sql(common_part,
+                            "AND ivS.Name LIKE {survey_name}
+                            AND ivREc.Name LIKE {rec_type}",
+                            survey_name = survey_name,
+                            rec_type = rec_type,
+                            .con = connection)
+
+} else {
+  sql_statement <- glue_sql(common_part,
+                            "AND ivS.Name IN ({survey_name*})
+                            AND ivREc.Name LIKE {rec_type}",
+                            survey_name = survey_name,
+                            rec_type = rec_type,
+                            .con = connection)
+}
 
 query_result <- tbl(connection, sql(sql_statement))
 
@@ -101,5 +134,6 @@ if (!isTRUE(collect)) {
 } else {
   query_result <- collect(query_result)
   return(query_result)
- }
 }
+}
+

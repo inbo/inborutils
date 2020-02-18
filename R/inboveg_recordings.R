@@ -22,7 +22,7 @@
 #'
 #' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
 #' = TRUE) with variables RecordingGivid (uniek Id), LayerCode, CoverCode,
-#' OrignalName, ScientificName, PhenologyCode, CoverageCode, PctValue
+#' OriginalName, ScientificName, PhenologyCode, CoverageCode, PctValue
 #' (percentage coverage), RecordingScale (name of the scale of coverage)
 #'
 #' @importFrom glue glue_sql
@@ -86,7 +86,7 @@ inboveg_recordings <- function(connection,
             , ivR.[RecordingGivid]
   , ivRL_Layer.LayerCode
   , ivRL_Layer.CoverCode
-  , ivRL_Iden.TaxonFullText as OrignalName
+  , ivRL_Iden.TaxonFullText as OriginalName
   , Synoniem.ScientificName
   , ivRL_Iden.PhenologyCode
   , ivRL_Taxon.CoverageCode
