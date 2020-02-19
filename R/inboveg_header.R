@@ -4,7 +4,7 @@
 #' information (metadata for a vegetation-relevé) for one or more surveys and
 #' the recorder type. See the examples for how to get information for all surveys.
 #'
-#' @param survey_name A character string or a character vector, depending on multiple parameter,
+#' @param survey_name A character string or a character vector  
 #' giving the name or names of the survey(s) for which you want to extract header information.
 #' If missing, all surveys are returned.
 #' @param rec_type A character vector giving the name of record type for which
@@ -136,4 +136,3 @@ if (!isTRUE(collect)) {
   return(query_result)
 }
 }
-
