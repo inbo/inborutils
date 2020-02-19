@@ -9,12 +9,12 @@
 #' @param col_long,col_lat Column names or positions of the x (longitude) and y
 #'   (latitude) column. They are passed to \code{\link[tidyselect]{vars_pull}}.
 #'   These arguments are passed by expression and support
-#'   \code{\link[rlang]{quasiquotation}} (you can unquote column names or column
+#'   \code{\link{quasiquotation}} (you can unquote column names or column
 #'   positions).
 #' @param projection Projection string of class CRS-class (\code{sp} objects) or
 #'   crs-class (\code{sf} objects) defining the current projection.
 #' @param ... Additional arguments passed on to
-#'   \code{\link[leaflet]{addCircleMarkers}} to customize points.
+#'   \code{\link{addCircleMarkers}} to customize points.
 #'
 #' @return Leaflet map with coordinates added as dots.
 #'
