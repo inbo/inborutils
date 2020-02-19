@@ -1,11 +1,11 @@
-#' @title Query qualifier information of recordings (relevé) from INBOVEG
+#' @title Query qualifier information of recordings (releve) from INBOVEG
 #'
 #' @description This function queries the INBOVEG database for
 #' qualifier information on recordings  for one or more surveys.
 #'
 #' @param survey_name A character string or a character vector, depending on
 #' multiple parameter, giving the name or names of the
-#' survey(s) for which you want to extract relevé information. If missing, all
+#' survey(s) for which you want to extract recordings information. If missing, all
 #' surveys are returned.
 #' @param qualifier_type A character vector giving the name of qualifier type for which
 #' you want to extract  information e.g. 'SQ' (site qualifier), 'MQ' (management qualifier).
@@ -15,7 +15,7 @@
 #' @param multiple If TRUE, survey_name can take a character vector with
 #' multiple survey names that must match exactly. If FALSE (the default),
 #' survey_name must be a single character string (one survey name) that can
-#' include wildcarts to allow partial matches
+#' include wildcards to allow partial matches
 #'
 #' @return A dataframe with variables RecordingGivid (unique Id), UserReference,
 #' Observer, QualifierType, QualifierCode, Description, 2nd QualifierCode,

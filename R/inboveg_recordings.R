@@ -1,12 +1,12 @@
-#' @title Query recording (relevé) information from INBOVEG
+#' @title Query recording (releve) information from INBOVEG
 #'
 #' @description This function queries the INBOVEG database for
-#' relevé information (which species were recorded in which plots and in which
+#' releve information (which species were recorded in which plots and in which
 #' vegetation layers with which cover) for one or more surveys.
 #'
 #' @param survey_name A character string or a character vector, depending on
 #' multiple parameter, giving the name or names of the
-#' survey(s) for which you want to extract relevé information. If missing, all
+#' survey(s) for which you want to extract releve information. If missing, all
 #' surveys are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
@@ -36,7 +36,7 @@
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
 #'
-#' # get the relevés from one survey and collect the data
+#' # get the recordings from one survey and collect the data
 #' recording_heischraal2012 <- inboveg_recordings(con, survey_name =
 #' "MILKLIM_Heischraal2012", collect = TRUE)
 #'
@@ -49,7 +49,7 @@
 #' c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE,
 #' collect = TRUE)
 #'
-#' # get all relevés of all surveys,  don't collect the data
+#' # get all recordings of all surveys,  don't collect the data
 #' allrecordings <- inboveg_recordings(con)
 #'
 #' # Close the connection when done

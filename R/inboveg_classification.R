@@ -1,7 +1,7 @@
 #' @title Query classification information from INBOVEG
 #'
 #' @description This function queries the INBOVEG database for information
-#' on the field classification (N2000 or BWK-code) of the relevé for one
+#' on the field classification (N2000 or BWK-code) of the releve (recording) for one
 #' or more survey(s) by the name of the survey. See the examples
 #' for how to get information for all surveys.
 #'
@@ -34,14 +34,14 @@
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
-#' 
+#'
 #' # get a specific classification from a survey and collect the data
 #' classif_info <- inboveg_classification(con,
 #' survey_name = "MILKLIM_Heischraal2012", classif = "4010", collect = TRUE)
-#' 
+#'
 #' # get all surveys, all classifications,  don't collect the data
 #' allecodes <- inboveg_classification(con)
-#' 
+#'
 #' # Close the connection when done
 #' dbDisconnect(con)
 #' rm(con)
