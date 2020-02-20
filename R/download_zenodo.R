@@ -80,7 +80,7 @@ download_zenodo <- function(doi,
           length(filenames),
           " files (total size: ",
           totalsize,
-          ") from DOI: ",
+          ") from https://doi.org/",
           doi,
           " (",
           content$metadata$title,
@@ -114,7 +114,7 @@ download_zenodo <- function(doi,
 
     stopCluster(clus)
 
-    message("Ended parallel downloads.\n")
+    message("Ended parallel downloads.")
 
   } else {
 
@@ -127,7 +127,7 @@ download_zenodo <- function(doi,
 
   # check each of the files
 
-  message("Verifying file integrity...\n")
+  message("\nVerifying file integrity...\n")
 
   for (i in seq_along(file_urls)) {
     filename <- filenames[i]
