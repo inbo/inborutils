@@ -4,7 +4,7 @@
 \alias{download_zenodo}
 \title{Get data from a Zenodo archive}
 \usage{
-download_zenodo(doi, path = ".", parallel = FALSE)
+download_zenodo(doi, path = ".", parallel = FALSE, quiet = FALSE)
 }
 \arguments{
 \item{doi}{a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.}
@@ -18,6 +18,8 @@ another file.
 This is useful when multiple large files are present in the Zenodo
 record, which otherwise would be downloaded sequentially.
 Of course, the operation is limited by bandwidth and traffic limitations.}
+
+\item{quiet}{Do you want to suppress informative messages (not warnings)?}
 }
 \description{
 This function will download an entire archive from Zenodo (\url{https://zenodo.org}).
@@ -28,6 +30,7 @@ example derived from Zookeys.)
 \dontrun{
 # Example download of an archive containing a single zip
 download_zenodo(doi = "10.5281/zenodo.1283345")
+download_zenodo(doi = "10.5281/zenodo.1283345", quiet = TRUE)
 # Example download of an archive containing multiple files
 # using parallel download
 # (multiple files will be simultaneously downloaded)

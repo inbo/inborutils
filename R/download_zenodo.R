@@ -13,6 +13,7 @@
 #' This is useful when multiple large files are present in the Zenodo
 #' record, which otherwise would be downloaded sequentially.
 #' Of course, the operation is limited by bandwidth and traffic limitations.
+#' @param quiet Do you want to suppress informative messages (not warnings)?
 #'
 #' @importFrom stringr
 #' fixed
@@ -39,6 +40,7 @@
 #' \dontrun{
 #' # Example download of an archive containing a single zip
 #' download_zenodo(doi = "10.5281/zenodo.1283345")
+#' download_zenodo(doi = "10.5281/zenodo.1283345", quiet = TRUE)
 #' # Example download of an archive containing multiple files
 #' # using parallel download
 #' # (multiple files will be simultaneously downloaded)
@@ -48,7 +50,8 @@
 #' }
 download_zenodo <- function(doi,
                             path = ".",
-                            parallel = FALSE) {
+                            parallel = FALSE,
+                            quiet = FALSE) {
 
   assert_that(is.string(doi), is.string(path))
   assert_that(is.flag(parallel))
@@ -76,6 +79,7 @@ download_zenodo <- function(doi,
   file_md5 <- content$files$checksum
 
   # download files
+  if (!quiet) {
   message("Will download ",
           length(filenames),
           " files (total size: ",
@@ -88,46 +92,49 @@ download_zenodo <- function(doi,
           content$metadata$version,
           ")\n"
   )
+  }
 
   if (parallel) {
 
     nr_nodes <- min(10, length(file_urls))
 
-    message("Initializing parallel download on ",
-            nr_nodes,
-            " R session nodes...\n")
+    if (!quiet) message("Initializing parallel download on ",
+                         nr_nodes,
+                         " R session nodes...\n")
 
     clus <- makeCluster(nr_nodes)
 
+    if (!quiet) {
     message("Starting parallel downloads. ",
             "This may take a while (and I can't show you the overall progress).\n",
             "Be patient...\n")
+    }
 
     clusterMap(clus,
                function(src, dest) {
                  curl_download(url = src,
                                destfile = dest,
-                               quiet = FALSE)
+                               quiet = quiet)
                  },
                file_urls,
                destfiles)
 
     stopCluster(clus)
 
-    message("Ended parallel downloads.")
+    if (!quiet) message("Ended parallel downloads.")
 
   } else {
 
     mapply(curl_download,
              file_urls,
              destfiles,
-             MoreArgs = list(quiet = FALSE))
+             MoreArgs = list(quiet = quiet))
 
   }
 
   # check each of the files
 
-  message("\nVerifying file integrity...\n")
+  if (!quiet) message("\nVerifying file integrity...\n")
 
   for (i in seq_along(file_urls)) {
     filename <- filenames[i]
@@ -135,10 +142,10 @@ download_zenodo <- function(doi,
     md5 <- unname(md5sum(destfile))
     zenodo_md5 <- str_split(file_md5[i], ":")[[1]][2]
     if (all.equal(md5, zenodo_md5)) {
-      message(filename,
-              " was downloaded and its integrity verified (md5sum: ",
-              md5,
-              ")")
+      if (!quiet) message(filename,
+                          " was downloaded and its integrity verified (md5sum: ",
+                          md5,
+                          ")")
     } else {
       warning("Incorrect download! md5sum ",
               md5,
