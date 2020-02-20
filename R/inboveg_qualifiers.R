@@ -1,18 +1,21 @@
-#' @title Query qualifier information of recordings (relevé) from INBOVEG
+#' @title Query qualifier information of recordings (releve) from INBOVEG
 #'
 #' @description This function queries the INBOVEG database for
 #' qualifier information on recordings  for one or more surveys.
 #'
 #' @param survey_name A character string or a character vector, depending on
 #' multiple parameter, giving the name or names of the
-#' survey(s) for which you want to extract relevé information. If missing, all
+#' survey(s) for which you want to extract recordings information. If missing, all
 #' surveys are returned.
+#' @param qualifier_type A character vector giving the name of qualifier type for which
+#' you want to extract  information e.g. 'SQ' (site qualifier), 'MQ' (management qualifier).
+#' If missing, all qualifier types are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
 #' @param multiple If TRUE, survey_name can take a character vector with
 #' multiple survey names that must match exactly. If FALSE (the default),
 #' survey_name must be a single character string (one survey name) that can
-#' include wildcarts to allow partial matches
+#' include wildcards to allow partial matches
 #'
 #' @return A dataframe with variables RecordingGivid (unique Id), UserReference,
 #' Observer, QualifierType, QualifierCode, Description, 2nd QualifierCode,
@@ -33,8 +36,9 @@
 #' qualifiers_heischraal2012 <- inboveg_qualifiers(con, survey_name =
 #' "MILKLIM_Heischraal2012")
 #'
-#' # get all qualifiers from MILKLIM surveys (partial matching)
-#' qualifiers_milkim <- inboveg_qualifiers(con, survey_name = "%MILKLIM%")
+#' # get all site qualifiers (SQ) from MILKLIM surveys (partial matching)
+#' qualifiers_milkim <- inboveg_qualifiers2(con, survey_name = "%MILKLIM%",
+#' qualifier_type = "SQ")
 #'
 #' # get qualifiers from several specific surveys
 #' qualifiers_severalsurveys <- inboveg_qualifiers(con, survey_name =
@@ -52,6 +56,7 @@
 
 inboveg_qualifiers <- function(connection,
                                survey_name,
+                               qualifier_type,
                                multiple = FALSE) {
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
@@ -74,17 +79,24 @@ inboveg_qualifiers <- function(connection,
     }
   }
 
+  if (missing(qualifier_type)) {
+    qualifier_type <- "%"
+  } else {
+    assert_that(is.character(qualifier_type))
+  }
+
+
   common_part <- "SELECT ivS.Name
       , ivR.RecordingGivid
       , ivR.UserReference
       , ivR.Observer
       , ivRLQ.QualifierType
-      , ivRLQ.QualifierCode
-      , ftACV.Description
-      , ivRLQ_P.QualifierCode
-      , ftACV_P.Description
-      , ivRLQ_GP.QualifierCode
-      , ftACV_GP.Description
+      , ivRLQ.QualifierCode as Q1Code
+      , ftACV.Description as Q1Description
+      , ivRLQ_P.QualifierCode as Q2Code
+      , ftACV_P.Description as Q2Description
+      , ivRLQ_GP.QualifierCode as Q3Code
+      , ftACV_GP.Description as Q3Description
       , ivRLQ.Elucidation
       , ivRLQ.NotSure
       , ivRLQ.ParentID
@@ -122,15 +134,17 @@ inboveg_qualifiers <- function(connection,
   if (!multiple) {
     sql_statement <- glue_sql(common_part,
                               "AND ivS.Name LIKE {survey_name}
-                              ",
+                              AND ivRLQ.QualifierType LIKE {qualifier_type}",
                               survey_name = survey_name,
+                              qualifier_type = qualifier_type,
                               .con = connection)
 
   } else {
     sql_statement <- glue_sql(common_part,
                               "AND ivS.Name IN ({survey_name*})
-                              ",
+                              AND ivRLQ.QualifierType LIKE {qualifier_type}",
                               survey_name = survey_name,
+                              qualifier_type = qualifier_type,
                               .con = connection)
   }
 
