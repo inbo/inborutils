@@ -23,7 +23,6 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom tools md5sum
 #' @importFrom utils tail
-#' @importFrom humanize natural_size
 #' @importFrom assertthat
 #' assert_that
 #' is.string
@@ -66,7 +65,7 @@ download_zenodo <- function(doi,
 
   # Calculate total file size
   totalsize <- sum(content$files$size) %>%
-                natural_size(suffix_type = "binary")
+                human_filesize
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
