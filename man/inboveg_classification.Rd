@@ -32,7 +32,7 @@ Cover in percentage.
 }
 \description{
 This function queries the INBOVEG database for information
-on the field classification (N2000 or BWK-code) of the relevé for one
+on the field classification (N2000 or BWK-code) of the releve (recording) for one
 or more survey(s) by the name of the survey. See the examples
 for how to get information for all surveys.
 }

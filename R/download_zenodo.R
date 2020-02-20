@@ -7,10 +7,18 @@
 #' @param path Path where the data must be downloaded.
 #' Defaults to the working directory.
 #' @param doi a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.
+#' @param parallel Logical (\code{FALSE} by default).
+#' If \code{TRUE}, will run a number of parallel processes, each downloading
+#' another file.
+#' This is useful when multiple large files are present in the Zenodo
+#' record, which otherwise would be downloaded sequentially.
+#' Of course, the operation is limited by bandwidth and traffic limitations.
 #'
-#' @return Downloaded file(s) in the specified folder.
-#'
-#' @importFrom stringr fixed str_remove str_split
+#' @importFrom stringr
+#' fixed
+#' str_remove
+#' str_split
+#' str_match
 #' @importFrom curl curl_fetch_memory curl_download
 #' @importFrom jsonlite fromJSON
 #' @importFrom tools md5sum
@@ -18,24 +26,32 @@
 #' @importFrom assertthat
 #' assert_that
 #' is.string
+#' is.flag
+#' @importFrom parallel
+#' makeCluster
+#' clusterMap
+#' stopCluster
 #'
 #' @export
-#' @family download
+#' @family download functions
 #'
 #' @examples
 #' \dontrun{
 #' # Example download of an archive containing a single zip
 #' download_zenodo(doi = "10.5281/zenodo.1283345")
 #' # Example download of an archive containing multiple files
-#' # (all files will be downloaded)
-#' download_zenodo(doi = "10.5281/zenodo.1172801")
+#' # using parallel download
+#' # (multiple files will be simultaneously downloaded)
+#' download_zenodo(doi = "10.5281/zenodo.1172801", parallel = TRUE)
 #' # Example download of an archive containing a single pdf file
 #' download_zenodo(doi = "10.5281/zenodo.168478")
 #' }
 download_zenodo <- function(doi,
-                            path = ".") {
+                            path = ".",
+                            parallel = FALSE) {
 
   assert_that(is.string(doi), is.string(path))
+  assert_that(is.flag(parallel))
 
   # check for existence of the folder
   stopifnot(dir.exists(path))
@@ -49,28 +65,81 @@ download_zenodo <- function(doi,
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
+  filenames <- str_match(file_urls, ".+/([^/]+)")[,2]
+  destfiles <- file.path(path, filenames)
 
   # extract check-sum(s)
   file_md5 <- content$files$checksum
 
-  # donwload each of the files
+  # download files
+  message("Will download ",
+          length(filenames),
+          " files from DOI: ",
+          doi,
+          " (",
+          content$metadata$title,
+          "; version: ",
+          content$metadata$version,
+          ")\n"
+  )
+
+  if (parallel) {
+
+    nr_nodes <- min(10, length(file_urls))
+
+    message("Initializing parallel download on ",
+            nr_nodes,
+            " R session nodes...\n")
+
+    clus <- makeCluster(nr_nodes)
+
+    message("Starting parallel downloads. ",
+            "This may take a while (and I can't show you the overall progress).\n",
+            "Be patient...\n")
+
+    clusterMap(clus,
+               function(src, dest) {
+                 curl_download(url = src,
+                               destfile = dest,
+                               quiet = FALSE)
+                 },
+               file_urls,
+               destfiles)
+
+    stopCluster(clus)
+
+    message("Ended parallel downloads.\n")
+
+  } else {
+
+    mapply(curl_download,
+             file_urls,
+             destfiles,
+             MoreArgs = list(quiet = FALSE))
+
+  }
+
+  # check each of the files
+
+  message("Verifying file integrity...\n")
+
   for (i in seq_along(file_urls)) {
-    file_name <- tail(str_split(file_urls[i], "/")[[1]], 1)
-    destfile <- file.path(path, file_name)
-    curl_download(url = file_urls[i],
-                  destfile = destfile,
-                  quiet = FALSE)
+    filename <- filenames[i]
+    destfile <- destfiles[i]
     md5 <- unname(md5sum(destfile))
     zenodo_md5 <- str_split(file_md5[i], ":")[[1]][2]
     if (all.equal(md5, zenodo_md5)) {
-      print(paste0("md5sum ", md5, " for ", file_name," is correct."))
+      message(filename,
+              " was downloaded and its integrity verified (md5sum: ",
+              md5,
+              ")")
     } else {
-      warning(paste0("md5 sum ",
-                     md5,
-                     " for file",
-                     file_name,
-                     " does not match the Zenodo archived md5 sum ",
-                     zenodo_md5))
+      warning("Incorrect download! md5sum ",
+              md5,
+              " for file",
+              filename,
+              " does not match the Zenodo archived md5sum ",
+              zenodo_md5)
     }
   }
 }

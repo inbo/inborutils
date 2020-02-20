@@ -37,7 +37,7 @@ rsconnect/
 *.knit.md
 
 # pkgdown website is built by travis on gh-pages
-/docs/
+docs/
 
 # Mac OS X
 .DS_Store
