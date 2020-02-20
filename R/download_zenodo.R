@@ -151,3 +151,42 @@ download_zenodo <- function(doi,
   }
 }
 
+
+
+#' Human-readable binary file size
+#'
+#' Takes an integer (referring to number of bytes) and returns an optimally
+#' human-readable
+#' \href{https://en.wikipedia.org/wiki/Binary_prefix}{binary-prefixed}
+#' byte size (KiB, MiB, GiB, TiB, PiB, EiB)
+#'
+#' @param x An integer, i.e. the number of bytes (B).
+#'
+#' @return A string.
+#' @importFrom assertthat
+#' assert_that
+#' is.number
+#' @importFrom dplyr
+#' %>%
+#' @keywords internal
+human_filesize <- function(x) {
+  assert_that(is.number(x))
+  magnitude <-
+    log(x, base = 1024) %>%
+    floor %>%
+    min(8)
+  unit <- switch(magnitude + 1,
+                 "B",
+                 "KiB",
+                 "MiB",
+                 "GiB",
+                 "TiB",
+                 "PiB",
+                 "EiB",
+                 "ZiB",
+                 "YiB")
+  size <- (x / 1024^magnitude) %>% round(1)
+  return(paste(size, unit))
+}
+
+
