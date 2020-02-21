@@ -69,7 +69,7 @@ download_zenodo <- function(doi,
 
   # Calculate total file size
   totalsize <- sum(content$files$size) %>%
-                human_filesize
+                human_filesize()
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
@@ -195,4 +195,3 @@ human_filesize <- function(x) {
   size <- (x / 1024^magnitude) %>% round(1)
   return(paste(size, unit))
 }
-
