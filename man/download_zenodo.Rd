@@ -19,7 +19,8 @@ This is useful when multiple large files are present in the Zenodo
 record, which otherwise would be downloaded sequentially.
 Of course, the operation is limited by bandwidth and traffic limitations.}
 
-\item{quiet}{Do you want to suppress informative messages (not warnings)?}
+\item{quiet}{Logical (\code{FALSE} by default).
+Do you want to suppress informative messages (not warnings)?}
 }
 \description{
 This function will download an entire archive from Zenodo (\url{https://zenodo.org}).
