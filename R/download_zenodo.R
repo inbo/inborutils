@@ -54,7 +54,7 @@ download_zenodo <- function(doi,
                             quiet = FALSE) {
 
   assert_that(is.string(doi), is.string(path))
-  assert_that(is.flag(parallel))
+  assert_that(is.flag(parallel), is.flag(quiet))
 
   # check for existence of the folder
   stopifnot(dir.exists(path))
@@ -194,5 +194,4 @@ human_filesize <- function(x) {
   size <- (x / 1024^magnitude) %>% round(1)
   return(paste(size, unit))
 }
-
 
