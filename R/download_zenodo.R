@@ -177,11 +177,11 @@ download_zenodo <- function(doi,
 #' @return
 #' A character vector.
 #'
+#' @export
 #' @importFrom assertthat
 #' assert_that
 #' @importFrom dplyr
 #' %>%
-#' @keywords internal
 human_filesize <- function(x) {
   assert_that(is.numeric(x))
   assert_that(all(x %% 1 == 0 & x >= 0))

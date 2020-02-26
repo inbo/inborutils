@@ -20,4 +20,3 @@ human-readable
 byte size (KiB, MiB, GiB, TiB, PiB, EiB).
 The function is vectorised.
 }
-\keyword{internal}
