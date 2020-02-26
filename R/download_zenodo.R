@@ -93,7 +93,10 @@ download_zenodo <- function(doi,
           " (",
           content$metadata$title,
           "; version: ",
-          content$metadata$version,
+          ifelse(!is.null(content$metadata$version),
+                 content$metadata$version,
+                 content$metadata$relations$version[1, 1]
+          ),
           ")\n"
   )
   }
