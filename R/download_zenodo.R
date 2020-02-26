@@ -83,8 +83,10 @@ download_zenodo <- function(doi,
   # download files
   if (!quiet) {
   message("Will download ",
-          length(filenames),
-          " files (total size: ",
+          (nrfiles <- length(filenames)),
+          " file",
+          ifelse(nrfiles > 1, "s", ""),
+          " (total size: ",
           totalsize,
           ") from https://doi.org/",
           doi,
