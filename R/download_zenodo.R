@@ -29,6 +29,7 @@
 #' assert_that
 #' is.string
 #' is.flag
+#' noNA
 #' @importFrom parallel
 #' makeCluster
 #' clusterMap
