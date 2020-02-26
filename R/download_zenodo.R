@@ -184,6 +184,7 @@ download_zenodo <- function(doi,
 #' @keywords internal
 human_filesize <- function(x) {
   assert_that(is.numeric(x))
+  assert_that(all(x %% 1 == 0 & x >= 0))
   magnitude <-
     log(x, base = 1024) %>%
     floor() %>%
