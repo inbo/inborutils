@@ -12,8 +12,8 @@ reproject_coordinates(df, col_long, col_lat, crs_input, crs_output)
 \item{col_long, col_lat}{Column names or positions of the x (longitude) and y
 (latitude) column. They are passed to \code{\link[tidyselect]{vars_pull}}.
 These arguments are passed by expression and support
-\code{\link[rlang]{quasiquotation}} (you can unquote column names or column
-positions).}
+\code{\link{quasiquotation}}
+(you can unquote column names or column positions).}
 
 \item{crs_input}{Projection string of class CRS-class (\code{sp} compatible)
 or crs-class (\code{sf} compatible) defining the current projection.}
