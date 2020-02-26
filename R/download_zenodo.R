@@ -55,7 +55,7 @@ download_zenodo <- function(doi,
                             quiet = FALSE) {
 
   assert_that(is.string(doi), is.string(path))
-  assert_that(is.flag(parallel), is.flag(quiet))
+  assert_that(is.flag(parallel), noNA(parallel), is.flag(quiet), noNA(quiet))
 
   # check for existence of the folder
   stopifnot(dir.exists(path))
