@@ -47,6 +47,9 @@ reference:
     desc: "Functions for handling statistical modelling tasks"
     contents:
       - vif
+  - title: "Small utilities and helpers"
+    contents:
+      - human_filesize
   - title: "Example datasets"
     contents:
       - coordinate_example
