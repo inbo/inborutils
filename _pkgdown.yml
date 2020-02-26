@@ -43,6 +43,7 @@ reference:
     contents:
       - df_factors_to_char
       - csv_to_sqlite
+      - convertdf_enc
   - title: "Statistical modelling"
     desc: "Functions for handling statistical modelling tasks"
     contents:
