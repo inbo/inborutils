@@ -13,6 +13,8 @@
 #' This is useful when multiple large files are present in the Zenodo
 #' record, which otherwise would be downloaded sequentially.
 #' Of course, the operation is limited by bandwidth and traffic limitations.
+#' @param quiet Logical (\code{FALSE} by default).
+#' Do you want to suppress informative messages (not warnings)?
 #'
 #' @importFrom stringr
 #' fixed
@@ -27,6 +29,7 @@
 #' assert_that
 #' is.string
 #' is.flag
+#' noNA
 #' @importFrom parallel
 #' makeCluster
 #' clusterMap
@@ -39,6 +42,7 @@
 #' \dontrun{
 #' # Example download of an archive containing a single zip
 #' download_zenodo(doi = "10.5281/zenodo.1283345")
+#' download_zenodo(doi = "10.5281/zenodo.1283345", quiet = TRUE)
 #' # Example download of an archive containing multiple files
 #' # using parallel download
 #' # (multiple files will be simultaneously downloaded)
@@ -48,10 +52,11 @@
 #' }
 download_zenodo <- function(doi,
                             path = ".",
-                            parallel = FALSE) {
+                            parallel = FALSE,
+                            quiet = FALSE) {
 
   assert_that(is.string(doi), is.string(path))
-  assert_that(is.flag(parallel))
+  assert_that(is.flag(parallel), noNA(parallel), is.flag(quiet), noNA(quiet))
 
   # check for existence of the folder
   stopifnot(dir.exists(path))
@@ -63,6 +68,10 @@ download_zenodo <- function(doi,
   req <- curl_fetch_memory(paste0(base_url, record))
   content <- fromJSON(rawToChar(req$content))
 
+  # Calculate total file size
+  totalsize <- sum(content$files$size) %>%
+                human_filesize()
+
   # extract individual file names and urls
   file_urls <- content$files$links$self
   filenames <- str_match(file_urls, ".+/([^/]+)")[,2]
@@ -72,56 +81,67 @@ download_zenodo <- function(doi,
   file_md5 <- content$files$checksum
 
   # download files
+  if (!quiet) {
   message("Will download ",
-          length(filenames),
-          " files from DOI: ",
+          (nrfiles <- length(filenames)),
+          " file",
+          ifelse(nrfiles > 1, "s", ""),
+          " (total size: ",
+          totalsize,
+          ") from https://doi.org/",
           doi,
           " (",
           content$metadata$title,
           "; version: ",
-          content$metadata$version,
+          ifelse(!is.null(content$metadata$version),
+                 content$metadata$version,
+                 content$metadata$relations$version[1, 1]
+          ),
           ")\n"
   )
+  }
 
   if (parallel) {
 
     nr_nodes <- min(10, length(file_urls))
 
-    message("Initializing parallel download on ",
-            nr_nodes,
-            " R session nodes...\n")
+    if (!quiet) message("Initializing parallel download on ",
+                         nr_nodes,
+                         " R session nodes...\n")
 
     clus <- makeCluster(nr_nodes)
 
+    if (!quiet) {
     message("Starting parallel downloads. ",
             "This may take a while (and I can't show you the overall progress).\n",
             "Be patient...\n")
+    }
 
     clusterMap(clus,
                function(src, dest) {
                  curl_download(url = src,
                                destfile = dest,
-                               quiet = FALSE)
+                               quiet = quiet)
                  },
                file_urls,
                destfiles)
 
     stopCluster(clus)
 
-    message("Ended parallel downloads.\n")
+    if (!quiet) message("Ended parallel downloads.")
 
   } else {
 
     mapply(curl_download,
              file_urls,
              destfiles,
-             MoreArgs = list(quiet = FALSE))
+             MoreArgs = list(quiet = quiet))
 
   }
 
   # check each of the files
 
-  message("Verifying file integrity...\n")
+  if (!quiet) message("\nVerifying file integrity...\n")
 
   for (i in seq_along(file_urls)) {
     filename <- filenames[i]
@@ -129,10 +149,10 @@ download_zenodo <- function(doi,
     md5 <- unname(md5sum(destfile))
     zenodo_md5 <- str_split(file_md5[i], ":")[[1]][2]
     if (all.equal(md5, zenodo_md5)) {
-      message(filename,
-              " was downloaded and its integrity verified (md5sum: ",
-              md5,
-              ")")
+      if (!quiet) message(filename,
+                          " was downloaded and its integrity verified (md5sum: ",
+                          md5,
+                          ")")
     } else {
       warning("Incorrect download! md5sum ",
               md5,
@@ -144,3 +164,52 @@ download_zenodo <- function(doi,
   }
 }
 
+
+
+#' Human-readable binary file size
+#'
+#' Takes an integer (referring to number of bytes) and returns an optimally
+#' human-readable
+#' \href{https://en.wikipedia.org/wiki/Binary_prefix}{binary-prefixed}
+#' byte size (KiB, MiB, GiB, TiB, PiB, EiB).
+#' The function is vectorised.
+#'
+#' @param x A positive integer, i.e. the number of bytes (B).
+#' Can be a vector of file sizes.
+#'
+#' @return
+#' A character vector.
+#'
+#' @examples
+#' human_filesize(7845691)
+#' v <- c(12345, 456987745621258)
+#' human_filesize(v)
+#'
+#' @export
+#' @importFrom assertthat
+#' assert_that
+#' @importFrom dplyr
+#' %>%
+human_filesize <- function(x) {
+  assert_that(is.numeric(x))
+  assert_that(all(x %% 1 == 0 & x >= 0))
+  magnitude <-
+    log(x, base = 1024) %>%
+    floor() %>%
+    pmin(8)
+  unit <- factor(magnitude,
+                 levels = 0:8,
+                 labels = c(
+                          "B",
+                          "KiB",
+                          "MiB",
+                          "GiB",
+                          "TiB",
+                          "PiB",
+                          "EiB",
+                          "ZiB",
+                          "YiB")
+                 )
+  size <- (x / 1024^magnitude) %>% round(1)
+  return(paste(size, unit))
+}
