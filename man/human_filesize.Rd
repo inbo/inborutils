@@ -20,3 +20,9 @@ human-readable
 byte size (KiB, MiB, GiB, TiB, PiB, EiB).
 The function is vectorised.
 }
+\examples{
+human_filesize(7845691)
+v <- c(12345, 456987745621258)
+human_filesize(v)
+
+}
