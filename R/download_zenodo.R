@@ -168,33 +168,39 @@ download_zenodo <- function(doi,
 #' Takes an integer (referring to number of bytes) and returns an optimally
 #' human-readable
 #' \href{https://en.wikipedia.org/wiki/Binary_prefix}{binary-prefixed}
-#' byte size (KiB, MiB, GiB, TiB, PiB, EiB)
+#' byte size (KiB, MiB, GiB, TiB, PiB, EiB).
+#' The function is vectorised.
 #'
-#' @param x An integer, i.e. the number of bytes (B).
+#' @param x A positive integer, i.e. the number of bytes (B).
+#' Can be a vector of file sizes.
 #'
-#' @return A string.
+#' @return
+#' A character vector.
+#'
 #' @importFrom assertthat
 #' assert_that
-#' is.number
 #' @importFrom dplyr
 #' %>%
 #' @keywords internal
 human_filesize <- function(x) {
-  assert_that(is.number(x))
+  assert_that(is.numeric(x))
   magnitude <-
     log(x, base = 1024) %>%
-    floor %>%
-    min(8)
-  unit <- switch(magnitude + 1,
-                 "B",
-                 "KiB",
-                 "MiB",
-                 "GiB",
-                 "TiB",
-                 "PiB",
-                 "EiB",
-                 "ZiB",
-                 "YiB")
+    floor() %>%
+    pmin(8)
+  unit <- factor(magnitude,
+                 levels = 0:8,
+                 labels = c(
+                          "B",
+                          "KiB",
+                          "MiB",
+                          "GiB",
+                          "TiB",
+                          "PiB",
+                          "EiB",
+                          "ZiB",
+                          "YiB")
+                 )
   size <- (x / 1024^magnitude) %>% round(1)
   return(paste(size, unit))
 }

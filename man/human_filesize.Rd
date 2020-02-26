@@ -7,15 +7,17 @@
 human_filesize(x)
 }
 \arguments{
-\item{x}{An integer, i.e. the number of bytes (B).}
+\item{x}{A positive integer, i.e. the number of bytes (B).
+Can be a vector of file sizes.}
 }
 \value{
-A string.
+A character vector.
 }
 \description{
 Takes an integer (referring to number of bytes) and returns an optimally
 human-readable
 \href{https://en.wikipedia.org/wiki/Binary_prefix}{binary-prefixed}
-byte size (KiB, MiB, GiB, TiB, PiB, EiB)
+byte size (KiB, MiB, GiB, TiB, PiB, EiB).
+The function is vectorised.
 }
 \keyword{internal}
