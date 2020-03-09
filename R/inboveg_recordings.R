@@ -1,13 +1,19 @@
 #' @title Query recording (releve) information from INBOVEG
 #'
 #' @description This function queries the INBOVEG database for
-#' releve information (which species were recorded in which plots and in which
-#' vegetation layers with which cover) for one or more surveys.
+#' releve information (which species were recorded in which plots and in
+#' which vegetation layers with which cover) for one or more surveys,
+#' or in combination with the unique ID (recordingGIVID) or user reference
 #'
+#' @param user_reference A character string or a character vector giving the name
+#' of a recording for which you want to extract releve information. If missing, all
+#' user-references are returned.
+#' @param recording_givid A character string or a character vector giving
+#' the unique id of a recording for which you want to extract releve information.
+#' If missing, all recording_givids are returned.
 #' @param survey_name A character string or a character vector, depending on
-#' multiple parameter, giving the name or names of the
-#' survey(s) for which you want to extract releve information. If missing, all
-#' surveys are returned.
+#' multiple parameter, giving the name or names of the survey(s) for which you
+#' want to extract releve information. If missing, all surveys are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
 #' @param collect If FALSE (the default), a remote tbl object is returned.
@@ -15,13 +21,14 @@
 #' the query is not brought into memory. If TRUE the full result of the query is
 #' collected (fetched) from the database and brought into memory of the working
 #' environment.
-#' @param multiple If TRUE, survey_name can take a character vector with
-#' multiple survey names that must match exactly. If FALSE (the default),
-#' survey_name must be a single character string (one survey name) that can
-#' include wildcarts to allow partial matches
+#' @param multiple If TRUE, survey_name, user_reference or recording_givid can
+#' take a character vector with multiple survey names that must match exactly.
+#' If FALSE (the default), survey_name , user_reference or recording_givid must
+#' be a single character string (one survey name, or one user_reference or one
+#' recording_givid). Only survey_name can include wildcarts to allow partial matches.
 #'
 #' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
-#' = TRUE) with variables RecordingGivid (uniek Id), LayerCode, CoverCode,
+#' = TRUE) with variables RecordingGivid (unique ID), User reference, LayerCode, CoverCode,
 #' OriginalName, ScientificName, PhenologyCode, CoverageCode, PctValue
 #' (percentage coverage), RecordingScale (name of the scale of coverage)
 #'
@@ -49,6 +56,11 @@
 #' c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE,
 #' collect = TRUE)
 #'
+#' # get recordings from several specific recordinggivid
+#' recording_severalgivids <- inboveg_recordings(con,
+#' recording_givid = c("IV2012081609450300","IV2012081610204607"),
+#' multiple = TRUE, collect = TRUE)
+#'
 #' # get all recordings of all surveys,  don't collect the data
 #' allrecordings <- inboveg_recordings(con)
 #'
@@ -57,36 +69,59 @@
 #' rm(con)
 #' }
 
-inboveg_recordings <- function(connection,
-                        survey_name,
-                        collect = FALSE,
-                        multiple = FALSE) {
+inboveg_recordings <- function(
+  connection,
+  survey_name,
+  user_reference,
+  recording_givid,
+  collect = FALSE,
+  multiple = FALSE) {
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
 
-  if (missing(survey_name) & !multiple) {
-    survey_name <- "%"
-  }
-
-  if (missing(survey_name) & multiple) {
-    stop("Please provide one or more survey names to survey_name when multiple
-         = TRUE")
-  }
-
-  if (!missing(survey_name)) {
-    if (!multiple) {
-      assert_that(is.character(survey_name))
+  if (!multiple) {
+    if (missing(survey_name)) {
+      survey_name <- "%"
     } else {
+      assert_that(is.character(survey_name))
+    }
+    if (missing(user_reference)) {
+      user_reference <- "%"
+    } else {
+      assert_that(is.character(user_reference))
+    }
+    if (missing(recording_givid)) {
+      recording_givid <- "%"
+    } else {
+      assert_that(is.character(recording_givid))
+    }
+  } else {
+    if (missing(survey_name) & missing(recording_givid) &
+        missing(user_reference)) {
+      stop("Please provide one or more values to either survey_name or to user_reference or recording_givid when multiple = TRUE") #nolint
+    }
+    if (missing(survey_name) & !missing(user_reference)) {
+      warning("The same user_reference might have been used in different surveys. Consider also providing one or more values to survey_name when multiple = TRUE") #nolint
+    }
+    if (!missing(survey_name)) {
       assert_that(is.vector(survey_name, mode = "character"))
+    }
+    if (!missing(user_reference)) {
+      assert_that(is.vector(user_reference, mode = "character"))
+    }
+    if (!missing(recording_givid)) {
+      assert_that(is.vector(recording_givid, mode = "character"))
     }
   }
 
+
   common_part <- "SELECT ivS.Name
-            , ivR.[RecordingGivid]
+  , ivR.[RecordingGivid]
+  , ivR.UserReference
   , ivRL_Layer.LayerCode
   , ivRL_Layer.CoverCode
-  , ivRL_Iden.TaxonFullText as OriginalName
+  , ivRL_Iden.TaxonFullText as OrignalName
   , Synoniem.ScientificName
   , ivRL_Iden.PhenologyCode
   , ivRL_Taxon.CoverageCode
@@ -139,15 +174,84 @@ inboveg_recordings <- function(connection,
 
   if (!multiple) {
     sql_statement <- glue_sql(common_part,
-                              "AND ivS.Name LIKE {survey_name}",
+                              "AND ivS.Name LIKE {survey_name}
+                              AND ivR.[RecordingGivid] LIKE {recording_givid}
+                              AND ivR.UserReference LIKE {user_reference}",
                               survey_name = survey_name,
+                              user_reference = user_reference,
+                              recording_givid = recording_givid,
                               .con = connection)
 
   } else {
-    sql_statement <- glue_sql(common_part,
-                              "AND ivS.Name IN ({survey_name*})",
-                              survey_name = survey_name,
-                              .con = connection)
+    if (!missing(survey_name) & !missing(user_reference) &
+        !missing(recording_givid)) {
+      sql_statement <- glue_sql(common_part,
+                                "AND ivS.Name IN ({survey_name*})
+                                AND (ivR.[RecordingGivid] IN ({recording_givid*})
+                                OR ivR.UserReference IN ({user_reference*}))",
+                                survey_name = survey_name,
+                                user_reference = user_reference,
+                                recording_givid = recording_givid,
+                                .con = connection)
+    }
+    if (missing(survey_name) & !missing(user_reference) &
+        !missing(recording_givid)) {
+      sql_statement <- glue_sql(common_part,
+                                "AND (ivR.[RecordingGivid] IN ({recording_givid*})
+                                OR ivR.UserReference IN ({user_reference*}))",
+                                survey_name = survey_name,
+                                user_reference = user_reference,
+                                recording_givid = recording_givid,
+                                .con = connection)
+    }
+    if (missing(survey_name) & missing(user_reference) &
+        !missing(recording_givid)) {
+      sql_statement <- glue_sql(common_part,
+                                "AND ivR.[RecordingGivid] IN ({recording_givid*})",
+                                survey_name = survey_name,
+                                user_reference = user_reference,
+                                recording_givid = recording_givid,
+                                .con = connection)
+    }
+    if (missing(survey_name) & !missing(user_reference) &
+        missing(recording_givid)) {
+      sql_statement <- glue_sql(common_part,
+                                "AND ivR.UserReference IN ({user_reference*})",
+                                survey_name = survey_name,
+                                user_reference = user_reference,
+                                recording_givid = recording_givid,
+                                .con = connection)
+    }
+    if (!missing(survey_name) & missing(user_reference) &
+        missing(recording_givid)) {
+      sql_statement <- glue_sql(common_part,
+                                "AND ivS.Name IN ({survey_name*})",
+                                survey_name = survey_name,
+                                user_reference = user_reference,
+                                recording_givid = recording_givid,
+                                .con = connection)
+    }
+    if (!missing(survey_name) & missing(user_reference) &
+        !missing(recording_givid)) {
+      sql_statement <- glue_sql(common_part,
+                                "AND ivS.Name IN ({survey_name*})
+                                AND ivR.[RecordingGivid] IN ({recording_givid*})",
+                                survey_name = survey_name,
+                                user_reference = user_reference,
+                                recording_givid = recording_givid,
+                                .con = connection)
+    }
+    if (!missing(survey_name) & !missing(user_reference) &
+        missing(recording_givid)) {
+      sql_statement <- glue_sql(common_part,
+                                "AND ivS.Name IN ({survey_name*})
+                                AND ivR.UserReference IN ({user_reference*})",
+                                survey_name = survey_name,
+                                user_reference = user_reference,
+                                recording_givid = recording_givid,
+                                .con = connection)
+    }
+
   }
 
   query_result <- tbl(connection, sql(sql_statement))
@@ -159,3 +263,5 @@ inboveg_recordings <- function(connection,
     return(query_result)
   }
 }
+
+
