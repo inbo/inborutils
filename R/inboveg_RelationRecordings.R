@@ -48,7 +48,7 @@
 #' }
 #'
 
-inboveg_relation3 <- function(connection,
+inboveg_relation <- function(connection,
                            survey_name,
                            multiple = FALSE,
                            collect = FALSE) {
@@ -74,39 +74,6 @@ inboveg_relation3 <- function(connection,
   }
 
 common_part <-
-# " SELECT
-#       ivSurvey.Name
-#       , ivRecordingRelation.RecordingId
-#       , ivRecording.RecordingGivid AS Child_GIVID
-#       , ivRecording.UserReference AS Child_UserRef
-#       , ivRecordingRelation.ParentId
-#       , ivRecording_1.RecordingGivid AS Parent_GIVID
-#       , ivRecording_1.UserReference AS Parent_UserRef
-#   FROM (
-#         (ivRecordingRelation
-#         RIGHT JOIN ivRecording ON ivRecordingRelation.RecordingId = ivRecording.Id)
-#         LEFT JOIN ivRecording AS ivRecording_1 ON ivRecordingRelation.ParentId = ivRecording_1.Id
-#         )
-#   INNER JOIN ivSurvey ON ivRecording.SurveyId = ivSurvey.Id
-#   WHERE (((ivRecordingRelation.ParentId) Is Not Null));"
-
-
-## 2de poging
-# " SELECT
-#       ivSurvey.Name
-#       , ivRecordingRelation.RecordingId
-#       , ivRecording.RecordingGivid AS Child_GIVID
-#       , ivRecording.UserReference AS Child_UserRef
-#       , ivRecordingRelation.ParentId
-#       , ivRecording_1.RecordingGivid AS Parent_GIVID
-#       , ivRecording_1.UserReference AS Parent_UserRef
-#   FROM ivSurvey
-#       INNER JOIN ivRecording on ivSurvey.Id = ivRecording.SurveyId
-#       RIGHT JOIN ivRecording ON ivRecordingRelation.RecordingId = ivRecording.Id
-#       LEFT JOIN ivRecording AS ivRecording_1 ON ivRecordingRelation.ParentId = ivRecording_1.Id
-#       WHERE (((ivRecordingRelation.ParentId) Is Not Null));"
-#" 3de poging
-
 "SELECT
         ivSurvey.Name
         , ivRecordingRelation.RecordingId
@@ -121,17 +88,17 @@ common_part <-
           LEFT JOIN ivRecording AS ivRecording_1 ON ivRecordingRelation.ParentId = ivRecording_1.Id
         )
   INNER JOIN ivSurvey ON ivRecording.SurveyId = ivSurvey.Id
-  WHERE (((ivRecordingRelation.ParentId) Is Not Null));"
+  WHERE (((ivRecordingRelation.ParentId) Is Not Null))"
 
 if (!multiple) {
   sql_statement <- glue_sql(common_part,
-                            "AND ivS.Name LIKE {survey_name}",
+                            "AND ivSurvey.Name LIKE {survey_name}",
                             survey_name = survey_name,
                             .con = connection)
 
 } else {
   sql_statement <- glue_sql(common_part,
-                            "AND ivS.Name IN ({survey_name*})",
+                            "AND ivSurvey.Name IN ({survey_name*})",
                             survey_name = survey_name,
                             .con = connection)
 }
@@ -146,8 +113,3 @@ if (!isTRUE(collect)) {
 }
 }
 
-# TEST
-relations_N2000meetnet_Grasland <- inboveg_relation3(con, survey_name = "N2000meetnet_Grasland")
-relations_N2000meetnet <- inboveg_relation3(con, survey_name = "%N2000meetnet%")
-relations_severalsurveys <- inboveg_relation3(con, survey_name = c("DeBlankaart-1985-Beheer", "N2000meetnet_Grasland"), multiple = TRUE)
-allrelations <- inboveg_relation3(con)
