@@ -16,6 +16,7 @@
 #'
 #' @importFrom DBI dbGetQuery dbConnect dbListTables
 #' @importFrom odbc odbc odbcListDrivers
+#' @importFrom utils tail
 #'
 #' @examples
 #' \dontrun{
@@ -38,7 +39,8 @@ connect_inbo_dbase <- function(database_name) {
                         driversdf <- odbcListDrivers()
                         driversvec <-
                             driversdf[driversdf$attribute == "Driver", "name"]
-                        driversvec[grepl("SQL Server", driversvec)][1]
+                        drivers_sql <- driversvec[grepl("SQL Server", driversvec)]
+                        tail(sort(drivers_sql), 1)
                 } else {
                         "SQL Server"
                 }
