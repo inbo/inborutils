@@ -24,8 +24,11 @@
 #' @return response containing, status_code, content,...
 #'
 #' @export
+#'
 #' @importFrom lubridate parse_date_time hour
 #' @importFrom httr POST content
+#'
+#' @family download functions
 #'
 #' @examples
 #' \dontrun{

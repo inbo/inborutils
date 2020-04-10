@@ -5,9 +5,14 @@
 \title{Take a dataset and plot in different projections on a leaflet map to
 check the expected projection}
 \usage{
-guess_projection(df, col_long, col_lat, belgium = TRUE,
-  projections = c("epsg:4326", "epsg:31370", "epsg:28992", "epsg:32631",
-  "epsg:3812", "epsg:3035"))
+guess_projection(
+  df,
+  col_long,
+  col_lat,
+  belgium = TRUE,
+  projections = c("epsg:4326", "epsg:31370", "epsg:28992", "epsg:32631", "epsg:3812",
+    "epsg:3035")
+)
 }
 \arguments{
 \item{df}{data.frame with a x and y coordinate column}

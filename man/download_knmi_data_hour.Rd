@@ -4,8 +4,13 @@
 \alias{download_knmi_data_hour}
 \title{Download KNMI hourly data to file}
 \usage{
-download_knmi_data_hour(stations, variables, start_date, end_date,
-  output_file = "knmi_download.txt")
+download_knmi_data_hour(
+  stations,
+  variables,
+  start_date,
+  end_date,
+  output_file = "knmi_download.txt"
+)
 }
 \arguments{
 \item{stations}{list of integers, for an overview, see
@@ -41,3 +46,8 @@ download_knmi_data_uur(c(310, 319), "PRCP", "2011-01-01", "2012-02-17",
 output_file = "knmi_output_download.txt")
 }
 }
+\seealso{
+Other download functions: 
+\code{\link{download_zenodo}()}
+}
+\concept{download functions}
