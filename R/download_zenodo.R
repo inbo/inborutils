@@ -195,7 +195,7 @@ human_filesize <- function(x) {
   assert_that(all(x %% 1 == 0 & x >= 0))
   magnitude <-
     log(x, base = 1024) %>%
-    floor() %>%
+    floor %>%
     pmin(8)
   unit <- factor(magnitude,
                  levels = 0:8,

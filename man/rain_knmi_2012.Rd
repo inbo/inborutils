@@ -4,7 +4,8 @@
 \name{rain_knmi_2012}
 \alias{rain_knmi_2012}
 \title{Example data.frame with KNMI downloaded data}
-\format{A data frame with 1536 rows and 9 variables:
+\format{
+A data frame with 1536 rows and 9 variables:
 \itemize{
 \item{value: measured value}
 \item{datetime: datetime of the measurement}
@@ -15,7 +16,8 @@
 \item{location_name: station name}
 \item{source_filename: filename from which the data was read}
 \item{quality_code: empty string as KNMI does not provide this}
-}}
+}
+}
 \usage{
 rain_knmi_2012
 }
