@@ -27,12 +27,6 @@
 #' Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), VagueDateType,
 #' VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
 #'
-#' @importFrom glue glue_sql
-#' @importFrom DBI dbGetQuery
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr collect tbl sql
-#'
-#' @export
 #' @family inboveg
 #' @examples
 #' \dontrun{
@@ -54,6 +48,24 @@
 #' dbDisconnect(con)
 #' rm(con)
 #' }
+#'
+#' @name inboveg_header-deprecated
+#' @usage inboveg_header(connection, survey_name, rec_type, multiple = FALSE,
+#'   collect = FALSE)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section inboveg_header:
+#' For \code{inboveg_header}, use [inbodb::inboveg_header()](https://inbo.github.io/inbodb/reference/get_inboveg_header.html)
+#'
+#' @importFrom glue glue_sql
+#' @importFrom DBI dbGetQuery
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr collect tbl sql
+#'
+#' @export
 
 
 inboveg_header <- function(connection,
@@ -61,6 +73,8 @@ inboveg_header <- function(connection,
                            rec_type,
                            multiple = FALSE,
                            collect = FALSE) {
+
+  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")

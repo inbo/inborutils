@@ -24,12 +24,6 @@
 #' N2000-list, LocalClassification, Description of the Habitattype, Cover-code,
 #' Cover in percentage.
 #'
-#' @importFrom glue glue_sql
-#' @importFrom DBI dbGetQuery
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr collect tbl sql
-#'
-#' @export
 #' @family inboveg
 #' @examples
 #' \dontrun{
@@ -46,11 +40,30 @@
 #' dbDisconnect(con)
 #' rm(con)
 #' }
+#'
+#' @name inboveg_classification-deprecated
+#' @usage inboveg_classification(connection, survey_name, classif, collect = FALSE)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section inboveg_classification:
+#' For \code{inboveg_classification}, use [inbodb::inboveg_classification()](https://inbo.github.io/inbodb/reference/get_inboveg_classification.html)
+#'
+#' @importFrom glue glue_sql
+#' @importFrom DBI dbGetQuery
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr collect tbl sql
+#'
+#' @export
 
 inboveg_classification <- function(connection,
                                    survey_name,
                                    classif,
                                    collect = FALSE) {
+
+  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")

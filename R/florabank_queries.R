@@ -25,21 +25,6 @@ globalVariables("%LIKE%")
 #' Omschrijving en Rekenwaarde. The first four variables identify the taxon,
 #' the latter four variables relate to the taxon traits.
 #'
-#' @importFrom dplyr
-#' tbl
-#' collect
-#' distinct
-#' pull
-#' %>%
-#' inner_join
-#' left_join
-#' filter
-#' select
-#' rename
-#' @importFrom rlang .data
-#' @importFrom assertthat assert_that
-#'
-#' @export
 #' @family florabank
 #' @examples
 #' \dontrun{
@@ -65,8 +50,36 @@ globalVariables("%LIKE%")
 #' #disconnect from florabank
 #' dbDisconnect(db_connectie)
 #' }
+#'
+#' @name florabank_traits-deprecated
+#' @usage florabank_traits(connection, trait_name, collect = FALSE)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section florabank_traits:
+#' For \code{florabank_traits}, use [inbodb::florabank_traits()](https://inbo.github.io/inbodb/reference/get_florabank_traits.html)
+#'
+#' @importFrom dplyr
+#' tbl
+#' collect
+#' distinct
+#' pull
+#' %>%
+#' inner_join
+#' left_join
+#' filter
+#' select
+#' rename
+#' @importFrom rlang .data
+#' @importFrom assertthat assert_that
+#'
+#' @export
 
 florabank_traits <- function(connection, trait_name, collect = FALSE) {
+
+  .Deprecated("inbodb::get_florabank_traits()", package = "inborutils")
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
@@ -149,14 +162,6 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' "Toponiem", "CommentaarTaxon", "CommentaarHabitat",
 #' "WaarnemingID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 #'
-#' @importFrom glue glue_sql
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr
-#' tbl
-#' collect
-#' sql
-#'
-#' @export
 #' @family florabank
 #' @examples
 #' \dontrun{
@@ -204,9 +209,30 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' # disconnect from florabank
 #' dbDisconnect(db_connectie)
 #' }
+#'
+#' @name florabank_observations-deprecated
+#' @usage florabank_observations(connection, names, fixed = FALSE, collect = FALSE)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section florabank_observations:
+#' For \code{florabank_observations}, use [inbodb::florabank_observations()](https://inbo.github.io/inbodb/reference/get_florabank_observations.html)
+#'
+#' @importFrom glue glue_sql
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr
+#' tbl
+#' collect
+#' sql
+#'
+#' @export
 
 florabank_observations <- function(connection, names, fixed = FALSE,
                                    collect = FALSE) {
+
+  .Deprecated("inbodb::get_florabank_observations()", package = "inborutils")
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
@@ -321,12 +347,6 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 #' number of unique nested squares where the taxon was observed for that year
 #' and 4 x 4 square combination.
 #'
-#' @importFrom glue glue_sql
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr %>% group_by summarize n ungroup sql collect
-#' @importFrom rlang .data
-#'
-#' @export
 #' @family florabank
 #' @examples
 #' \dontrun{
@@ -346,6 +366,27 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 #' # disconnect from florabank
 #' dbDisconnect(db_connectie)
 #' }
+#'
+#' @name florabank_taxon_ifbl_year-deprecated
+#' @usage florabank_taxon_ifbl_year(connection,
+#'   starting_year = 2010, ifbl_resolution = c("1km-by-1km", "4km-by-4km"),
+#'   taxongroup =
+#'     c("Vaatplanten", "Mossen", "Lichenen (korstmossen)", "Kranswieren"),
+#'   collect = FALSE)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section florabank_taxon_ifbl_year:
+#' For \code{florabank_taxon_ifbl_year}, use [inbodb::florabank_taxon_ifbl_year()](https://inbo.github.io/inbodb/reference/get_florabank_taxon_ifbl_year.html)
+#'
+#' @importFrom glue glue_sql
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr %>% group_by summarize n ungroup sql collect
+#' @importFrom rlang .data
+#'
+#' @export
 
 florabank_taxon_ifbl_year <- function(connection,
                                       starting_year = 2010,
@@ -356,6 +397,8 @@ florabank_taxon_ifbl_year <- function(connection,
                                                      "Lichenen (korstmossen)",
                                                      "Kranswieren"),
                                       collect = FALSE) {
+
+  .Deprecated("inbodb::get_florabank_taxon_ifbl_year()", package = "inborutils")
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
