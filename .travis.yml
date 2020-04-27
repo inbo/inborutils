@@ -12,8 +12,6 @@ apt_packages:
   - libgdal1-dev
 
 after_success:
-  - Rscript -e "install.packages('remotes')"
-  - Rscript -e "remotes::install_github('r-spatial/lwgeom')"
   - R CMD INSTALL . # Install the package to build vignettes
   - Rscript -e "pkgdown::build_site(preview = FALSE)"
 
