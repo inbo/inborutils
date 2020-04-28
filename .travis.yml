@@ -4,9 +4,6 @@ cache: packages
 r_packages:
   - pkgdown
 
-r_binary_packages:
-  - rgdal
-
 apt_packages:
   - libudunits2-dev
   - libgdal1-dev
