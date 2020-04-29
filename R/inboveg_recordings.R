@@ -24,14 +24,8 @@
 #' = TRUE) with variables RecordingGivid (uniek Id), LayerCode, CoverCode,
 #' OriginalName, ScientificName, PhenologyCode, CoverageCode, PctValue
 #' (percentage coverage), RecordingScale (name of the scale of coverage)
-#'
-#' @importFrom glue glue_sql
-#' @importFrom DBI dbGetQuery
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr collect tbl sql
-#'
-#' @export
 #' @family inboveg
+#'
 #' @examples
 #' \dontrun{
 #' con <- connect_inbo_dbase("D0010_00_Cydonia")
@@ -56,11 +50,31 @@
 #' dbDisconnect(con)
 #' rm(con)
 #' }
+#'
+#' @name inboveg_recordings-deprecated
+#' @usage inboveg_recordings(connection, survey_name, collect = FALSE,
+#'   multiple = FALSE)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section inboveg_recordings:
+#' For \code{inboveg_recordings}, use [inbodb::inboveg_recordings()](https://inbo.github.io/inbodb/reference/get_inboveg_recordings.html)
+#'
+#' @importFrom glue glue_sql
+#' @importFrom DBI dbGetQuery
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr collect tbl sql
+#'
+#' @export
 
 inboveg_recordings <- function(connection,
                         survey_name,
                         collect = FALSE,
                         multiple = FALSE) {
+
+  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")
