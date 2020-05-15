@@ -22,11 +22,6 @@
 #' 2nd Description, 3rd QualifierCode, 3rd Description, Elucidation, in case
 #' qualifier is 'NotSure', ParentID, QualifierResource
 #'
-#' @importFrom glue glue_sql
-#' @importFrom DBI dbGetQuery
-#' @importFrom assertthat assert_that
-#'
-#' @export
 #' @family inboveg
 #' @examples
 #' \dontrun{
@@ -52,12 +47,30 @@
 #' rm(con)
 #' }
 #'
+#' @name inboveg_qualifiers-deprecated
+#' @usage inboveg_qualifiers(connection, survey_name, qualifier_type,
+#'   multiple = FALSE)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section inboveg_qualifiers:
+#' For \code{inboveg_qualifiers}, use [inbodb::inboveg_qualifiers()](https://inbo.github.io/inbodb/reference/get_inboveg_qualifiers.html)
+#'
+#' @importFrom glue glue_sql
+#' @importFrom DBI dbGetQuery
+#' @importFrom assertthat assert_that
+#'
+#' @export
 
 
 inboveg_qualifiers <- function(connection,
                                survey_name,
                                qualifier_type,
                                multiple = FALSE) {
+
+  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
 
   assert_that(inherits(connection, what = "Microsoft SQL Server"),
               msg = "Not a connection object to database.")

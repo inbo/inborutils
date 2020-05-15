@@ -1,6 +1,6 @@
 Package: inborutils
 Title: Collection of Useful R Utilities
-Version: 0.1.0.9072
+Version: 0.1.0.9081
 Description: While working on research projects, typical small functionalities 
     are useful across these projects. Instead of copy-pasting these functions in 
     all indidivual project repositories/folders, this package collects these 
@@ -63,4 +63,4 @@ LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0

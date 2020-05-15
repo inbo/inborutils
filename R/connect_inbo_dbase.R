@@ -12,17 +12,30 @@
 #'
 #' @return odbc connection
 #'
-#' @export
-#'
-#' @importFrom DBI dbGetQuery dbConnect dbListTables
-#' @importFrom odbc odbc odbcListDrivers
-#'
 #' @examples
 #' \dontrun{
 #' connection <- connect_inbo_dbase("D0021_00_userFlora")
 #' connection <- connect_inbo_dbase("W0003_00_Lims")
 #' }
+#'
+#' @name connect_inbo_dbase-deprecated
+#' @usage connect_inbo_dbase(database_name)
+#' @seealso \code{\link{inborutils-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname inborutils-deprecated
+#' @section connect_inbo_dbase:
+#' For \code{connect_inbo_dbase}, use [inbodb::connect_inbo_dbase()](https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html)
+#' @export
+#'
+#' @importFrom DBI dbGetQuery dbConnect dbListTables
+#' @importFrom odbc odbc odbcListDrivers
+#' @importFrom utils tail
+#'
 connect_inbo_dbase <- function(database_name) {
+
+  .Deprecated("inbodb::connect_inbo_dbase()", package = "inborutils")
 
     # datawarehouse databases (sql08) start with an M, S or W; most
     # transactional (sql07) with a D (by agreement with dba's)
@@ -38,7 +51,8 @@ connect_inbo_dbase <- function(database_name) {
                         driversdf <- odbcListDrivers()
                         driversvec <-
                             driversdf[driversdf$attribute == "Driver", "name"]
-                        driversvec[grepl("SQL Server", driversvec)][1]
+                        drivers_sql <- driversvec[grepl("SQL Server", driversvec)]
+                        tail(sort(drivers_sql), 1)
                 } else {
                         "SQL Server"
                 }
