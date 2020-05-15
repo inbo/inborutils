@@ -1,14 +1,11 @@
-# TODO: add myself to authors in DESCRIPTION (auto or manual)
-# TODO: default value (date of the day) for session_date?
-# TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
-# TODO: think about what to support/suggest for people already having an environment
-# TODO: write documentation
-
-library(here) # TODO: should I replace that by Roxygen comments? Or by nothing?
-library(gh) # TODO: should I replace that by Roxygen comments? Or by nothing?
-library(assertthat) # TODO: should I replace that by Roxygen comments? Or by nothing?
-library(RCurl)  # TODO: should I replace that by Roxygen comments? Or by nothing?
-
+#' Download files (code and data) for a specific coding club session
+#'
+#' This function will populate the content of /src and /data directories
+#' for a specific coding club session whose date is passed as a parameter.
+#'
+#'
+#' @param session_date The date of the coding-club session, in the "YYYYMMDD" format.
+#'
 #' @export
 setup_codingclub_session <- function(session_date) {
   msg_session_date <- "session_date should be a string representing a date (YYYYMMDD)"
@@ -50,5 +47,8 @@ setup_codingclub_session <- function(session_date) {
   # TODO: Show error asking to double-check the date if nothing is found?
 }
 
-setup_codingclub_session(session_date = "20180123")
+# TODO: default value (date of the day) for session_date?
+# TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
+# TODO: think about what to support/suggest for people already having an environment
+# TODO: write documentation
 
