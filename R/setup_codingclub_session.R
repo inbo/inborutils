@@ -1,10 +1,21 @@
 #' Download files (code and data) for a specific coding club session
 #'
+#' @description
 #' This function will populate the content of /src and /data directories
 #' for a specific coding club session whose date is passed as a parameter.
 #'
+#' @details
+#' blablabla
 #'
 #' @param session_date The date of the coding-club session, in the "YYYYMMDD" format.
+#'
+#' @importFrom assertthat assert_that
+#' @importFrom RCurl CFILE curlPerform
+#' @importFrom gh gh
+#' @importFrom here here
+#'
+#' @examples
+#' setup_codingclub_session("20200326")
 #'
 #' @export
 setup_codingclub_session <- function(session_date) {
@@ -18,7 +29,7 @@ setup_codingclub_session <- function(session_date) {
     download_file <- function(url, file){
       f = CFILE(file, mode="wb")
       a = curlPerform(url = url, writedata = f@ref, noprogress=FALSE)
-      close(f)
+      RCurl::close(f)
       return(a)
     }
 
@@ -50,5 +61,7 @@ setup_codingclub_session <- function(session_date) {
 # TODO: default value (date of the day) for session_date?
 # TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
 # TODO: think about what to support/suggest for people already having an environment
-# TODO: write documentation
+# TODO: improve documentation, write example
+# TODO: run linter?
+# TODO: it seems other package functions use the "curl" package, we use RCurl... possible to avoid the latter?
 

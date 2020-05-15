@@ -13,3 +13,10 @@ setup_codingclub_session(session_date)
 This function will populate the content of /src and /data directories
 for a specific coding club session whose date is passed as a parameter.
 }
+\details{
+blablabla
+}
+\examples{
+setup_codingclub_session("20200326")
+
+}
