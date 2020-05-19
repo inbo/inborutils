@@ -131,7 +131,7 @@ reproject_coordinates <- function(df, col_long, col_lat,
   if (class(crs_output) == "CRS") {
     df[c(col_long, col_lat)] <- as.data.frame(df_reproj)[c(col_long, col_lat)]
   } else {
-    df[c(col_long, col_lat)] <- st_coordinates(df_reproj)
+    df[c(col_long, col_lat)] <- as.data.frame(st_coordinates(df_reproj))
   }
   return(df)
 }
