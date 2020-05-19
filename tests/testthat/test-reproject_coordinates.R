@@ -140,20 +140,20 @@ testthat::test_that("Same CRS input and output", {
 
 testthat::test_that(paste("input and output projections are both CRS-class",
                            "(sp points)"), {
-  expect_equal(as.data.frame(data_out_sp_sp), as.data.frame(read_reproj_df_sp), tolerance = 0.05)
+  expect_equal(data_out_sp_sp, read_reproj_df_sp)
 })
 
 testthat::test_that(paste("input projections of CRS-class (sp points),",
                           "output of crs-class (sf points)"), {
-  expect_equal(data_out_sp_sf, read_reproj_df_sf)
+  expect_equal(as.data.frame(data_out_sp_sf), as.data.frame(read_reproj_df_sf))
 })
 
 testthat::test_that(paste("input projections of crs-class (sf points),",
                           "output of CRS-class (sp points)"), {
-  expect_equal(as.data.frame(data_out_sf_sp), as.data.frame(read_reproj_df_sp), tolerance = 0.05)
+  expect_equal(as.data.frame(data_out_sf_sp), as.data.frame(read_reproj_df_sp))
 })
 
 testthat::test_that(paste("input and output projections are both crs-class",
                           "(sf points)"), {
-  expect_equal(data_out_sf_sf, read_reproj_df_sf)
+  expect_equal(as.data.frame(data_out_sf_sf), as.data.frame(read_reproj_df_sf))
 })
