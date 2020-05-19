@@ -11,9 +11,9 @@ library(readr)
 # )
 data_pts  <- read_tsv("./data_test_project_coordinate/data_pts_input.tsv")
 sp_crs1 <- CRS("+init=epsg:4269")
-sf_crs1 <- st_crs("+init=epsg:4269")
+sf_crs1 <- st_crs(4269)
 sp_crs2 <- CRS("+init=epsg:3857")
-sf_crs2 <- st_crs("+init=epsg:3857")
+sf_crs2 <- st_crs(3857)
 
 data_out_sp_sp <- reproject_coordinates(data_pts, col_long = lon, col_lat = lat,
                                         crs_input = sp_crs1,
