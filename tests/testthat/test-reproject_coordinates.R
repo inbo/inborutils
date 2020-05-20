@@ -142,7 +142,7 @@ testthat::test_that("Same CRS input and output", {
 
 testthat::test_that(paste("input and output projections are both CRS-class",
                            "(sp points)"), {
-  expect_equal(data_out_sp_sp, read_reproj_df_sp)
+  expect_equal(as.data.frame(data_out_sp_sp), as.data.frame(read_reproj_df_sp))
 })
 
 testthat::test_that(paste("input projections of CRS-class (sp points),",
