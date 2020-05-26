@@ -26,3 +26,6 @@ v <- c(12345, 456987745621258)
 human_filesize(v)
 
 }
+\author{
+Floris Vanderhaeghe, \email{floris.vanderhaeghe@inbo.be}
+}
