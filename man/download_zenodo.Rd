@@ -44,4 +44,9 @@ download_zenodo(doi = "10.5281/zenodo.168478")
 Other download functions: 
 \code{\link{download_knmi_data_hour}()}
 }
+\author{
+Hans Van Calster, \email{hans.vancalster@inbo.be}
+
+Floris Vanderhaeghe, \email{floris.vanderhaeghe@inbo.be}
+}
 \concept{download functions}

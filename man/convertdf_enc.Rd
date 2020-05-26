@@ -17,7 +17,8 @@ class}
 \item{sub}{character string.  If not \code{NA} it is used to replace
     any non-convertible bytes in the input.  (This would normally be a
     single character, but can be more.)  If \code{"byte"}, the indication is
-    \code{"<xx>"} with the hex code of the byte.}
+    \code{"<xx>"} with the hex code of the byte.  If \code{"Unicode"}
+    and converting from UTF-8, the Unicode point in the form \code{"<U+xxxx>"}.}
 }
 \value{
 The original object, with character variables (and levels of
