@@ -62,7 +62,8 @@ Suggests:
     testthat,
     ggplot2,
     htmlwidgets,
-    drat
+    drat,
+    mockery
 LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
