@@ -22,7 +22,6 @@ reference:
   - title: "Data loaders"
     desc: "Functions to download/read data or specific data formats"
     contents:
-      - connect_inbo_dbase
       - read_mow_data
       - download_knmi_data_hour
       - download_zenodo
@@ -33,10 +32,12 @@ reference:
   - title: "INBOVEG data interaction"
     desc: "Functions to read data from INBOVEG database"
     contents:
+      - connect_inbo_dbase
       - has_concept("inboveg")
   - title: "Florabank data interaction"
     desc: "Functions to read data from Florabank database"
     contents:
+      - connect_inbo_dbase
       - has_concept("florabank")
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"

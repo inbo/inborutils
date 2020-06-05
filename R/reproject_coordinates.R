@@ -35,8 +35,8 @@
 #' reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
 #'   crs_input = sp_crs1, crs_output = sp_crs2)
 #' # crs-class (use sf package)
-#' sf_crs1 <- st_crs("+init=epsg:4269")
-#' sf_crs2 <- st_crs("+init=epsg:3857")
+#' sf_crs1 <- st_crs(4269)
+#' sf_crs2 <- st_crs(3857)
 #' reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
 #'   crs_input = sf_crs1, crs_output = sf_crs2)
 #' # input projection is CRS-class (sp) and output projection crs-class (sf)
@@ -131,7 +131,7 @@ reproject_coordinates <- function(df, col_long, col_lat,
   if (class(crs_output) == "CRS") {
     df[c(col_long, col_lat)] <- as.data.frame(df_reproj)[c(col_long, col_lat)]
   } else {
-    df[c(col_long, col_lat)] <- st_coordinates(df_reproj)
+    df[c(col_long, col_lat)] <- as.data.frame(st_coordinates(df_reproj))
   }
   return(df)
 }

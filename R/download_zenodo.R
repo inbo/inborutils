@@ -4,6 +4,9 @@
 #' It only works for Zenodo created DOI (not when the DOI is for
 #' example derived from Zookeys.)
 #'
+#' @author Hans Van Calster, \email{hans.vancalster@@inbo.be}
+#' @author Floris Vanderhaeghe, \email{floris.vanderhaeghe@@inbo.be}
+#'
 #' @param path Path where the data must be downloaded.
 #' Defaults to the working directory.
 #' @param doi a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.
@@ -173,6 +176,8 @@ download_zenodo <- function(doi,
 #' \href{https://en.wikipedia.org/wiki/Binary_prefix}{binary-prefixed}
 #' byte size (KiB, MiB, GiB, TiB, PiB, EiB).
 #' The function is vectorised.
+#'
+#' @author Floris Vanderhaeghe, \email{floris.vanderhaeghe@@inbo.be}
 #'
 #' @param x A positive integer, i.e. the number of bytes (B).
 #' Can be a vector of file sizes.
