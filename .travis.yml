@@ -1,4 +1,7 @@
 language: r
+r:
+  - 3.6
+
 cache: packages
 
 r_packages:
