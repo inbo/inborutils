@@ -8,6 +8,7 @@
 #'
 #' @param x An object with the `data.frame`
 #' class (such as `data.frame` or `sf`)
+#' @param colnames Should column names be converted as well?
 #'
 #' @inheritParams base::iconv
 #'
@@ -27,7 +28,8 @@
 convertdf_enc <- function(x,
                           from = "",
                           to = "UTF-8",
-                          sub = NA) {
+                          sub = NA,
+                          colnames = FALSE) {
 
     assert_that(inherits(x, "data.frame"))
     assert_that(is.string(to))
@@ -56,6 +58,11 @@ convertdf_enc <- function(x,
                   conv_levels,
                   from = from,
                   to = to,
-                  sub = sub)
-
+                  sub = sub) %>%
+        {if (colnames) {
+            `colnames<-`(., iconv(colnames(.),
+                                  from = from,
+                                  to = to,
+                                  sub = sub))
+        } else .}
 }

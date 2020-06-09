@@ -4,7 +4,7 @@
 \alias{convertdf_enc}
 \title{Convert encoding of character and factor variables in a dataframe}
 \usage{
-convertdf_enc(x, from = "", to = "UTF-8", sub = NA)
+convertdf_enc(x, from = "", to = "UTF-8", sub = NA, colnames = FALSE)
 }
 \arguments{
 \item{x}{An object with the \code{data.frame}
@@ -19,6 +19,8 @@ class (such as \code{data.frame} or \code{sf})}
     single character, but can be more.)  If \code{"byte"}, the indication is
     \code{"<xx>"} with the hex code of the byte.  If \code{"Unicode"}
     and converting from UTF-8, the Unicode point in the form \code{"<U+xxxx>"}.}
+
+\item{colnames}{Should column names be converted as well?}
 }
 \value{
 The original object, with character variables (and levels of
