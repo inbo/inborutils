@@ -25,6 +25,8 @@
 #' @importFrom assertthat
 #' assert_that
 #' is.string
+#' is.flag
+#' noNA
 convertdf_enc <- function(x,
                           from = "",
                           to = "UTF-8",
@@ -32,7 +34,11 @@ convertdf_enc <- function(x,
                           colnames = FALSE) {
 
     assert_that(inherits(x, "data.frame"))
-    assert_that(is.string(to))
+    assert_that(is.string(to),
+                is.string(from),
+                is.string(sub) | is.na(sub))
+    assert_that(is.flag(colnames), noNA(colnames))
+
 
     is_chfact <- function(vec) {
         if (is.factor(vec)) {
