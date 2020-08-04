@@ -134,5 +134,3 @@ download_content_in_subdir <- function(session_date,
     }
   }
 }
-
-# TODO: run linter?
