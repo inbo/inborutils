@@ -32,7 +32,6 @@ Imports:
     dplyr,
     gh,
     glue,
-    here,
     httr,
     iterators,
     jsonlite,
