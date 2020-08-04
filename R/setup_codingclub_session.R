@@ -38,8 +38,24 @@ setup_codingclub_session <- function(
       RCurl::close(f)
       return(a)
     }
+  github_src_link <- sprintf(
+    "https://github.com/inbo/coding-club/tree/master/data/%s",
+    session_date
+  )
+  github_data_link <- sprintf(
+    "https://github.com/inbo/coding-club/tree/master/src/%s",
+    session_date
+  )
   src_target_dir <- paste(root_dir, src_rel_path, session_date, sep = "/")
   data_target_dir <- paste(root_dir, data_rel_path, session_date, sep = "/")
+  print(sprintf(
+    "R scripts in %s will be downloaded in folder: %s",
+    github_src_link, src_target_dir
+  ))
+  print(sprintf(
+    "Data in %s will be downloaded in folder: %s",
+    github_data_link, data_target_dir
+  ))
 
     content_found = FALSE
     content <- tryCatch({
