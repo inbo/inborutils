@@ -103,6 +103,5 @@ download_content_in_subdir <- function(session_date,
 }
 
 # TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
-# TODO: think about what to support/suggest for people already having an environment
 # TODO: improve documentation, write example
 # TODO: run linter?
