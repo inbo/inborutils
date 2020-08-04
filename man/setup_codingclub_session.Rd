@@ -4,19 +4,49 @@
 \alias{setup_codingclub_session}
 \title{Download files (code and data) for a specific coding club session}
 \usage{
-setup_codingclub_session(session_date)
+setup_codingclub_session(`20200528`)
 }
 \arguments{
-\item{session_date}{The date of the coding-club session, in the "YYYYMMDD" format.}
+\item{session_date}{The date of the coding-club session, in the "YYYYMMDD"
+format. Default: actual date}
+
+\item{root_dir}{Root directory where source and data subdirectories are
+located. Default: \verb{./}}
+
+\item{src_rel_path}{Relative path for R script(s). Default: \code{src}}
+
+\item{data_rel_path}{Relative path for data files. Default: \code{data}}
 }
 \description{
-This function will populate the content of /src and /data directories
-for a specific coding club session whose date is passed as a parameter.
-}
-\details{
-blablabla
+This function will populate the content of /src and /data
+directories for a specific coding club session whose date is passed as a
+parameter. Directories are created if not exist. Files are downloaded if
+not alrady present.
 }
 \examples{
-setup_codingclub_session("20200326")
+\dontrun{
+library(inborutils)
+
+# Download coding club files for session 2020-02-25
+# R script(s) in `./src/20200528` and data files in `./data/20200528`
+setup_codingclub_session("20200528")
+
+# Specify the folders where you want to save R files and data files
+# R files will be downloaded in `./source`
+# Data files will be downloaded in `./dataframes`
+setup_codingclub_session(
+  "20200528",
+  src_rel_path = "source",
+  data_rel_path = "dataframes"
+)
+
+# You can modify the root directory even if it should be normally not needed.
+# For example you want to move the root to the parent directory, `../`
+setup_codingclub_session("20200528",
+  root_dir = "../",
+  src_rel_path = "source",
+  data_rel_path = "dataframes"
+)
+}
 
 }
