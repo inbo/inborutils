@@ -6,8 +6,9 @@
 #' locale), \code{"latin1"} and \code{"UTF-8"}.
 #' See \code{\link[base]{iconv}} for more information.
 #'
-#' @param x A dataframe or an object (such as `sf`) with the `data.frame`
-#' class
+#' @param x An object with the `data.frame`
+#' class (such as `data.frame` or `sf`)
+#' @param colnames Should column names be converted as well?
 #'
 #' @inheritParams base::iconv
 #'
@@ -24,13 +25,20 @@
 #' @importFrom assertthat
 #' assert_that
 #' is.string
+#' is.flag
+#' noNA
 convertdf_enc <- function(x,
                           from = "",
                           to = "UTF-8",
-                          sub = NA) {
+                          sub = NA,
+                          colnames = FALSE) {
 
     assert_that(inherits(x, "data.frame"))
-    assert_that(is.string(to))
+    assert_that(is.string(to),
+                is.string(from),
+                is.string(sub) | is.na(sub))
+    assert_that(is.flag(colnames), noNA(colnames))
+
 
     is_chfact <- function(vec) {
         if (is.factor(vec)) {
@@ -56,6 +64,11 @@ convertdf_enc <- function(x,
                   conv_levels,
                   from = from,
                   to = to,
-                  sub = sub)
-
+                  sub = sub) %>%
+        {if (colnames) {
+            `colnames<-`(., iconv(colnames(.),
+                                  from = from,
+                                  to = to,
+                                  sub = sub))
+        } else .}
 }
