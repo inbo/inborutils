@@ -129,12 +129,19 @@ download_content_in_subdir <- function(session_date,
       message(sprintf("** '%s' already exists", target_directory))
     }
     for (f in content) {
-      print(sprintf("Downloading %s", f$html_url))
-      curl_download(
-        url = f$download_url,
-        destfile = file.path(target_directory, f$name),
-        mode = "wb"
-      )
+      dest_file = file.path(target_directory, f$name)
+      if (!f$name %in% list.files(target_directory)) {
+        message(sprintf("** Downloading %s", f$html_url))
+        curl_download(
+          url = f$download_url,
+          destfile = file.path(target_directory, f$name),
+          mode = "wb"
+        )
+      } else {
+        message(sprintf("** File %s already exists in %s and won't be downloaded",
+                        f$name,
+                        target_directory))
+      }
     }
   }
 }
