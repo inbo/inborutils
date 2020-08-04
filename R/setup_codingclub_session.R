@@ -99,7 +99,6 @@ download_content_in_subdir <- function(session_date,
                     destfile = file.path(target_directory, f$name))
     }
   }
-  # TODO: Show error asking to double-check the date if nothing is found?
 }
 
 # TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
