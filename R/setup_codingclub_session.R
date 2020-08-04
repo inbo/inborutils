@@ -2,13 +2,13 @@
 #'
 #' @description This function will populate the content of /src and /data
 #'   directories for a specific coding club session whose date is passed as a
-#'   parameter. Directories are created if they do not exist otherwise a warning
-#'   is returned. Files with the same name are overwritten.
+#'   parameter. Directories are created if not exist. Files are downloaded if
+#'   not alrady present.
 #'
 #' @param session_date The date of the coding-club session, in the "YYYYMMDD"
 #'   format. Default: actual date
 #' @param root_dir Root directory where source and data subdirectories are
-#'   located. Default: "./"
+#'   located. Default: `./`
 #' @param src_rel_path Relative path for R script(s). Default: `src`
 #' @param data_rel_path Relative path for data files. Default: `data`
 #'
