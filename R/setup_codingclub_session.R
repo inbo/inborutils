@@ -28,9 +28,8 @@
 #' # Specify the folders where you want to save R files and data files
 #' # R files will be downloaded in `./source`
 #' # Data files will be downloaded in `./dataframes`
-#' setup_codingclub_session("20200225",
 #'   src_rel_path = "source",
-#'   data_rel = "dataframes"
+#'   data_rel_path = "dataframes"
 #' )
 #'
 #' # You can modify the root directory even if it should be normally not needed.
@@ -38,7 +37,8 @@
 #' setup_codingclub_session("20200225",
 #'   root_dir = "../",
 #'   src_rel_path = "source",
-#'   data_rel = "dataframes"
+#'   data_rel_path = "dataframes"
+#' )
 #' }
 #'
 #' @export
