@@ -16,12 +16,12 @@
 #'
 #' @export
 setup_codingclub_session <- function(session_date) {
-  msg_session_date <- "session_date should be a string representing a date (YYYYMMDD)"
 
   if(missing(session_date)) {
     session_date <- format(Sys.Date(), "%Y%m%d")
   }
 
+  msg_session_date <- "session_date must be a string representing a date (YYYYMMDD)"
   assert_that(is.string(session_date), msg = msg_session_date)
   assert_that(grepl("\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])", session_date), msg = msg_session_date)
 
