@@ -4,9 +4,6 @@
 #' This function will populate the content of /src and /data directories
 #' for a specific coding club session whose date is passed as a parameter.
 #'
-#' @details
-#' blablabla
-#'
 #' @param session_date The date of the coding-club session, in the "YYYYMMDD" format.
 #'
 #' @importFrom assertthat assert_that
