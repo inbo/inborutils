@@ -7,9 +7,8 @@
 #' @param session_date The date of the coding-club session, in the "YYYYMMDD" format.
 #'
 #' @importFrom assertthat assert_that
-#' @importFrom RCurl CFILE curlPerform
 #' @importFrom gh gh
-#' @importFrom here here
+#' @importFrom curl curl_download
 #'
 #' @examples
 #' setup_codingclub_session("20200326")
@@ -30,14 +29,6 @@ setup_codingclub_session <- function(
   msg = msg_session_date
   )
 
-  download_content_in_subdir <- function(session_date, subdirectory) {
-
-    download_file <- function(url, file){
-      f = CFILE(file, mode="wb")
-      a = curlPerform(url = url, writedata = f@ref, noprogress=FALSE)
-      RCurl::close(f)
-      return(a)
-    }
   github_src_link <- sprintf(
     "https://github.com/inbo/coding-club/tree/master/data/%s",
     session_date
@@ -56,29 +47,58 @@ setup_codingclub_session <- function(
     "Data in %s will be downloaded in folder: %s",
     github_data_link, data_target_dir
   ))
+  continue <- tolower(readline("Do you want to continue? (Y/N) "))
+  if (continue == "y") {
+    cat("\nDownlaod source file(s)...\n")
+    download_content_in_subdir(session_date,
+      target_directory = src_target_dir,
+      github_subdirectory = "src"
+    )
+    cat("\nSource file(s) downloaded.\n")
 
-    content_found = FALSE
-    content <- tryCatch({
-      resp <- gh(sprintf("/repos/inbo/coding-club/contents/%s/%s", subdirectory, session_date))
-      content_found = TRUE
-      resp # Because last evaluted expression is returned... TODO: is there a better way?
-    }, error = function(error_condition) {
-      warning(sprintf("No content for this session (%s) found in %s", session_date, subdirectory))
-    })
+    cat("\nDownlaod data file(s)...\n")
+    download_content_in_subdir(session_date,
+      target_directory = data_target_dir,
+      github_subdirectory = "data"
+    )
+    cat("\nData file(s) downloaded.\n")
+    # TODO: Show error asking to double-check the date if nothing is found?
+  } else {
+    print("Download aborted.")
+  }
+}
 
-    if (content_found) {
-      target_dir <- here(subdirectory, session_date)
-      dir.create(target_dir, recursive = TRUE) # Suppress warnings?
+download_content_in_subdir <- function(session_date,
+                                       target_directory,
+                                       github_subdirectory) {
+  assert_that(github_subdirectory %in% c("src", "data"),
+    msg = "R scripts are in ./src/, data are in ./data."
+  )
+  content_found <- FALSE
+  content <- tryCatch(
+    {
+      resp <- gh(sprintf(
+        "/repos/inbo/coding-club/contents/%s/%s",
+        github_subdirectory, session_date
+      ))
+      content_found <- TRUE
+      resp
+    },
+    error = function(error_condition) {
+      warning(sprintf(
+        "No content for this session (%s) found. Is the date correct?",
+        session_date))
+    }
+  )
 
-      for (f in content) {
-        download_file(f$download_url, file.path(target_dir, f$name))
-      }
+  if (content_found) {
+    dir.create(target_directory, recursive = TRUE, showWarnings = TRUE)
+    for (f in content) {
+      print(sprintf("Downloading %s", f$html_url))
+      curl_download(url = f$download_url,
+                    destfile = file.path(target_directory, f$name))
     }
   }
-
-  download_content_in_subdir(session_date, 'src')
-  download_content_in_subdir(session_date, 'data')
-
   # TODO: Show error asking to double-check the date if nothing is found?
 }
 
@@ -88,5 +108,3 @@ setup_codingclub_session <- function(
 # TODO: think about what to support/suggest for people already having an environment
 # TODO: improve documentation, write example
 # TODO: run linter?
-# TODO: it seems other package functions use the "curl" package, we use RCurl... possible to avoid the latter?
-
