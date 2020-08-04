@@ -69,32 +69,32 @@ setup_codingclub_session <- function(
   )
   src_target_dir <- paste(root_dir, src_rel_path, session_date, sep = "/")
   data_target_dir <- paste(root_dir, data_rel_path, session_date, sep = "/")
-  print(sprintf(
+  message(sprintf(
     "R scripts in %s will be downloaded in folder: %s",
     github_src_link, src_target_dir
   ))
-  print(sprintf(
+  message(sprintf(
     "Data in %s will be downloaded in folder: %s",
     github_data_link, data_target_dir
   ))
   continue <- tolower(readline("Do you want to continue? (Y/N) "))
   if (continue == "y") {
-    cat("\nDownlaod source file(s)...\n")
+    message("* Download source file(s)...")
     download_content_in_subdir(session_date,
       target_directory = src_target_dir,
       github_subdirectory = "src"
     )
-    cat("\nSource file(s) downloaded.\n")
+    message("* Download source file(s) completed")
 
-    cat("\nDownlaod data file(s)...\n")
+    message("* Download data file(s)...")
     download_content_in_subdir(session_date,
       target_directory = data_target_dir,
       github_subdirectory = "data"
     )
-    cat("\nData file(s) downloaded.\n")
+   message("* Download data file(s) completed")
     # TODO: Show error asking to double-check the date if nothing is found?
   } else {
-    print("Download aborted.")
+    print("* Download aborted")
   }
 }
 
@@ -102,7 +102,7 @@ download_content_in_subdir <- function(session_date,
                                        target_directory,
                                        github_subdirectory) {
   assert_that(github_subdirectory %in% c("src", "data"),
-    msg = "R scripts are in ./src/, data are in ./data."
+    msg = "R scripts are in ./src/, data are in ./data"
   )
   content_found <- FALSE
   content <- tryCatch(
