@@ -28,6 +28,8 @@
 #' # Specify the folders where you want to save R files and data files
 #' # R files will be downloaded in `./source`
 #' # Data files will be downloaded in `./dataframes`
+#' setup_codingclub_session(
+#'   "20200225",
 #'   src_rel_path = "source",
 #'   data_rel_path = "dataframes"
 #' )
@@ -115,7 +117,8 @@ download_content_in_subdir <- function(session_date,
     error = function(error_condition) {
       warning(sprintf(
         "No content for this session (%s) found. Is the date correct?",
-        session_date))
+        session_date
+      ))
     }
   )
 
@@ -123,12 +126,13 @@ download_content_in_subdir <- function(session_date,
     dir.create(target_directory, recursive = TRUE, showWarnings = TRUE)
     for (f in content) {
       print(sprintf("Downloading %s", f$html_url))
-      curl_download(url = f$download_url,
-                    destfile = file.path(target_directory, f$name),
-                    mode = "wb")
+      curl_download(
+        url = f$download_url,
+        destfile = file.path(target_directory, f$name),
+        mode = "wb"
+      )
     }
   }
 }
 
-# TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
 # TODO: run linter?
