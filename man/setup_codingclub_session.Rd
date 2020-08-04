@@ -4,7 +4,7 @@
 \alias{setup_codingclub_session}
 \title{Download files (code and data) for a specific coding club session}
 \usage{
-setup_codingclub_session(`20200528`)
+setup_codingclub_session(`20200225`)
 }
 \arguments{
 \item{session_date}{The date of the coding-club session, in the "YYYYMMDD"
@@ -28,21 +28,21 @@ not alrady present.
 library(inborutils)
 
 # Download coding club files for session 2020-02-25
-# R script(s) in `./src/20200528` and data files in `./data/20200528`
-setup_codingclub_session("20200528")
+# R script(s) in `./src/20200225` and data files in `./data/20200225`
+setup_codingclub_session("20200225")
 
 # Specify the folders where you want to save R files and data files
 # R files will be downloaded in `./source`
 # Data files will be downloaded in `./dataframes`
 setup_codingclub_session(
-  "20200528",
+  "20200225",
   src_rel_path = "source",
   data_rel_path = "dataframes"
 )
 
 # You can modify the root directory even if it should be normally not needed.
 # For example you want to move the root to the parent directory, `../`
-setup_codingclub_session("20200528",
+setup_codingclub_session("20200225",
   root_dir = "../",
   src_rel_path = "source",
   data_rel_path = "dataframes"
