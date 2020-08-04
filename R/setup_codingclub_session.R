@@ -91,7 +91,7 @@ setup_codingclub_session <- function(
       target_directory = data_target_dir,
       github_subdirectory = "data"
     )
-   message("* Download data file(s) completed")
+    message("* Download data file(s) completed")
     # TODO: Show error asking to double-check the date if nothing is found?
   } else {
     print("* Download aborted")
@@ -129,7 +129,7 @@ download_content_in_subdir <- function(session_date,
       message(sprintf("** '%s' already exists", target_directory))
     }
     for (f in content) {
-      dest_file = file.path(target_directory, f$name)
+      dest_file <- file.path(target_directory, f$name)
       if (!f$name %in% list.files(target_directory)) {
         message(sprintf("** Downloading %s", f$html_url))
         curl_download(
@@ -138,9 +138,11 @@ download_content_in_subdir <- function(session_date,
           mode = "wb"
         )
       } else {
-        message(sprintf("** File %s already exists in %s and won't be downloaded",
-                        f$name,
-                        target_directory))
+        message(sprintf(
+          "** File %s already exists in %s and won't be downloaded",
+          f$name,
+          target_directory
+        ))
       }
     }
   }
