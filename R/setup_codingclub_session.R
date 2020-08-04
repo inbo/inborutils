@@ -102,8 +102,6 @@ download_content_in_subdir <- function(session_date,
   # TODO: Show error asking to double-check the date if nothing is found?
 }
 
-
-# TODO: default value (date of the day) for session_date?
 # TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
 # TODO: think about what to support/suggest for people already having an environment
 # TODO: improve documentation, write example
