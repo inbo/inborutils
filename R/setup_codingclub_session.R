@@ -18,6 +18,9 @@
 
 setup_codingclub_session <- function(
                                      session_date = format(Sys.Date(), "%Y%m%d"),
+                                     root_dir = ".",
+                                     src_rel_path = "src",
+                                     data_rel_path = "data") {
   msg_session_date <- "session_date must be a string representing a date (YYYYMMDD)"
   assert_that(is.string(session_date), msg = msg_session_date)
   assert_that(grepl(
@@ -35,6 +38,8 @@ setup_codingclub_session <- function(
       RCurl::close(f)
       return(a)
     }
+  src_target_dir <- paste(root_dir, src_rel_path, session_date, sep = "/")
+  data_target_dir <- paste(root_dir, data_rel_path, session_date, sep = "/")
 
     content_found = FALSE
     content <- tryCatch({
