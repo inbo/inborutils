@@ -1,17 +1,45 @@
 #' Download files (code and data) for a specific coding club session
 #'
-#' @description
-#' This function will populate the content of /src and /data directories
-#' for a specific coding club session whose date is passed as a parameter.
+#' @description This function will populate the content of /src and /data
+#'   directories for a specific coding club session whose date is passed as a
+#'   parameter. Directories are created if they do not exist otherwise a warning
+#'   is returned. Files with the same name are overwritten.
 #'
-#' @param session_date The date of the coding-club session, in the "YYYYMMDD" format.
+#' @param session_date The date of the coding-club session, in the "YYYYMMDD"
+#'   format. Default: actual date
+#' @param root_dir Root directory where source and data subdirectories are
+#'   located. Default: "./"
+#' @param src_rel_path Relative path for R script(s). Default: `src`
+#' @param data_rel_path Relative path for data files. Default: `data`
 #'
+#' @usage setup_codingclub_session(`20200225`)
 #' @importFrom assertthat assert_that
 #' @importFrom gh gh
 #' @importFrom curl curl_download
 #'
 #' @examples
-#' setup_codingclub_session("20200326")
+#' \dontrun{
+#' library(inborutils)
+#'
+#' # Download coding club files for session 2020-02-25
+#' # R script(s) in `./src/20200225` and data files in `./data/20200225`
+#' setup_codingclub_session("20200225")
+#'
+#' # Specify the folders where you want to save R files and data files
+#' # R files will be downloaded in `./source`
+#' # Data files will be downloaded in `./dataframes`
+#' setup_codingclub_session("20200225",
+#'   src_rel_path = "source",
+#'   data_rel = "dataframes"
+#' )
+#'
+#' # You can modify the root directory even if it should be normally not needed.
+#' # For example you want to move the root to the parent directory, `../`
+#' setup_codingclub_session("20200225",
+#'   root_dir = "../",
+#'   src_rel_path = "source",
+#'   data_rel = "dataframes"
+#' }
 #'
 #' @export
 
@@ -103,5 +131,4 @@ download_content_in_subdir <- function(session_date,
 }
 
 # TODO: should we clean the 'date' subdirectories, if they already exists? Or make that configurable?
-# TODO: improve documentation, write example
 # TODO: run linter?
