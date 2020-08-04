@@ -123,7 +123,11 @@ download_content_in_subdir <- function(session_date,
   )
 
   if (content_found) {
-    dir.create(target_directory, recursive = TRUE, showWarnings = TRUE)
+    if (!dir.exists(target_directory)) {
+      dir.create(target_directory, recursive = TRUE, showWarnings = TRUE)
+    } else {
+      message(sprintf("** '%s' already exists", target_directory))
+    }
     for (f in content) {
       print(sprintf("Downloading %s", f$html_url))
       curl_download(
