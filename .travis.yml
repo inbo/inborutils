@@ -6,7 +6,6 @@ r_packages:
 
 apt_packages:
   - libudunits2-dev
-  - libgdal1-dev
 
 after_success:
   - R CMD INSTALL . # Install the package to build vignettes
