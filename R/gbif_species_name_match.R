@@ -112,7 +112,6 @@ gbif_species_name_match <- function(df,
                    name,
                    "1\'."))
   }
-  df <- as_tibble(df)
   # make df with names only
   name_df <- select(df, eval(name))
   colnames(name_df) <- "name" # rename to "name"
