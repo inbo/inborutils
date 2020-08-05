@@ -12,7 +12,6 @@
 #' @param src_rel_path Relative path for R script(s). Default: `src`
 #' @param data_rel_path Relative path for data files. Default: `data`
 #'
-#' @usage setup_codingclub_session(`20200225`)
 #' @importFrom assertthat assert_that
 #' @importFrom gh gh
 #' @importFrom curl curl_download

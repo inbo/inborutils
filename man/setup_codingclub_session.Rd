@@ -4,7 +4,12 @@
 \alias{setup_codingclub_session}
 \title{Download files (code and data) for a specific coding club session}
 \usage{
-setup_codingclub_session(`20200225`)
+setup_codingclub_session(
+  session_date = format(Sys.Date(), "\%Y\%m\%d"),
+  root_dir = ".",
+  src_rel_path = "src",
+  data_rel_path = "data"
+)
 }
 \arguments{
 \item{session_date}{The date of the coding-club session, in the "YYYYMMDD"
