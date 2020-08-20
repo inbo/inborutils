@@ -1,13 +1,12 @@
-before_install:
-  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
-
 language: r
 cache: packages
 
 r_packages:
   - pkgdown
+
+apt_packages:
+  - libudunits2-dev
+  - libgdal1-dev
 
 after_success:
   - R CMD INSTALL . # Install the package to build vignettes
