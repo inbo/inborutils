@@ -24,9 +24,9 @@ located. Default: \verb{./}}
 }
 \description{
 This function will populate the content of /src and /data
-directories for a specific coding club session whose date is passed as a
-parameter. Directories are created if not exist. Files are downloaded if
-not alrady present.
+directories for a specific coding club session, the date of which is passed
+as a parameter. Directories are created if needed. Files are downloaded
+if not already present.
 }
 \examples{
 \dontrun{

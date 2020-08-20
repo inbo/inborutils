@@ -1,9 +1,9 @@
 #' Download files (code and data) for a specific coding club session
 #'
 #' @description This function will populate the content of /src and /data
-#'   directories for a specific coding club session whose date is passed as a
-#'   parameter. Directories are created if not exist. Files are downloaded if
-#'   not alrady present.
+#'   directories for a specific coding club session, the date of which is passed
+#'   as a parameter. Directories are created if needed. Files are downloaded
+#'   if not already present.
 #'
 #' @param session_date The date of the coding-club session, in the "YYYYMMDD"
 #'   format. Default: actual date
