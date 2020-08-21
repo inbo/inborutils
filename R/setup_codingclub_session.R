@@ -133,7 +133,7 @@ download_content_in_subdir <- function(session_date,
         message(sprintf("** Downloading %s", f$html_url))
         curl_download(
           url = f$download_url,
-          destfile = file.path(target_directory, f$name),
+          destfile = dest_file,
           mode = "wb"
         )
       } else {
