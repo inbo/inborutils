@@ -101,7 +101,7 @@ download_content_in_subdir <- function(session_date,
                                        target_directory,
                                        github_subdirectory) {
   assert_that(github_subdirectory %in% c("src", "data"),
-    msg = "R scripts are in ./src/, data are in ./data"
+    msg = "R scripts are in GitHub subfolder ./src/, data in ./data/"
   )
   content_found <- FALSE
   content <- tryCatch(
@@ -125,7 +125,7 @@ download_content_in_subdir <- function(session_date,
     if (!dir.exists(target_directory)) {
       dir.create(target_directory, recursive = TRUE, showWarnings = TRUE)
     } else {
-      message(sprintf("** '%s' already exists", target_directory))
+      message(sprintf("** Directory '%s' already exists", target_directory))
     }
     for (f in content) {
       dest_file <- file.path(target_directory, f$name)
@@ -145,4 +145,5 @@ download_content_in_subdir <- function(session_date,
       }
     }
   }
+  return(content_found)
 }
