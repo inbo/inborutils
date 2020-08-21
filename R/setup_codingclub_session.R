@@ -79,19 +79,18 @@ setup_codingclub_session <- function(
   continue <- tolower(readline("Do you want to continue? (Y/N) "))
   if (continue == "y") {
     message("* Download source file(s)...")
-    download_content_in_subdir(session_date,
+    content_downloaded <- download_content_in_subdir(session_date,
       target_directory = src_target_dir,
       github_subdirectory = "src"
     )
-    message("* Download source file(s) completed")
+    if (content_downloaded) message("* Download source file(s) completed")
 
     message("* Download data file(s)...")
-    download_content_in_subdir(session_date,
+    content_downloaded <- download_content_in_subdir(session_date,
       target_directory = data_target_dir,
       github_subdirectory = "data"
     )
-    message("* Download data file(s) completed")
-    # TODO: Show error asking to double-check the date if nothing is found?
+    if (content_downloaded) message("* Download data file(s) completed")
   } else {
     print("* Download aborted")
   }
@@ -115,8 +114,8 @@ download_content_in_subdir <- function(session_date,
     },
     error = function(error_condition) {
       warning(sprintf(
-        "No content for this session (%s) found. Is the date correct?",
-        session_date
+        "No %s files found. Is the date correct?",
+        github_subdirectory, github_subdirectory, session_date
       ))
     }
   )
