@@ -114,8 +114,8 @@ download_content_in_subdir <- function(session_date,
     },
     error = function(error_condition) {
       warning(sprintf(
-        "No %s files found. Is the date correct?",
-        github_subdirectory, github_subdirectory, session_date
+        "No %s files found for session %s. Is the date correct?",
+        github_subdirectory, session_date
       ))
     }
   )
