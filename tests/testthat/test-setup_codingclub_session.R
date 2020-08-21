@@ -42,12 +42,18 @@ testthat::test_that("Nothing is changed in directory if no session exists", {
   # Take a snapshot of the root directory
   snapshot_before <- fileSnapshot("./", md5sum = TRUE)
 
-  # 20200802 is an invalid coding club session date
-  expect_warning(scs_20200802_y(),
-                 paste("No content for this session (20200802) found.",
-                       "Is the date correct?"),
-                 all = TRUE,
-                 fixed = TRUE)
+  # 20200802 is an invalid coding club session date, 2 warnings returned
+  warnings_scs_20200802_y <- capture_warnings(scs_20200802_y())
+  expect_true(length(warnings_scs_20200802_y) == 2)
+  expect_match(warnings_scs_20200802_y,
+    "No src files found for session 20200802. Is the date correct?",
+    all = FALSE,
+    fixed = TRUE
+  )
+  expect_match(warnings_scs_20200802_y,
+    "No data files found for session 20200802. Is the date correct?",
+    all = FALSE
+  )
 
   # Check that number of unchanged files/directories is equal to all files/dirs
   # expect_true(
