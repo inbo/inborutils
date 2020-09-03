@@ -77,8 +77,8 @@ setup_codingclub_session <- function(
     "Data in %s will be downloaded in folder: %s",
     github_data_link, data_target_dir
   ))
-  continue <- tolower(readline("Do you want to continue? (Y/N) "))
-  if (continue != "y") {
+  continue <- tolower(readline("Do you want to continue? (Y/n) "))
+  if (!continue %in% c("y", "")) {
     message("* Download aborted")
     return(invisible(NULL))
   }
