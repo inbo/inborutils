@@ -121,11 +121,7 @@ download_content_in_subdir <- function(session_date,
   )
 
   if (content_found) {
-    if (!dir.exists(target_directory)) {
-      dir.create(target_directory, recursive = TRUE, showWarnings = TRUE)
-    } else {
-      message(sprintf("** Directory '%s' already exists", target_directory))
-    }
+    dir.create(target_directory, recursive = TRUE, showWarnings = FALSE)
     for (f in content) {
       dest_file <- file.path(target_directory, f$name)
       if (!f$name %in% list.files(target_directory)) {
