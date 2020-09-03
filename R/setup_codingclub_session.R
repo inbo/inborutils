@@ -95,15 +95,16 @@ setup_codingclub_session <- function(
     target_directory = data_target_dir,
     github_subdirectory = "data"
   )
-
 }
 
 download_content_in_subdir <- function(session_date,
                                        target_directory,
                                        github_subdirectory = c("src", "data")) {
-  github_subdirectory <- match.arg(arg = github_subdirectory,
-                                   choices = github_subdirectory,
-                                   several.ok = FALSE)
+  github_subdirectory <- match.arg(
+    arg = github_subdirectory,
+    choices = github_subdirectory,
+    several.ok = FALSE
+  )
   content_found <- FALSE
   content <- tryCatch(
     {
@@ -124,9 +125,9 @@ download_content_in_subdir <- function(session_date,
 
   if (isFALSE(content_found)) {
     return(content_found)
-    }
+  }
   dir.create(target_directory, recursive = TRUE, showWarnings = FALSE)
-  files_in_github <- map_chr(content, ~.$name)
+  files_in_github <- map_chr(content, ~ .$name)
   files_in_dir <- list.files(target_directory)
   content <- content[!files_in_github %in% files_in_dir]
   length(content)
@@ -139,8 +140,12 @@ download_content_in_subdir <- function(session_date,
       mode = "wb"
     )
   }
-  if (content_found) message(paste0("* Download ",
-                                    github_subdirectory,
-                                    " file(s) completed"))
+  if (content_found) {
+    message(paste0(
+      "* Download ",
+      github_subdirectory,
+      " file(s) completed"
+    ))
+  }
   return(content_found)
 }
