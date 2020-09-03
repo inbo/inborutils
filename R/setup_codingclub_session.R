@@ -67,8 +67,10 @@ setup_codingclub_session <- function(
     "https://github.com/inbo/coding-club/tree/master/src/%s",
     session_date
   )
-  src_target_dir <- paste(root_dir, src_rel_path, session_date, sep = "/")
-  data_target_dir <- paste(root_dir, data_rel_path, session_date, sep = "/")
+  src_target_dir <- file.path(root_dir, src_rel_path, session_date)
+  src_target_dir <- normalizePath(src_target_dir)
+  data_target_dir <- file.path(root_dir, data_rel_path, session_date)
+  data_target_dir <- normalizePath(data_target_dir)
   message(sprintf(
     "R scripts in %s will be downloaded in folder: %s",
     github_src_link, src_target_dir
