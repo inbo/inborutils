@@ -89,14 +89,13 @@ setup_codingclub_session <- function(
     target_directory = src_target_dir,
     github_subdirectory = "src"
   )
-  if (content_downloaded) message("* Download source file(s) completed")
 
   message("* Download data file(s)...")
   content_downloaded <- download_content_in_subdir(session_date,
     target_directory = data_target_dir,
     github_subdirectory = "data"
   )
-  if (content_downloaded) message("* Download data file(s) completed")
+
 }
 
 download_content_in_subdir <- function(session_date,
@@ -140,5 +139,8 @@ download_content_in_subdir <- function(session_date,
       mode = "wb"
     )
   }
+  if (content_found) message(paste0("* Download ",
+                                    github_subdirectory,
+                                    " file(s) completed"))
   return(content_found)
 }
