@@ -121,21 +121,22 @@ download_content_in_subdir <- function(session_date,
     }
   )
 
-  if (content_found) {
-    dir.create(target_directory, recursive = TRUE, showWarnings = FALSE)
-    files_in_github <- map_chr(content, ~.$name)
-    files_in_dir <- list.files(target_directory)
-    content <- content[!files_in_github %in% files_in_dir]
-    length(content)
-    for (f in content) {
-      dest_file <- file.path(target_directory, f$name)
-      message(sprintf("** Downloading %s", f$html_url))
-      curl_download(
-        url = f$download_url,
-        destfile = dest_file,
-        mode = "wb"
-      )
+  if (isFALSE(content_found)) {
+    return(content_found)
     }
+  dir.create(target_directory, recursive = TRUE, showWarnings = FALSE)
+  files_in_github <- map_chr(content, ~.$name)
+  files_in_dir <- list.files(target_directory)
+  content <- content[!files_in_github %in% files_in_dir]
+  length(content)
+  for (f in content) {
+    dest_file <- file.path(target_directory, f$name)
+    message(sprintf("** Downloading %s", f$html_url))
+    curl_download(
+      url = f$download_url,
+      destfile = dest_file,
+      mode = "wb"
+    )
   }
   return(content_found)
 }
