@@ -92,7 +92,7 @@ setup_codingclub_session <- function(
     )
     if (content_downloaded) message("* Download data file(s) completed")
   } else {
-    print("* Download aborted")
+    message("* Download aborted")
   }
 }
 
