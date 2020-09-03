@@ -98,10 +98,10 @@ setup_codingclub_session <- function(
 
 download_content_in_subdir <- function(session_date,
                                        target_directory,
-                                       github_subdirectory) {
-  assert_that(github_subdirectory %in% c("src", "data"),
-    msg = "R scripts are in GitHub subfolder ./src/, data in ./data/"
-  )
+                                       github_subdirectory = c("src", "data")) {
+  github_subdirectory <- match.arg(arg = github_subdirectory,
+                                   choices = github_subdirectory,
+                                   several.ok = FALSE)
   content_found <- FALSE
   content <- tryCatch(
     {
