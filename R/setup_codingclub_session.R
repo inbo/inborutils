@@ -77,23 +77,23 @@ setup_codingclub_session <- function(
     github_data_link, data_target_dir
   ))
   continue <- tolower(readline("Do you want to continue? (Y/N) "))
-  if (continue == "y") {
-    message("* Download source file(s)...")
-    content_downloaded <- download_content_in_subdir(session_date,
-      target_directory = src_target_dir,
-      github_subdirectory = "src"
-    )
-    if (content_downloaded) message("* Download source file(s) completed")
-
-    message("* Download data file(s)...")
-    content_downloaded <- download_content_in_subdir(session_date,
-      target_directory = data_target_dir,
-      github_subdirectory = "data"
-    )
-    if (content_downloaded) message("* Download data file(s) completed")
-  } else {
-    print("* Download aborted")
+  if (continue != "y") {
+    message("* Download aborted")
+    return(invisible(NULL))
   }
+  message("* Download source file(s)...")
+  content_downloaded <- download_content_in_subdir(session_date,
+    target_directory = src_target_dir,
+    github_subdirectory = "src"
+  )
+  if (content_downloaded) message("* Download source file(s) completed")
+
+  message("* Download data file(s)...")
+  content_downloaded <- download_content_in_subdir(session_date,
+    target_directory = data_target_dir,
+    github_subdirectory = "data"
+  )
+  if (content_downloaded) message("* Download data file(s) completed")
 }
 
 download_content_in_subdir <- function(session_date,
