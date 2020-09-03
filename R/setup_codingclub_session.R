@@ -80,7 +80,7 @@ setup_codingclub_session <- function(
   if (continue != "y") {
     message("* Download aborted")
     return(invisible(NULL))
-
+  }
   message("* Download source file(s)...")
   content_downloaded <- download_content_in_subdir(session_date,
     target_directory = src_target_dir,
