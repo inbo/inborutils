@@ -38,6 +38,7 @@ Other contributors:
   \item Floris Vanderhaeghe \email{floris.vanderhaeghe@inbo.be} (\href{https://orcid.org/0000-0002-6378-6229}{ORCID}) [contributor]
   \item Pieter Verschelde \email{pieter.verschelde@inbo.be} (\href{https://orcid.org/0000-0002-9199-421X}{ORCID}) [contributor]
   \item Els De Bie \email{els.debie@inbo.be} (\href{https://orcid.org/0000-0001-7679-743X}{ORCID}) [contributor]
+  \item Nicolas Noé \email{nicolas.noe@inbo.be} (\href{https://orcid.org/0000-0002-9503-4750}{ORCID}) [contributor]
   \item Research Institute for Nature and Forest (INBO) \email{info@inbo.be} [copyright holder]
 }
 
