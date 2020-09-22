@@ -34,6 +34,10 @@ reference:
     contents:
       - connect_inbo_dbase
       - has_concept("inboveg")
+  - title: "INBO coding club utilities"
+    desc: "Download data and scripts of an INBO coding club session"
+    contents:
+      - setup_codingclub_session
   - title: "Florabank data interaction"
     desc: "Functions to read data from Florabank database"
     contents:
