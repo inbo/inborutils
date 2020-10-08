@@ -16,6 +16,7 @@ Authors@R: c(
     person("Floris", "Vanderhaeghe", role = "ctb", email = "floris.vanderhaeghe@inbo.be", comment = c(ORCID = "0000-0002-6378-6229")),
     person("Pieter", "Verschelde", role = "ctb", email = "pieter.verschelde@inbo.be", comment = c(ORCID = "0000-0002-9199-421X")),
     person("Els", "De Bie", role = "ctb", email = "els.debie@inbo.be", comment = c(ORCID = "0000-0001-7679-743X")),
+    person("Nicolas", "Noé", role = "ctb", email = "nicolas.noe@inbo.be", comment = c(ORCID = "0000-0002-9503-4750")),
     person("Research Institute for Nature and Forest (INBO)", role = "cph", email = "info@inbo.be")
     )
 License: MIT + file LICENSE
@@ -29,6 +30,7 @@ Imports:
     curl,
     DBI,
     dplyr,
+    gh,
     glue,
     httr,
     iterators,
@@ -40,6 +42,7 @@ Imports:
     odbc,
     parallel,   
     purrr,
+    RCurl,
     readr,
     rgbif,
     rgdal,
@@ -58,9 +61,10 @@ Suggests:
     testthat,
     ggplot2,
     htmlwidgets,
-    drat
+    drat,
+    mockery
 LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
