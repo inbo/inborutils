@@ -16,6 +16,8 @@ apt_packages:
   - libgdal-dev
   - libproj-dev
   - libgeos-dev
+  - libharfbuzz-dev
+  - libfribidi-dev
 
 after_success:
   - R CMD INSTALL . # Install the package to build vignettes
