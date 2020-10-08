@@ -7,7 +7,6 @@ addons:
       - libgdal-dev
       - libproj-dev
       - libgeos-dev
-      - libharfbuzz-dev
       - libfribidi-dev
 
 language: r
