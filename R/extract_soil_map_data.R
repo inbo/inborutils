@@ -2,15 +2,17 @@
 #'
 #' @description This function queries the
 #' \href{https://www.geopunt.be/catalogus/datasetfolder/5c129f2d-4498-4bc3-8860-01cb2d513f8f}{the Flemish soil map}
-#' attributres at a given coordinate,
+#' attributes at a given coordinate,
 #' by using the affiliated WFS service provided by DOV. The user can pick the
 #' properties of interest. A full list of properties is available at \url{
 #' https://www.dov.vlaanderen.be/geoserver/bodemkaart/bodemtypes/wfs?request=DescribeFeatureType}.
-#' Coordinates should be given as Lambert 72 (epsg 31370). When outside the
-#' Flemish region, an NA value is given for each of the properties.
-#'
-#' @param x_lam The numeric value of the X coordinate as Lambert 72.
-#' @param y_lam The numeric value of the X coordinate as Lambert 72.
+#' Coordinates should be given in the 'Belge 1972 / Belgian Lambert 72'
+#' (\href{https://epsg.io/31370}{EPSG:31370}) coordinate reference system.
+#' When outside the Flemish region, an NA value is given for each of the properties.
+#' @param x_lam The numeric value of the X coordinate in CRS
+#' 'Belge 1972 / Belgian Lambert 72' (EPSG:31370).
+#' @param y_lam The numeric value of the Y coordinate in CRS
+#' 'Belge 1972 / Belgian Lambert 72' (EPSG:31370).
 #' @param properties_of_interest A vector or properties, as a subset of these
 #' provided by the webservice. Default Bodemserie, Unibodemtype and Bodemtype.
 #'
@@ -60,4 +62,3 @@ extract_soil_map_data <- function(x_lam,
   }
 
 }
-
