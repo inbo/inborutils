@@ -10,8 +10,10 @@
 #' system. When outside the
 #' Flemish region, an NA value is given for each of the properties.
 #'
-#' @param x_lam The numeric value of the X coordinate as Lambert 72.
-#' @param y_lam The numeric value of the X coordinate as Lambert 72.
+#' @param x_lam The numeric value of the X coordinate in CRS 
+#' 'Belge 1972 / Belgian Lambert 72' (EPSG:31370).
+#' @param y_lam The numeric value of the Y coordinate in CRS 
+#' 'Belge 1972 / Belgian Lambert 72' (EPSG:31370).
 #' @param properties_of_interest A vector or properties, as a subset of these
 #' provided by the webservice. Default Bodemserie, Unibodemtype and Bodemtype.
 #'
