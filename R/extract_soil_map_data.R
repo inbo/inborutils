@@ -5,7 +5,9 @@
 #' by using the affiliated WFS service provided by DOV. The user can pick the
 #' properties of interest. A full list of properties is available at
 #' https://www.dov.vlaanderen.be/geoserver/bodemkaart/bodemtypes/wfs?request=DescribeFeatureType
-#' Coordinates should be given as Lambert 72 (epsg 31370). When outside the
+#' Coordinates should be given in the 'Belge 1972 / Belgian Lambert 72' 
+#' (\href{https://epsg.io/31370}{EPSG:31370}) coordinate reference
+#' system. When outside the
 #' Flemish region, an NA value is given for each of the properties.
 #'
 #' @param x_lam The numeric value of the X coordinate as Lambert 72.
@@ -59,4 +61,3 @@ extract_soil_map_data <- function(x_lam,
   }
 
 }
-
