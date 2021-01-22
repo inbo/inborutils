@@ -1,10 +1,11 @@
 #' @title Extract soil properties from Flemish soil map
 #'
-#' @description This function queries the Flemish soil map attributres at a given coordinate,
-#' http://www.geopunt.be/catalogus/datasetfolder/5c129f2d-4498-4bc3-8860-01cb2d513f8f
+#' @description This function queries the
+#' \href{https://www.geopunt.be/catalogus/datasetfolder/5c129f2d-4498-4bc3-8860-01cb2d513f8f}{the Flemish soil map}
+#' attributres at a given coordinate,
 #' by using the affiliated WFS service provided by DOV. The user can pick the
-#' properties of interest. A full list of properties is available at
-#' https://www.dov.vlaanderen.be/geoserver/bodemkaart/bodemtypes/wfs?request=DescribeFeatureType
+#' properties of interest. A full list of properties is available at \url{
+#' https://www.dov.vlaanderen.be/geoserver/bodemkaart/bodemtypes/wfs?request=DescribeFeatureType}.
 #' Coordinates should be given as Lambert 72 (epsg 31370). When outside the
 #' Flemish region, an NA value is given for each of the properties.
 #'
@@ -48,7 +49,7 @@ extract_soil_map_data <- function(x_lam,
   result <- GET(wfs_bodemtypes, query = query)
   parsed <- fromJSON(content(result, "text"))
   soil_info_df <- parsed$features
-  # if else toegevoegd om gevallen op te vangen waarbij een punt (net) buiten de kaart valt
+  # if else to catch cases where a point falls outside the map
   if (is.null(soil_info_df$properties)) {
     as.data.frame(
       matrix(rep(NA, length(properties_of_interest)),
