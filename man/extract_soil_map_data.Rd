@@ -43,3 +43,9 @@ extract_soil_map_data(173995.67, 212093.44,
                                                     "Textuurklasse"))
 }
 }
+\seealso{
+Other download functions: 
+\code{\link{download_knmi_data_hour}()},
+\code{\link{download_zenodo}()}
+}
+\concept{download functions}

@@ -21,6 +21,9 @@
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
 #'
+#' @export
+#' @family download functions
+#'
 #' @examples
 #' \dontrun{
 #' library(inborutils)
