@@ -57,15 +57,15 @@ extract_soil_map_data <- function(x_lam,
 
   result <- GET(wfs_bodemtypes, query = query)
   parsed <- fromJSON(content(result, "text"))
-  soil_info_df <- parsed$features
+  soil_info_df <- parsed$features$properties
   # if else to catch cases where a point falls outside the map
-  if (is.null(soil_info_df$properties)) {
+  if (is.null(soil_info_df)) {
     as.data.frame(
       matrix(rep(NA, length(properties_of_interest)),
              nrow = 1,
              dimnames = list(NULL, properties_of_interest)))
   } else {
-    soil_info_df$properties[,-1]
+    soil_info_df
   }
 
 }
