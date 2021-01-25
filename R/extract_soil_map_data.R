@@ -34,10 +34,14 @@
 #' }
 extract_soil_map_data <- function(x_lam,
                                   y_lam,
-                                  properties_of_interest = c("Bodemserie",
-                                                             "Unibodemtype",
-                                                             "Bodemtype")) {
+                                  properties_of_interest) {
   if (missing(x_lam) | missing(y_lam)) stop("x_lam and y_lam needed")
+  if (missing(properties_of_interest)) {
+    properties_of_interest <- c("Bodemserie",
+                                "Unibodemtype",
+                                "Bodemtype")
+    message("Defaulting to Bodemserie, Unibodemtype, Bodemtype. To avoid this message provide properties of interest in the function call.")
+  }
   # dealing with point data inside a certain polygon of the soil map:
   wfs_bodemtypes <- "https://www.dov.vlaanderen.be/geoserver/bodemkaart/bodemtypes/wfs?"
   query = list(service = "WFS",

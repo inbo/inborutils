@@ -4,11 +4,7 @@
 \alias{extract_soil_map_data}
 \title{Extract soil properties from Flemish soil map}
 \usage{
-extract_soil_map_data(
-  x_lam,
-  y_lam,
-  properties_of_interest = c("Bodemserie", "Unibodemtype", "Bodemtype")
-)
+extract_soil_map_data(x_lam, y_lam, properties_of_interest)
 }
 \arguments{
 \item{x_lam}{The numeric value of the X coordinate in CRS
