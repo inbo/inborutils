@@ -1,12 +1,22 @@
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
+    packages:
+      - libudunits2-dev
+      - libgdal-dev
+      - libproj-dev
+      - libgeos-dev
+      - libfribidi-dev
+
 language: r
+
+dist: bionic
+
 cache: packages
 
 r_packages:
   - pkgdown
-
-apt_packages:
-  - libudunits2-dev
-  - libgdal1-dev
 
 after_success:
   - R CMD INSTALL . # Install the package to build vignettes

@@ -48,6 +48,7 @@ output_file = "knmi_output_download.txt")
 }
 \seealso{
 Other download functions: 
-\code{\link{download_zenodo}()}
+\code{\link{download_zenodo}()},
+\code{\link{extract_soil_map_data}()}
 }
 \concept{download functions}

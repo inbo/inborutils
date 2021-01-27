@@ -28,21 +28,12 @@ reference:
       - read_knmi_data
       - read_kmi_data
       - read_kml_file
+      - extract_soil_map_data
       - has_concept("download")
-  - title: "INBOVEG data interaction"
-    desc: "Functions to read data from INBOVEG database"
-    contents:
-      - connect_inbo_dbase
-      - has_concept("inboveg")
   - title: "INBO coding club utilities"
     desc: "Download data and scripts of an INBO coding club session"
     contents:
       - setup_codingclub_session
-  - title: "Florabank data interaction"
-    desc: "Functions to read data from Florabank database"
-    contents:
-      - connect_inbo_dbase
-      - has_concept("florabank")
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:
