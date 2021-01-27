@@ -69,6 +69,13 @@ extract_soil_map_data <- function(x_lam,
                                     x_lam, y_lam)) # INTERSECT OPERATOR
 
   result <- GET(wfs_bodemtypes, query = query)
+  if (grepl("ExceptionText", content(result, "text"))) {
+    stop(paste(
+      paste(properties_of_interest, collapse = ", "),
+      "is not available for bodemkaart:bodemtypes.",
+      "The possible propertyName values are: [gid, id_kaartvlak, geom, Bodemtype, Unibodemtype, Bodemserie, Beknopte_omschrijving_bodemserie, Substraat_legende, Gegeneraliseerde_legende, Substraat_code, Substraat_Vlaanderen, Textuurklasse_code, Textuurklasse, Drainageklasse_code, Drainageklasse, Profielontwikkelingsgroep_code, Profielontwikkelingsgroep, Fase_code, Fase, Variante_van_het_moedermateriaal_code, Variante_van_het_moedermateriaal, Variante_van_de_profielontwikkeling_code, Variante_van_de_profielontwikkeling, Substraat_code_zeepolders, Substraat_zeepolders, Streek_code, Streek, Serie_code, Serie, Subserie_code, Subserie, Type_code, Type, Subtype_code, Subtype, Eenduidige_legende_titel, Eenduidige_legende, Scan_analoge_bodemkaarblad, Scan_toelichtingsboekje, Scan_bodemkaart5000, Scan_stippenkaart5000, Type_classificatie, Bodemtype_per_streek, Kaartbladnr, codeid]")
+      )
+  }
   parsed <- fromJSON(content(result, "text"))
   soil_info_df <- parsed$features$properties
   # if else to catch cases where a point falls outside the map
