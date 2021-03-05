@@ -56,6 +56,7 @@ Imports:
     tidyselect
 Suggests:
     knitr,
+    lifecycle,
     rmarkdown,
     testthat,
     ggplot2,
