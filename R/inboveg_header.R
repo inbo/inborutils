@@ -1,6 +1,7 @@
 #' @title Query header information from INBOVEG
 #'
-#' @description This function queries the INBOVEG database for header
+#' @description  `r lifecycle::badge('deprecated')`
+#' This function queries the INBOVEG database for header
 #' information (metadata for a vegetation-recording or releve) for one or more surveys and
 #' the recorder type. See the examples for how to get information for all surveys.
 #'
@@ -74,79 +75,5 @@ inboveg_header <- function(connection,
                            multiple = FALSE,
                            collect = FALSE) {
 
-  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
-
-  assert_that(inherits(connection, what = "Microsoft SQL Server"),
-              msg = "Not a connection object to database.")
-
-  if (missing(survey_name) & !multiple) {
-    survey_name <- "%"
-  }
-
-  if (missing(survey_name) & multiple) {
-    stop("Please provide one or more survey names to survey_name when multiple
-         = TRUE")
-  }
-
-  if (!missing(survey_name)) {
-    if (!multiple) {
-      assert_that(is.character(survey_name))
-    } else {
-      assert_that(is.vector(survey_name, mode = "character"))
-    }
-  }
-
-
-  if (missing(rec_type)) {
-    rec_type <- "%"
-  } else {
-    assert_that(is.character(rec_type))
-  }
-
-common_part <- "SELECT
-      ivR.RecordingGivid
-      , ivS.Name
-      , ivR.UserReference
-      , ivR.Observer
-      , ivR.LocationCode
-      , ivR.Latitude
-      , ivR.Longitude
-      , COALESCE(ivR.Length * ivR.Width / 10000, try_convert(decimal, ivR.Area)) AS Area
-      , ivR.Length
-      , ivR.Width
-      , ivR.VagueDateType
-      , ivR.VagueDateBegin
-      , ivR.VagueDateEnd
-      , ivR.SurveyId
-      , ivR.RecTypeID
-      FROM [dbo].[ivRecording] ivR
-      INNER JOIN [dbo].[ivSurvey] ivS on ivS.Id = ivR.SurveyId
-      INNER JOIN [dbo].[ivRecTypeD] ivRec on ivRec.ID = ivR.RecTypeID
-      where ivR.NeedsWork = 0"
-
-if (!multiple) {
-  sql_statement <- glue_sql(common_part,
-                            "AND ivS.Name LIKE {survey_name}
-                            AND ivREc.Name LIKE {rec_type}",
-                            survey_name = survey_name,
-                            rec_type = rec_type,
-                            .con = connection)
-
-} else {
-  sql_statement <- glue_sql(common_part,
-                            "AND ivS.Name IN ({survey_name*})
-                            AND ivREc.Name LIKE {rec_type}",
-                            survey_name = survey_name,
-                            rec_type = rec_type,
-                            .con = connection)
-}
-
-query_result <- tbl(connection, sql(sql_statement))
-
-if (!isTRUE(collect)) {
-  return(query_result)
-} else {
-  query_result <- collect(query_result)
-  return(query_result)
-}
+  .Defunct("inbodb::get_inboveg_classification()", package = "inborutils")
 }

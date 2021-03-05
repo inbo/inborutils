@@ -1,6 +1,7 @@
 #' @title Query qualifier information of recordings (releve) from INBOVEG
 #'
-#' @description This function queries the INBOVEG database for
+#' @description `r lifecycle::badge('deprecated')`
+#' This function queries the INBOVEG database for
 #' qualifier information on recordings  for one or more surveys.
 #'
 #' @param survey_name A character string or a character vector, depending on
@@ -70,108 +71,7 @@ inboveg_qualifiers <- function(connection,
                                qualifier_type,
                                multiple = FALSE) {
 
-  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
-
-  assert_that(inherits(connection, what = "Microsoft SQL Server"),
-              msg = "Not a connection object to database.")
-
-  if (missing(survey_name) & !multiple) {
-    survey_name <- "%"
-  }
-
-  if (missing(survey_name) & multiple) {
-    stop("Please provide one or more survey names to survey_name when multiple
-         = TRUE")
-  }
-
-  if (!missing(survey_name)) {
-    if (!multiple) {
-      assert_that(is.character(survey_name))
-    } else {
-      assert_that(is.vector(survey_name, mode = "character"))
-    }
-  }
-
-  if (missing(qualifier_type)) {
-    qualifier_type <- "%"
-  } else {
-    assert_that(is.character(qualifier_type))
-  }
-
-
-  common_part <- "SELECT ivS.Name
-      , ivR.RecordingGivid
-      , ivR.UserReference
-      , ivR.Observer
-      , ivRLQ.QualifierType
-      , ivRLQ.QualifierCode as Q1Code
-      , ftACV.Description as Q1Description
-      , ivRLQ_P.QualifierCode as Q2Code
-      , ftACV_P.Description as Q2Description
-      , ivRLQ_GP.QualifierCode as Q3Code
-      , ftACV_GP.Description as Q3Description
-      , ivRLQ.Elucidation
-      , ivRLQ.NotSure
-      , ivRLQ.ParentID
-      , ivRLQ.QualifierResource
-  FROM  dbo.ivSurvey ivS
-  INNER JOIN dbo.ivRecording ivR  ON ivR.SurveyId = ivS.Id
-  LEFT JOIN dbo.ivRLQualifier ivRLQ ON ivRLQ.RecordingID = ivR.Id
-  LEFT JOIN dbo.ivRLResources ivRLR ON
-                                  ivRLR.ResourceGIVID = ivRLQ.QualifierResource
-  LEFT JOIN dbo.ivRLQualifier ivRLQ_P ON ivRLQ_P.ParentID = ivRLQ.ID
-  LEFT JOIN dbo.ivRLResources ivRLR_P ON
-                              ivRLR_P.ResourceGIVID = ivRLQ_P.QualifierResource
-  LEFT JOIN dbo.ivRLQualifier ivRLQ_GP ON ivRLQ_GP.ParentID = ivRLQ_P.ID
-  LEFT JOIN dbo.ivRLResources ivRLR_GP ON
-                            ivRLR_GP.ResourceGIVID = ivRLQ_GP.QualifierResource
-  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV ON
-                  ftACV.Code = ivRLQ.QualifierCode COLLATE Latin1_General_CI_AI
-  AND ftACV.ActionGroup = ivRLR.ActionGroup  COLLATE Latin1_General_CI_AI
-  AND ftACV.ListName = ivRLR.ListName  COLLATE Latin1_General_CI_AI
-
-  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV_P ON
-              ftACV_P.Code = ivRLQ_P.QualifierCode  COLLATE Latin1_General_CI_AI
-  AND ftACV_P.ActionGroup = ivRLR_P.ActionGroup  COLLATE Latin1_General_CI_AI
-  AND ftACV_P.ListName = ivRLR_P.ListName  COLLATE Latin1_General_CI_AI
-
-  LEFT JOIN [syno].[Futon_dbo_ftActionGroupValues] ftACV_GP ON
-            ftACV_GP.Code = ivRLQ_GP.QualifierCode  COLLATE Latin1_General_CI_AI
-  AND ftACV_GP.ActionGroup = ivRLR_GP.ActionGroup  COLLATE Latin1_General_CI_AI
-  AND ftACV_GP.ListName = ivRLR_GP.ListName  COLLATE Latin1_General_CI_AI
-
-  WHERE ivRLQ.ParentID Is Null
-  "
-
-
-  if (!multiple) {
-    sql_statement <- glue_sql(common_part,
-                              "AND ivS.Name LIKE {survey_name}
-                              AND ivRLQ.QualifierType LIKE {qualifier_type}",
-                              survey_name = survey_name,
-                              qualifier_type = qualifier_type,
-                              .con = connection)
-
-  } else {
-    sql_statement <- glue_sql(common_part,
-                              "AND ivS.Name IN ({survey_name*})
-                              AND ivRLQ.QualifierType LIKE {qualifier_type}",
-                              survey_name = survey_name,
-                              qualifier_type = qualifier_type,
-                              .con = connection)
-  }
-
-  sql_statement <- glue_sql(
-    sql_statement,
-    "ORDER BY ivR.UserReference, ivRLQ.QualifierType, ivRLQ.QualifierCode OFFSET 0 ROWS",
-    .con = connection)
-
-  sql_statement <- iconv(sql_statement, from =  "UTF-8", to = "latin1")
-
-  query_result <- dbGetQuery(connection, sql_statement)
-
-  return(query_result)
-
+  .Defunct("inbodb::get_inboveg_classification()", package = "inborutils")
 }
 
 
