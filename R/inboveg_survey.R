@@ -35,13 +35,13 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_survey-deprecated
+#' @name inboveg_survey-defunct
 #' @usage inboveg_survey(connection, survey_name, collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_survey:
 #' For \code{inboveg_survey}, use [inbodb::inboveg_survey()](https://inbo.github.io/inbodb/reference/get_inboveg_survey.html)
 #'

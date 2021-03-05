@@ -48,14 +48,14 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_qualifiers-deprecated
+#' @name inboveg_qualifiers-defunct
 #' @usage inboveg_qualifiers(connection, survey_name, qualifier_type,
 #'   multiple = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_qualifiers:
 #' For \code{inboveg_qualifiers}, use [inbodb::inboveg_qualifiers()](https://inbo.github.io/inbodb/reference/get_inboveg_qualifiers.html)
 #'

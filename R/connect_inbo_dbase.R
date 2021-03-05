@@ -19,13 +19,13 @@
 #' connection <- connect_inbo_dbase("W0003_00_Lims")
 #' }
 #'
-#' @name connect_inbo_dbase-deprecated
+#' @name connect_inbo_dbase-defunct
 #' @usage connect_inbo_dbase(database_name)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section connect_inbo_dbase:
 #' For \code{connect_inbo_dbase}, use [inbodb::connect_inbo_dbase()](https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html)
 #' @export

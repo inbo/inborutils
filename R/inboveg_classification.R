@@ -42,13 +42,13 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_classification-deprecated
+#' @name inboveg_classification-defunct
 #' @usage inboveg_classification(connection, survey_name, classif, collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_classification:
 #' For \code{inboveg_classification}, use [inbodb::inboveg_classification()](https://inbo.github.io/inbodb/reference/get_inboveg_classification.html)
 #'

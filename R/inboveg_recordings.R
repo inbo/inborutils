@@ -52,14 +52,14 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_recordings-deprecated
+#' @name inboveg_recordings-defunct
 #' @usage inboveg_recordings(connection, survey_name, collect = FALSE,
 #'   multiple = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_recordings:
 #' For \code{inboveg_recordings}, use [inbodb::inboveg_recordings()](https://inbo.github.io/inbodb/reference/get_inboveg_recordings.html)
 #'
