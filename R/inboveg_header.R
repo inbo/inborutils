@@ -1,6 +1,6 @@
 #' @title Query header information from INBOVEG
 #'
-#' @description  `r lifecycle::badge('deprecated')`
+#' @description  `r lifecycle::badge('defunct')`
 #' This function queries the INBOVEG database for header
 #' information (metadata for a vegetation-recording or releve) for one or more surveys and
 #' the recorder type. See the examples for how to get information for all surveys.

@@ -2,7 +2,7 @@ globalVariables("%LIKE%")
 
 #' Query the florabank to get taxon trait values for (a) taxon trait(s)
 #'
-#' `r lifecycle::badge('deprecated')`
+#' `r lifecycle::badge('defunct')`
 #' This function takes as input (part of) a taxon trait name, queries the florabank
 #' and returns the taxon trait values in a tidy data format
 #'
@@ -86,7 +86,7 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 
 #' Get all validated observations for one or more taxa from the florabank database
 #'
-#' `r lifecycle::badge('deprecated')`
+#' `r lifecycle::badge('defunct')`
 #' This function takes as input a character vector with one or more names of
 #' species either as scientific names and/or Dutch names. By default (fixed = FALSE),
 #' partial matching will be used (the names are prepended with appended with %).
@@ -191,7 +191,7 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 
 #' Get unique combinations of taxon, IFBL-square and year.
 #'
-#' `r lifecycle::badge('deprecated')`
+#' `r lifecycle::badge('defunct')`
 #' This functions queries all validated observations of the florabank database
 #' and returns unique combinations of taxon, IFBL-square and year. Either a 1 km
 #' by 1 km or a 4 km x 4 km resolution can be chosen and a begin year can be set.

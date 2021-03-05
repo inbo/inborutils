@@ -1,6 +1,6 @@
 #' @title Query classification information from INBOVEG
 #'
-#' @description `r lifecycle::badge('deprecated')`
+#' @description `r lifecycle::badge('defunct')`
 #' This function queries the INBOVEG database for information
 #' on the field classification (N2000 or BWK-code) of the releve (recording) for one
 #' or more survey(s) by the name of the survey. See the examples

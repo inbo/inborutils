@@ -1,6 +1,6 @@
 #' @title Query recording (releve) information from INBOVEG
 #'
-#' @description `r lifecycle::badge('deprecated')`
+#' @description `r lifecycle::badge('defunct')`
 #' This function queries the INBOVEG database for
 #' releve information (which species were recorded in which plots and in which
 #' vegetation layers with which cover) for one or more surveys.

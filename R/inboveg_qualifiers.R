@@ -1,6 +1,6 @@
 #' @title Query qualifier information of recordings (releve) from INBOVEG
 #'
-#' @description `r lifecycle::badge('deprecated')`
+#' @description `r lifecycle::badge('defunct')`
 #' This function queries the INBOVEG database for
 #' qualifier information on recordings  for one or more surveys.
 #'
