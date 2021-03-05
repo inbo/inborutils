@@ -18,7 +18,7 @@ testthat::test_that("check class and format of the input param", {
 
 testthat::test_that("Check no download starts if user doesn't want", {
   # Take a snapshot of the root directory
-  snapshot_before <- fileSnapshot("./", md5sum = TRUE)
+  snapshot <- fileSnapshot("./", md5sum = TRUE)
 
   # To do this, we mock Sys.Date and readline
   # 20200528 is a valid coding club session date
@@ -27,11 +27,8 @@ testthat::test_that("Check no download starts if user doesn't want", {
   stub(scs_20200528_n, 'Sys.Date', as.Date('2020-05-28'))
   stub(scs_20200528_n, 'readline', "n")
 
-  # Take snapshot after
-  snapshot_after <- fileSnapshot("./", md5sum = TRUE)
-
   # Check that number of unchanged files/directories is equal to all files/dirs
-  expect_identical(snapshot_before, snapshot_after)
+  expect_true(all(changedFiles(snapshot)$changes[,"mtime"] == FALSE))
 })
 
 testthat::test_that("Nothing is changed in directory if no session exists", {
@@ -40,7 +37,7 @@ testthat::test_that("Nothing is changed in directory if no session exists", {
   stub(scs_20200802_y, 'readline', "y")
 
   # Take a snapshot of the root directory
-  snapshot_before <- fileSnapshot("./", md5sum = TRUE)
+  snapshot <- fileSnapshot("./", md5sum = TRUE)
 
   # 20200802 is an invalid coding club session date, 2 warnings returned
   warnings_scs_20200802_y <- capture_warnings(scs_20200802_y())
@@ -56,10 +53,7 @@ testthat::test_that("Nothing is changed in directory if no session exists", {
   )
 
   # Check that number of unchanged files/directories is equal to all files/dirs
-  # expect_true(
-  #   nrow(snapshot$info) == length(changedFiles(snapshot)$unchanged))
-  snapshot_after <- fileSnapshot("./", md5sum = TRUE)
-  expect_identical(snapshot_before, snapshot_after)
+  expect_true(all(changedFiles(snapshot)$changes[,"mtime"] == FALSE))
 })
 
 testthat::test_that("Files and directories are created only if not exists", {
@@ -96,13 +90,13 @@ testthat::test_that("Files and directories are created only if not exists", {
 
   # Directories and files are not overwritten
   # Take a snapshot of the directory
-  snapshot_before <- fileSnapshot(root_dir)
+  snapshot <- fileSnapshot(root_dir)
   # Run scs_20200528_y() again with same args
   scs_20200528_y(root_dir = root_dir,
                  src_rel_path = src_rel_path,
                  data_rel_path = data_rel_path)
-  snapshot_after <- fileSnapshot(root_dir)
-  expect_identical(snapshot_before, snapshot_after)
+  # modified time is the same for all files/directories
+  expect_true(all(changedFiles(snapshot)$changes[,"mtime"] == FALSE))
 
   # remove files and directories after test
   unlink(src_dir, recursive = TRUE)
