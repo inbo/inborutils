@@ -90,7 +90,7 @@ testthat::test_that("Files and directories are created only if not exists", {
 
   # Directories and files are not overwritten
   # Take a snapshot of the directory
-  snapshot_before <- fileSnapshot(root_dir)
+  snapshot <- fileSnapshot(root_dir)
   # Run scs_20200528_y() again with same args
   scs_20200528_y(root_dir = root_dir,
                  src_rel_path = src_rel_path,
