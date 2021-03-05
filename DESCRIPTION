@@ -1,6 +1,6 @@
 Package: inborutils
 Title: Collection of Useful R Utilities
-Version: 0.1.1
+Version: 0.1.2
 Description: While working on research projects, typical small functionalities 
     are useful across these projects. Instead of copy-pasting these functions in 
     all indidivual project repositories/folders, this package collects these 
