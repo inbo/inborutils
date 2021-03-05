@@ -44,6 +44,7 @@ number of unique nested squares where the taxon was observed for that year
 and 4 x 4 square combination.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 This functions queries all validated observations of the florabank database
 and returns unique combinations of taxon, IFBL-square and year. Either a 1 km
 by 1 km or a 4 km x 4 km resolution can be chosen and a begin year can be set.

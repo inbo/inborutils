@@ -32,6 +32,7 @@ Observer, QualifierType, QualifierCode, Description, 2nd QualifierCode,
 qualifier is 'NotSure', ParentID, QualifierResource
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 This function queries the INBOVEG database for
 qualifier information on recordings  for one or more surveys.
 }

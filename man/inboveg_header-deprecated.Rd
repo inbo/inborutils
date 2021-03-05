@@ -37,6 +37,7 @@ Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), VagueDateType,
 VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 This function queries the INBOVEG database for header
 information (metadata for a vegetation-recording or releve) for one or more surveys and
 the recorder type. See the examples for how to get information for all surveys.

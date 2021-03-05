@@ -30,6 +30,7 @@ A dataframe with the following variables: "NaamNederlands",
 "WaarnemingID", "X_waarneming", "Y_waarneming", "X_meting", "Y_meting"
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 This function takes as input a character vector with one or more names of
 species either as scientific names and/or Dutch names. By default (fixed = FALSE),
 partial matching will be used (the names are prepended with appended with \%).

@@ -29,6 +29,7 @@ Omschrijving en Rekenwaarde. The first four variables identify the taxon,
 the latter four variables relate to the taxon traits.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 This function takes as input (part of) a taxon trait name, queries the florabank
 and returns the taxon trait values in a tidy data format
 }

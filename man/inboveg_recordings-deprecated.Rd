@@ -34,6 +34,7 @@ OriginalName, ScientificName, PhenologyCode, CoverageCode, PctValue
 (percentage coverage), RecordingScale (name of the scale of coverage)
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 This function queries the INBOVEG database for
 releve information (which species were recorded in which plots and in which
 vegetation layers with which cover) for one or more surveys.
