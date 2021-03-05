@@ -1,6 +1,6 @@
 #' @title Query survey information from INBOVEG
 #'
-#' @description `r lifecycle::badge('deprecated')`
+#' @description `r lifecycle::badge('defunct')`
 #' This function queries the INBOVEG database for survey information
 #' (metadata about surveys) for one or more survey(s) by the name of the survey.
 #' See the examples for how to get information for all surveys.
@@ -35,13 +35,13 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_survey-deprecated
+#' @name inboveg_survey-defunct
 #' @usage inboveg_survey(connection, survey_name, collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_survey:
 #' For \code{inboveg_survey}, use [inbodb::inboveg_survey()](https://inbo.github.io/inbodb/reference/get_inboveg_survey.html)
 #'

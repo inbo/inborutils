@@ -2,7 +2,7 @@ globalVariables("%LIKE%")
 
 #' Query the florabank to get taxon trait values for (a) taxon trait(s)
 #'
-#' `r lifecycle::badge('deprecated')`
+#' `r lifecycle::badge('defunct')`
 #' This function takes as input (part of) a taxon trait name, queries the florabank
 #' and returns the taxon trait values in a tidy data format
 #'
@@ -52,13 +52,13 @@ globalVariables("%LIKE%")
 #' dbDisconnect(db_connectie)
 #' }
 #'
-#' @name florabank_traits-deprecated
+#' @name florabank_traits-defunct
 #' @usage florabank_traits(connection, trait_name, collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section florabank_traits:
 #' For \code{florabank_traits}, use [inbodb::florabank_traits()](https://inbo.github.io/inbodb/reference/get_florabank_traits.html)
 #'
@@ -86,7 +86,7 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 
 #' Get all validated observations for one or more taxa from the florabank database
 #'
-#' `r lifecycle::badge('deprecated')`
+#' `r lifecycle::badge('defunct')`
 #' This function takes as input a character vector with one or more names of
 #' species either as scientific names and/or Dutch names. By default (fixed = FALSE),
 #' partial matching will be used (the names are prepended with appended with %).
@@ -161,13 +161,13 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' dbDisconnect(db_connectie)
 #' }
 #'
-#' @name florabank_observations-deprecated
+#' @name florabank_observations-defunct
 #' @usage florabank_observations(connection, names, fixed = FALSE, collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section florabank_observations:
 #' For \code{florabank_observations}, use [inbodb::florabank_observations()](https://inbo.github.io/inbodb/reference/get_florabank_observations.html)
 #'
@@ -191,7 +191,7 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 
 #' Get unique combinations of taxon, IFBL-square and year.
 #'
-#' `r lifecycle::badge('deprecated')`
+#' `r lifecycle::badge('defunct')`
 #' This functions queries all validated observations of the florabank database
 #' and returns unique combinations of taxon, IFBL-square and year. Either a 1 km
 #' by 1 km or a 4 km x 4 km resolution can be chosen and a begin year can be set.
@@ -249,17 +249,17 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 #' dbDisconnect(db_connectie)
 #' }
 #'
-#' @name florabank_taxon_ifbl_year-deprecated
+#' @name florabank_taxon_ifbl_year-defunct
 #' @usage florabank_taxon_ifbl_year(connection,
 #'   starting_year = 2010, ifbl_resolution = c("1km-by-1km", "4km-by-4km"),
 #'   taxongroup =
 #'     c("Vaatplanten", "Mossen", "Lichenen (korstmossen)", "Kranswieren"),
 #'   collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section florabank_taxon_ifbl_year:
 #' For \code{florabank_taxon_ifbl_year}, use [inbodb::florabank_taxon_ifbl_year()](https://inbo.github.io/inbodb/reference/get_florabank_taxon_ifbl_year.html)
 #'

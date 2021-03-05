@@ -1,6 +1,6 @@
 #' @title Query header information from INBOVEG
 #'
-#' @description  `r lifecycle::badge('deprecated')`
+#' @description  `r lifecycle::badge('defunct')`
 #' This function queries the INBOVEG database for header
 #' information (metadata for a vegetation-recording or releve) for one or more surveys and
 #' the recorder type. See the examples for how to get information for all surveys.
@@ -50,14 +50,14 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_header-deprecated
+#' @name inboveg_header-defunct
 #' @usage inboveg_header(connection, survey_name, rec_type, multiple = FALSE,
 #'   collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_header:
 #' For \code{inboveg_header}, use [inbodb::inboveg_header()](https://inbo.github.io/inbodb/reference/get_inboveg_header.html)
 #'
