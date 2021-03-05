@@ -13,7 +13,7 @@ connect_inbo_dbase(database_name)
 odbc connection
 }
 \description{
-\ifelse{html}{\figure{lifecycle-defunct.svg}{options: alt='Defunct lifecycle'}}{\strong{Defunct}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 Connects to an INBO database by simply providing the database's name as an
 argument.
 The function can only be used from within the INBO network.

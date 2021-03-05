@@ -29,7 +29,7 @@ Omschrijving en Rekenwaarde. The first four variables identify the taxon,
 the latter four variables relate to the taxon traits.
 }
 \description{
-\ifelse{html}{\figure{lifecycle-defunct.svg}{options: alt='Defunct lifecycle'}}{\strong{Defunct}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 This function takes as input (part of) a taxon trait name, queries the florabank
 and returns the taxon trait values in a tidy data format
 }

@@ -24,7 +24,7 @@ A remote tbl object (collect = FALSE) or a tibble dataframe (collect
 = TRUE) with variables Id, Name, Description, Owner and Creator.
 }
 \description{
-\ifelse{html}{\figure{lifecycle-defunct.svg}{options: alt='Defunct lifecycle'}}{\strong{Defunct}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 This function queries the INBOVEG database for survey information
 (metadata about surveys) for one or more survey(s) by the name of the survey.
 See the examples for how to get information for all surveys.

@@ -31,7 +31,7 @@ N2000-list, LocalClassification, Description of the Habitattype, Cover-code,
 Cover in percentage.
 }
 \description{
-\ifelse{html}{\figure{lifecycle-defunct.svg}{options: alt='Defunct lifecycle'}}{\strong{Defunct}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 This function queries the INBOVEG database for information
 on the field classification (N2000 or BWK-code) of the releve (recording) for one
 or more survey(s) by the name of the survey. See the examples

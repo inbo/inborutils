@@ -34,7 +34,7 @@ OriginalName, ScientificName, PhenologyCode, CoverageCode, PctValue
 (percentage coverage), RecordingScale (name of the scale of coverage)
 }
 \description{
-\ifelse{html}{\figure{lifecycle-defunct.svg}{options: alt='Defunct lifecycle'}}{\strong{Defunct}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 This function queries the INBOVEG database for
 releve information (which species were recorded in which plots and in which
 vegetation layers with which cover) for one or more surveys.
