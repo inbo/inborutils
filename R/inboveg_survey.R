@@ -1,6 +1,7 @@
 #' @title Query survey information from INBOVEG
 #'
-#' @description This function queries the INBOVEG database for survey information
+#' @description `r lifecycle::badge('defunct')`
+#' This function queries the INBOVEG database for survey information
 #' (metadata about surveys) for one or more survey(s) by the name of the survey.
 #' See the examples for how to get information for all surveys.
 #'
@@ -34,13 +35,13 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_survey-deprecated
+#' @name inboveg_survey-defunct
 #' @usage inboveg_survey(connection, survey_name, collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_survey:
 #' For \code{inboveg_survey}, use [inbodb::inboveg_survey()](https://inbo.github.io/inbodb/reference/get_inboveg_survey.html)
 #'
@@ -55,35 +56,6 @@ inboveg_survey <- function(connection,
                   survey_name,
                   collect = FALSE) {
 
-  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
+  .Defunct("inbodb::get_inboveg_classification()", package = "inborutils")
 
-  assert_that(inherits(connection, what = "Microsoft SQL Server"),
-              msg = "Not a connection object to database.")
-
-  if (missing(survey_name)) {
-    survey_name <- "%"
-  } else {
-    assert_that(is.character(survey_name))
-  }
-
-  sql_statement <- glue_sql(
-    "SELECT
-    ivS.Id
-    , ivS.Name
-    , ivS.Description
-    , ivS.Owner
-    , ivS.creator
-    FROM [dbo].[ivSurvey] ivS
-    WHERE ivS.Name LIKE {survey_name}",
-    survey_name = survey_name,
-    .con = connection)
-
-query_result <- tbl(connection, sql(sql_statement))
-
-if (!isTRUE(collect)) {
-  return(query_result)
-} else {
-  query_result <- collect(query_result)
-  return(query_result)
-}
 }

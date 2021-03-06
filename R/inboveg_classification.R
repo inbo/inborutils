@@ -1,6 +1,7 @@
 #' @title Query classification information from INBOVEG
 #'
-#' @description This function queries the INBOVEG database for information
+#' @description `r lifecycle::badge('defunct')`
+#' This function queries the INBOVEG database for information
 #' on the field classification (N2000 or BWK-code) of the releve (recording) for one
 #' or more survey(s) by the name of the survey. See the examples
 #' for how to get information for all surveys.
@@ -41,13 +42,13 @@
 #' rm(con)
 #' }
 #'
-#' @name inboveg_classification-deprecated
+#' @name inboveg_classification-defunct
 #' @usage inboveg_classification(connection, survey_name, classif, collect = FALSE)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section inboveg_classification:
 #' For \code{inboveg_classification}, use [inbodb::inboveg_classification()](https://inbo.github.io/inbodb/reference/get_inboveg_classification.html)
 #'
@@ -63,62 +64,7 @@ inboveg_classification <- function(connection,
                                    classif,
                                    collect = FALSE) {
 
-  .Deprecated("inbodb::get_inboveg_classification()", package = "inborutils")
+  .Defunct("inbodb::get_inboveg_classification()", package = "inborutils")
 
-  assert_that(inherits(connection, what = "Microsoft SQL Server"),
-              msg = "Not a connection object to database.")
-
-  if (missing(survey_name)) {
-    survey_name <- "%"
-  } else {
-    assert_that(is.character(survey_name))
-  }
-
-  if (missing(classif)) {
-    classif <- "%"
-  } else {
-    assert_that(is.character(classif))
-  }
-
-  sql_statement <- glue_sql(
-    "Select ivR.RecordingGivid
-    , ivS.Name
-    , ivRLClas.Classif
-    , ivRLRes_Class.ActionGroup
-    , ivRLRes_Class.ListName
-    , ftBWK.Description as LocalClassification
-    , ftN2k.Description  as Habitattype
-    , ivRLClas.Cover
-    , ftC.PctValue
-    FROM ivRecording ivR
-    INNER JOIN ivSurvey ivS on ivS.Id = ivR.surveyId
-    LEFT JOIN [dbo].[ivRLClassification] ivRLClas on ivRLClas.RecordingID = ivR.Id
-    LEFT JOIN [dbo].[ivRLResources] ivRLRes_Class on ivRLRes_Class.ResourceGIVID = ivRLClas.ClassifResource
-    LEFT JOIN [syno].[Futon_dbo_ftActionGroupList] ftAGL_Class on ftAGL_Class.ActionGroup = ivRLRes_Class.ActionGroup collate Latin1_General_CI_AI
-    AND ftAGL_Class.ListName = ivRLRes_Class.ListName collate Latin1_General_CI_AI
-    LEFT JOIN [syno].[Futon_dbo_ftBWKValues] ftBWK on ftBWK.Code = ivRLClas.Classif collate Latin1_General_CI_AI
-    AND ftBWK.ListGIVID = ftAGL_Class.ListGIVID
-    LEFT JOIN [syno].[Futon_dbo_ftN2kValues] ftN2K on ftN2K.Code = ivRLClas.Classif collate Latin1_General_CI_AI
-    AND ftN2K.ListGIVID = ftAGL_Class.ListGIVID
-    LEFT JOIN [dbo].[ivRLResources] ivRLR_C on ivRLR_C.ResourceGIVID = ivRLClas.CoverResource
-    LEFT JOIN [syno].[Futon_dbo_ftActionGroupList] ftAGL_C on ftAGL_C.ActionGroup = ivRLR_C.ActionGroup collate Latin1_General_CI_AI
-    AND ftAGL_C.ListName = ivRLR_C.ListName collate Latin1_General_CI_AI
-    LEFT JOIN [syno].[Futon_dbo_ftCoverValues] ftC on ftC.Code = ivRLClas.Cover collate Latin1_General_CI_AI
-    AND ftAGL_C.ListGIVID = ftC.ListGIVID
-    WHERE ivRLClas.Classif is not NULL
-    AND ivS.Name LIKE {survey_name}
-    AND ivRLClas.Classif LIKE {classif}",
-    survey_name = survey_name,
-    classif = classif,
-    .con = connection)
-
-  query_result <- tbl(connection, sql(sql_statement))
-
-  if (!isTRUE(collect)) {
-    return(query_result)
-  } else {
-    query_result <- collect(query_result)
-    return(query_result)
-  }
 }
 
