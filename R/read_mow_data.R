@@ -60,7 +60,8 @@ read_mow_data <- function(filename, n_max = Inf) {
                              "Turb_SG5" = "turbidity_SG5",
                              "Turb_SG25" = "turbidity_SG25",
                              "Cond" = "conductivity",
-                             wt = "water_temperature")
+                             "water_temperature")
+    names(variable_mapping)[[length(variable_mapping)]] <- wt
     variable_name_mapped <- variable_mapping[[variable_name]]
     if (is.null(variable_name_mapped)) {
         variable_name_mapped <- variable_name
