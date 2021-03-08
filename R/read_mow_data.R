@@ -11,7 +11,7 @@
 #'
 #' @export
 #' @importFrom readr read_delim cols col_character col_double
-#' @importFrom dplyr select mutate %>% mutate_ select_
+#' @importFrom dplyr select mutate %>%
 #' @importFrom iterators ireadLines nextElem
 #' @importFrom sp CRS
 #' @importFrom lubridate dmy_hms
