@@ -1,6 +1,7 @@
 
 #' Connect to an INBO database
 #'
+#' @description `r lifecycle::badge('defunct')`
 #' Connects to an INBO database by simply providing the database's name as an
 #' argument.
 #' The function can only be used from within the INBO network.
@@ -18,13 +19,13 @@
 #' connection <- connect_inbo_dbase("W0003_00_Lims")
 #' }
 #'
-#' @name connect_inbo_dbase-deprecated
+#' @name connect_inbo_dbase-defunct
 #' @usage connect_inbo_dbase(database_name)
-#' @seealso \code{\link{inborutils-deprecated}}
+#' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
-#' @rdname inborutils-deprecated
+#' @rdname inborutils-defunct
 #' @section connect_inbo_dbase:
 #' For \code{connect_inbo_dbase}, use [inbodb::connect_inbo_dbase()](https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html)
 #' @export
@@ -35,44 +36,8 @@ NULL
 #'
 connect_inbo_dbase <- function(database_name) {
 
-  .Deprecated("inbodb::connect_inbo_dbase()", package = "inborutils")
+  .Defunct("inbodb::connect_inbo_dbase()", package = "inborutils")
 
-    # datawarehouse databases (sql08) start with an M, S or W; most
-    # transactional (sql07) with a D (by agreement with dba's)
-    if (any(startsWith(database_name, c("M", "S", "W")))) {
-        server = "inbo-sql08-prd.inbo.be"  # DWH server
-        type <- "INBO DWH Server"
-    } else {
-        server = "inbo-sql07-prd.inbo.be"  # SQL transactional server
-        type <- "INBO PRD Server"
-    }
-
-    sql_driver <- if (.Platform$OS.type == "unix") {
-                        driversdf <- odbcListDrivers()
-                        driversvec <-
-                            driversdf[driversdf$attribute == "Driver", "name"]
-                        drivers_sql <- driversvec[grepl("SQL Server", driversvec)]
-                        tail(sort(drivers_sql), 1)
-                } else {
-                        "SQL Server"
-                }
-
-    # connect to database
-    conn <- dbConnect(odbc(),
-                      driver = sql_driver,
-                      server = server,
-                      port = 1433,
-                      database = database_name,
-                      trusted_connection = "YES")
-
-    # derived from the odbc package Viewer setup to activate the Rstudio Viewer
-    code_call <- c(match.call())
-    code_call <- paste(c("library(inborutils)",
-                         paste("con <-", gsub(", ", ",\n\t", code_call))),
-                       collapse = "\n")
-    on_connection_opened(conn, code_call, type)
-
-    return(conn)
 }
 
 on_connection_closed <- function(connection) {

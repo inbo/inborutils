@@ -36,7 +36,7 @@ rsconnect/
 *.utf8.md
 *.knit.md
 
-# pkgdown website is built by travis on gh-pages
+# pkgdown website is built by GitHub action on gh-pages
 docs/
 
 # Mac OS X

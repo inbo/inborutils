@@ -1,7 +1,7 @@
 # inborutils package
 
 <!-- badges: start -->
-[![Travis-CI Build Status](https://travis-ci.org/inbo/inborutils.svg?branch=master)](https://travis-ci.org/inbo/inborutils) [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/69u29qd7n8aeuasf?svg=true)](https://ci.appveyor.com/project/stijnvanhoey/inborutils)
+[![R-CMD-check](https://github.com/inbo/inborutils/workflows/R-CMD-check/badge.svg)](https://github.com/inbo/inborutils/actions)
 <!-- badges: end -->
 
 This `inborutils` package provides a collection of useful R utilities and snippets that we consider recyclable for multiple projects. The functions are either out of scope or just not mature enough to include as extensions to existing packages. 

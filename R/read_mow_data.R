@@ -53,12 +53,15 @@ read_mow_data <- function(filename, n_max = Inf) {
                                              "latitude", crs_lambert, crs_wgs84)
 
     # Define mapping for mow supported values
+    wt <- "T\u00B0"
+    Encoding(wt) <- "UTF8"
     variable_mapping <- list("DO" = "dissolved_oxygen",
                              "Turb_YSI" = "turbidity_ySI",
                              "Turb_SG5" = "turbidity_SG5",
                              "Turb_SG25" = "turbidity_SG25",
                              "Cond" = "conductivity",
-                             "T\u00B0" = "water_temperature")
+                             "water_temperature")
+    names(variable_mapping)[[length(variable_mapping)]] <- wt
     variable_name_mapped <- variable_mapping[[variable_name]]
     if (is.null(variable_name_mapped)) {
         variable_name_mapped <- variable_name
