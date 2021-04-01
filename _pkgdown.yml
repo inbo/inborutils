@@ -48,7 +48,9 @@ reference:
   - title: "Small utilities and helpers"
     contents:
       - human_filesize
+      - has_concept("Helpers")
   - title: "Example datasets"
     contents:
       - coordinate_example
       - species_example
+      - has_concept("datasets")

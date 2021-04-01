@@ -12,12 +12,13 @@
 #'
 #' @docType data
 #' @keywords datasets
+#' @family datasets
 #' @name species_example
 #' @usage species_example
 NULL
 
 
-#' Example data.frame with coorindates
+#' Example data.frame with coordinates
 #'
 #' A dataset containing 52 coordinates as latitude and longitude
 #'
@@ -30,6 +31,7 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
+#' @family datasets
 #' @name coordinate_example
 #' @usage coordinate_example
 NULL
@@ -55,6 +57,7 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
+#' @family datasets
 #' @name rain_knmi_2012
 #' @usage rain_knmi_2012
 NULL
