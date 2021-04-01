@@ -4,7 +4,7 @@
 #' coordinates are first converted to WGS84 in order to map them correctly on
 #' the leaflet map (@seealso [reproject_coordinates()]). To do this, the
 #' original Coordinate Reference System (CRS) is asked.
-#'
+#' @family GIS_utilities
 #' @param df A data.frame with a x and y coordinate columns.
 #' @param col_long,col_lat Column names or positions of the x (longitude) and y
 #'   (latitude) column. They are passed to \code{\link[tidyselect]{vars_pull}}.

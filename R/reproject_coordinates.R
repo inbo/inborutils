@@ -19,6 +19,8 @@
 #' @return A data.frame with the same columns, but adapted coordinates for the x
 #'   and y column values.
 #'
+#' @family GIS_utilities
+#'
 #' @examples
 #' library(sp)
 #' library(sf)

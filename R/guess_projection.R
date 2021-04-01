@@ -12,6 +12,7 @@
 #' the specified projection. In a next step, these projections are converted to
 #' wgs84 and plotted on a openstreetmap background with leaflet. The interactive
 #' map provides the possibility to select/unselect specific layers.
+#' @family GIS_utilities
 #'
 #' @param df data.frame with a x and y coordinate column
 #' @param col_long (char) name of the x (longitude) column

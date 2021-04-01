@@ -8,9 +8,7 @@ reference:
   - title: "GIS utilities"
     desc: "Functions for working with GIS data and maps"
     contents:
-      - reproject_coordinates
-      - guess_projection
-      - plot_coordinates_on_map
+      - has_concept("GIS_utilities")
   - title: "Plot utilities"
     desc: "Functions for working with plots"
     contents:
