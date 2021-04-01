@@ -35,6 +35,8 @@
 #' @importFrom tibble as_tibble
 #' @importFrom tidyselect ends_with
 #'
+#' @family GBIF_interactions
+#'
 #' @examples
 #' \dontrun{
 #' library(readr)

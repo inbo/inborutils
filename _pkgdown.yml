@@ -16,7 +16,7 @@ reference:
   - title: "GBIF interaction utilities"
     desc: "Functions for working with GBIF data, beyond rgbif functionalities"
     contents:
-      - gbif_species_name_match
+      - has_concept("GBIF_interactions")
   - title: "Data loaders"
     desc: "Functions to download/read data or specific data formats"
     contents:
