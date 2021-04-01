@@ -9,7 +9,7 @@
 #' @importFrom rlang .data
 #' @importFrom lubridate dmy_hm
 #'
-#' @family download functions
+#' @family download_functions
 #'
 #' @examples
 #' \dontrun{
@@ -37,7 +37,6 @@ read_kml_file <- function(filename) {
     data$y <- as.numeric(data$y)
     return(data)
 }
-
 
 
 
