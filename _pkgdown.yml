@@ -20,7 +20,7 @@ reference:
   - title: "Data loaders"
     desc: "Functions to download/read data or specific data formats"
     contents:
-      - has_concept("download")
+      - has_concept("download_functions")
   - title: "INBO coding club utilities"
     desc: "Download data and scripts of an INBO coding club session"
     contents:
@@ -39,4 +39,3 @@ reference:
   - title: "Example datasets"
     contents:
       - has_concept("datasets")
-
