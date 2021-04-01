@@ -6,6 +6,8 @@
 #' @rdname vif
 #' @return a matrix with for each variable de variance inflation factor, the degrees of freedom  en the rescaled variance inflation factor based on the degrees of freedom.
 #' @export
+#'
+#' @family Statistics
 
 vif <- function(mod, ...){
   UseMethod("vif")

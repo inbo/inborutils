@@ -39,10 +39,12 @@ reference:
       - df_factors_to_char
       - csv_to_sqlite
       - convertdf_enc
+      - has_concept("Data_handling_utilities")
   - title: "Statistical modelling"
     desc: "Functions for handling statistical modelling tasks"
     contents:
       - vif
+      - has_concept("Statistics")
   - title: "Small utilities and helpers"
     contents:
       - human_filesize
