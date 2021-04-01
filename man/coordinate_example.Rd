@@ -3,7 +3,7 @@
 \docType{data}
 \name{coordinate_example}
 \alias{coordinate_example}
-\title{Example data.frame with coorindates}
+\title{Example data.frame with coordinates}
 \format{
 A data frame with 52 rows and 3 variables:
 \itemize{
@@ -18,4 +18,10 @@ coordinate_example
 \description{
 A dataset containing 52 coordinates as latitude and longitude
 }
+\seealso{
+Other datasets: 
+\code{\link{rain_knmi_2012}},
+\code{\link{species_example}}
+}
+\concept{datasets}
 \keyword{datasets}

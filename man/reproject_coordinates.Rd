@@ -68,3 +68,9 @@ reproject_coordinates(data_pts, col_long = 3, col_lat = 2,
   crs_input = sf_crs1, crs_output = sf_crs2)
 
 }
+\seealso{
+Other GIS_utilities: 
+\code{\link{guess_projection}()},
+\code{\link{plot_coordinates_on_map}()}
+}
+\concept{GIS_utilities}

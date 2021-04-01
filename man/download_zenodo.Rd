@@ -43,7 +43,11 @@ download_zenodo(doi = "10.5281/zenodo.168478")
 \seealso{
 Other download functions: 
 \code{\link{download_knmi_data_hour}()},
-\code{\link{extract_soil_map_data}()}
+\code{\link{extract_soil_map_data}()},
+\code{\link{read_kmi_data}()},
+\code{\link{read_kml_file}()},
+\code{\link{read_knmi_data}()},
+\code{\link{read_mow_data}()}
 }
 \author{
 Hans Van Calster, \email{hans.vancalster@inbo.be}

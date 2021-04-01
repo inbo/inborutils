@@ -37,3 +37,4 @@ Variance inflation factor (default routine)
 vif(airquality)
 }
 }
+\concept{Statistics}

@@ -19,4 +19,10 @@ species_example
 A dataset containing 3 taxa to be matched with GBIF Taxonomy Backbone. The
 variable are as follows:
 }
+\seealso{
+Other datasets: 
+\code{\link{coordinate_example}},
+\code{\link{rain_knmi_2012}}
+}
+\concept{datasets}
 \keyword{datasets}

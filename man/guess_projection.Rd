@@ -59,3 +59,9 @@ guess_projection(data, "x", "y")
 }
 
 }
+\seealso{
+Other GIS_utilities: 
+\code{\link{plot_coordinates_on_map}()},
+\code{\link{reproject_coordinates}()}
+}
+\concept{GIS_utilities}

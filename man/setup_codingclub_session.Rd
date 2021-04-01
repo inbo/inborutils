@@ -55,3 +55,4 @@ setup_codingclub_session("20200225",
 }
 
 }
+\concept{INBO_coding_club_utilities}

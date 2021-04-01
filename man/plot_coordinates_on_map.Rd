@@ -55,3 +55,9 @@ plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf,
 }
 
 }
+\seealso{
+Other GIS_utilities: 
+\code{\link{guess_projection}()},
+\code{\link{reproject_coordinates}()}
+}
+\concept{GIS_utilities}
