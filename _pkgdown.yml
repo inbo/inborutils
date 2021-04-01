@@ -12,7 +12,7 @@ reference:
   - title: "Plot utilities"
     desc: "Functions for working with plots"
     contents:
-      - plot_label_splitter
+      - has_concept("Plot_utilities")
   - title: "GBIF interaction utilities"
     desc: "Functions for working with GBIF data, beyond rgbif functionalities"
     contents:
