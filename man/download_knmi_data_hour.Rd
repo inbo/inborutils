@@ -47,7 +47,7 @@ output_file = "knmi_output_download.txt")
 }
 }
 \seealso{
-Other download functions: 
+Other download_functions: 
 \code{\link{download_zenodo}()},
 \code{\link{extract_soil_map_data}()},
 \code{\link{read_kmi_data}()},
@@ -55,4 +55,4 @@ Other download functions:
 \code{\link{read_knmi_data}()},
 \code{\link{read_mow_data}()}
 }
-\concept{download functions}
+\concept{download_functions}

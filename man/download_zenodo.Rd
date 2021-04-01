@@ -41,7 +41,7 @@ download_zenodo(doi = "10.5281/zenodo.168478")
 }
 }
 \seealso{
-Other download functions: 
+Other download_functions: 
 \code{\link{download_knmi_data_hour}()},
 \code{\link{extract_soil_map_data}()},
 \code{\link{read_kmi_data}()},
@@ -54,4 +54,4 @@ Hans Van Calster, \email{hans.vancalster@inbo.be}
 
 Floris Vanderhaeghe, \email{floris.vanderhaeghe@inbo.be}
 }
-\concept{download functions}
+\concept{download_functions}

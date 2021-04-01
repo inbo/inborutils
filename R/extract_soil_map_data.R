@@ -23,7 +23,7 @@
 #' @importFrom jsonlite fromJSON
 #'
 #' @export
-#' @family download functions
+#' @family download_functions
 #'
 #' @examples
 #' \dontrun{
