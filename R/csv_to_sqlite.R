@@ -23,7 +23,7 @@
 #' @param ... Further arguments to be passed to \code{read_delim}.
 #'
 #' @return a SQLite database
-#'
+#' @family Data_handling_utilities
 #' @examples
 #' \dontrun{
 #' library(R.utils)

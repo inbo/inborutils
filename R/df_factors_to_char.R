@@ -7,7 +7,7 @@
 #' all credits to Thierry Onkelinx
 #'
 #' @param rp A dataframe
-#'
+#' @family Data_handling_utilities
 #' @examples
 #' df_factors_to_char(PlantGrowth) # column group will be chars as well
 #'
