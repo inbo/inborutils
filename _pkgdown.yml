@@ -32,6 +32,7 @@ reference:
     desc: "Download data and scripts of an INBO coding club session"
     contents:
       - setup_codingclub_session
+      - has_concept("INBO_coding_club_utilities")
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:

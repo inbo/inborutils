@@ -17,6 +17,8 @@
 #' @importFrom purrr map_chr
 #' @importFrom curl curl_download
 #'
+#' @family INBO_coding_club_utilities
+#'
 #' @examples
 #' \dontrun{
 #' library(inborutils)
