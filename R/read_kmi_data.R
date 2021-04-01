@@ -14,6 +14,7 @@
 #' @importFrom rlang .data
 #' @importFrom lubridate tz
 #'
+#' @family download functions
 #'
 #' @examples
 #' \dontrun{

@@ -9,6 +9,8 @@
 #' @importFrom rlang .data
 #' @importFrom lubridate dmy_hm
 #'
+#' @family download functions
+#'
 #' @examples
 #' \dontrun{
 #' df <- read_kml_file("BE1002.kml")
