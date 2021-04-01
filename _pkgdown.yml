@@ -54,3 +54,9 @@ reference:
       - coordinate_example
       - species_example
       - has_concept("datasets")
+  - title: "Florabank utilities"
+    contents:
+      - has_concept("florabank")
+  - title: "Inboveg utilities"
+    contents:
+      - has_concept("datasets")
