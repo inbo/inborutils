@@ -83,15 +83,18 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
     dbWriteTable(con, table_name, df, overwrite = TRUE)
 
     # readr chunk functionality
+
     read_delim_chunked(
       csv_file,
       callback = append_to_sqlite(con = con, table_name = table_name,
                                   date_cols = date_cols,
                                   datetime_cols = datetime_cols),
       delim = delim,
-      skip = pre_process_size, chunk_size = chunk_size,
+      skip = pre_process_size + 1,
+      chunk_size = chunk_size,
       progress = show_progress_bar,
-      col_names = colnames(df), ...)
+      col_names = names(attr(df, "spec")$cols),
+      ...)
     dbDisconnect(con)
 }
 
