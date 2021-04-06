@@ -25,4 +25,10 @@ rain_knmi_2012
 A dataset containing the rainfall from January 1st till February 1st for
 Vlissingen and Westdorpe, as downloaded from KNMI
 }
+\seealso{
+Other datasets: 
+\code{\link{coordinate_example}},
+\code{\link{species_example}}
+}
+\concept{datasets}
 \keyword{datasets}

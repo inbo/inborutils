@@ -17,6 +17,8 @@
 #' @importFrom lubridate ymd_h
 #' @importFrom rlang .data
 #'
+#' @family download_functions
+#'
 #' @examples
 #' \dontrun{
 #' # see vignettes for more examples

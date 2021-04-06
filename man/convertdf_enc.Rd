@@ -35,3 +35,9 @@ encoding of the current
 locale), \code{"latin1"} and \code{"UTF-8"}.
 See \code{\link[base]{iconv}} for more information.
 }
+\seealso{
+Other Data_handling_utilities: 
+\code{\link{csv_to_sqlite}()},
+\code{\link{df_factors_to_char}()}
+}
+\concept{Data_handling_utilities}

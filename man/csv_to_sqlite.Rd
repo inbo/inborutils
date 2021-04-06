@@ -81,3 +81,9 @@ results <- bird_tracking \%>\%
 head(results)
 }
 }
+\seealso{
+Other Data_handling_utilities: 
+\code{\link{convertdf_enc}()},
+\code{\link{df_factors_to_char}()}
+}
+\concept{Data_handling_utilities}

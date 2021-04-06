@@ -54,8 +54,12 @@ extract_soil_map_data(173995.67, 212093.44,
 }
 }
 \seealso{
-Other download functions: 
+Other download_functions: 
 \code{\link{download_knmi_data_hour}()},
-\code{\link{download_zenodo}()}
+\code{\link{download_zenodo}()},
+\code{\link{read_kmi_data}()},
+\code{\link{read_kml_file}()},
+\code{\link{read_knmi_data}()},
+\code{\link{read_mow_data}()}
 }
-\concept{download functions}
+\concept{download_functions}

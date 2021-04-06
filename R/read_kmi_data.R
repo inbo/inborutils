@@ -14,6 +14,7 @@
 #' @importFrom rlang .data
 #' @importFrom lubridate tz
 #'
+#' @family download_functions
 #'
 #' @examples
 #' \dontrun{
@@ -49,4 +50,3 @@ read_kmi_data <- function(filename, n_max = Inf) {
 
     kmi_data
 }
-

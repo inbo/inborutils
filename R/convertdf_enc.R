@@ -14,6 +14,8 @@
 #'
 #' @md
 #'
+#' @family Data_handling_utilities
+#'
 #' @return
 #' The original object, with character variables (and levels of
 #' (character) factor variables) converted to the specified encoding.

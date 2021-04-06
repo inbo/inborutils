@@ -20,3 +20,13 @@ Extract date and coordinate information from Google Maps kml file
 df <- read_kml_file("BE1002.kml")
 }
 }
+\seealso{
+Other download_functions: 
+\code{\link{download_knmi_data_hour}()},
+\code{\link{download_zenodo}()},
+\code{\link{extract_soil_map_data}()},
+\code{\link{read_kmi_data}()},
+\code{\link{read_knmi_data}()},
+\code{\link{read_mow_data}()}
+}
+\concept{download_functions}

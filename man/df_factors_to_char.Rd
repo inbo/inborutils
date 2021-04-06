@@ -20,3 +20,9 @@ all credits to Thierry Onkelinx
 df_factors_to_char(PlantGrowth) # column group will be chars as well
 
 }
+\seealso{
+Other Data_handling_utilities: 
+\code{\link{convertdf_enc}()},
+\code{\link{csv_to_sqlite}()}
+}
+\concept{Data_handling_utilities}

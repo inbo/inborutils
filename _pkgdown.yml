@@ -8,46 +8,34 @@ reference:
   - title: "GIS utilities"
     desc: "Functions for working with GIS data and maps"
     contents:
-      - reproject_coordinates
-      - guess_projection
-      - plot_coordinates_on_map
+      - has_concept("GIS_utilities")
   - title: "Plot utilities"
     desc: "Functions for working with plots"
     contents:
-      - plot_label_splitter
+      - has_concept("Plot_utilities")
   - title: "GBIF interaction utilities"
     desc: "Functions for working with GBIF data, beyond rgbif functionalities"
     contents:
-      - gbif_species_name_match
+      - has_concept("GBIF_interactions")
   - title: "Data loaders"
     desc: "Functions to download/read data or specific data formats"
     contents:
-      - read_mow_data
-      - download_knmi_data_hour
-      - download_zenodo
-      - read_knmi_data
-      - read_kmi_data
-      - read_kml_file
-      - extract_soil_map_data
-      - has_concept("download")
+      - has_concept("download_functions")
   - title: "INBO coding club utilities"
     desc: "Download data and scripts of an INBO coding club session"
     contents:
-      - setup_codingclub_session
+      - has_concept("INBO_coding_club_utilities")
   - title: "Tidy data and data.frame handling"
     desc: "Functions to support work with data.frames"
     contents:
-      - df_factors_to_char
-      - csv_to_sqlite
-      - convertdf_enc
+      - has_concept("Data_handling_utilities")
   - title: "Statistical modelling"
     desc: "Functions for handling statistical modelling tasks"
     contents:
-      - vif
+      - has_concept("Statistics")
   - title: "Small utilities and helpers"
     contents:
-      - human_filesize
+      - has_concept("Helpers")
   - title: "Example datasets"
     contents:
-      - coordinate_example
-      - species_example
+      - has_concept("datasets")

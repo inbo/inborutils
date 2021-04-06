@@ -18,6 +18,8 @@
 #'
 #' @return Leaflet map with coordinates added as dots.
 #'
+#' @family GIS_utilities
+#'
 #' @examples
 #' \dontrun{
 #' library(sf)

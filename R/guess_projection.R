@@ -34,6 +34,8 @@
 #'  http://spatialreference.org/ref/epsg/3035/}
 #' }
 #'
+#' @family GIS_utilities
+#'
 #' @examples
 #'\dontrun{
 #' guess_projection(data, "x", "y")

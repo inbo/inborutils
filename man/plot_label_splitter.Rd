@@ -24,3 +24,4 @@ The function can be easily applied to a data.frame by using e.g. sapply
 plot_label_splitter("Exotic long label", 10)
 
 }
+\concept{Plot_utilities}

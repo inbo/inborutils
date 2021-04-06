@@ -25,3 +25,13 @@ file_path <- "kmi_file.txt"
 precipation_kmi <- read_kmi_data(file_path)
 }
 }
+\seealso{
+Other download_functions: 
+\code{\link{download_knmi_data_hour}()},
+\code{\link{download_zenodo}()},
+\code{\link{extract_soil_map_data}()},
+\code{\link{read_kml_file}()},
+\code{\link{read_knmi_data}()},
+\code{\link{read_mow_data}()}
+}
+\concept{download_functions}

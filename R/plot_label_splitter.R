@@ -12,6 +12,9 @@
 #' a two-line label
 #'
 #' @export
+#'
+#' @family Plot_utilities
+#'
 #' @examples
 #' plot_label_splitter("Exotic long label", 10)
 #'
