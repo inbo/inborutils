@@ -31,7 +31,6 @@ Imports:
     curl,
     DBI,
     dplyr,
-    gh,
     httr,
     iterators,
     jsonlite,
