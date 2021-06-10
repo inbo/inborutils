@@ -39,7 +39,6 @@ Imports:
     leaflet,
     lubridate,
     methods,
-    odbc,
     parallel,
     purrr,
     RCurl,
@@ -58,6 +57,7 @@ Imports:
 Suggests:
     knitr,
     lifecycle,
+    odbc,
     rmarkdown,
     testthat,
     ggplot2,
