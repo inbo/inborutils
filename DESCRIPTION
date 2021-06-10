@@ -32,7 +32,6 @@ Imports:
     DBI,
     dplyr,
     gh,
-    glue,
     httr,
     iterators,
     jsonlite,
@@ -55,6 +54,7 @@ Imports:
     tidyr,
     tidyselect
 Suggests:
+    glue,
     knitr,
     lifecycle,
     odbc,
