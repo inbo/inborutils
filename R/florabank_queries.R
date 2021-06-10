@@ -62,19 +62,6 @@ NULL
 #' @section florabank_traits:
 #' For \code{florabank_traits}, use [inbodb::florabank_traits()](https://inbo.github.io/inbodb/reference/get_florabank_traits.html)
 #'
-#' @importFrom dplyr
-#' tbl
-#' collect
-#' distinct
-#' pull
-#' %>%
-#' inner_join
-#' left_join
-#' filter
-#' select
-#' rename
-#' @importFrom rlang .data
-#' @importFrom assertthat assert_that
 #'
 #' @export
 
@@ -171,12 +158,6 @@ NULL
 #' @section florabank_observations:
 #' For \code{florabank_observations}, use [inbodb::florabank_observations()](https://inbo.github.io/inbodb/reference/get_florabank_observations.html)
 #'
-#' @importFrom glue glue_sql
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr
-#' tbl
-#' collect
-#' sql
 #'
 #' @export
 
@@ -263,10 +244,6 @@ NULL
 #' @section florabank_taxon_ifbl_year:
 #' For \code{florabank_taxon_ifbl_year}, use [inbodb::florabank_taxon_ifbl_year()](https://inbo.github.io/inbodb/reference/get_florabank_taxon_ifbl_year.html)
 #'
-#' @importFrom glue glue_sql
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr %>% group_by summarize n ungroup sql collect
-#' @importFrom rlang .data
 #'
 #' @export
 
@@ -283,9 +260,3 @@ florabank_taxon_ifbl_year <- function(connection,
   .Defunct("inbodb::get_florabank_taxon_ifbl_year()", package = "inborutils")
 
 }
-
-
-
-
-
-

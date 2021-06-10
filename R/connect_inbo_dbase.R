@@ -29,11 +29,6 @@ NULL
 #' @section connect_inbo_dbase:
 #' For \code{connect_inbo_dbase}, use [inbodb::connect_inbo_dbase()](https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html)
 #' @export
-#'
-#' @importFrom DBI dbGetQuery dbConnect dbListTables
-#' @importFrom odbc odbc odbcListDrivers
-#' @importFrom utils tail
-#'
 connect_inbo_dbase <- function(database_name) {
 
   .Defunct("inbodb::connect_inbo_dbase()", package = "inborutils")

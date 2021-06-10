@@ -61,10 +61,6 @@ NULL
 #' @section inboveg_header:
 #' For \code{inboveg_header}, use [inbodb::inboveg_header()](https://inbo.github.io/inbodb/reference/get_inboveg_header.html)
 #'
-#' @importFrom glue glue_sql
-#' @importFrom DBI dbGetQuery
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr collect tbl sql
 #'
 #' @export
 
