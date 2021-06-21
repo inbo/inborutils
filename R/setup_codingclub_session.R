@@ -61,11 +61,11 @@ setup_codingclub_session <- function(
   )
 
   github_src_link <- sprintf(
-    "https://github.com/inbo/coding-club/tree/master/data/%s",
+    "https://github.com/inbo/coding-club/tree/master/src/%s",
     session_date
   )
   github_data_link <- sprintf(
-    "https://github.com/inbo/coding-club/tree/master/src/%s",
+    "https://github.com/inbo/coding-club/tree/master/data/%s",
     session_date
   )
   src_target_dir <- file.path(root_dir, src_rel_path, session_date)
