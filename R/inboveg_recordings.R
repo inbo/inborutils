@@ -63,11 +63,6 @@ NULL
 #' @section inboveg_recordings:
 #' For \code{inboveg_recordings}, use [inbodb::inboveg_recordings()](https://inbo.github.io/inbodb/reference/get_inboveg_recordings.html)
 #'
-#' @importFrom glue glue_sql
-#' @importFrom DBI dbGetQuery
-#' @importFrom assertthat assert_that
-#' @importFrom dplyr collect tbl sql
-#'
 #' @export
 
 inboveg_recordings <- function(connection,

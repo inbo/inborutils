@@ -13,9 +13,8 @@
 #' @param data_rel_path Relative path for data files. Default: `data`
 #'
 #' @importFrom assertthat assert_that
-#' @importFrom gh gh
-#' @importFrom purrr map_chr
 #' @importFrom curl curl_download
+#' @importFrom readr read_csv
 #'
 #' @family INBO_coding_club_utilities
 #'
@@ -62,11 +61,11 @@ setup_codingclub_session <- function(
   )
 
   github_src_link <- sprintf(
-    "https://github.com/inbo/coding-club/tree/master/data/%s",
+    "https://github.com/inbo/coding-club/tree/master/src/%s",
     session_date
   )
   github_data_link <- sprintf(
-    "https://github.com/inbo/coding-club/tree/master/src/%s",
+    "https://github.com/inbo/coding-club/tree/master/data/%s",
     session_date
   )
   src_target_dir <- file.path(root_dir, src_rel_path, session_date)
@@ -107,47 +106,50 @@ download_content_in_subdir <- function(session_date,
     choices = github_subdirectory,
     several.ok = FALSE
   )
-  content_found <- FALSE
-  content <- tryCatch(
-    {
-      resp <- gh(sprintf(
-        "/repos/inbo/coding-club/contents/%s/%s",
-        github_subdirectory, session_date
-      ))
-      content_found <- TRUE
-      resp
-    },
-    error = function(error_condition) {
-      warning(sprintf(
-        "No %s files found for session %s. Is the date correct?",
-        github_subdirectory, session_date
-      ))
-    }
-  )
 
-  if (isFALSE(content_found)) {
+  download_url <- "https://raw.githubusercontent.com/inbo/coding-club/master/"
+
+  # download file paths
+  file_paths <- tempfile(fileext = "csv")
+  curl_download(
+    url = paste0(download_url,
+                 "file_paths/file_path_df.csv"),
+    destfile = file_paths,
+    mode = "wb"
+  )
+  file_path_df <- readr::read_csv(file_paths,
+                                  col_types = "cccc")
+  file_path_df <- file_path_df[
+    file_path_df$date == session_date &
+      file_path_df$basedir == github_subdirectory, ]
+
+  content_found <- nrow(file_path_df) > 0
+  if (!content_found) {
+    warning(sprintf(
+      "No %s files found for session %s. Is the date correct?",
+      github_subdirectory, session_date))
     return(content_found)
-  }
-  dir.create(target_directory, recursive = TRUE, showWarnings = FALSE)
-  files_in_github <- map_chr(content, ~ .$name)
-  files_in_dir <- list.files(target_directory)
-  content <- content[!files_in_github %in% files_in_dir]
-  length(content)
-  for (f in content) {
-    dest_file <- file.path(target_directory, f$name)
-    message(sprintf("** Downloading %s", f$html_url))
-    curl_download(
-      url = f$download_url,
-      destfile = dest_file,
-      mode = "wb"
-    )
-  }
-  if (content_found) {
+  } else {
+    dir.create(target_directory, recursive = TRUE, showWarnings = FALSE)
+    files_in_dir <- list.files(target_directory)
+    content <- file_path_df[
+      !file_path_df$filename %in% files_in_dir, ]
+    if (nrow(content) > 0) {
+      for (f in 1:nrow(content)) {
+        dest_file <- file.path(target_directory, content[f,"filename"])
+        message(sprintf("** Downloading %s", content[f,"filename"]))
+        curl_download(
+          url = paste0(download_url, content[f,"path"]),
+          destfile = dest_file,
+          mode = "wb"
+        )
+      }
+    }
     message(paste0(
       "* Download ",
       github_subdirectory,
       " file(s) completed"
     ))
+    return(content_found)
   }
-  return(content_found)
 }
