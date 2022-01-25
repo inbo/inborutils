@@ -13,7 +13,8 @@ Some of these functions will be targeted to INBO usage itself, but maybe some of
 Install `inborutils` from inbo.r-universe:
 
 ```r
-install.packages("inborutils", repos = "https://inbo.r-universe.dev")
+install.packages("inborutils", repos = c(inbo = "https://inbo.r-universe.dev", 
+                                         CRAN = "https://cloud.r-project.org"))
 ```
 
 Or you can install `inborutils` from github with:
