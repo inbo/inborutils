@@ -190,6 +190,8 @@ download_zenodo <- function(doi,
 #' v <- c(12345, 456987745621258)
 #' human_filesize(v)
 #'
+#' @family Helpers
+#'
 #' @export
 #' @importFrom assertthat
 #' assert_that

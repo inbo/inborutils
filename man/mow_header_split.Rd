@@ -15,3 +15,4 @@ char string with the entry
 \description{
 Get data entry from MOW header data file
 }
+\keyword{internal}
