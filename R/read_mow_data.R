@@ -102,7 +102,7 @@ read_mow_data <- function(filename, n_max = Inf) {
 #' Get data entry from MOW header data file
 #'
 #' @param inputline character string coming from MOW data file
-#'
+#' @keywords internal
 #' @return char string with the entry
 mow_header_split <- function(inputline) {
     trimws(strsplit(inputline, ":")[[1]][[2]])
