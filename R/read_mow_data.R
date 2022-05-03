@@ -1,4 +1,3 @@
-
 #' Read MOW data
 #'
 #' Coordinate data is contained in the header of the file
@@ -13,7 +12,7 @@
 #' @importFrom readr read_delim cols col_character col_double
 #' @importFrom dplyr select mutate %>%
 #' @importFrom iterators ireadLines nextElem
-#' @importFrom sp CRS
+#' @importFrom sf st_crs
 #' @importFrom lubridate dmy_hms
 #' @importFrom rlang .data
 #'
@@ -35,11 +34,16 @@ read_mow_data <- function(filename, n_max = Inf) {
     cnt <- 1
     while (!startsWith(line, "Date")) {
         # extract station coordinate info
-        if (startsWith(line, "Station Name")) station_name <- mow_header_split(line)
-        if (startsWith(line, "Easting")) longitude <- as.numeric(mow_header_split(line))
-        if (startsWith(line, "Northing")) latitude <- as.numeric(mow_header_split(line))
-        if (startsWith(line, "Parameter Name")) variable_name <- mow_header_split(line)
-        if (startsWith(line, "Time series Unit")) variable_unit <- mow_header_split(line)
+        if (startsWith(line, "Station Name"))
+          station_name <- mow_header_split(line)
+        if (startsWith(line, "Easting"))
+          longitude <- as.numeric(mow_header_split(line))
+        if (startsWith(line, "Northing"))
+          latitude <- as.numeric(mow_header_split(line))
+        if (startsWith(line, "Parameter Name"))
+          variable_name <- mow_header_split(line)
+        if (startsWith(line, "Time series Unit"))
+          variable_unit <- mow_header_split(line)
         line <- nextElem(header_it)
         cnt <- cnt + 1
     }
@@ -47,8 +51,8 @@ read_mow_data <- function(filename, n_max = Inf) {
     close(mow_con)
 
     # Handle coordinate information
-    crs_lambert <- CRS("+init=epsg:31370")
-    crs_wgs84 <- CRS("+init=epsg:4326")
+    crs_lambert <- st_crs(31370)
+    crs_wgs84 <- st_crs(4326)
     coordinates <- as.data.frame(list(latitude = latitude,
                                       longitude = longitude))
     coordinates_wgs <- reproject_coordinates(coordinates, "longitude",

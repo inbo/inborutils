@@ -49,7 +49,6 @@
 #' @importFrom assertthat assert_that
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
 #' @importFrom sf st_crs
-#' @importFrom sp CRS
 #' @importFrom dplyr %>%
 #' @importFrom tidyselect vars_pull enquo
 #' @importFrom rlang !!
@@ -69,13 +68,8 @@ plot_coordinates_on_map <- function(df, col_long, col_lat, projection, ...) {
               msg = "x coordinates (longitude) should be numbers.")
   assert_that(isTRUE(all(map_lgl(df[[col_lat]],  ~ is.numeric(.)))),
               msg = "y coordinates (latitude) should be numbers.")
-  if (class(projection) == "CRS") {
-    data_proj <- reproject_coordinates(df, col_long, col_lat, projection,
-                                       CRS("+init=epsg:4326"))
-  } else {
-    data_proj <- reproject_coordinates(df, col_long, col_lat, projection,
-                                       st_crs("+init=epsg:4326"))
-    }
+  data_proj <- reproject_coordinates(df, col_long, col_lat, projection,
+                                     st_crs("+init=epsg:4326"))
 
   mapt <- leaflet(data = data_proj) %>%
       addTiles() %>%

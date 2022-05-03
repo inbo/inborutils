@@ -46,7 +46,7 @@
 #' addLegend setView colorFactor layersControlOptions
 #' @importFrom assertthat is.string is.flag noNA has_name
 #' @importFrom dplyr sample_n
-#' @importFrom sp CRS
+#' @importFrom sf st_crs
 #'
 guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
                      projections = c("epsg:4326", "epsg:31370",
@@ -68,7 +68,7 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
     # Limit the number of dots to plot to 200
     max_dots <- 200
     if (nrow(df) > max_dots) {
-        df <- dplyr::sample_n(df, max_dots)
+        df <- dplyr::slice_sample(df, n = max_dots)
         print("Number of dots on map limited to 200 random sampled records")
     }
 
@@ -80,8 +80,8 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
     for (prj in projections) {
         message(prj)
         data_proj <- reproject_coordinates(df, col_long, col_lat,
-                                           CRS(paste("+init=", prj, sep = "")),
-                                           CRS("+init=epsg:4326"))
+                                           st_crs(prj),
+                                           st_crs(4326))
 
         mapt <- addCircleMarkers(mapt, data_proj[[col_long]],
                                  data_proj[[col_lat]], stroke = FALSE,
@@ -97,7 +97,7 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
     mapt <- addLegend(mapt, pal = color_pal, values = projections, opacity = 1)
 
     # Put the center of the map on Belgium when Belgian data points are expected
-    if (belgium == TRUE) {
+    if (belgium) {
         mapt <- setView(mapt, lng = 4.5, lat = 50.5, zoom = 6)
         }
     return(mapt)

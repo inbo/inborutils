@@ -61,9 +61,7 @@
 #' @export
 #'
 #' @importFrom assertthat assert_that
-#' @importFrom sp SpatialPoints spTransform
-#' @importFrom sf st_coordinates st_as_sf st_transform
-#' @importFrom methods as
+#' @importFrom sf st_coordinates st_as_sf st_transform st_crs
 #' @importFrom tidyselect vars_pull enquo
 #' @importFrom rlang !!
 #' @importFrom purrr map_lgl
@@ -88,52 +86,20 @@ reproject_coordinates <- function(df, col_long, col_lat,
   assert_that(isTRUE(all(map_lgl(df[[col_lat]],  ~ is.numeric(.)))),
               msg = "y coordinates (latitude) should be numbers.")
 
-  if ((all(c(class(crs_input), class(crs_output)) == "CRS")) |
-       all(c(class(crs_input), class(crs_output)) == "crs")) {
-    if (class(crs_input) == "CRS") {
-      if (crs_input@projargs == crs_output@projargs) {
-        warning(paste("Input projection equal to output projection.",
-                      "No reprojection performed."))
-        return(df)
-      }
-    } else {
-      if (crs_input == crs_output) {
-        warning(paste("Input projection equal to output projection.",
-                      "No reprojection performed."))
-        return(df)
-      }
-    }
+  crs_input <- st_crs(crs_input)
+  crs_output <- st_crs(crs_output)
+
+  if (crs_input == crs_output) {
+    warning(paste("Input projection equal to output projection.",
+                  "No reprojection performed."))
+    return(df)
   }
 
-  if (class(crs_input) == "CRS") {
-    df_spat <- SpatialPoints(df[c(col_long, col_lat)],
-                             proj4string = crs_input)
-    if (class(crs_output) == "CRS") {
-      df_reproj <- spTransform(df_spat, crs_output)
-    } else {
-      df_spat <- st_as_sf(df_spat, crs = crs_input)
-      df_reproj <- st_transform(df_spat, crs_output)
-    }
-  } else{
-    df_spat <- st_as_sf(df[c(col_long, col_lat)],
-                        coords = c(col_long, col_lat),
-                        crs = crs_input)
-    if (class(crs_output) == "CRS") {
-      df_spat <- as(df_spat, "Spatial")
-      # convert from SpatialPointDataframe to SpatialPoints
-      df_spat <- as(df_spat, "SpatialPoints")
-      colnames(df_spat@coords) <- c(col_long, col_lat)
+  df_spat <- st_as_sf(df[c(col_long, col_lat)],
+                      coords = c(col_long, col_lat),
+                      crs = crs_input)
+  df_reproj <- st_transform(df_spat, crs_output)
 
-      df_reproj <- spTransform(df_spat, crs_output)
-    } else {
-      df_reproj <- st_transform(df_spat, crs_output)
-    }
-  }
-
-  if (class(crs_output) == "CRS") {
-    df[c(col_long, col_lat)] <- as.data.frame(df_reproj)[c(col_long, col_lat)]
-  } else {
-    df[c(col_long, col_lat)] <- as.data.frame(st_coordinates(df_reproj))
-  }
+  df[c(col_long, col_lat)] <- as.data.frame(st_coordinates(df_reproj))
   return(df)
 }
