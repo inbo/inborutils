@@ -45,7 +45,7 @@
 #' @importFrom leaflet leaflet addTiles addCircleMarkers addLayersControl
 #' addLegend setView colorFactor layersControlOptions
 #' @importFrom assertthat is.string is.flag noNA has_name
-#' @importFrom dplyr sample_n
+#' @importFrom dplyr slice_sample
 #' @importFrom sf st_crs
 #'
 guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
@@ -68,7 +68,7 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
     # Limit the number of dots to plot to 200
     max_dots <- 200
     if (nrow(df) > max_dots) {
-        df <- dplyr::slice_sample(df, n = max_dots)
+        df <- slice_sample(df, n = max_dots)
         print("Number of dots on map limited to 200 random sampled records")
     }
 
