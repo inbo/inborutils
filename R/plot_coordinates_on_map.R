@@ -69,7 +69,7 @@ plot_coordinates_on_map <- function(df, col_long, col_lat, projection, ...) {
   assert_that(isTRUE(all(map_lgl(df[[col_lat]],  ~ is.numeric(.)))),
               msg = "y coordinates (latitude) should be numbers.")
   data_proj <- reproject_coordinates(df, col_long, col_lat, projection,
-                                     st_crs("+init=epsg:4326"))
+                                     st_crs(4326))
 
   mapt <- leaflet(data = data_proj) %>%
       addTiles() %>%
