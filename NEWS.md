@@ -1,4 +1,4 @@
-# inborutils 0.1.6
+# inborutils 0.2.0
 
 * Functions no longer depend on `sp` package
 * Fixed a bug that occurred if a subset of columns was read in `csv_to_sqlite`
