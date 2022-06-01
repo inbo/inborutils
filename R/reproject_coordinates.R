@@ -22,7 +22,6 @@
 #' @family GIS_utilities
 #'
 #' @examples
-#' library(sp)
 #' library(sf)
 #' data_pts <- data.frame(
 #'   id = c(1, 2),
@@ -32,21 +31,26 @@
 #' )
 #'
 #' # CRS-class (use sp package)
-#' sp_crs1 <- CRS("+init=epsg:4269")
-#' sp_crs2 <- CRS("+init=epsg:3857")
-#' reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
-#'   crs_input = sp_crs1, crs_output = sp_crs2)
+#' if (requireNamespace("sp")) {
+#'   sp_crs1 <- sp::CRS("+init=epsg:4269")
+#'   sp_crs2 <- sp::CRS("+init=epsg:3857")
+#'   reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+#'     crs_input = sp_crs1, crs_output = sp_crs2)
+#' }
 #' # crs-class (use sf package)
 #' sf_crs1 <- st_crs(4269)
 #' sf_crs2 <- st_crs(3857)
 #' reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
 #'   crs_input = sf_crs1, crs_output = sf_crs2)
-#' # input projection is CRS-class (sp) and output projection crs-class (sf)
-#' reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
-#'   crs_input = sp_crs1, crs_output = sf_crs2)
-#' # input projection is crs-class (spf and output projection CRS-class (sp)
-#' reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
-#'   crs_input = sf_crs1, crs_output = sp_crs2)
+#'
+#' if (requireNamespace("sp")) {
+#'   # input projection is CRS-class (sp) and output projection crs-class (sf)
+#'   reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+#'     crs_input = sp_crs1, crs_output = sf_crs2)
+#'   # input projection is crs-class (spf and output projection CRS-class (sp)
+#'   reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",
+#'     crs_input = sf_crs1, crs_output = sp_crs2)
+#' }
 #'
 #' # use names (character) of x-y columns
 #' reproject_coordinates(data_pts, col_long = "lon", col_lat = "lat",

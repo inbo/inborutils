@@ -23,7 +23,6 @@
 #' @examples
 #' \dontrun{
 #' library(sf)
-#' library(sp)
 #' data_pts <- data.frame(
 #'   id = c(1, 2, 3),
 #'   lat = c(51.23031, 50.76931, 50.21439),
@@ -32,11 +31,13 @@
 #' )
 #'
 #' # projection is of class CRS-class (sp)
+#' if (requireNamespace("sp")) {
 #' proj_crs_sp <- CRS("+init=epsg:4269")
 #' plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
+#' }
 #'
 #' # projection is of class crs-class (sf)
-#' proj_crs_sf <- st_crs("+init=epsg:4269")
+#' proj_crs_sf <- st_crs(4269)
 #' plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf)
 #'
 #' # customize circles
