@@ -59,18 +59,18 @@ Furthermore, the optional argument `belgium` is a boolean value (TRUE/FALSE) def
 
 By default, the following CRS-systems are tested:
 
-* `epsg:4326`
-* `epsg:31370`
-* `epsg:28992`
-* `epsg:32631`
-* `epsg:3812`
-* `epsg:3035`
+* `EPSG:4326`
+* `EPSG:31370`
+* `EPSG:28992`
+* `EPSG:32631`
+* `EPSG:3812`
+* `EPSG:3035`
 
 Which can be overridden by adapting the `projections` argument:
 
 ```{r fig.width=7, message=FALSE}
 guess_projection(coordinate_example, "longitude", "latitude", belgium = TRUE, 
-                 projections = c("epsg:2000", "epsg:2805", "epsg:4326"))
+                 projections = c("EPSG:2000", "EPSG:2805", "EPSG:4326"))
 ```
 
 Check the [spatial reference](http://spatialreference.org) for the available codes.
