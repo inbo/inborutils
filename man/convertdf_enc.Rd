@@ -18,7 +18,9 @@ class (such as \code{data.frame} or \code{sf})}
     any non-convertible bytes in the input.  (This would normally be a
     single character, but can be more.)  If \code{"byte"}, the indication is
     \code{"<xx>"} with the hex code of the byte.  If \code{"Unicode"}
-    and converting from UTF-8, the Unicode point in the form \code{"<U+xxxx>"}.}
+    and converting from UTF-8, the Unicode point in the form
+    \code{"<U+xxxx>"}, or if \code{c99}, a C99-style escape
+    \code{"\uxxxx"}.}
 
 \item{colnames}{Should column names be converted as well?}
 }

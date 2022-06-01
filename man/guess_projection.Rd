@@ -7,36 +7,36 @@ check the expected projection}
 \usage{
 guess_projection(
   df,
-  col_long,
-  col_lat,
+  col_x,
+  col_y,
   belgium = TRUE,
-  projections = c("epsg:4326", "epsg:31370", "epsg:28992", "epsg:32631", "epsg:3812",
-    "epsg:3035")
+  projections = c("EPSG:4326", "EPSG:31370", "EPSG:28992", "EPSG:32631", "EPSG:3812",
+    "EPSG:3035")
 )
 }
 \arguments{
 \item{df}{data.frame with a x and y coordinate column}
 
-\item{col_long}{(char) name of the x (longitude) column}
+\item{col_x}{(char) name of the x (longitude) column}
 
-\item{col_lat}{(char) name of the y (latitude) column}
+\item{col_y}{(char) name of the y (latitude) column}
 
 \item{belgium}{(bool) If TRUE, coordinates are expected to be in Belgium}
 
-\item{projections}{(list) epsg codes of the different projections to evaluate
+\item{projections}{(list) EPSG codes of the different projections to evaluate
 By default, the following six projections are added to the map:
 \itemize{
-\item{"epsg:4326"}{WGS 84,
+\item{"EPSG:4326"}{WGS 84,
 http://spatialreference.org/ref/epsg/wgs-84/}
-\item{"epsg:31370"}{Belge 1972/Belgian Lambert 72,
+\item{"EPSG:31370"}{Belge 1972/Belgian Lambert 72,
 http://spatialreference.org/ref/epsg/31370/}
-\item{"epsg:28992"}{Amersfoort/Rijksdriehoek nieuw,
+\item{"EPSG:28992"}{Amersfoort/Rijksdriehoek nieuw,
 http://spatialreference.org/ref/epsg/28992/}
-\item{"epsg:32631"}{WGS 84 / UTM zone 31N,
+\item{"EPSG:32631"}{WGS 84 / UTM zone 31N,
 http://spatialreference.org/ref/epsg/32631/}
-\item{"epsg:3812"}{ETRS89/Belgian Lambert 2008,
+\item{"EPSG:3812"}{ETRS89/Belgian Lambert 2008,
 http://spatialreference.org/ref/epsg/3812/}
-\item{"epsg:3035"}{ETRS89 / ETRS-LAEA,
+\item{"EPSG:3035"}{ETRS89 / ETRS-LAEA,
 http://spatialreference.org/ref/epsg/3035/}
 }}
 }
@@ -62,6 +62,7 @@ guess_projection(data, "x", "y")
 \seealso{
 Other GIS_utilities: 
 \code{\link{plot_coordinates_on_map}()},
-\code{\link{reproject_coordinates}()}
+\code{\link{reproject_coordinates}()},
+\code{\link{transform_coordinates}()}
 }
 \concept{GIS_utilities}
