@@ -55,7 +55,7 @@ read_mow_data <- function(filename, n_max = Inf) {
     crs_wgs84 <- st_crs(4326)
     coordinates <- as.data.frame(list(latitude = latitude,
                                       longitude = longitude))
-    coordinates_wgs <- reproject_coordinates(coordinates, "longitude",
+    coordinates_wgs <- transform_coordinates(coordinates, "longitude",
                                              "latitude", crs_lambert, crs_wgs84)
 
     # Define mapping for mow supported values

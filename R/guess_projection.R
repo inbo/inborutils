@@ -14,23 +14,23 @@
 #' map provides the possibility to select/unselect specific layers.
 #'
 #' @param df data.frame with a x and y coordinate column
-#' @param col_long (char) name of the x (longitude) column
-#' @param col_lat (char) name of the y (latitude) column
+#' @param col_x (char) name of the x (longitude) column
+#' @param col_y (char) name of the y (latitude) column
 #' @param belgium (bool) If TRUE, coordinates are expected to be in Belgium
-#' @param projections (list) epsg codes of the different projections to evaluate
+#' @param projections (list) EPSG codes of the different projections to evaluate
 #' By default, the following six projections are added to the map:
 #' \itemize{
-#'  \item{"epsg:4326"}{WGS 84,
+#'  \item{"EPSG:4326"}{WGS 84,
 #'  http://spatialreference.org/ref/epsg/wgs-84/}
-#'  \item{"epsg:31370"}{Belge 1972/Belgian Lambert 72,
+#'  \item{"EPSG:31370"}{Belge 1972/Belgian Lambert 72,
 #'  http://spatialreference.org/ref/epsg/31370/}
-#'  \item{"epsg:28992"}{Amersfoort/Rijksdriehoek nieuw,
+#'  \item{"EPSG:28992"}{Amersfoort/Rijksdriehoek nieuw,
 #'  http://spatialreference.org/ref/epsg/28992/}
-#'  \item{"epsg:32631"}{WGS 84 / UTM zone 31N,
+#'  \item{"EPSG:32631"}{WGS 84 / UTM zone 31N,
 #'  http://spatialreference.org/ref/epsg/32631/}
-#'  \item{"epsg:3812"}{ETRS89/Belgian Lambert 2008,
+#'  \item{"EPSG:3812"}{ETRS89/Belgian Lambert 2008,
 #'  http://spatialreference.org/ref/epsg/3812/}
-#'  \item{"epsg:3035"}{ETRS89 / ETRS-LAEA,
+#'  \item{"EPSG:3035"}{ETRS89 / ETRS-LAEA,
 #'  http://spatialreference.org/ref/epsg/3035/}
 #' }
 #'
@@ -48,15 +48,15 @@
 #' @importFrom dplyr slice_sample
 #' @importFrom sf st_crs
 #'
-guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
-                     projections = c("epsg:4326", "epsg:31370",
-                                     "epsg:28992", "epsg:32631",
-                                     "epsg:3812", "epsg:3035")) {
+guess_projection <- function(df, col_x, col_y, belgium = TRUE,
+                     projections = c("EPSG:4326", "EPSG:31370",
+                                     "EPSG:28992", "EPSG:32631",
+                                     "EPSG:3812", "EPSG:3035")) {
     assert_that(inherits(df, "data.frame"))
-    assert_that(is.string(col_long))
-    assert_that(is.string(col_lat))
-    assert_that(has_name(df, col_long))
-    assert_that(has_name(df, col_lat))
+    assert_that(is.string(col_x))
+    assert_that(is.string(col_y))
+    assert_that(has_name(df, col_x))
+    assert_that(has_name(df, col_y))
     assert_that(is.flag(belgium))
     assert_that(noNA(belgium))
     assert_that(is.character(projections))
@@ -79,12 +79,12 @@ guess_projection <- function(df, col_long, col_lat, belgium = TRUE,
     # add the circle markers for each projection on the map
     for (prj in projections) {
         message(prj)
-        data_proj <- reproject_coordinates(df, col_long, col_lat,
+        data_proj <- transform_coordinates(df, col_x, col_y,
                                            st_crs(prj),
                                            st_crs(4326))
 
-        mapt <- addCircleMarkers(mapt, data_proj[[col_long]],
-                                 data_proj[[col_lat]], stroke = FALSE,
+        mapt <- addCircleMarkers(mapt, data_proj[[col_x]],
+                                 data_proj[[col_y]], stroke = FALSE,
                                  color = color_pal(prj), opacity = 1,
                                  group = prj)
     }
