@@ -3,6 +3,7 @@
 * Functions no longer depend on `sp` package
 * Fixed a bug that occurred if a subset of columns was read in `csv_to_sqlite`
 * Deprecated `reproject_coordinates`. Use `transform_coordinates` instead.
+* Deprecated `guess_projection`. Use `guess_crs` instead.
 
 # inborutils 0.1.5
 
