@@ -77,10 +77,10 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 
     # write the first batch of lines to SQLITE table, converting dates to string
     # representation
-    df <- df %>%
+    df2 <- df %>%
       mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
       mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
-    dbWriteTable(con, table_name, df, overwrite = TRUE)
+    dbWriteTable(con, table_name, df2, overwrite = TRUE)
 
     # readr chunk functionality
 
