@@ -32,6 +32,7 @@ assign them back to the data.frame columns.
 }
 \seealso{
 Other GIS_utilities: 
+\code{\link{guess_crs}()},
 \code{\link{guess_projection}()},
 \code{\link{plot_coordinates_on_map}()},
 \code{\link{transform_coordinates}()}

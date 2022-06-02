@@ -74,6 +74,7 @@ transform_coordinates(data_pts, col_x = 3, col_y = 2,
 }
 \seealso{
 Other GIS_utilities: 
+\code{\link{guess_crs}()},
 \code{\link{guess_projection}()},
 \code{\link{plot_coordinates_on_map}()},
 \code{\link{reproject_coordinates}()}
