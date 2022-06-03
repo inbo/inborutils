@@ -39,3 +39,6 @@ reference:
   - title: "Example datasets"
     contents:
       - has_concept("datasets")
+  - title: "Deprecated functions"
+    contents:
+      - has_concept("lifecycle")

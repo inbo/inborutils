@@ -10,4 +10,5 @@
 #' }
 #'
 #' @name inborutils-deprecated
+#' @family lifecycle
 NULL
