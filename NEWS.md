@@ -1,3 +1,7 @@
+# inborutils 0.2.1
+
+* Fixed url to download knmi data. Thanks to @ViktorHartman
+
 # inborutils 0.2.0
 
 * Functions no longer depend on `sp` package
