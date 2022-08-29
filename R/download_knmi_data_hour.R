@@ -4,8 +4,7 @@
 #' Meer info, zie
 #' https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
 #'
-#' @param stations list of integers, for an overview, see
-#' http://projects.knmi.nl/klimatologie/metadata/stationslijst.html
+#' @param stations list of integers
 #' @param variables list of variables, options are:
 #' \itemize{
 #'  \item{"WIND = DD:FH:FF:FX"}{Wind}
@@ -44,8 +43,8 @@ download_knmi_data_hour <- function(stations, variables, start_date, end_date,
                                 orders = c("ymd_HMS", "ymd", "ym", "y"))
     lubridate::hour(end_date) <- 23 # make sure to have all hours of the day
 
-    # http://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
-    res <- POST(url = "http://projects.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi",
+    # https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
+    res <- POST(url = "https://www.daggegevens.knmi.nl/klimatologie/uurgegevens",
                 body = list(stns = paste(stations, collapse = ":"),
                             vars = paste(variables, collapse = ":"),
                             start = format(start_date, "%Y%m%d%H"),
