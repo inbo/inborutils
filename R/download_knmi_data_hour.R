@@ -4,7 +4,8 @@
 #' Meer info, zie
 #' https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
 #'
-#' @param stations list of integers
+#' @param stations list of integers. For an overview,
+#' see https://www.daggegevens.knmi.nl/klimatologie/uurgegevens
 #' @param variables list of variables, options are:
 #' \itemize{
 #'  \item{"WIND = DD:FH:FF:FX"}{Wind}
