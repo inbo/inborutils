@@ -1,6 +1,6 @@
 Package: inborutils
 Title: Collection of Useful R Utilities
-Version: 0.2.1
+Version: 0.3.0
 Authors@R: c(
     person("Hans", "Van Calster", , "hans.vancalster@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8595-8426")),
@@ -77,5 +77,6 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
+Language: en-GB
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
