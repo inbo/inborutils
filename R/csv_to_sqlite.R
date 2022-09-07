@@ -3,8 +3,10 @@
 #' The table can be a comma separated (csv) or a tab separated (tsv) or any
 #' other delimited text file. The file is read in chunks. Each chunk is copied
 #' in the same sqlite table database before the next chunk is loaded into
-#' memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R} # nolint
-#' to learn more about.
+#' memory.
+#' See the INBO tutorial [Handling large files in R](
+#' https://inbo.github.io/tutorials/tutorials/r_large_data_files_handling/)
+#' to learn more.
 #'
 #' @section Remark:
 #' The \code{callback} argument in the \code{read_delim_chunked} function call

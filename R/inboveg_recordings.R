@@ -67,8 +67,8 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section inboveg_recordings:
-#' For \code{inboveg_recordings}, use [inbodb::inboveg_recordings()](
-#' https://inbo.github.io/inbodb/reference/get_inboveg_recordings.html)
+#' For \code{inboveg_recordings}, use [inbodb::inboveg_recording()](
+#' https://inbo.github.io/inbodb/reference/get_inboveg_recording.html)
 #'
 #' @export
 

@@ -27,17 +27,17 @@ guess_projection(
 By default, the following six projections are added to the map:
 \itemize{
 \item{"EPSG:4326"}{WGS 84,
-http://spatialreference.org/ref/epsg/wgs-84/}
+https://spatialreference.org/ref/epsg/wgs-84/}
 \item{"EPSG:31370"}{Belge 1972/Belgian Lambert 72,
-http://spatialreference.org/ref/epsg/31370/}
+https://spatialreference.org/ref/epsg/31370/}
 \item{"EPSG:28992"}{Amersfoort/Rijksdriehoek nieuw,
-http://spatialreference.org/ref/epsg/28992/}
+https://spatialreference.org/ref/epsg/28992/}
 \item{"EPSG:32631"}{WGS 84 / UTM zone 31N,
-http://spatialreference.org/ref/epsg/32631/}
+https://spatialreference.org/ref/epsg/32631/}
 \item{"EPSG:3812"}{ETRS89/Belgian Lambert 2008,
-http://spatialreference.org/ref/epsg/3812/}
+https://spatialreference.org/ref/epsg/3812/}
 \item{"EPSG:3035"}{ETRS89 / ETRS-LAEA,
-http://spatialreference.org/ref/epsg/3035/}
+https://spatialreference.org/ref/epsg/3035/}
 }}
 }
 \description{

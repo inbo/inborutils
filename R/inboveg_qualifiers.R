@@ -64,8 +64,8 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section inboveg_qualifiers:
-#' For \code{inboveg_qualifiers}, use [inbodb::inboveg_qualifiers()](
-#' https://inbo.github.io/inbodb/reference/get_inboveg_qualifiers.html)
+#' For \code{inboveg_qualifiers}, use [inbodb::inboveg_qualifier()](
+#' https://inbo.github.io/inbodb/reference/get_inboveg_qualifier.html)
 #'
 #'
 #' @export

@@ -12,7 +12,7 @@ While working on research projects, typical small functionalities are useful acr
 Useful links:
 \itemize{
   \item \url{https://github.com/inbo/inborutils}
-  \item \url{https://inbo.github.io/inborutils}
+  \item \url{https://inbo.github.io/inborutils/}
   \item Report bugs at \url{https://github.com/inbo/inborutils/issues}
 }
 

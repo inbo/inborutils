@@ -87,12 +87,12 @@ For \code{inboveg_header}, use \href{https://inbo.github.io/inbodb/reference/get
 
 \section{inboveg_qualifiers}{
 
-For \code{inboveg_qualifiers}, use \href{https://inbo.github.io/inbodb/reference/get_inboveg_qualifiers.html}{inbodb::inboveg_qualifiers()}
+For \code{inboveg_qualifiers}, use \href{https://inbo.github.io/inbodb/reference/get_inboveg_qualifier.html}{inbodb::inboveg_qualifier()}
 }
 
 \section{inboveg_recordings}{
 
-For \code{inboveg_recordings}, use \href{https://inbo.github.io/inbodb/reference/get_inboveg_recordings.html}{inbodb::inboveg_recordings()}
+For \code{inboveg_recordings}, use \href{https://inbo.github.io/inbodb/reference/get_inboveg_recording.html}{inbodb::inboveg_recording()}
 }
 
 \section{inboveg_survey}{
