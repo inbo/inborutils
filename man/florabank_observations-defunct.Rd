@@ -44,17 +44,20 @@ level information about the matching taxa.
 db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 
 # query and collect the data using scientific name
-succprat1 <-	florabank_observations(db_connectie,
-names = 'Succisa pratensis Moench', collect = TRUE)
+succprat1 <- florabank_observations(db_connectie,
+  names = "Succisa pratensis Moench", collect = TRUE
+)
 
 # the same species but using Dutch name
-succprat2 <-	florabank_observations(db_connectie,
-names = 'Blauwe knoop', collect = TRUE)
+succprat2 <- florabank_observations(db_connectie,
+  names = "Blauwe knoop", collect = TRUE
+)
 
 # providing both a Dutch name and scientific name will not duplicate records
 # if they are the same species
 succprat3 <- florabank_observations(db_connectie,
-names = c("Succisa pratensis Moench", "Blauwe knoop"), collect = TRUE)
+  names = c("Succisa pratensis Moench", "Blauwe knoop"), collect = TRUE
+)
 
 all.equal(succprat1, succprat2)
 all.equal(succprat1, succprat3)
@@ -62,20 +65,23 @@ all.equal(succprat1, succprat3)
 # passing dutch names and scientific names for different species
 # is possible (records for each species is returned)
 myspecies1 <- florabank_observations(db_connectie,
-names = c('Succisa pratensis Moench', 'Gevlekte orchis'), collect = TRUE)
+  names = c("Succisa pratensis Moench", "Gevlekte orchis"), collect = TRUE
+)
 
 # passing multiple dutch names
 myspecies2 <- florabank_observations(db_connectie,
-names = c('Gevlekte orchis', 'Blauwe knoop'),
-collect = TRUE)
+  names = c("Gevlekte orchis", "Blauwe knoop"),
+  collect = TRUE
+)
 
 all.equal(myspecies1, myspecies2)
 
 # using default for collect will return a lazy query
 # fixed = TRUE for exact matches only
-myspecies3 <-	florabank_observations(db_connectie,
-names = c('Succisa pratensis Moench', 'Gevlekte orchis'),
-fixed = TRUE)
+myspecies3 <- florabank_observations(db_connectie,
+  names = c("Succisa pratensis Moench", "Gevlekte orchis"),
+  fixed = TRUE
+)
 
 # to collect the data for a lazy query you can also use the collect() function:
 myspecies3 <- dplyr::collect(myspecies3)

@@ -50,10 +50,13 @@ information on the name matching API of GBIF on which rgbif relies, see
 \dontrun{
 library(readr)
 library(dplyr)
-species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
-                                "/inbo-pyutils/master/gbif/gbif_name_match",
-                                "/sample.csv"),
-                         trim_ws = TRUE, col_types = cols())
+species_list <- read_csv(paste0(
+  "https://raw.githubusercontent.com/inbo",
+  "/inbo-pyutils/master/gbif/gbif_name_match",
+  "/sample.csv"
+),
+trim_ws = TRUE, col_types = cols()
+)
 # basic usage
 species_list \%>\%
   gbif_species_name_match()
@@ -62,7 +65,7 @@ species_list \%>\%
   gbif_species_name_match(name = "name", kingdom = "kingdom", strict = TRUE)
 # select GBIF terms
 species_list \%>\%
-  gbif_species_name_match(gbif_terms = c('scientificName','rank'))
+  gbif_species_name_match(gbif_terms = c("scientificName", "rank"))
 }
 }
 \concept{GBIF_interactions}

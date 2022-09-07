@@ -43,33 +43,47 @@ data_pts <- data.frame(
 if (requireNamespace("sp")) {
   sp_crs1 <- sp::CRS("+init=epsg:4269")
   sp_crs2 <- sp::CRS("+init=epsg:3857")
-  transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-    crs_input = sp_crs1, crs_output = sp_crs2)
+  transform_coordinates(data_pts,
+    col_x = "lon", col_y = "lat",
+    crs_input = sp_crs1, crs_output = sp_crs2
+  )
 }
 # crs-class (use sf package)
 sf_crs1 <- st_crs(4269)
 sf_crs2 <- st_crs(3857)
-transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = "lon", col_y = "lat",
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 
 if (requireNamespace("sp")) {
   # input projection is CRS-class (sp) and output projection crs-class (sf)
-  transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-    crs_input = sp_crs1, crs_output = sf_crs2)
+  transform_coordinates(data_pts,
+    col_x = "lon", col_y = "lat",
+    crs_input = sp_crs1, crs_output = sf_crs2
+  )
   # input projection is crs-class (spf and output projection CRS-class (sp)
-  transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-    crs_input = sf_crs1, crs_output = sp_crs2)
+  transform_coordinates(data_pts,
+    col_x = "lon", col_y = "lat",
+    crs_input = sf_crs1, crs_output = sp_crs2
+  )
 }
 
 # use names (character) of x-y columns
-transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = "lon", col_y = "lat",
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 # use NSE of x-y columns
-transform_coordinates(data_pts, col_x = lon, col_y = lat,
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = lon, col_y = lat,
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 # use position of x-y columns
-transform_coordinates(data_pts, col_x = 3, col_y = 2,
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = 3, col_y = 2,
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 
 }
 \seealso{

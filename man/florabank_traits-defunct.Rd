@@ -51,10 +51,10 @@ fb_rodelijsten <- florabank_traits(db_connectie, "rode")
 # get only the red list for vascular plant species
 fb_rodelijstvaatplanten <- florabank_traits(db_connectie, "Rode lijst Vaatplanten")
 
-#if the trait_name argument is missing, a list of possible names is printed
+# if the trait_name argument is missing, a list of possible names is printed
 florabank_traits(db_connectie)
 
-#disconnect from florabank
+# disconnect from florabank
 dbDisconnect(db_connectie)
 }
 

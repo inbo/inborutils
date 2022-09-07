@@ -63,8 +63,10 @@ fb_kwartier <- florabank_taxon_ifbl_year(db_connectie)
 fb_kwartier <- collect(fb_kwartier)
 
 # get records at 4 km x 4 km resolution starting from 2000
-fb_uur <- florabank_taxon_ifbl_year(db_connectie, starting_year = 2000,
- ifbl_resolution = "4km-by-4km", taxongroup = "Mossen")
+fb_uur <- florabank_taxon_ifbl_year(db_connectie,
+  starting_year = 2000,
+  ifbl_resolution = "4km-by-4km", taxongroup = "Mossen"
+)
 
 # disconnect from florabank
 dbDisconnect(db_connectie)

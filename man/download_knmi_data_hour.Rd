@@ -43,7 +43,8 @@ https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-sc
 \examples{
 \dontrun{
 download_knmi_data_hour(c(310, 319), "PRCP", "2011-01-01", "2012-02-17",
-output_file = "knmi_output_download.txt")
+  output_file = "knmi_output_download.txt"
+)
 }
 }
 \seealso{

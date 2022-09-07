@@ -44,17 +44,23 @@ vegetation layers with which cover) for one or more surveys.
 con <- connect_inbo_dbase("D0010_00_Cydonia")
 
 # get the recordings from one survey and collect the data
-recording_heischraal2012 <- inboveg_recordings(con, survey_name =
-"MILKLIM_Heischraal2012", collect = TRUE)
+recording_heischraal2012 <- inboveg_recordings(con,
+  survey_name =
+    "MILKLIM_Heischraal2012", collect = TRUE
+)
 
 # get all recordings from MILKLIM surveys (partial matching), don't collect
-recording_milkim <- inboveg_recordings(con, survey_name = "\%MILKLIM\%",
-collect = TRUE)
+recording_milkim <- inboveg_recordings(con,
+  survey_name = "\%MILKLIM\%",
+  collect = TRUE
+)
 
 # get recordings from several specific surveys
-recording_severalsurveys <- inboveg_recordings(con, survey_name =
-c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE,
-collect = TRUE)
+recording_severalsurveys <- inboveg_recordings(con,
+  survey_name =
+    c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE,
+  collect = TRUE
+)
 
 # get all recordings of all surveys,  don't collect the data
 allrecordings <- inboveg_recordings(con)

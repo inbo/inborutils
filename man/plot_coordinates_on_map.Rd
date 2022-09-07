@@ -42,8 +42,8 @@ data_pts <- data.frame(
 
 # projection is of class CRS-class (sp)
 if (requireNamespace("sp")) {
-proj_crs_sp <- CRS("+init=epsg:4269")
-plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
+  proj_crs_sp <- CRS("+init=epsg:4269")
+  plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
 }
 
 # projection is of class crs-class (sf)
@@ -52,7 +52,8 @@ plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf)
 
 # customize circles
 plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf,
-  radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.75)
+  radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.75
+)
 }
 
 }

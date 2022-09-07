@@ -41,16 +41,22 @@ library(ows4R)
 library(purrr)
 wfs <- "https://www.dov.vlaanderen.be/geoserver/bodemkaart/bodemtypes/wfs"
 wfs_client <- WFSClient$new(wfs,
-                            serviceVersion = "1.1.0")
+  serviceVersion = "1.1.0"
+)
 wfs_client$
   getCapabilities()$
   findFeatureTypeByName("bodemkaart:bodemtypes")$
   getDescription() \%>\%
-  map_chr(function(x){x$getName()})
+  map_chr(function(x) {
+    x$getName()
+  })
 
 extract_soil_map_data(173995.67, 212093.44,
-                         properties_of_interest = c("Eenduidige_legende",
-                                                    "Textuurklasse"))
+  properties_of_interest = c(
+    "Eenduidige_legende",
+    "Textuurklasse"
+  )
+)
 }
 }
 \seealso{

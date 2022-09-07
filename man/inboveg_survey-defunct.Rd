@@ -34,8 +34,10 @@ See the examples for how to get information for all surveys.
 con <- connect_inbo_dbase("D0010_00_Cydonia")
 
 # get information of a specific survey and collect data
-survey_info <- inboveg_survey(con, survey_name = "OudeLanden_1979",
-collect = TRUE)
+survey_info <- inboveg_survey(con,
+  survey_name = "OudeLanden_1979",
+  collect = TRUE
+)
 
 # get information of all surveys and collect data
 allsurveys <- inboveg_survey(con)

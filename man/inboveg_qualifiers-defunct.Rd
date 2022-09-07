@@ -41,16 +41,22 @@ qualifier information on recordings  for one or more surveys.
 con <- connect_inbo_dbase("D0010_00_Cydonia")
 
 # get the qualifiers from one survey
-qualifiers_heischraal2012 <- inboveg_qualifiers(con, survey_name =
-"MILKLIM_Heischraal2012")
+qualifiers_heischraal2012 <- inboveg_qualifiers(con,
+  survey_name =
+    "MILKLIM_Heischraal2012"
+)
 
 # get all site qualifiers (SQ) from MILKLIM surveys (partial matching)
-qualifiers_milkim <- inboveg_qualifiers2(con, survey_name = "\%MILKLIM\%",
-qualifier_type = "SQ")
+qualifiers_milkim <- inboveg_qualifiers2(con,
+  survey_name = "\%MILKLIM\%",
+  qualifier_type = "SQ"
+)
 
 # get qualifiers from several specific surveys
-qualifiers_severalsurveys <- inboveg_qualifiers(con, survey_name =
-c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE)
+qualifiers_severalsurveys <- inboveg_qualifiers(con,
+  survey_name =
+    c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE
+)
 
 # get all qualifiers of all surveys
 allqualifiers <- inboveg_qualifiers(con)
