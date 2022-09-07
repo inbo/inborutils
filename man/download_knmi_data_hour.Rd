@@ -38,7 +38,7 @@ response containing, status_code, content,...
 }
 \description{
 Meer info, zie
-https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
+https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script # nolint
 }
 \examples{
 \dontrun{

@@ -7,7 +7,7 @@
 #' The function can only be used from within the INBO network.
 #'
 #' For more information, refer to
-#' \href{https://inbo.github.io/tutorials/tutorials/r_database_access/}{this tutorial}.
+#' \href{https://inbo.github.io/tutorials/tutorials/r_database_access/}{this tutorial}. # nolint
 #'
 #' @param database_name char Name of the INBO database you want to connect
 #'
@@ -27,7 +27,9 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section connect_inbo_dbase:
-#' For \code{connect_inbo_dbase}, use [inbodb::connect_inbo_dbase()](https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html)
+#' For \code{connect_inbo_dbase}, use
+#' [inbodb::connect_inbo_dbase()](
+#' https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html)
 #' @export
 connect_inbo_dbase <- function(database_name) {
   .Defunct("inbodb::connect_inbo_dbase()", package = "inborutils")

@@ -9,12 +9,14 @@ inboveg_header(connection, survey_name, rec_type, multiple = FALSE,
 }
 \arguments{
 \item{survey_name}{A character string or a character vector
-giving the name or names of the survey(s) for which you want to extract header information.
+giving the name or names of the survey(s) for which you want to extract
+header information.
 If missing, all surveys are returned.}
 
 \item{rec_type}{A character vector giving the name of record type for which
 you want to extract header information e.g. 'Classic', 'Classic-emmer',
-'Classic-ketting', 'BioHab', 'ABS'. If missing, all recording types are returned.}
+'Classic-ketting', 'BioHab', 'ABS'. If missing, all recording types are
+returned.}
 
 \item{connection}{dbconnection with the database 'Cydonia'
 on the inbo-sql07-prd server}
@@ -32,15 +34,16 @@ environment.}
 }
 \value{
 A remote tbl object (collect = FALSE) or a tibble dataframe (collect
-= TRUE) with variables RecordingGivid, Name, UserReference, Observer, LocationCode,
-Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), VagueDateType,
-VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
+= TRUE) with variables RecordingGivid, Name, UserReference, Observer,
+LocationCode, Latitude, Longitude, Area (in m2), Length (in cm), Width
+(in cm), VagueDateType, VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 This function queries the INBOVEG database for header
-information (metadata for a vegetation-recording or releve) for one or more surveys and
-the recorder type. See the examples for how to get information for all surveys.
+information (metadata for a vegetation-recording or releve) for one or more
+surveys and the recorder type. See the examples for how to get information
+for all surveys.
 }
 \examples{
 \dontrun{

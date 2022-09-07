@@ -10,11 +10,12 @@ inboveg_qualifiers(connection, survey_name, qualifier_type,
 \arguments{
 \item{survey_name}{A character string or a character vector, depending on
 multiple parameter, giving the name or names of the
-survey(s) for which you want to extract recordings information. If missing, all
-surveys are returned.}
+survey(s) for which you want to extract recordings information. If missing,
+all surveys are returned.}
 
-\item{qualifier_type}{A character vector giving the name of qualifier type for which
-you want to extract  information e.g. 'SQ' (site qualifier), 'MQ' (management qualifier).
+\item{qualifier_type}{A character vector giving the name of qualifier type
+for which you want to extract  information e.g. 'SQ' (site qualifier), 'MQ'
+(management qualifier).
 If missing, all qualifier types are returned.}
 
 \item{connection}{dbconnection with the database 'Cydonia'

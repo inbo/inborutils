@@ -3,11 +3,11 @@ globalVariables("%LIKE%")
 #' Query the florabank to get taxon trait values for (a) taxon trait(s)
 #'
 #' `r lifecycle::badge('defunct')`
-#' This function takes as input (part of) a taxon trait name, queries the florabank
-#' and returns the taxon trait values in a tidy data format
+#' This function takes as input (part of) a taxon trait name, queries the
+#' florabank and returns the taxon trait values in a tidy data format
 #'
-#' @param connection A connection to the florabank database. See the example section
-#' for how to connect and disconnect to the database.
+#' @param connection A connection to the florabank database. See the example
+#' section for how to connect and disconnect to the database.
 #'
 #' @param trait_name A (part of) a trait name for which you want to get the
 #' associated taxon-specific trait values. If this is missing, the function
@@ -43,7 +43,8 @@ globalVariables("%LIKE%")
 #' fb_rodelijsten <- florabank_traits(db_connectie, "rode")
 #'
 #' # get only the red list for vascular plant species
-#' fb_rodelijstvaatplanten <- florabank_traits(db_connectie, "Rode lijst Vaatplanten")
+#' fb_rodelijstvaatplanten <- florabank_traits(db_connectie,
+#'   "Rode lijst Vaatplanten")
 #'
 #' # if the trait_name argument is missing, a list of possible names is printed
 #' florabank_traits(db_connectie)
@@ -60,7 +61,9 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section florabank_traits:
-#' For \code{florabank_traits}, use [inbodb::florabank_traits()](https://inbo.github.io/inbodb/reference/get_florabank_traits.html)
+#' For \code{florabank_traits}, use
+#' [inbodb::florabank_traits()](
+#' https://inbo.github.io/inbodb/reference/get_florabank_traits.html)
 #'
 #'
 #' @export
@@ -69,11 +72,13 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
   .Defunct("inbodb::get_florabank_traits()", package = "inborutils")
 }
 
-#' Get all validated observations for one or more taxa from the florabank database
+#' Get all validated observations for one or more taxa from the florabank
+#' database
 #'
 #' `r lifecycle::badge('defunct')`
 #' This function takes as input a character vector with one or more names of
-#' species either as scientific names and/or Dutch names. By default (fixed = FALSE),
+#' species either as scientific names and/or Dutch names. By default (fixed =
+#' FALSE),
 #' partial matching will be used (the names are prepended with appended with %).
 #' The function queries the florabank, and returns a dataframe with observation
 #' level information about the matching taxa.
@@ -82,10 +87,11 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' section for how to connect and disconnect to the database.
 #'
 #' @param names Default missing. A character vector with scientific names
-#' and/or Dutch names. If fixed = TRUE, character strings are matched exactly and
-#' scientific names must include authorship in order to match.
+#' and/or Dutch names. If fixed = TRUE, character strings are matched exactly
+#' and scientific names must include authorship in order to match.
 #'
-#' @param fixed Logical. If TRUE, names is to be matched as is (no partial matching)
+#' @param fixed Logical. If TRUE, names is to be matched as is (no partial
+#' matching)
 #' .
 #' @param collect If FALSE (the default), a remote tbl object is returned. This
 #' is like a reference to the result of the query but the full result of the
@@ -145,7 +151,8 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #'   fixed = TRUE
 #' )
 #'
-#' # to collect the data for a lazy query you can also use the collect() function:
+#' # to collect the data for a lazy query you can also use the collect()
+#' # function:
 #' myspecies3 <- dplyr::collect(myspecies3)
 #'
 #' # disconnect from florabank
@@ -153,14 +160,17 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' }
 #'
 #' @name florabank_observations-defunct
-#' @usage florabank_observations(connection, names, fixed = FALSE, collect = FALSE)
+#' @usage florabank_observations(connection, names, fixed = FALSE,
+#' collect = FALSE)
 #' @seealso \code{\link{inborutils-defunct}}
 #' @keywords internal
 NULL
 
 #' @rdname inborutils-defunct
 #' @section florabank_observations:
-#' For \code{florabank_observations}, use [inbodb::florabank_observations()](https://inbo.github.io/inbodb/reference/get_florabank_observations.html)
+#' For \code{florabank_observations}, use
+#' [inbodb::florabank_observations()](
+#' https://inbo.github.io/inbodb/reference/get_florabank_observations.html)
 #'
 #'
 #' @export
@@ -177,14 +187,16 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 #' `r lifecycle::badge('defunct')`
 #' This functions queries all validated observations of the florabank database
 #' and returns unique combinations of taxon, IFBL-square and year. Either a 1 km
-#' by 1 km or a 4 km x 4 km resolution can be chosen and a begin year can be set.
+#' by 1 km or a 4 km x 4 km resolution can be chosen and a begin year can be
+#' set.
 #' Observations of taxa at genus level or higher are excluded. The taxonomic
 #' group can be chosen.
 #'
-#' @param connection A connection to the florabank database. See the example section
-#' for how to connect and disconnect to the database.
+#' @param connection A connection to the florabank database. See the example
+#' section for how to connect and disconnect to the database.
 #'
-#' @param starting_year Filter for observations that start from this year onwards.
+#' @param starting_year Filter for observations that start from this year
+#' onwards.
 #' Default is 2010.
 #'
 #' @param ifbl_resolution The requested spatial resolution can be either
@@ -203,9 +215,10 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 #' @return A dataframe with one line for each combination of taxon, IFBL-square
 #' (either at 1 km x 1 km or 4 km x 4 km resolution) and year. In case the
 #' resolution is 1 km x 1 km, a variable ifbl_4by4 gives the corresponding
-#' ifbl_4by4 identifier within which the ifbl_1by1 square is located. In case the
-#' resolution is 4 km x 4 km, the variable ifbl_squares is a concatenation of
-#' all nested squares with observations for the taxon in the corresponding year.
+#' ifbl_4by4 identifier within which the ifbl_1by1 square is located.
+#' In case the resolution is 4 km x 4 km, the variable ifbl_squares is a
+#' concatenation of all nested squares with observations for the taxon in the
+#' corresponding year.
 #' This can be nested 1 x 1 squares as well as the corresponding 4 x 4 square
 #' (the latter is the case if the original resolution of the observation is at
 #' 4 x 4 resolution). In addition, the variable ifbl_number_squares gives the
@@ -246,7 +259,9 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section florabank_taxon_ifbl_year:
-#' For \code{florabank_taxon_ifbl_year}, use [inbodb::florabank_taxon_ifbl_year()](https://inbo.github.io/inbodb/reference/get_florabank_taxon_ifbl_year.html)
+#' For \code{florabank_taxon_ifbl_year}, use
+#' [inbodb::florabank_taxon_ifbl_year()](
+#' https://inbo.github.io/inbodb/reference/get_florabank_taxon_ifbl_year.html)
 #'
 #'
 #' @export

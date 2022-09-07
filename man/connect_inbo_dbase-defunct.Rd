@@ -19,7 +19,7 @@ argument.
 The function can only be used from within the INBO network.
 
 For more information, refer to
-\href{https://inbo.github.io/tutorials/tutorials/r_database_access/}{this tutorial}.
+\href{https://inbo.github.io/tutorials/tutorials/r_database_access/}{this tutorial}. # nolint
 }
 \examples{
 \dontrun{

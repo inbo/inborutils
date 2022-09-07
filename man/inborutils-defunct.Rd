@@ -53,22 +53,26 @@ https://inbo.github.io/inbodb/).
 }
 \section{connect_inbo_dbase}{
 
-For \code{connect_inbo_dbase}, use \href{https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html}{inbodb::connect_inbo_dbase()}
+For \code{connect_inbo_dbase}, use
+\href{https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html}{inbodb::connect_inbo_dbase()}
 }
 
 \section{florabank_traits}{
 
-For \code{florabank_traits}, use \href{https://inbo.github.io/inbodb/reference/get_florabank_traits.html}{inbodb::florabank_traits()}
+For \code{florabank_traits}, use
+\href{https://inbo.github.io/inbodb/reference/get_florabank_traits.html}{inbodb::florabank_traits()}
 }
 
 \section{florabank_observations}{
 
-For \code{florabank_observations}, use \href{https://inbo.github.io/inbodb/reference/get_florabank_observations.html}{inbodb::florabank_observations()}
+For \code{florabank_observations}, use
+\href{https://inbo.github.io/inbodb/reference/get_florabank_observations.html}{inbodb::florabank_observations()}
 }
 
 \section{florabank_taxon_ifbl_year}{
 
-For \code{florabank_taxon_ifbl_year}, use \href{https://inbo.github.io/inbodb/reference/get_florabank_taxon_ifbl_year.html}{inbodb::florabank_taxon_ifbl_year()}
+For \code{florabank_taxon_ifbl_year}, use
+\href{https://inbo.github.io/inbodb/reference/get_florabank_taxon_ifbl_year.html}{inbodb::florabank_taxon_ifbl_year()}
 }
 
 \section{inboveg_classification}{
@@ -93,7 +97,8 @@ For \code{inboveg_recordings}, use \href{https://inbo.github.io/inbodb/reference
 
 \section{inboveg_survey}{
 
-For \code{inboveg_survey}, use \href{https://inbo.github.io/inbodb/reference/get_inboveg_survey.html}{inbodb::inboveg_survey()}
+For \code{inboveg_survey}, use
+\href{https://inbo.github.io/inbodb/reference/get_inboveg_survey.html}{inbodb::inboveg_survey()}
 }
 
 \keyword{internal}

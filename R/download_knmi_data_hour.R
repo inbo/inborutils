@@ -2,7 +2,7 @@
 #' Download KNMI hourly data to file
 #'
 #' Meer info, zie
-#' https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
+#' https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script # nolint
 #'
 #' @param stations list of integers. For an overview,
 #' see https://www.daggegevens.knmi.nl/klimatologie/uurgegevens
@@ -46,7 +46,6 @@ download_knmi_data_hour <- function(stations, variables, start_date, end_date,
   )
   lubridate::hour(end_date) <- 23 # make sure to have all hours of the day
 
-  # https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
   res <- POST(
     url = "https://www.daggegevens.knmi.nl/klimatologie/uurgegevens",
     body = list(

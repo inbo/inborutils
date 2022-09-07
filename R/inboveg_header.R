@@ -2,15 +2,18 @@
 #'
 #' @description  `r lifecycle::badge('defunct')`
 #' This function queries the INBOVEG database for header
-#' information (metadata for a vegetation-recording or releve) for one or more surveys and
-#' the recorder type. See the examples for how to get information for all surveys.
+#' information (metadata for a vegetation-recording or releve) for one or more
+#' surveys and the recorder type. See the examples for how to get information
+#' for all surveys.
 #'
 #' @param survey_name A character string or a character vector
-#' giving the name or names of the survey(s) for which you want to extract header information.
+#' giving the name or names of the survey(s) for which you want to extract
+#' header information.
 #' If missing, all surveys are returned.
 #' @param rec_type A character vector giving the name of record type for which
 #' you want to extract header information e.g. 'Classic', 'Classic-emmer',
-#' 'Classic-ketting', 'BioHab', 'ABS'. If missing, all recording types are returned.
+#' 'Classic-ketting', 'BioHab', 'ABS'. If missing, all recording types are
+#' returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
 #' @param multiple If TRUE, survey_name can take a character vector with
@@ -24,9 +27,9 @@
 #' environment.
 #'
 #' @return A remote tbl object (collect = FALSE) or a tibble dataframe (collect
-#' = TRUE) with variables RecordingGivid, Name, UserReference, Observer, LocationCode,
-#' Latitude, Longitude, Area (in m2), Length (in cm), Width (in cm), VagueDateType,
-#' VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
+#' = TRUE) with variables RecordingGivid, Name, UserReference, Observer,
+#' LocationCode, Latitude, Longitude, Area (in m2), Length (in cm), Width
+#' (in cm), VagueDateType, VagueDateBegin, VagueDateEnd, SurveyId, RecTypeID.
 #'
 #' @family inboveg
 #' @examples
@@ -63,7 +66,8 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section inboveg_header:
-#' For \code{inboveg_header}, use [inbodb::inboveg_header()](https://inbo.github.io/inbodb/reference/get_inboveg_header.html)
+#' For \code{inboveg_header}, use [inbodb::inboveg_header()](
+#' https://inbo.github.io/inbodb/reference/get_inboveg_header.html)
 #'
 #'
 #' @export

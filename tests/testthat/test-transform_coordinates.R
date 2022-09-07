@@ -2,17 +2,18 @@ context("transform_coordinates")
 library(sf)
 library(purrr)
 library(readr)
-# data_pts <- data.frame(
-#   id = c(1, 2),
-#   lat = c(51.23031, 50.76931),
-#   lon = c(5.083980, 3.829593),
-#   stringsAsFactors = FALSE
-# )
+
 data_pts <- read_tsv("./data_test_project_coordinate/data_pts_input.tsv")
 # EPSG 4269
 if (requireNamespace("sp")) {
-  sp_crs1 <- sp::CRS("+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs")
-  sp_crs2 <- sp::CRS("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs")
+  sp_crs1 <- sp::CRS(
+    "+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs"
+    )
+  sp_crs2 <- sp::CRS(
+    paste0(
+      "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0",
+      " +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs")
+    )
 }
 sf_crs1 <- st_crs(4269)
 # EPSG 3857

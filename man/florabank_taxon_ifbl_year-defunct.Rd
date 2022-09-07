@@ -11,10 +11,11 @@ florabank_taxon_ifbl_year(connection,
   collect = FALSE)
 }
 \arguments{
-\item{connection}{A connection to the florabank database. See the example section
-for how to connect and disconnect to the database.}
+\item{connection}{A connection to the florabank database. See the example
+section for how to connect and disconnect to the database.}
 
-\item{starting_year}{Filter for observations that start from this year onwards.
+\item{starting_year}{Filter for observations that start from this year
+onwards.
 Default is 2010.}
 
 \item{ifbl_resolution}{The requested spatial resolution can be either
@@ -34,9 +35,10 @@ environment.}
 A dataframe with one line for each combination of taxon, IFBL-square
 (either at 1 km x 1 km or 4 km x 4 km resolution) and year. In case the
 resolution is 1 km x 1 km, a variable ifbl_4by4 gives the corresponding
-ifbl_4by4 identifier within which the ifbl_1by1 square is located. In case the
-resolution is 4 km x 4 km, the variable ifbl_squares is a concatenation of
-all nested squares with observations for the taxon in the corresponding year.
+ifbl_4by4 identifier within which the ifbl_1by1 square is located.
+In case the resolution is 4 km x 4 km, the variable ifbl_squares is a
+concatenation of all nested squares with observations for the taxon in the
+corresponding year.
 This can be nested 1 x 1 squares as well as the corresponding 4 x 4 square
 (the latter is the case if the original resolution of the observation is at
 4 x 4 resolution). In addition, the variable ifbl_number_squares gives the
@@ -47,7 +49,8 @@ and 4 x 4 square combination.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 This functions queries all validated observations of the florabank database
 and returns unique combinations of taxon, IFBL-square and year. Either a 1 km
-by 1 km or a 4 km x 4 km resolution can be chosen and a begin year can be set.
+by 1 km or a 4 km x 4 km resolution can be chosen and a begin year can be
+set.
 Observations of taxa at genus level or higher are excluded. The taxonomic
 group can be chosen.
 }

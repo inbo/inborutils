@@ -21,7 +21,7 @@ df <- data.frame(
 
 df2 <- read.csv(paste0(
   "https://raw.githubusercontent.com/inbo",
-  "/inbo-pyutils/master/gbif/gbif_name_match",
+  "/inbo-pyutils/master/gbif/gbif_name_match",# nolint
   "/sample.csv"
 ),
 strip.white = TRUE

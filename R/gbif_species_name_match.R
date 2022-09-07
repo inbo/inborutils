@@ -76,7 +76,7 @@ gbif_species_name_match <- function(df,
                                     ),
                                     ...) {
   inargs <- list(...)
-  API_terms <- c(
+  api_terms <- c(
     "usageKey", "scientificName", "canonicalName", "rank",
     "status", "confidence", "matchType", "kingdom", "phylum",
     "order", "family", "genus", "species", "kingdomKey",
@@ -110,7 +110,7 @@ gbif_species_name_match <- function(df,
   }
   # column with names exists in  df
   assert_colnames(df, name, only_colnames = FALSE) # colname exists in df
-  invalid_gbif_terms <- gbif_terms[!gbif_terms %in% API_terms]
+  invalid_gbif_terms <- gbif_terms[!gbif_terms %in% api_terms]
   if (length(invalid_gbif_terms) > 0) {
     warning(paste0(
       "Invalid GBIF terms discarded: ",
@@ -119,7 +119,7 @@ gbif_species_name_match <- function(df,
     ))
   }
   # GBIF terms to add as additional columns to df
-  gbif_terms <- match.arg(gbif_terms, API_terms, several.ok = TRUE)
+  gbif_terms <- match.arg(gbif_terms, api_terms, several.ok = TRUE)
   if (name %in% gbif_terms) {
     warning(paste0(
       "Column with names \'",

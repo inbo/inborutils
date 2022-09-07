@@ -41,7 +41,7 @@ a SQLite database
 The table can be a comma separated (csv) or a tab separated (tsv) or any
 other delimited text file. The file is read in chunks. Each chunk is copied
 in the same sqlite table database before the next chunk is loaded into
-memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R}
+memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R} # nolint
 to learn more about.
 }
 \section{Remark}{

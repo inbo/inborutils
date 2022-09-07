@@ -6,10 +6,11 @@
 #'
 #' @param survey_name A character string or a character vector, depending on
 #' multiple parameter, giving the name or names of the
-#' survey(s) for which you want to extract recordings information. If missing, all
-#' surveys are returned.
-#' @param qualifier_type A character vector giving the name of qualifier type for which
-#' you want to extract  information e.g. 'SQ' (site qualifier), 'MQ' (management qualifier).
+#' survey(s) for which you want to extract recordings information. If missing,
+#' all surveys are returned.
+#' @param qualifier_type A character vector giving the name of qualifier type
+#' for which you want to extract  information e.g. 'SQ' (site qualifier), 'MQ'
+#' (management qualifier).
 #' If missing, all qualifier types are returned.
 #' @param connection dbconnection with the database 'Cydonia'
 #' on the inbo-sql07-prd server
@@ -63,7 +64,8 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section inboveg_qualifiers:
-#' For \code{inboveg_qualifiers}, use [inbodb::inboveg_qualifiers()](https://inbo.github.io/inbodb/reference/get_inboveg_qualifiers.html)
+#' For \code{inboveg_qualifiers}, use [inbodb::inboveg_qualifiers()](
+#' https://inbo.github.io/inbodb/reference/get_inboveg_qualifiers.html)
 #'
 #'
 #' @export

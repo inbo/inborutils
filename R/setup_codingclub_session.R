@@ -46,11 +46,13 @@
 #'
 #' @export
 
-setup_codingclub_session <- function(session_date = format(Sys.Date(), "%Y%m%d"),
-                                     root_dir = ".",
-                                     src_rel_path = "src",
-                                     data_rel_path = "data") {
-  msg_session_date <- "session_date must be a string representing a date (YYYYMMDD)"
+setup_codingclub_session <- function(
+    session_date = format(Sys.Date(), "%Y%m%d"),
+    root_dir = ".",
+    src_rel_path = "src",
+    data_rel_path = "data") {
+  msg_session_date <-
+    "session_date must be a string representing a date (YYYYMMDD)"
   assert_that(is.string(session_date), msg = msg_session_date)
   assert_that(grepl(
     "\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])",
@@ -85,13 +87,13 @@ setup_codingclub_session <- function(session_date = format(Sys.Date(), "%Y%m%d")
     return(invisible(NULL))
   }
   message("* Download source file(s)...")
-  content_downloaded <- download_content_in_subdir(session_date,
+  content_downloaded <- download_content_in_subdir(session_date, # nolint
     target_directory = src_target_dir,
     github_subdirectory = "src"
   )
 
   message("* Download data file(s)...")
-  content_downloaded <- download_content_in_subdir(session_date,
+  content_downloaded <- download_content_in_subdir(session_date, # nolint
     target_directory = data_target_dir,
     github_subdirectory = "data"
   )
@@ -140,7 +142,7 @@ download_content_in_subdir <- function(session_date,
       !file_path_df$filename %in% files_in_dir,
     ]
     if (nrow(content) > 0) {
-      for (f in 1:nrow(content)) {
+      for (f in seq_len(nrow(content))) {
         dest_file <- file.path(target_directory, content[f, "filename"])
         message(sprintf("** Downloading %s", content[f, "filename"]))
         curl_download(

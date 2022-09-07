@@ -1,6 +1,7 @@
 #' Get data from a Zenodo archive
 #'
-#' This function will download an entire archive from Zenodo (\url{https://zenodo.org}).
+#' This function will download an entire archive from Zenodo
+#' (\url{https://zenodo.org}).
 #' It only works for Zenodo created DOI (not when the DOI is for
 #' example derived from Zookeys.)
 #'
@@ -9,7 +10,9 @@
 #'
 #' @param path Path where the data must be downloaded.
 #' Defaults to the working directory.
-#' @param doi a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.
+#' @param doi a doi pointer to the Zenodo archive starting with
+#' '10.5281/zenodo.'.
+#' See examples.
 #' @param parallel Logical (\code{FALSE} by default).
 #' If \code{TRUE}, will run a number of parallel processes, each downloading
 #' another file.

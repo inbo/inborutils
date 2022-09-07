@@ -58,8 +58,8 @@ head(rain_knmi_2012)
 From which a time series plot can be made:
 ```{r fig.width = 7}
 library(ggplot2)
-ggplot(rain_knmi_2012, aes(x = datetime, y = value)) + 
-    geom_line() + 
+ggplot(rain_knmi_2012, aes(x = datetime, y = value)) +
+    geom_line() +
     xlab("") + ylab("mm")
 ```
 
@@ -117,9 +117,9 @@ head(conductivity_mow)
 A time series plot can be made for these data as well:
 ```{r fig.width = 7}
 library(ggplot2)
-ggplot(conductivity_mow, aes(x = datetime, y = value)) + 
-    geom_line() + 
-    xlab("") + ylab("µS/cm") + 
+ggplot(conductivity_mow, aes(x = datetime, y = value)) +
+    geom_line() +
+    xlab("") + ylab("µS/cm") +
     scale_x_datetime(date_labels = "%H:%M\n%Y-%m-%d", date_breaks = "4 hours")
 ```
 

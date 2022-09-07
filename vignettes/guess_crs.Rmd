@@ -72,7 +72,7 @@ By default, the following CRS-systems are tested:
 Which can be overridden by adapting the `projections` argument:
 
 ```{r fig.width=7, message=FALSE}
-guess_crs(coordinate_example, "longitude", "latitude", belgium = TRUE, 
+guess_crs(coordinate_example, "longitude", "latitude", belgium = TRUE,
                  crs_try = c("EPSG:2000", "EPSG:2805", "EPSG:4326"))
 ```
 

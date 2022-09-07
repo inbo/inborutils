@@ -45,7 +45,9 @@ NULL
 
 #' @rdname inborutils-defunct
 #' @section inboveg_survey:
-#' For \code{inboveg_survey}, use [inbodb::inboveg_survey()](https://inbo.github.io/inbodb/reference/get_inboveg_survey.html)
+#' For \code{inboveg_survey}, use
+#' [inbodb::inboveg_survey()](
+#' https://inbo.github.io/inbodb/reference/get_inboveg_survey.html)
 #'
 #'
 #' @export

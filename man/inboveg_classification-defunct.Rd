@@ -4,7 +4,8 @@
 \alias{inboveg_classification-defunct}
 \title{Query classification information from INBOVEG}
 \usage{
-inboveg_classification(connection, survey_name, classif, collect = FALSE)
+inboveg_classification(connection, survey_name, classif,
+collect = FALSE)
 }
 \arguments{
 \item{survey_name}{A character vector giving the names of the surveys for
@@ -33,8 +34,8 @@ Cover in percentage.
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 This function queries the INBOVEG database for information
-on the field classification (N2000 or BWK-code) of the releve (recording) for one
-or more survey(s) by the name of the survey. See the examples
+on the field classification (N2000 or BWK-code) of the releve (recording) for
+one or more survey(s) by the name of the survey. See the examples
 for how to get information for all surveys.
 }
 \examples{
