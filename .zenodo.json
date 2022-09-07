@@ -1,6 +1,6 @@
 {
   "title": "inborutils: Collection of Useful R Utilities",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.",
   "creators": [
     {
@@ -79,5 +79,6 @@
       "type": "ContactPerson",
       "orcid": "https://orcid.org/0000-0001-8595-8426"
     }
-  ]
+  ],
+  "language": "eng"
 }
