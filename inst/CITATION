@@ -1,0 +1,12 @@
+citHeader("To cite `inborutils` in publications please use:")
+# begin checklist entry
+citEntry(
+  entry = "Manual",
+  title = "inborutils: Collection of Useful R Utilities. Version 0.2.1",
+  author = c(person(given = "Hans", family = "Van Calster"), person(given = "Damiano", family = "Oldoni"), person(given = "Stijn", family = "Van Hoey")),
+  year = 2022,
+  url = "https://github.com/inbo/inborutils",
+  abstract = "While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.",
+  textVersion = "Van Calster, Hans; Oldoni, Damiano; Van Hoey, Stijn (2022) inborutils: Collection of Useful R Utilities. Version 0.2.1. https://github.com/inbo/inborutils, https://inbo.github.io/inborutils",
+)
+# end checklist entry
