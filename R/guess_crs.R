@@ -38,7 +38,7 @@
 #' @seealso crsuggest::guess_crs() for a (better) alternative
 #'
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' guess_crs(data, "x", "y")
 #' }
 #'
@@ -50,58 +50,68 @@
 #' @importFrom sf st_crs
 #'
 guess_crs <- function(df, col_x, col_y, belgium = TRUE,
-                      crs_try = c("EPSG:4326", "EPSG:31370",
-                                     "EPSG:28992", "EPSG:32631",
-                                     "EPSG:3812", "EPSG:3035")) {
-    assert_that(inherits(df, "data.frame"))
-    assert_that(is.string(col_x))
-    assert_that(is.string(col_y))
-    assert_that(has_name(df, col_x))
-    assert_that(has_name(df, col_y))
-    assert_that(is.flag(belgium))
-    assert_that(noNA(belgium))
-    assert_that(is.character(crs_try))
-    assert_that(noNA(crs_try))
-    # Create a color palette for the different projections
-    color_pal <- colorFactor(palette = "RdYlBu",
-                             levels = factor(crs_try))
+                      crs_try = c(
+                        "EPSG:4326", "EPSG:31370",
+                        "EPSG:28992", "EPSG:32631",
+                        "EPSG:3812", "EPSG:3035"
+                      )) {
+  assert_that(inherits(df, "data.frame"))
+  assert_that(is.string(col_x))
+  assert_that(is.string(col_y))
+  assert_that(has_name(df, col_x))
+  assert_that(has_name(df, col_y))
+  assert_that(is.flag(belgium))
+  assert_that(noNA(belgium))
+  assert_that(is.character(crs_try))
+  assert_that(noNA(crs_try))
+  # Create a color palette for the different projections
+  color_pal <- colorFactor(
+    palette = "RdYlBu",
+    levels = factor(crs_try)
+  )
 
-    # Limit the number of dots to plot to 200
-    max_dots <- 200
-    if (nrow(df) > max_dots) {
-        df <- slice_sample(df, n = max_dots)
-        print("Number of dots on map limited to 200 random sampled records")
-    }
+  # Limit the number of dots to plot to 200
+  max_dots <- 200
+  if (nrow(df) > max_dots) {
+    df <- slice_sample(df, n = max_dots)
+    print("Number of dots on map limited to 200 random sampled records")
+  }
 
-    # set up a leaflet map and add background
-    mapt <- leaflet() %>%
-        addTiles()
+  # set up a leaflet map and add background
+  mapt <- leaflet() %>%
+    addTiles()
 
-    # add the circle markers for each projection on the map
-    for (prj in crs_try) {
-        message(prj)
-        data_proj <- transform_coordinates(df, col_x, col_y,
-                                           st_crs(prj),
-                                           st_crs(4326))
+  # add the circle markers for each projection on the map
+  for (prj in crs_try) {
+    message(prj)
+    data_proj <- transform_coordinates(
+      df, col_x, col_y,
+      st_crs(prj),
+      st_crs(4326)
+    )
 
-        mapt <- addCircleMarkers(mapt, data_proj[[col_x]],
-                                 data_proj[[col_y]], stroke = FALSE,
-                                 color = color_pal(prj), opacity = 1,
-                                 group = prj)
-    }
+    mapt <- addCircleMarkers(mapt, data_proj[[col_x]],
+      data_proj[[col_y]],
+      stroke = FALSE,
+      color = color_pal(prj), opacity = 1,
+      group = prj
+    )
+  }
 
-    # create a menu to (un)select specific layers
-    mapt <- addLayersControl(mapt, overlayGroups = crs_try,
-                             options = layersControlOptions(collapsed = FALSE))
+  # create a menu to (un)select specific layers
+  mapt <- addLayersControl(mapt,
+    overlayGroups = crs_try,
+    options = layersControlOptions(collapsed = FALSE)
+  )
 
-    # add a color legend for the individual projections
-    mapt <- addLegend(mapt, pal = color_pal, values = crs_try, opacity = 1)
+  # add a color legend for the individual projections
+  mapt <- addLegend(mapt, pal = color_pal, values = crs_try, opacity = 1)
 
-    # Put the center of the map on Belgium when Belgian data points are expected
-    if (belgium) {
-        mapt <- setView(mapt, lng = 4.5, lat = 50.5, zoom = 6)
-        }
-    return(mapt)
+  # Put the center of the map on Belgium when Belgian data points are expected
+  if (belgium) {
+    mapt <- setView(mapt, lng = 4.5, lat = 50.5, zoom = 6)
+  }
+  return(mapt)
 }
 
 #' Take a dataset and plot in different projections on a leaflet map to
@@ -142,15 +152,19 @@ guess_crs <- function(df, col_x, col_y, belgium = TRUE,
 #' @family GIS_utilities
 #' @export
 guess_projection <- function(df, col_x, col_y, belgium = TRUE,
-                      projections = c("EPSG:4326", "EPSG:31370",
-                                      "EPSG:28992", "EPSG:32631",
-                                      "EPSG:3812", "EPSG:3035")) {
+                             projections = c(
+                               "EPSG:4326", "EPSG:31370",
+                               "EPSG:28992", "EPSG:32631",
+                               "EPSG:3812", "EPSG:3035"
+                             )) {
   .Deprecated("guess_crs")
   return(
-    guess_crs(df = df,
-              col_x = col_x,
-              col_y = col_y,
-              belgium = belgium,
-              crs_try = projections)
+    guess_crs(
+      df = df,
+      col_x = col_x,
+      col_y = col_y,
+      belgium = belgium,
+      crs_try = projections
+    )
   )
 }

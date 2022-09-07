@@ -45,10 +45,10 @@ globalVariables("%LIKE%")
 #' # get only the red list for vascular plant species
 #' fb_rodelijstvaatplanten <- florabank_traits(db_connectie, "Rode lijst Vaatplanten")
 #'
-#' #if the trait_name argument is missing, a list of possible names is printed
+#' # if the trait_name argument is missing, a list of possible names is printed
 #' florabank_traits(db_connectie)
 #'
-#' #disconnect from florabank
+#' # disconnect from florabank
 #' dbDisconnect(db_connectie)
 #' }
 #'
@@ -66,9 +66,7 @@ NULL
 #' @export
 
 florabank_traits <- function(connection, trait_name, collect = FALSE) {
-
   .Defunct("inbodb::get_florabank_traits()", package = "inborutils")
-
 }
 
 #' Get all validated observations for one or more taxa from the florabank database
@@ -108,17 +106,20 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' db_connectie <- connect_inbo_dbase("D0021_00_userFlora")
 #'
 #' # query and collect the data using scientific name
-#' succprat1 <-	florabank_observations(db_connectie,
-#' names = 'Succisa pratensis Moench', collect = TRUE)
+#' succprat1 <- florabank_observations(db_connectie,
+#'   names = "Succisa pratensis Moench", collect = TRUE
+#' )
 #'
 #' # the same species but using Dutch name
-#' succprat2 <-	florabank_observations(db_connectie,
-#' names = 'Blauwe knoop', collect = TRUE)
+#' succprat2 <- florabank_observations(db_connectie,
+#'   names = "Blauwe knoop", collect = TRUE
+#' )
 #'
 #' # providing both a Dutch name and scientific name will not duplicate records
 #' # if they are the same species
 #' succprat3 <- florabank_observations(db_connectie,
-#' names = c("Succisa pratensis Moench", "Blauwe knoop"), collect = TRUE)
+#'   names = c("Succisa pratensis Moench", "Blauwe knoop"), collect = TRUE
+#' )
 #'
 #' all.equal(succprat1, succprat2)
 #' all.equal(succprat1, succprat3)
@@ -126,20 +127,23 @@ florabank_traits <- function(connection, trait_name, collect = FALSE) {
 #' # passing dutch names and scientific names for different species
 #' # is possible (records for each species is returned)
 #' myspecies1 <- florabank_observations(db_connectie,
-#' names = c('Succisa pratensis Moench', 'Gevlekte orchis'), collect = TRUE)
+#'   names = c("Succisa pratensis Moench", "Gevlekte orchis"), collect = TRUE
+#' )
 #'
 #' # passing multiple dutch names
 #' myspecies2 <- florabank_observations(db_connectie,
-#' names = c('Gevlekte orchis', 'Blauwe knoop'),
-#' collect = TRUE)
+#'   names = c("Gevlekte orchis", "Blauwe knoop"),
+#'   collect = TRUE
+#' )
 #'
 #' all.equal(myspecies1, myspecies2)
 #'
 #' # using default for collect will return a lazy query
 #' # fixed = TRUE for exact matches only
-#' myspecies3 <-	florabank_observations(db_connectie,
-#' names = c('Succisa pratensis Moench', 'Gevlekte orchis'),
-#' fixed = TRUE)
+#' myspecies3 <- florabank_observations(db_connectie,
+#'   names = c("Succisa pratensis Moench", "Gevlekte orchis"),
+#'   fixed = TRUE
+#' )
 #'
 #' # to collect the data for a lazy query you can also use the collect() function:
 #' myspecies3 <- dplyr::collect(myspecies3)
@@ -163,9 +167,7 @@ NULL
 
 florabank_observations <- function(connection, names, fixed = FALSE,
                                    collect = FALSE) {
-
   .Defunct("inbodb::get_florabank_observations()", package = "inborutils")
-
 }
 
 
@@ -223,8 +225,10 @@ florabank_observations <- function(connection, names, fixed = FALSE,
 #' fb_kwartier <- collect(fb_kwartier)
 #'
 #' # get records at 4 km x 4 km resolution starting from 2000
-#' fb_uur <- florabank_taxon_ifbl_year(db_connectie, starting_year = 2000,
-#'  ifbl_resolution = "4km-by-4km", taxongroup = "Mossen")
+#' fb_uur <- florabank_taxon_ifbl_year(db_connectie,
+#'   starting_year = 2000,
+#'   ifbl_resolution = "4km-by-4km", taxongroup = "Mossen"
+#' )
 #'
 #' # disconnect from florabank
 #' dbDisconnect(db_connectie)
@@ -249,14 +253,16 @@ NULL
 
 florabank_taxon_ifbl_year <- function(connection,
                                       starting_year = 2010,
-                                      ifbl_resolution = c("1km-by-1km",
-                                                          "4km-by-4km"),
-                                      taxongroup = c("Vaatplanten",
-                                                     "Mossen",
-                                                     "Lichenen (korstmossen)",
-                                                     "Kranswieren"),
+                                      ifbl_resolution = c(
+                                        "1km-by-1km",
+                                        "4km-by-4km"
+                                      ),
+                                      taxongroup = c(
+                                        "Vaatplanten",
+                                        "Mossen",
+                                        "Lichenen (korstmossen)",
+                                        "Kranswieren"
+                                      ),
                                       collect = FALSE) {
-
   .Defunct("inbodb::get_florabank_taxon_ifbl_year()", package = "inborutils")
-
 }

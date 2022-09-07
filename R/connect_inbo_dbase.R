@@ -30,7 +30,5 @@ NULL
 #' For \code{connect_inbo_dbase}, use [inbodb::connect_inbo_dbase()](https://inbo.github.io/inbodb/reference/connect_inbo_dbase.html)
 #' @export
 connect_inbo_dbase <- function(database_name) {
-
   .Defunct("inbodb::connect_inbo_dbase()", package = "inborutils")
-
 }

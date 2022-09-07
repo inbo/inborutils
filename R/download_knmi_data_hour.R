@@ -33,26 +33,31 @@
 #' @examples
 #' \dontrun{
 #' download_knmi_data_hour(c(310, 319), "PRCP", "2011-01-01", "2012-02-17",
-#' output_file = "knmi_output_download.txt")
+#'   output_file = "knmi_output_download.txt"
+#' )
 #' }
 download_knmi_data_hour <- function(stations, variables, start_date, end_date,
-                                   output_file = "knmi_download.txt") {
+                                    output_file = "knmi_download.txt") {
+  start_date <- parse_date_time(start_date,
+    orders = c("ymd_HMS", "ymd", "ym", "y")
+  )
+  end_date <- parse_date_time(end_date,
+    orders = c("ymd_HMS", "ymd", "ym", "y")
+  )
+  lubridate::hour(end_date) <- 23 # make sure to have all hours of the day
 
-    start_date <- parse_date_time(start_date,
-                                  orders = c("ymd_HMS", "ymd", "ym", "y"))
-    end_date <- parse_date_time(end_date,
-                                orders = c("ymd_HMS", "ymd", "ym", "y"))
-    lubridate::hour(end_date) <- 23 # make sure to have all hours of the day
+  # https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
+  res <- POST(
+    url = "https://www.daggegevens.knmi.nl/klimatologie/uurgegevens",
+    body = list(
+      stns = paste(stations, collapse = ":"),
+      vars = paste(variables, collapse = ":"),
+      start = format(start_date, "%Y%m%d%H"),
+      end = format(end_date, "%Y%m%d%H")
+    )
+  )
 
-    # https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
-    res <- POST(url = "https://www.daggegevens.knmi.nl/klimatologie/uurgegevens",
-                body = list(stns = paste(stations, collapse = ":"),
-                            vars = paste(variables, collapse = ":"),
-                            start = format(start_date, "%Y%m%d%H"),
-                            end = format(end_date, "%Y%m%d%H")
-                ))
+  write(content(res, "text", encoding = "UTF-8"), output_file)
 
-    write(content(res, "text", encoding = "UTF-8"), output_file)
-
-    res
+  res
 }

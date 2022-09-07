@@ -32,8 +32,8 @@
 #'
 #' # projection is of class CRS-class (sp)
 #' if (requireNamespace("sp")) {
-#' proj_crs_sp <- CRS("+init=epsg:4269")
-#' plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
+#'   proj_crs_sp <- CRS("+init=epsg:4269")
+#'   plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
 #' }
 #'
 #' # projection is of class crs-class (sf)
@@ -42,7 +42,8 @@
 #'
 #' # customize circles
 #' plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf,
-#'   radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.75)
+#'   radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.75
+#' )
 #' }
 #'
 #' @export
@@ -55,25 +56,28 @@
 #' @importFrom rlang !!
 #' @importFrom purrr map_lgl
 plot_coordinates_on_map <- function(df, col_x, col_y, projection, ...) {
-
   assert_that(is.data.frame(df))
   assert_that(
     class(projection) %in% c("CRS", "crs"),
     msg = "Input projection should be an object of class \"CRS\" or \"crs\"."
   )
 
-  col_x <- vars_pull(names(df), !! enquo(col_x))
-  col_y <- vars_pull(names(df), !! enquo(col_y))
+  col_x <- vars_pull(names(df), !!enquo(col_x))
+  col_y <- vars_pull(names(df), !!enquo(col_y))
 
-  assert_that(isTRUE(all(map_lgl(df[[col_x]],  ~ is.numeric(.)))),
-              msg = "x coordinates (longitude) should be numbers.")
-  assert_that(isTRUE(all(map_lgl(df[[col_y]],  ~ is.numeric(.)))),
-              msg = "y coordinates (latitude) should be numbers.")
-  data_proj <- transform_coordinates(df, col_x, col_y, projection,
-                                     st_crs(4326))
+  assert_that(isTRUE(all(map_lgl(df[[col_x]], ~ is.numeric(.)))),
+    msg = "x coordinates (longitude) should be numbers."
+  )
+  assert_that(isTRUE(all(map_lgl(df[[col_y]], ~ is.numeric(.)))),
+    msg = "y coordinates (latitude) should be numbers."
+  )
+  data_proj <- transform_coordinates(
+    df, col_x, col_y, projection,
+    st_crs(4326)
+  )
 
   mapt <- leaflet(data = data_proj) %>%
-      addTiles() %>%
-      addCircleMarkers(data_proj[[col_x]], data_proj[[col_y]], ...)
+    addTiles() %>%
+    addCircleMarkers(data_proj[[col_x]], data_proj[[col_y]], ...)
   return(mapt)
 }

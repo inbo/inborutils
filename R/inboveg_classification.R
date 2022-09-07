@@ -32,7 +32,8 @@
 #'
 #' # get a specific classification from a survey and collect the data
 #' classif_info <- inboveg_classification(con,
-#' survey_name = "MILKLIM_Heischraal2012", classif = "4010", collect = TRUE)
+#'   survey_name = "MILKLIM_Heischraal2012", classif = "4010", collect = TRUE
+#' )
 #'
 #' # get all surveys, all classifications,  don't collect the data
 #' allecodes <- inboveg_classification(con)
@@ -59,8 +60,5 @@ inboveg_classification <- function(connection,
                                    survey_name,
                                    classif,
                                    collect = FALSE) {
-
   .Defunct("inbodb::get_inboveg_classification()", package = "inborutils")
-
 }
-

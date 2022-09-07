@@ -26,65 +26,71 @@
 #' knmi_data <- read_knmi_data(file_path)
 #' }
 read_knmi_data <- function(filename, n_max = Inf) {
-    # Extract data from header by reading the header lines
-    knmi_con <- file(filename, "r")
-    header_it <- ireadLines(knmi_con)
-    coord_lines <- FALSE
-    line <- nextElem(header_it)
-    while (startsWith(line, "#")) {
-        # extract station coordinate info
-        if (coord_lines) {
-            if (line == "# ") {
-                coord_lines <- FALSE
-            } else {
-                station <- strsplit(gsub("# ", "", line), "[ ]+")[[1]][5]
-                coordinate_info[[station]] <- strsplit(gsub("# |:", "", line),
-                                                       "[ ]+")[[1]]
-            }
-        }
-        if (grepl("LON.*LAT", line)) {
-            coord_lines <- TRUE
-            coordinate_header <- strsplit(gsub("# ", "", line), "[ ]+")[[1]]
-            coordinate_info <- list()
-        }
-
-        # extract header info
-        if (grepl("STN,YYYYMMDD", line)) {
-            header <- strsplit(gsub("#? ", "", line), ",")[[1]]
-        }
-        line <- nextElem(header_it)
+  # Extract data from header by reading the header lines
+  knmi_con <- file(filename, "r")
+  header_it <- ireadLines(knmi_con)
+  coord_lines <- FALSE
+  line <- nextElem(header_it)
+  while (startsWith(line, "#")) {
+    # extract station coordinate info
+    if (coord_lines) {
+      if (line == "# ") {
+        coord_lines <- FALSE
+      } else {
+        station <- strsplit(gsub("# ", "", line), "[ ]+")[[1]][5]
+        coordinate_info[[station]] <- strsplit(
+          gsub("# |:", "", line),
+          "[ ]+"
+        )[[1]]
+      }
+    }
+    if (grepl("LON.*LAT", line)) {
+      coord_lines <- TRUE
+      coordinate_header <- strsplit(gsub("# ", "", line), "[ ]+")[[1]]
+      coordinate_info <- list()
     }
 
-    close(knmi_con)
+    # extract header info
+    if (grepl("STN,YYYYMMDD", line)) {
+      header <- strsplit(gsub("#? ", "", line), ",")[[1]]
+    }
+    line <- nextElem(header_it)
+  }
 
-    # convert coordinates information to mergeble data.frame
-    coordinates <- as.data.frame(coordinate_info, row.names = coordinate_header)
-    coordinates <- coordinates %>%
-        t() %>% as.data.frame() %>%
-        select_(station = quote(STN), longitude = quo("LON(east)"),
-                latitude = quo("LAT(north)"), location_name = quote(NAME))
+  close(knmi_con)
 
-    # Read the KNMI data format
-    col_types <- cols(
-        STN = col_character(),
-        YYYYMMDD = col_character(),
-        HH = col_character(),
-        DR = col_number(),
-        RH = col_number()
+  # convert coordinates information to mergeble data.frame
+  coordinates <- as.data.frame(coordinate_info, row.names = coordinate_header)
+  coordinates <- coordinates %>%
+    t() %>%
+    as.data.frame() %>%
+    select_(
+      station = quote(STN), longitude = quo("LON(east)"),
+      latitude = quo("LAT(north)"), location_name = quote(NAME)
     )
-    knmi_data <- read_delim(filename, delim = ", ", comment = "#",
-                            trim_ws = TRUE, col_names = header,
-                            n_max = n_max, col_types = col_types)
 
-    knmi_data %>%
-        mutate(datetime = ymd_h(paste(.data$YYYYMMDD, .data$HH))) %>%
-        select_(station = quote(STN), value = quote(RH), quote(datetime)) %>%
-        mutate(unit = "mm") %>%
-        mutate(value = ifelse(.data$value == -1, -1, .data$value/10.)) %>%
-        mutate(variable_name = "precipitation") %>%
-        merge(coordinates, by = "station") %>%
-        mutate(source_filename = basename(filename)) %>%
-        select(-.data$station) %>%
-        mutate(quality_code = "")
+  # Read the KNMI data format
+  col_types <- cols(
+    STN = col_character(),
+    YYYYMMDD = col_character(),
+    HH = col_character(),
+    DR = col_number(),
+    RH = col_number()
+  )
+  knmi_data <- read_delim(filename,
+    delim = ", ", comment = "#",
+    trim_ws = TRUE, col_names = header,
+    n_max = n_max, col_types = col_types
+  )
 
+  knmi_data %>%
+    mutate(datetime = ymd_h(paste(.data$YYYYMMDD, .data$HH))) %>%
+    select_(station = quote(STN), value = quote(RH), quote(datetime)) %>%
+    mutate(unit = "mm") %>%
+    mutate(value = ifelse(.data$value == -1, -1, .data$value / 10.)) %>%
+    mutate(variable_name = "precipitation") %>%
+    merge(coordinates, by = "station") %>%
+    mutate(source_filename = basename(filename)) %>%
+    select(-.data$station) %>%
+    mutate(quality_code = "")
 }

@@ -35,12 +35,16 @@
 #'
 #' # get header information from a specific survey and a specific recording type
 #' # and collect the data
-#' header_info <- inboveg_header(con, survey_name = "OudeLanden_1979",
-#' rec_type = "Classic", collect = TRUE)
+#' header_info <- inboveg_header(con,
+#'   survey_name = "OudeLanden_1979",
+#'   rec_type = "Classic", collect = TRUE
+#' )
 #'
 #' # get header information from several specific surveys
-#' header_severalsurveys <- inboveg_header(con, survey_name =
-#' c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE)
+#' header_severalsurveys <- inboveg_header(con,
+#'   survey_name =
+#'     c("MILKLIM_Heischraal2012", "NICHE Vlaanderen"), multiple = TRUE
+#' )
 #'
 #' # get header information of all surveys,  don't collect the data
 #' all_header_info <- inboveg_header(con)
@@ -70,6 +74,5 @@ inboveg_header <- function(connection,
                            rec_type,
                            multiple = FALSE,
                            collect = FALSE) {
-
   .Defunct("inbodb::get_inboveg_classification()", package = "inborutils")
 }

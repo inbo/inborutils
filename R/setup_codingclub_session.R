@@ -46,8 +46,7 @@
 #'
 #' @export
 
-setup_codingclub_session <- function(
-                                     session_date = format(Sys.Date(), "%Y%m%d"),
+setup_codingclub_session <- function(session_date = format(Sys.Date(), "%Y%m%d"),
                                      root_dir = ".",
                                      src_rel_path = "src",
                                      data_rel_path = "data") {
@@ -112,34 +111,40 @@ download_content_in_subdir <- function(session_date,
   # download file paths
   file_paths <- tempfile(fileext = "csv")
   curl_download(
-    url = paste0(download_url,
-                 "file_paths/file_path_df.csv"),
+    url = paste0(
+      download_url,
+      "file_paths/file_path_df.csv"
+    ),
     destfile = file_paths,
     mode = "wb"
   )
   file_path_df <- readr::read_csv(file_paths,
-                                  col_types = "cccc")
+    col_types = "cccc"
+  )
   file_path_df <- file_path_df[
     file_path_df$date == session_date &
-      file_path_df$basedir == github_subdirectory, ]
+      file_path_df$basedir == github_subdirectory,
+  ]
 
   content_found <- nrow(file_path_df) > 0
   if (!content_found) {
     warning(sprintf(
       "No %s files found for session %s. Is the date correct?",
-      github_subdirectory, session_date))
+      github_subdirectory, session_date
+    ))
     return(content_found)
   } else {
     dir.create(target_directory, recursive = TRUE, showWarnings = FALSE)
     files_in_dir <- list.files(target_directory)
     content <- file_path_df[
-      !file_path_df$filename %in% files_in_dir, ]
+      !file_path_df$filename %in% files_in_dir,
+    ]
     if (nrow(content) > 0) {
       for (f in 1:nrow(content)) {
-        dest_file <- file.path(target_directory, content[f,"filename"])
-        message(sprintf("** Downloading %s", content[f,"filename"]))
+        dest_file <- file.path(target_directory, content[f, "filename"])
+        message(sprintf("** Downloading %s", content[f, "filename"]))
         curl_download(
-          url = paste0(download_url, content[f,"path"]),
+          url = paste0(download_url, content[f, "path"]),
           destfile = dest_file,
           mode = "wb"
         )

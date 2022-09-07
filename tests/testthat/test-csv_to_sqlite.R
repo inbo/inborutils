@@ -22,20 +22,23 @@ test_that("csv to sqlite works", {
   table_name_2 <- "mtcars_selected_columns"
 
   # all columns
-  csv_to_sqlite(csv_file = mtcars_csv,
-                sqlite_file = mtcars_sqlite,
-                table_name = table_name_1,
-                pre_process_size = 10,
-                chunk_size = 5,
-                delim = ",")
+  csv_to_sqlite(
+    csv_file = mtcars_csv,
+    sqlite_file = mtcars_sqlite,
+    table_name = table_name_1,
+    pre_process_size = 10,
+    chunk_size = 5,
+    delim = ","
+  )
   # selection of columns
-  csv_to_sqlite(csv_file = mtcars_csv,
-                sqlite_file = mtcars_sqlite,
-                table_name = table_name_2,
-                pre_process_size = 10,
-                chunk_size = 5,
-                delim = ",",
-                col_types = cols_subset
+  csv_to_sqlite(
+    csv_file = mtcars_csv,
+    sqlite_file = mtcars_sqlite,
+    table_name = table_name_2,
+    pre_process_size = 10,
+    chunk_size = 5,
+    delim = ",",
+    col_types = cols_subset
   )
 
 
@@ -74,7 +77,7 @@ test_that("csv to sqlite works", {
   testthat::expect_equal(
     mtcars_1,
     mtcars_df
-    )
+  )
 
   setwd(oldwd)
 })

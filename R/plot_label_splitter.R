@@ -18,13 +18,13 @@
 #' @examples
 #' plot_label_splitter("Exotic long label", 10)
 #'
-plot_label_splitter <- function(label, maxlength){
-    label <- as.character(label)
-    if (nchar(label) > maxlength) {
-        # find space closest to center of string
-        split.space <- nchar(label) %/% 2
-        regex.statement <- paste("(^.{", split.space, "})(\\S*)([ ])", sep = "")
-        label <- gsub(regex.statement, "\\1\\2\n", label)
-    }
-    return(label)
+plot_label_splitter <- function(label, maxlength) {
+  label <- as.character(label)
+  if (nchar(label) > maxlength) {
+    # find space closest to center of string
+    split.space <- nchar(label) %/% 2
+    regex.statement <- paste("(^.{", split.space, "})(\\S*)([ ])", sep = "")
+    label <- gsub(regex.statement, "\\1\\2\n", label)
+  }
+  return(label)
 }
