@@ -15,7 +15,7 @@ contact:
   family-names: Van Calster
   given-names: Hans
 - email: info@inbo.be
-  name: Research Institute for Nature and Forest (INBO)
+  name: Research Institute for Nature and Forest
 title: 'inborutils: Collection of Useful R Utilities'
 version: 0.3.0
 abstract: While working on research projects, typical small functionalities are useful
