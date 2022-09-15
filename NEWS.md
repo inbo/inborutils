@@ -1,6 +1,8 @@
 # inborutils 0.3.0
 
 * implemented `checklist` R package checks
+* removed `inboveg_*` and `florabank_*` defunct functions (moved to `inbodb`
+  package)
 
 # inborutils 0.2.1
 
