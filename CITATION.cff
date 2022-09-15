@@ -22,9 +22,10 @@ abstract: While working on research projects, typical small functionalities are 
   across these projects. Instead of copy-pasting these functions in all indidivual
   project repositories/folders, this package collects these functions for reuse by
   ourself and - if useful - others as well.
-license: MIT + file LICENSE
+license: MIT
 type: software
 repository-code: https://github.com/inbo/inborutils
 identifiers:
 - type: url
   value: https://inbo.github.io/inborutils/
+keywords: R package
