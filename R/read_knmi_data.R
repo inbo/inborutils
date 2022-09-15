@@ -1,14 +1,15 @@
-
-#' Read KNMI datafile (precipitation) as data.frame
+#' Read `KNMI` datafile (precipitation) as `data.frame`
 #'
 #' Remark that this function is specifically to extract the precipitation (RH)
-#' data, coordinates are extracted from the header of the KNMI data file
+#' data, coordinates are extracted from the header of the `KNMI` data file
 #'
-#' @param filename path/filename of the KMI datafile
-#' @param n_max int shortcut for testing, loading just a section of the data
+#' @param filename path/filename of the `KNMI` datafile
+#' @param n_max integer; shortcut for testing, loading just a section of the
+#' data
 #'
-#' @return data.frame with the headers location_name, datetime (UTC), value,
-#' unit, variable_name, latitude, longitude and source_filename
+#' @return `data.frame` with the headers `location_name`, `datetime` (UTC),
+#' `value`, `unit`, `variable_name`, `latitude`, `longitude` and
+#' `source_filename`
 #'
 #' @export
 #' @importFrom iterators ireadLines nextElem

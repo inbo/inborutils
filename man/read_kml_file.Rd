@@ -2,18 +2,18 @@
 % Please edit documentation in R/read_kml_file.R
 \name{read_kml_file}
 \alias{read_kml_file}
-\title{Extract date and coordinate information from Google Maps kml file}
+\title{Extract date and coordinate information from Google Maps \code{kml} file}
 \usage{
 read_kml_file(filename)
 }
 \arguments{
-\item{filename}{(char) filename/path of the kml file}
+\item{filename}{(char) filename/path of the \code{kml} file}
 }
 \value{
-df with columns datetime, x (numeric), y (numeric)
+\code{data.frame} with columns \code{datetime}, \code{x} (numeric), \code{y} (numeric)
 }
 \description{
-Extract date and coordinate information from Google Maps kml file
+Extract date and coordinate information from Google Maps \code{kml} file
 }
 \examples{
 \dontrun{

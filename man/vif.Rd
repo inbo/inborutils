@@ -16,8 +16,8 @@ vif(mod, ...)
 \method{vif}{default}(mod, ...)
 }
 \arguments{
-\item{mod}{A model object (or data.frame). For the moment only lm and a plain
-dataset is implemented}
+\item{mod}{A model object (or data.frame). For the moment only \code{lm} and a
+plain dataset is implemented}
 
 \item{...}{not used}
 }
@@ -29,9 +29,9 @@ the degrees of freedom.
 \description{
 Variance inflation factor
 
-Variance inflaction factor (lm model)
+Variance inflation factor (\code{lm} model)
 
-Variance inflaction factor (data.frame)
+Variance inflation factor (data.frame)
 
 Variance inflation factor (default routine)
 }

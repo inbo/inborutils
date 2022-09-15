@@ -2,12 +2,12 @@
 % Please edit documentation in R/transform_coordinates.R
 \name{transform_coordinates}
 \alias{transform_coordinates}
-\title{Transform x-y coordinates from data.frame columns.}
+\title{Transform x-y coordinates from \code{data.frame} columns.}
 \usage{
 transform_coordinates(df, col_x, col_y, crs_input, crs_output)
 }
 \arguments{
-\item{df}{A data.frame with a x and y coordinate column.}
+\item{df}{A \code{data.frame} with a x and y coordinate column.}
 
 \item{col_x, col_y}{Column names or positions of the x and y
 column. They are passed to \code{\link[tidyselect]{vars_pull}}.
@@ -15,20 +15,22 @@ These arguments are passed by expression and support
 \code{\link{quasiquotation}}
 (you can unquote column names or column positions).}
 
-\item{crs_input}{Projection string of class CRS-class (\code{sp} compatible)
-or crs-class (\code{sf} compatible) defining the current CRS.}
+\item{crs_input}{Projection string of class \code{CRS-class}
+(\code{sp} compatible) or \code{crs-class} (\code{sf} compatible) defining the
+current \code{CRS}.}
 
-\item{crs_output}{Projection string of class CRS-class (\code{sp} compatible)
-or crs-class (\code{sf} compatible) defining the CRS to convert to.}
+\item{crs_output}{Projection string of class \code{CRS-class}
+(\code{sp} compatible) or \code{crs-class} (\code{sf} compatible) defining the
+\code{CRS} to convert to.}
 }
 \value{
-A data.frame with the same columns, but transformed coordinates for
+A \code{data.frame} with the same columns, but transformed coordinates for
 the x and y column values.
 }
 \description{
-This function extracts x-y coordinates from a data.frame by means of the
-given coordinate reference system (CRS), transforms them to the new CRS and
-assign them back to the data.frame columns.
+This function extracts x-y coordinates from a \code{data.frame} by means of the
+given coordinate reference system (\code{CRS}), transforms them to the new \code{CRS}
+and assign them back to the \code{data.frame} columns.
 }
 \examples{
 library(sf)

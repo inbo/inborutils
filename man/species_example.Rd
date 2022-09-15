@@ -3,13 +3,13 @@
 \docType{data}
 \name{species_example}
 \alias{species_example}
-\title{Example data.frame with species name column}
+\title{Example \code{data.frame} with species name column}
 \format{
 A data frame with 3 rows and 3 variables
 \itemize{
-\item {speciesName: name of the species}
-\item {kingdom: kingdom to which the species belongs}
-\item {euConcernStatus: level of concern according to EU directives}
+\item {\code{speciesName}: name of the species}
+\item {\code{kingdom}: kingdom to which the species belongs}
+\item {\code{euConcernStatus}: level of concern according to EU directives}
 }
 }
 \usage{

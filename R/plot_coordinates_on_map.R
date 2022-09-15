@@ -1,9 +1,9 @@
 #' Plot x/y coordinates on a map
 #'
 #' This function plots x/y coordinates from a data.frame on a (leaflet) map. The
-#' coordinates are first converted to WGS84 in order to map them correctly on
+#' coordinates are first converted to `WGS84` in order to map them correctly on
 #' the leaflet map (@seealso [transform_coordinates()]). To do this, the
-#' original Coordinate Reference System (CRS) is asked.
+#' original Coordinate Reference System (`CRS`) is asked.
 #'
 #' @param df A data.frame with a x and y coordinate columns.
 #' @param col_x,col_y Column names or positions of the x (longitude) and y

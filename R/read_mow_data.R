@@ -2,11 +2,12 @@
 #'
 #' Coordinate data is contained in the header of the file
 #'
-#' @param filename path/filename of the RWS datafile
-#' @param n_max int shortcut for testing, loading just a section of the data
+#' @param filename path/filename of the `RWS` datafile
+#' @param n_max integer; shortcut for testing, loading just a section of the
+#' data
 #'
-#' @return data.frame with the headers location_name, datetime (UTC), value,
-#' unit,variable_name, latitude, longitude and source_filename
+#' @return `data.frame` with the headers `location_name`, `datetime` (UTC),
+#' value, `unit`, `variable_name`, `latitude`, `longitude` and `source_filename`
 #'
 #' @export
 #' @importFrom readr read_delim cols col_character col_double

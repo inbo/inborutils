@@ -1,8 +1,8 @@
 
 #' Variance inflation factor
 #'
-#' @param mod A model object (or data.frame). For the moment only lm and a plain
-#' dataset is implemented
+#' @param mod A model object (or data.frame). For the moment only `lm` and a
+#' plain dataset is implemented
 #' @param ... not used
 #' @rdname vif
 #' @return a matrix with for each variable de variance inflation factor,
@@ -18,7 +18,7 @@ vif <- function(mod, ...) {
 
 #---------------------------
 
-#' Variance inflaction factor (lm model)
+#' Variance inflation factor (`lm` model)
 #'
 #' @export
 #' @method vif lm
@@ -29,7 +29,7 @@ vif.lm <- function(mod, ...) {
 
 
 
-#' Variance inflaction factor (data.frame)
+#' Variance inflation factor (data.frame)
 #'
 #' @export
 #' @method vif data.frame

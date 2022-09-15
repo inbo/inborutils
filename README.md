@@ -12,21 +12,21 @@ Some of these functions will be targeted to INBO usage itself, but maybe some of
 
 ## Installation
 
-Install `inborutils` from inbo.r-universe:
+Install `inborutils` from `inbo.r-universe`:
 
 ```r
 install.packages("inborutils", repos = c(inbo = "https://inbo.r-universe.dev", 
                                          CRAN = "https://cloud.r-project.org"))
 ```
 
-Or you can install `inborutils` from github with:
+Or you can install `inborutils` from GitHub with:
 
 ```r
 # install.packages("devtools")
 devtools::install_github("inbo/inborutils")
 ```
 
-When succesfull, load it as usual:
+When successful, load it as usual:
 
 ```r
 library(inborutils)

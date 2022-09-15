@@ -11,21 +11,21 @@ vignette: >
 
 ## Introduction
 
-We regularly get data sets (e.g. csv) from external partners with specific data formats. To overcome redundant work in writing custom functions to load these data sets, this vignette provides some examples for custom data readers provided by the `inborutils` package.
+We regularly get data sets (e.g. `csv`) from external partners with specific data formats. To overcome redundant work in writing custom functions to load these data sets, this vignette provides some examples for custom data readers provided by the `inborutils` package.
 
 ```{r}
 library(inborutils)
 ```
 
-## KNMI data
+## `KNMI` data
 
-The Dutch meteoroligcal institute, KNMI, provides a webservice to query and download data. [This tutorial](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script) provides more information about their service.
+The Dutch meteorological institute, `KNMI`, provides a webservice to query and download data. [This tutorial](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script) provides more information about their service.
 
 For the hourly data, the R function `download_knmi_data_hour` facilitates the download of the data. To download data, the required inputs are the `stations`, `variables`, a `start_date` and an `end_date`.  
 
-In order to have an idea about the measurement stations that can be used, KNMI provides an overview list [here](http://projects.knmi.nl/klimatologie/metadata/stationslijst.html).
+In order to have an idea about the measurement stations that can be used, `KNMI` provides an overview list [here](http://projects.knmi.nl/klimatologie/metadata/stationslijst.html).
 
-The variables, for which both a group name or a variable name can be used, also provided in the [KNMI documentation](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script):
+The variables, for which both a group name or a variable name can be used, also provided in the [`KNMI` documentation](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script):
 
 | group name | variable name  | description  |
 |---|---|---|
@@ -35,9 +35,10 @@ The variables, for which both a group name or a variable name can be used, also 
 | PRCP  | DR:RH  | rainfall, pet  |
 | VICL  | VV:N:U  | sight, cloudiness, relative humidity  |
 | WEER  | M:R:S:O:Y:WW    | weather types  |
-| ALL   |   | all variabelen | 
+| ALL   |   | all variables | 
 
-Hence, for a given start (e.g. January 1st 2012) and end date (February 1st 2012), the data download for rainfall data in Vlissingen (`310`) and Wesdorpe (`319`), writing the output to a file called `knmi_download.csv`, can be started as follows:
+Hence, for a given start (e.g. January 1st 2012) and end date (February 1st 2012), the data download for rainfall data in `Vlissingen` (`310`) and `Wesdorpe` (`319`), writing the output to a file called `knmi_download.csv`, can be started as follows:
+
 ```{r eval=FALSE, include=TRUE}
 response <- download_knmi_data_hour(c(310, 319), "PRCP",
                                     "2012-01-01", "2012-02-01",
@@ -63,11 +64,11 @@ ggplot(rain_knmi_2012, aes(x = datetime, y = value)) +
     xlab("") + ylab("mm")
 ```
 
-From the figure, it gets clear that KNMI uses `-1` to define Nan values. 
+From the figure, it gets clear that `KNMI` uses `-1` to define Nan values. 
 
-## MOW-HIC data
+## `MOW-HIC` data
 
-When receiving data from MOW (apart from using the waterinfo API), the file format of MOW data sets looks as follows:
+When receiving data from MOW (apart from using the `waterinfo` API), the file format of MOW data sets looks as follows:
 
 ```
 Station Name:	Destelbergen SF/Zeeschelde
@@ -123,9 +124,9 @@ ggplot(conductivity_mow, aes(x = datetime, y = value)) +
     scale_x_datetime(date_labels = "%H:%M\n%Y-%m-%d", date_breaks = "4 hours")
 ```
 
-## KMI data
+## `KMI` data
 
-When receiving data from the Belgian Meteorological Institute, KMI, the format of the data file looks as follows (at least for some project we did):
+When receiving data from the Belgian Meteorological Institute, `KMI`, the format of the data file looks as follows (at least for some project we did):
 
 ```
 date;JAAR;MAAND;DAG;UUR;STATION;NEERSLAG(mm)
@@ -157,7 +158,7 @@ head(rainfall_kmi)
 ```
 (*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
 
-## Google maps kml files
+## Google maps `kml` files
 
 To extract coordinate and date information from a `kml` file, the function `load_kml`
 

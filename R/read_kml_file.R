@@ -1,8 +1,8 @@
-#' Extract date and coordinate information from Google Maps kml file
+#' Extract date and coordinate information from Google Maps `kml` file
 #'
-#' @param filename (char) filename/path of the kml file
+#' @param filename (char) filename/path of the `kml` file
 #'
-#' @return df with columns datetime, x (numeric), y (numeric)
+#' @return `data.frame` with columns `datetime`, `x` (numeric), `y` (numeric)
 #' @export
 #'
 #' @importFrom tidyr separate extract
