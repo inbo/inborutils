@@ -1,29 +1,29 @@
 
 # Example code in package build process
 # History files
-# knitr and R markdown default cache directories
 # Mac OS X
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
 # Output files from R CMD build
 # Output files from R CMD check
-# pkgdown website is built by GitHub action on gh-pages
-# produced vignettes
 # RStudio files
 # Session Data files
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 # Temporary files created by R markdown
+# knitr and R markdown default cache directories
+# pkgdown website is built by GitHub action on gh-pages
+# produced vignettes
 *-Ex.R
 *.html
 *.knit.md
 *.utf8.md
 .DS_Store
-.httr-oauth
-.Rapp.history
 .RData
+.Rapp.history
 .Rhistory
 .Rproj.user
 .Rproj.user/
 .Ruserdata
+.httr-oauth
 /*.Rcheck/
 /*.tar.gz
 /*_cache/
