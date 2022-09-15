@@ -7,7 +7,7 @@
 read_knmi_data(filename, n_max = Inf)
 }
 \arguments{
-\item{filename}{path/filename of the KMI datafile}
+\item{filename}{path/filename of the \code{KNMI} datafile}
 
 \item{n_max}{integer; shortcut for testing, loading just a section of the
 data}

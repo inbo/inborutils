@@ -14,7 +14,7 @@ a two-line label}
 }
 \description{
 When a label exceeds the maximum length as defined by the user, the function
-splits the text/label on the first space after the center of the string.
+splits the text/label on the first space after the centre of the string.
 This is very useful for long labels in a plot
 }
 \details{

@@ -9,7 +9,8 @@ read_mow_data(filename, n_max = Inf)
 \arguments{
 \item{filename}{path/filename of the \code{RWS} datafile}
 
-\item{n_max}{int shortcut for testing, loading just a section of the data}
+\item{n_max}{integer; shortcut for testing, loading just a section of the
+data}
 }
 \value{
 \code{data.frame} with the headers \code{location_name}, \code{datetime} (UTC),
