@@ -2,8 +2,8 @@
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![runiverse-name](https://inbo.r-universe.dev/badges/:name)
-![runiverse-package](https://inbo.r-universe.dev/badges/inborutils)
+![`runiverse-name`](https://inbo.r-universe.dev/badges/:name)
+![`runiverse-package`](https://inbo.r-universe.dev/badges/inborutils)
 <!-- badges: end -->
 
 This `inborutils` package provides a collection of useful R utilities and snippets that we consider recyclable for multiple projects. The functions are either out of scope or just not mature enough to include as extensions to existing packages. 
