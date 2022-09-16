@@ -6,8 +6,4 @@
 \description{
 These functions still work but will be removed (defunct) in the next version.
 }
-\details{
-\itemize{
-}
-}
 \concept{lifecycle}
