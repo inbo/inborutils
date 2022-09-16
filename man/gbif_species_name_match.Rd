@@ -20,9 +20,10 @@ used for the name matching with the GBIF taxonomic backbone. Default:
 "name".}
 
 \item{gbif_terms}{list of valid GBIF terms to add as additional columns to
-the \code{data.frame}. Default: \verb{\\'usageKey\\'}, \verb{\\'scientificName\\'}, \verb{\\'rank\\'},
-\verb{\\'order\\'}, \verb{\\'matchType\\'}, \verb{\\'phylum\\'}, \verb{\\'kingdom\\'}, \verb{\\'genus\\'},
-\verb{\\'class\\'}, \verb{\\'confidence\\'}, \verb{\\'synonym\\'}, \verb{\\'status\\'}, \verb{\\'family\\'}.}
+the \code{data.frame}. Default: \verb{\\'usageKey\\'}, \verb{\\'scientificName\\'},
+\verb{\\'rank\\'}, \verb{\\'order\\'}, \verb{\\'matchType\\'}, \verb{\\'phylum\\'}, \verb{\\'kingdom\\'},
+\verb{\\'genus\\'}, \verb{\\'class\\'}, \verb{\\'confidence\\'}, \verb{\\'synonym\\'}, \verb{\\'status\\'},
+\verb{\\'family\\'}.}
 
 \item{...}{any parameter to pass to rgbif function \code{name_bakbone}. One of:
 \verb{\\'rank\\'}, \verb{\\'kingdom\\'}, \verb{\\'phylum\\'}, \verb{\\'class\\'}, \verb{\\'order\\'},

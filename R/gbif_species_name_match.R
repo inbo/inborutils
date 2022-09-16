@@ -14,9 +14,10 @@
 #'   used for the name matching with the GBIF taxonomic backbone. Default:
 #'   "name".
 #' @param gbif_terms list of valid GBIF terms to add as additional columns to
-#'   the `data.frame`. Default: `\'usageKey\'`, `\'scientificName\'`, `\'rank\'`,
-#'   `\'order\'`, `\'matchType\'`, `\'phylum\'`, `\'kingdom\'`, `\'genus\'`,
-#'   `\'class\'`, `\'confidence\'`, `\'synonym\'`, `\'status\'`, `\'family\'`.
+#'   the `data.frame`. Default: `\'usageKey\'`, `\'scientificName\'`,
+#'   `\'rank\'`, `\'order\'`, `\'matchType\'`, `\'phylum\'`, `\'kingdom\'`,
+#'   `\'genus\'`, `\'class\'`, `\'confidence\'`, `\'synonym\'`, `\'status\'`,
+#'   `\'family\'`.
 #' @param ... any parameter to pass to rgbif function `name_bakbone`. One of:
 #'   `\'rank\'`, `\'kingdom\'`, `\'phylum\'`, `\'class\'`, `\'order\'`,
 #'   `\'family\'`, `\'genus\'`, `\'strict\'`, `\'verbose\'`, `\'start\'`,
