@@ -6,7 +6,7 @@ citEntry(
   author = c(person(given = "Hans", family = "Van Calster"), person(given = "Damiano", family = "Oldoni"), person(given = "Stijn", family = "Van Hoey")),
   year = 2022,
   url = "https://github.com/inbo/inborutils",
-  abstract = "While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.",
+  abstract = "While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all individual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.",
   textVersion = "Van Calster, Hans; Oldoni, Damiano; Van Hoey, Stijn (2022) inborutils: Collection of Useful R Utilities. Version 0.3.0. https://github.com/inbo/inborutils, https://inbo.github.io/inborutils/",
   keywords = "R package",
 )

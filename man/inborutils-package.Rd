@@ -6,7 +6,7 @@
 \alias{inborutils-package}
 \title{inborutils: Collection of Useful R Utilities}
 \description{
-While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
+While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all individual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
 }
 \seealso{
 Useful links:

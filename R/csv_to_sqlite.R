@@ -1,8 +1,8 @@
-#' Save a delimited text table into a single table sqlite database
+#' Save a delimited text table into a single table `sqlite` database
 #'
-#' The table can be a comma separated (csv) or a tab separated (tsv) or any
+#' The table can be a comma separated (`csv`) or a tab separated (`tsv`) or any
 #' other delimited text file. The file is read in chunks. Each chunk is copied
-#' in the same sqlite table database before the next chunk is loaded into
+#' in the same `sqlite` table database before the next chunk is loaded into
 #' memory.
 #' See the INBO tutorial [Handling large files in R](
 #' https://inbo.github.io/tutorials/tutorials/r_large_data_files_handling/)
@@ -14,8 +14,8 @@
 #' to each chunk.
 #'
 #' @param csv_file Name of the text file to convert.
-#' @param sqlite_file Name of the newly created sqlite file.
-#' @param table_name Name of the table to store the data table in the sqlite
+#' @param sqlite_file Name of the newly created `sqlite` file.
+#' @param table_name Name of the table to store the data table in the `sqlite`
 #'   database.
 #' @param delim Text file delimiter (default ",").
 #' @param pre_process_size Number of lines to check the data types of the
@@ -24,7 +24,7 @@
 #' @param show_progress_bar Show progress bar (default TRUE).
 #' @param ... Further arguments to be passed to \code{read_delim}.
 #'
-#' @return a SQLite database
+#' @return a `SQLite` database
 #' @family Data_handling_utilities
 #' @examples
 #' \dontrun{
@@ -107,12 +107,12 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
   dbDisconnect(con)
 }
 
-#' Callback function that appends new sections to the SQLite table.
-#' @param con A valid connection to SQLite database.
-#' @param table_name Name of the table to store the data table in the sqlite
+#' Callback function that appends new sections to the `SQLite` table.
+#' @param con A valid connection to `SQLite` database.
+#' @param table_name Name of the table to store the data table in the `sqlite`
 #'   database.
 #' @param date_cols Name of columns containing Date objects
-#' @param datetime_cols Name of columns containint POSIXt objects.
+#' @param datetime_cols Name of columns containing `POSIXt` objects.
 #'
 #' @keywords internal
 append_to_sqlite <- function(con, table_name,

@@ -9,14 +9,15 @@
 #'
 #' For each of the given CRS, the coordinates columns are given the
 #' the specified CRS In a next step, these CRS are converted to
-#' wgs84 and plotted on a openstreetmap background with leaflet. The interactive
-#' map provides the possibility to select/unselect specific layers.
+#' `wgs84` and plotted on a `openstreetmap` background with leaflet.
+#' The interactive map provides the possibility to select/unselect specific
+#' layers.
 #'
 #' @param df data.frame with a x and y coordinate column
-#' @param col_x (char) name of the x (longitude) column
-#' @param col_y (char) name of the y (latitude) column
-#' @param belgium (bool) If TRUE, coordinates are expected to be in Belgium
-#' @param crs_try (list) EPSG codes of the different CRS to evaluate
+#' @param col_x (character) name of the x (longitude) column
+#' @param col_y (character) name of the y (latitude) column
+#' @param belgium (logical) If `TRUE`, coordinates are expected to be in Belgium
+#' @param crs_try (list) `EPSG` codes of the different CRS to evaluate
 #' By default, the following six CRS are added to the map:
 #' \itemize{
 #'  \item{"EPSG:4326"}{WGS 84,

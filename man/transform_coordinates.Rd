@@ -91,8 +91,6 @@ transform_coordinates(data_pts,
 \seealso{
 Other GIS_utilities: 
 \code{\link{guess_crs}()},
-\code{\link{guess_projection}()},
-\code{\link{plot_coordinates_on_map}()},
-\code{\link{reproject_coordinates}()}
+\code{\link{plot_coordinates_on_map}()}
 }
 \concept{GIS_utilities}

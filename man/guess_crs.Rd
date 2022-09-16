@@ -17,13 +17,13 @@ guess_crs(
 \arguments{
 \item{df}{data.frame with a x and y coordinate column}
 
-\item{col_x}{(char) name of the x (longitude) column}
+\item{col_x}{(character) name of the x (longitude) column}
 
-\item{col_y}{(char) name of the y (latitude) column}
+\item{col_y}{(character) name of the y (latitude) column}
 
-\item{belgium}{(bool) If TRUE, coordinates are expected to be in Belgium}
+\item{belgium}{(logical) If \code{TRUE}, coordinates are expected to be in Belgium}
 
-\item{crs_try}{(list) EPSG codes of the different CRS to evaluate
+\item{crs_try}{(list) \code{EPSG} codes of the different CRS to evaluate
 By default, the following six CRS are added to the map:
 \itemize{
 \item{"EPSG:4326"}{WGS 84,
@@ -50,8 +50,9 @@ Custom projections can be provided by the user as well.
 \details{
 For each of the given CRS, the coordinates columns are given the
 the specified CRS In a next step, these CRS are converted to
-wgs84 and plotted on a openstreetmap background with leaflet. The interactive
-map provides the possibility to select/unselect specific layers.
+\code{wgs84} and plotted on a \code{openstreetmap} background with leaflet.
+The interactive map provides the possibility to select/unselect specific
+layers.
 }
 \examples{
 \dontrun{
@@ -63,9 +64,7 @@ guess_crs(data, "x", "y")
 crsuggest::guess_crs() for a (better) alternative
 
 Other GIS_utilities: 
-\code{\link{guess_projection}()},
 \code{\link{plot_coordinates_on_map}()},
-\code{\link{reproject_coordinates}()},
 \code{\link{transform_coordinates}()}
 }
 \concept{GIS_utilities}

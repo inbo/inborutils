@@ -1,7 +1,6 @@
-
 #' Download KNMI hourly data to file
 #'
-#' Meer info, zie
+#' More info, zie
 #' https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script # nolint
 #'
 #' @param stations list of integers. For an overview,
@@ -9,12 +8,12 @@
 #' @param variables list of variables, options are:
 #' \itemize{
 #'  \item{"WIND = DD:FH:FF:FX"}{Wind}
-#'  \item{"TEMP = T:T10N:TD"}{Temperatuur}
-#'  \item{"SUNR = SQ:Q"}{Zonneschijnduur en globale straling}
-#'  \item{"PRCP = DR:RH"}{Neerslag en potentiële verdamping}
-#'  \item{"VICL = VV:N:U"}{Zicht, bewolking en relatieve vochtigheid}
-#'  \item{"WEER = M:R:S:O:Y:WW"}{Weerverschijnselen, weertypen}
-#'  \item{"ALL"}{alle variabelen}
+#'  \item{"TEMP = T:T10N:TD"}{Temperature}
+#'  \item{"SUNR = SQ:Q"}{Sunshine duration and global radiation}
+#'  \item{"PRCP = DR:RH"}{Precipitation and potential evaporation}
+#'  \item{"VICL = VV:N:U"}{Visibility, cloud cover and relative humidity}
+#'  \item{"WEER = M:R:S:O:Y:WW"}{Weather phenomena, weather types}
+#'  \item{"ALL"}{all variables}
 #' }
 #'
 #' @param start_date date interpretable string to define start of the period

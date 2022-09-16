@@ -112,7 +112,7 @@ fpath <- "mow_example.txt"
 conductivity_mow <- read_mow_data(fpath)
 head(conductivity_mow)
 ```
-(*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
+(*Remark*: this example file is provided by the package itself, see also on [GitHub](https://github.com/inbo/inborutils/tree/master/inst/extdata))
 
 
 A time series plot can be made for these data as well:
@@ -156,7 +156,7 @@ rpath <- "kmi_example.txt"
 rainfall_kmi <- read_kmi_data(rpath)
 head(rainfall_kmi)
 ```
-(*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
+(*Remark*: this example file is provided by the package itself, see also on [GitHub](https://github.com/inbo/inborutils/tree/master/inst/extdata))
 
 ## Google maps `kml` files
 
@@ -174,7 +174,7 @@ rpath <- "kml_example.kml"
 tracks <- read_kml_file(rpath)
 head(tracks)
 ```
-(*Remark*: this example file is provided by the package itself, see also on [github](https://github.com/inbo/inborutils/tree/master/inst/extdata))
+(*Remark*: this example file is provided by the package itself, see also on [GitHub](https://github.com/inbo/inborutils/tree/master/inst/extdata))
 
 
 ## Closure

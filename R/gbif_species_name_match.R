@@ -9,22 +9,23 @@
 #' information on the name matching API of GBIF on which rgbif relies, see
 #' <https://www.gbif.org/developer/species/#searching>.
 #'
-#' @param df data.frame with species information
-#' @param name char column name of the column containing the names
+#' @param df `data.frame` with species information
+#' @param name character; column name of the column containing the names
 #'   used for the name matching with the GBIF taxonomic backbone. Default:
 #'   "name".
 #' @param gbif_terms list of valid GBIF terms to add as additional columns to
-#'   the data.frame. Default: \'usageKey\', \'scientificName\', \'rank\',
-#'   \'order\', \'matchType\', \'phylum\', \'kingdom\', \'genus\', \'class\',
-#'   \'confidence\', \'synonym\', \'status\', \'family\'.
+#'   the `data.frame`. Default: `\'usageKey\'`, `\'scientificName\'`, `\'rank\'`,
+#'   `\'order\'`, `\'matchType\'`, `\'phylum\'`, `\'kingdom\'`, `\'genus\'`,
+#'   `\'class\'`, `\'confidence\'`, `\'synonym\'`, `\'status\'`, `\'family\'`.
 #' @param ... any parameter to pass to rgbif function `name_bakbone`. One of:
-#'   \'rank\', \'kingdom\', \'phylum\', \'class\', \'order\', \'family\',
-#'   \'genus\', \'strict\', \'verbose\', \'start\', \'limit\', \'curlopts\'. See
-#'   `?name_backbone` for more details.
+#'   `\'rank\'`, `\'kingdom\'`, `\'phylum\'`, `\'class\'`, `\'order\'`,
+#'   `\'family\'`, `\'genus\'`, `\'strict\'`, `\'verbose\'`, `\'start\'`,
+#'   `\'limit\'`, `\'curlopts\'`.
+#'    See `?name_backbone` for more details.
 #'
-#' @return a tibble data.frame with GBIF information as additional columns. If
-#'   none of the taxa in  `df` is matched, only the columns \'confidence\',
-#'   \'matchType\' and \'synonym\' are added. This behavior is inherited by
+#' @return a tibble `data.frame` with GBIF information as additional columns. If
+#'   none of the taxa in  `df` is matched, only the columns `\'confidence\'`,
+#'   `\'matchType\'` and `\'synonym\'` are added. This behaviour is inherited by
 #'   `rgbif::name_backbone`.
 #'
 #' @export
