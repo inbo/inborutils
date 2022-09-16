@@ -1,8 +1,10 @@
 # inborutils 0.3.0
 
-* implemented `checklist` R package checks
-* removed `inboveg_*` and `florabank_*` defunct functions (moved to `inbodb`
+* Implemented `checklist` R package checks
+* Removed `inboveg_*` and `florabank_*` defunct functions (moved to `inbodb`
   package)
+* Removed `guess_projection`: use `guess_crs` instead
+* Removed `reproject_coordinates`: use `transform_coordinates` instead
 
 # inborutils 0.2.1
 

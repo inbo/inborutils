@@ -76,4 +76,4 @@ guess_crs(coordinate_example, "longitude", "latitude", belgium = TRUE,
                  crs_try = c("EPSG:2000", "EPSG:2805", "EPSG:4326"))
 ```
 
-Check the [spatial reference](http://spatialreference.org) for the available codes.
+Check the [spatial reference](https://spatialreference.org) for the available codes.

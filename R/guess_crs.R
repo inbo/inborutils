@@ -1,4 +1,3 @@
-
 #' Take a dataset and plot in different coordinate reference systems (CRS) on a
 #' leaflet map to check the expected CRS
 #'
@@ -112,59 +111,4 @@ guess_crs <- function(df, col_x, col_y, belgium = TRUE,
     mapt <- setView(mapt, lng = 4.5, lat = 50.5, zoom = 6)
   }
   return(mapt)
-}
-
-#' Take a dataset and plot in different projections on a leaflet map to
-#' check the expected projection
-#'
-#' When retrieving a number of data-points, but the kind of projection is not
-#' provided/known (for any reason), this utility plots the data for different
-#' projections on a map to make comparison possible. The main function is
-#' `guess_projection` which creates the map with different options.
-#' Custom projections can be provided by the user as well.
-#'
-#' For each of the given projections, the coordinates columns are given the
-#' the specified projection. In a next step, these projections are converted to
-#' wgs84 and plotted on a openstreetmap background with leaflet. The interactive
-#' map provides the possibility to select/unselect specific layers.
-#'
-#' @param df data.frame with a x and y coordinate column
-#' @param col_x (char) name of the x (longitude) column
-#' @param col_y (char) name of the y (latitude) column
-#' @param belgium (bool) If TRUE, coordinates are expected to be in Belgium
-#' @param projections (list) EPSG codes of the different projections to evaluate
-#' By default, the following six projections are added to the map:
-#' \itemize{
-#'  \item{"EPSG:4326"}{WGS 84,
-#'  https://spatialreference.org/ref/epsg/wgs-84/}
-#'  \item{"EPSG:31370"}{Belge 1972/Belgian Lambert 72,
-#'  https://spatialreference.org/ref/epsg/31370/}
-#'  \item{"EPSG:28992"}{Amersfoort/Rijksdriehoek nieuw,
-#'  https://spatialreference.org/ref/epsg/28992/}
-#'  \item{"EPSG:32631"}{WGS 84 / UTM zone 31N,
-#'  https://spatialreference.org/ref/epsg/32631/}
-#'  \item{"EPSG:3812"}{ETRS89/Belgian Lambert 2008,
-#'  https://spatialreference.org/ref/epsg/3812/}
-#'  \item{"EPSG:3035"}{ETRS89 / ETRS-LAEA,
-#'  https://spatialreference.org/ref/epsg/3035/}
-#' }
-#'
-#' @family GIS_utilities
-#' @export
-guess_projection <- function(df, col_x, col_y, belgium = TRUE,
-                             projections = c(
-                               "EPSG:4326", "EPSG:31370",
-                               "EPSG:28992", "EPSG:32631",
-                               "EPSG:3812", "EPSG:3035"
-                             )) {
-  .Deprecated("guess_crs")
-  return(
-    guess_crs(
-      df = df,
-      col_x = col_x,
-      col_y = col_y,
-      belgium = belgium,
-      crs_try = projections
-    )
-  )
 }

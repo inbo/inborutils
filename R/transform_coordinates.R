@@ -128,39 +128,3 @@ transform_coordinates <- function(df, col_x, col_y,
   df[c(col_x, col_y)] <- as.data.frame(st_coordinates(df_reproj))
   return(df)
 }
-
-#' Transform x-y coordinates from data.frame columns.
-#'
-#'
-#' This function extracts x-y coordinates from a data.frame by means of the
-#' given coordinate reference system (CRS), transforms them to the new CRS and
-#' assign them back to the data.frame columns.
-#'
-#' @param df A data.frame with a x and y coordinate column.
-#' @param col_long,col_lat Column names or positions of the x and y
-#'    column. They are passed to \code{\link[tidyselect]{vars_pull}}.
-#'   These arguments are passed by expression and support
-#'   \code{\link{quasiquotation}}
-#'   (you can unquote column names or column positions).
-#' @param crs_input Projection string of class CRS-class (\code{sp} compatible)
-#'   or crs-class (\code{sf} compatible) defining the current CRS.
-#' @param crs_output Projection string of class CRS-class (\code{sp} compatible)
-#'   or crs-class (\code{sf} compatible) defining the CRS to convert to.
-#'
-#' @return A data.frame with the same columns, but transformed coordinates for
-#'  the x and y column values.
-#'
-#' @family GIS_utilities
-reproject_coordinates <- function(df, col_long, col_lat,
-                                  crs_input, crs_output) {
-  .Deprecated("transform_coordinates")
-  return(
-    transform_coordinates(
-      df = df,
-      col_x = col_long,
-      col_y = col_lat,
-      crs_input = crs_input,
-      crs_output = crs_output
-    )
-  )
-}
