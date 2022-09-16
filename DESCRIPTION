@@ -33,7 +33,7 @@ Description: While working on research projects, typical small
     copy-pasting these functions in all individual project
     repositories/folders, this package collects these functions for reuse
     by ourself and - if useful - others as well.
-License: MIT
+License: MIT + file LICENSE
 URL: https://github.com/inbo/inborutils,
     https://inbo.github.io/inborutils/
 BugReports: https://github.com/inbo/inborutils/issues
