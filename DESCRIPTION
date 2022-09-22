@@ -59,9 +59,11 @@ Imports:
     sf,
     stats,
     stringr,
+    terra,
     tibble,
     tidyr,
-    tidyselect
+    tidyselect,
+    xml2
 Suggests:
     drat,
     ggplot2,

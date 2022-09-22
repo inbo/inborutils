@@ -90,6 +90,8 @@ transform_coordinates(data_pts,
 }
 \seealso{
 Other GIS_utilities: 
+\code{\link{get_coverage_wcs}()},
+\code{\link{get_feature_wfs}()},
 \code{\link{guess_crs}()},
 \code{\link{plot_coordinates_on_map}()}
 }
