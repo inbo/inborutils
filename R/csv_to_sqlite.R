@@ -75,7 +75,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
   # to figure out the date and the datetime columns
   args <- list(file = csv_file, delim = delim, n_max = pre_process_size, ...)
   args <- args[!duplicated(names(args))]
-  skip_plus_one <- !isFALSE(args$col_names)
+  skip_plus_one <- !(isFALSE(args$col_names) | is.character(args$col_names))
   df <- do.call(read_delim, args)
   date_cols <- df %>%
     select_if(is.Date) %>%
