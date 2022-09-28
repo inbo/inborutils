@@ -5,6 +5,7 @@
   Feature Service (`WFS`)
 * New function `get_coverage_wcs` to get raster data from a Web Coverage Service
   (`WCS`)
+* Fixed a bug in `csv_to_sqlite` that occurred when passing `col_names` to `...`
 * Removed `inboveg_*` and `florabank_*` defunct functions (moved to `inbodb`
   package)
 * Removed `guess_projection`: use `guess_crs` instead

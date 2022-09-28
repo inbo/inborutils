@@ -73,7 +73,10 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 
   # read a first chunk of data to extract the colnames and types
   # to figure out the date and the datetime columns
-  df <- read_delim(csv_file, delim = delim, n_max = pre_process_size, ...)
+  args <- list(file = csv_file, delim = delim, n_max = pre_process_size, ...)
+  args <- args[!duplicated(names(args))]
+  skip_plus_one <- !isFALSE(args$col_names)
+  df <- do.call(read_delim, args)
   date_cols <- df %>%
     select_if(is.Date) %>%
     colnames()
@@ -90,20 +93,24 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 
   # readr chunk functionality
 
-  read_delim_chunked(
-    csv_file,
+  args <- list(
+    file = csv_file,
     callback = append_to_sqlite(
       con = con, table_name = table_name,
       date_cols = date_cols,
       datetime_cols = datetime_cols
     ),
     delim = delim,
-    skip = pre_process_size + 1,
+    skip = pre_process_size + skip_plus_one,
     chunk_size = chunk_size,
     progress = show_progress_bar,
     col_names = names(attr(df, "spec")$cols),
     ...
   )
+  args <- args[!duplicated(names(args))]
+
+  do.call(read_delim_chunked, args)
+
   dbDisconnect(con)
 }
 

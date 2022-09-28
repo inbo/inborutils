@@ -16,10 +16,13 @@ test_that("csv to sqlite works", {
   oldwd <- getwd()
   setwd(temp_dir)
   mtcars_csv <- "mtcars.csv"
+  mtcars_csv_no_headers <- "mtcars_csv_no_headers.csv"
   write_csv(mtcars, mtcars_csv)
+  write_csv(mtcars, mtcars_csv_no_headers, col_names = FALSE)
   mtcars_sqlite <- "./mtcars_sqlite.sqlite"
   table_name_1 <- "mtcars"
   table_name_2 <- "mtcars_selected_columns"
+  table_name_3 <- "mtcars_no_headers"
 
   # all columns
   csv_to_sqlite(
@@ -40,6 +43,16 @@ test_that("csv to sqlite works", {
     delim = ",",
     col_types = cols_subset
   )
+  # no headers
+  csv_to_sqlite(
+    csv_file = mtcars_csv_no_headers,
+    sqlite_file = mtcars_sqlite,
+    table_name = table_name_3,
+    pre_process_size = 10,
+    chunk_size = 5,
+    delim = ",",
+    col_names = FALSE
+  )
 
 
   mtcars_sqlite <- dbConnect(SQLite(), dbname = mtcars_sqlite)
@@ -55,9 +68,15 @@ test_that("csv to sqlite works", {
     table = table_name_2,
     .con = mtcars_sqlite
   )
+  query_no_headers <- glue_sql(
+    "SELECT * FROM {table}",
+    table = table_name_3,
+    .con = mtcars_sqlite
+  )
 
   mtcars_1 <- dbGetQuery(mtcars_sqlite, query_all)
   mtcars_2 <- dbGetQuery(mtcars_sqlite, query_selection)
+  mtcars_3 <- dbGetQuery(mtcars_sqlite, query_no_headers)
 
   dbDisconnect(mtcars_sqlite)
 
@@ -76,6 +95,15 @@ test_that("csv to sqlite works", {
   attr(mtcars_df, "spec") <- NULL
   testthat::expect_equal(
     mtcars_1,
+    mtcars_df
+  )
+
+  # check no headers
+  mtcars_df <- mtcars %>% as.data.frame()
+  attr(mtcars_df, "spec") <- NULL
+  names(mtcars_df) <- paste0("X", seq_along(colnames(mtcars_df)))
+  testthat::expect_equal(
+    mtcars_3,
     mtcars_df
   )
 
