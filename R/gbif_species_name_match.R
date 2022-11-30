@@ -1,5 +1,12 @@
 #' Add species information provided by the GBIF taxonomic backbone API
 #'
+#' @description
+#' `r lifecycle::badge("superseded")`
+#'
+#' Development on `gbif_species_name_match()` is complete, and for new code we
+#' strongly recommend switching to `rgbif::name_backbone_checklist()`, which is
+#' easier to use, more featureful, and still under active development.
+
 #' This functions extends an existing dataframe with additional columns provided
 #' by the GBIF taxonomic backbone and matched on the species (scientific) name,
 #' which need to be an available column in the dataframe.
