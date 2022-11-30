@@ -15,36 +15,41 @@ gbif_species_name_match(
 \arguments{
 \item{df}{data.frame with species information}
 
-\item{name}{char column name of the column containing the names
-used for the name matching with the GBIF taxonomic backbone. Default:
-"name".}
+\item{name}{char column name of the column containing the names used for the
+name matching with the GBIF taxonomic backbone. Default: "name".}
 
 \item{gbif_terms}{list of valid GBIF terms to add as additional columns to
-the data.frame. Default: \'usageKey\', \'scientificName\', \'rank\',
-\'order\', \'matchType\', \'phylum\', \'kingdom\', \'genus\', \'class\',
-\'confidence\', \'synonym\', \'status\', \'family\'.}
+the data.frame. Default: \code{usageKey}, \code{scientificName}, \code{rank}, \code{order},
+\code{matchType}, \code{phylum}, \code{kingdom}, \code{genus}, \code{class}, \code{confidence},
+\code{synonym}, \code{status}, \code{family}.}
 
 \item{...}{any parameter to pass to rgbif function \code{name_bakbone}. One of:
-\'rank\', \'kingdom\', \'phylum\', \'class\', \'order\', \'family\',
-\'genus\', \'strict\', \'verbose\', \'start\', \'limit\', \'curlopts\'. See
-\code{?name_backbone} for more details.}
+\code{rank}, \code{kingdom}, \code{phylum}, \code{class}, \code{order}, \code{family}, \code{genus}, \code{strict},
+\code{verbose}, \code{start}, \code{limit}, \code{curlopts}. See \code{?name_backbone} for more
+details.}
 }
 \value{
 a tibble data.frame with GBIF information as additional columns. If
-none of the taxa in  \code{df} is matched, only the columns \'confidence\',
-\'matchType\' and \'synonym\' are added. This behavior is inherited by
+none of the taxa in  \code{df} is matched, only the columns \code{confidence},
+\code{matchType} and \code{synonym} are added. This behavior is inherited by
 \code{rgbif::name_backbone}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+Development on \code{gbif_species_name_match()} is complete, and for new code we
+strongly recommend switching to \code{rgbif::name_backbone_checklist()}, which is
+easier to use, more featureful, and still under active development.
 This functions extends an existing dataframe with additional columns provided
 by the GBIF taxonomic backbone and matched on the species (scientific) name,
 which need to be an available column in the dataframe.
-}
-\details{
+
 This function is essentially a wrapper around the existing rgbif
-\code{name_backbone} and extends the application to a data.frame. For more
-information on the name matching API of GBIF on which rgbif relies, see
-\url{https://www.gbif.org/developer/species/#searching}.
+\code{name_backbone} and extends the application to a data.frame. Such extension
+has been added to rgbif via the function
+\href{https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html}{rgbif::name_backbone_checklist}.
+For more information on the name matching API of GBIF on which rgbif relies,
+see \url{https://www.gbif.org/developer/species/#searching}.
 }
 \examples{
 \dontrun{

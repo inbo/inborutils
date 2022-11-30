@@ -13,8 +13,8 @@ download_knmi_data_hour(
 )
 }
 \arguments{
-\item{stations}{list of integers, for an overview, see
-http://projects.knmi.nl/klimatologie/metadata/stationslijst.html}
+\item{stations}{list of integers. For an overview,
+see https://www.daggegevens.knmi.nl/klimatologie/uurgegevens}
 
 \item{variables}{list of variables, options are:
 \itemize{
@@ -42,7 +42,7 @@ https://www.knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-sc
 }
 \examples{
 \dontrun{
-download_knmi_data_uur(c(310, 319), "PRCP", "2011-01-01", "2012-02-17",
+download_knmi_data_hour(c(310, 319), "PRCP", "2011-01-01", "2012-02-17",
 output_file = "knmi_output_download.txt")
 }
 }
