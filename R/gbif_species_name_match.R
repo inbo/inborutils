@@ -12,26 +12,27 @@
 #' which need to be an available column in the dataframe.
 #'
 #' This function is essentially a wrapper around the existing rgbif
-#' `name_backbone` and extends the application to a data.frame. For more
-#' information on the name matching API of GBIF on which rgbif relies, see
-#' <https://www.gbif.org/developer/species/#searching>.
+#' `name_backbone` and extends the application to a data.frame. Such extension
+#' has been added to rgbif via the function
+#' [rgbif::name_backbone_checklist](https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html).
+#' For more information on the name matching API of GBIF on which rgbif relies,
+#' see <https://www.gbif.org/developer/species/#searching>.
 #'
 #' @param df data.frame with species information
-#' @param name char column name of the column containing the names
-#'   used for the name matching with the GBIF taxonomic backbone. Default:
-#'   "name".
+#' @param name char column name of the column containing the names used for the
+#'   name matching with the GBIF taxonomic backbone. Default: "name".
 #' @param gbif_terms list of valid GBIF terms to add as additional columns to
-#'   the data.frame. Default: \'usageKey\', \'scientificName\', \'rank\',
-#'   \'order\', \'matchType\', \'phylum\', \'kingdom\', \'genus\', \'class\',
-#'   \'confidence\', \'synonym\', \'status\', \'family\'.
+#'   the data.frame. Default: `usageKey`, `scientificName`, `rank`, `order`,
+#'   `matchType`, `phylum`, `kingdom`, `genus`, `class`, `confidence`,
+#'   `synonym`, `status`, `family`.
 #' @param ... any parameter to pass to rgbif function `name_bakbone`. One of:
-#'   \'rank\', \'kingdom\', \'phylum\', \'class\', \'order\', \'family\',
-#'   \'genus\', \'strict\', \'verbose\', \'start\', \'limit\', \'curlopts\'. See
-#'   `?name_backbone` for more details.
+#'   `rank`, `kingdom`, `phylum`, `class`, `order`, `family`, `genus`, `strict`,
+#'   `verbose`, `start`, `limit`, `curlopts`. See `?name_backbone` for more
+#'   details.
 #'
 #' @return a tibble data.frame with GBIF information as additional columns. If
-#'   none of the taxa in  `df` is matched, only the columns \'confidence\',
-#'   \'matchType\' and \'synonym\' are added. This behavior is inherited by
+#'   none of the taxa in  `df` is matched, only the columns `confidence`,
+#'   `matchType` and `synonym` are added. This behavior is inherited by
 #'   `rgbif::name_backbone`.
 #'
 #' @export
