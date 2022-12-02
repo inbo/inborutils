@@ -18,7 +18,7 @@
   ],
   "upload_type": "software",
   "access_right": "open",
-  "license": "MIT + file LICENSE",
+  "license": "MIT",
   "communities": [
     {
       "identifier": "inbo"
