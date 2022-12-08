@@ -1,8 +1,20 @@
-url: https://inbo.github.io/inborutils
-
-template:
-  params:
-    bootswatch: yeti
+navbar:
+  title: ~
+  type: default
+  left:
+  - text: NEWS
+    href: news/index.html
+  - text: Functions
+    href: reference/index.html
+  - text: Contributing
+    href: CONTRIBUTING.html
+  right:
+  - icon: "fa fa-github"
+    href: https://github.com/inbo/inborutils
+  - icon: "fa fa-twitter"
+    href: https://twitter.com/INBOVlaanderen
+  - icon: "fa fa-facebook"
+    href: https://www.facebook.com/pg/INBOVlaanderen
 
 reference:
   - title: "GIS utilities"
@@ -42,3 +54,7 @@ reference:
   - title: "Deprecated functions"
     contents:
       - has_concept("lifecycle")
+authors:
+  Research Institute for Nature and Forest:
+    href: "https://www.vlaanderen.be/inbo/en-gb"
+    html: "<img src='https://inbo.github.io/checklist/reference/figures/logo-en.png' height=24>"

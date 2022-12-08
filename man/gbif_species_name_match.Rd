@@ -13,7 +13,7 @@ gbif_species_name_match(
 )
 }
 \arguments{
-\item{df}{data.frame with species information}
+\item{df}{\code{data.frame} with species information}
 
 \item{name}{char column name of the column containing the names used for the
 name matching with the GBIF taxonomic backbone. Default: "name".}
@@ -55,10 +55,13 @@ see \url{https://www.gbif.org/developer/species/#searching}.
 \dontrun{
 library(readr)
 library(dplyr)
-species_list <- read_csv(paste0("https://raw.githubusercontent.com/inbo",
-                                "/inbo-pyutils/master/gbif/gbif_name_match",
-                                "/sample.csv"),
-                         trim_ws = TRUE, col_types = cols())
+species_list <- read_csv(paste0(
+  "https://raw.githubusercontent.com/inbo",
+  "/inbo-pyutils/master/gbif/gbif_name_match",
+  "/sample.csv"
+),
+trim_ws = TRUE, col_types = cols()
+)
 # basic usage
 species_list \%>\%
   gbif_species_name_match()
@@ -67,7 +70,7 @@ species_list \%>\%
   gbif_species_name_match(name = "name", kingdom = "kingdom", strict = TRUE)
 # select GBIF terms
 species_list \%>\%
-  gbif_species_name_match(gbif_terms = c('scientificName','rank'))
+  gbif_species_name_match(gbif_terms = c("scientificName", "rank"))
 }
 }
 \concept{GBIF_interactions}

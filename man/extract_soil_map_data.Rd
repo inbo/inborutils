@@ -15,21 +15,24 @@ extract_soil_map_data(x_lam, y_lam, properties_of_interest)
 
 \item{properties_of_interest}{A vector or properties, as a subset of these
 provided by the webservice (see the examples section for how to obtain the
-list). Default Bodemserie, Unibodemtype and Bodemtype.}
+list).
+Default \code{Bodemserie}, \code{Unibodemtype} and \code{Bodemtype}.}
 }
 \value{
-A data.frame with the properties as column headers.
+A \code{data.frame} with the properties as column headers.
 }
 \description{
 This function queries the
-\href{https://www.geopunt.be/catalogus/datasetfolder/5c129f2d-4498-4bc3-8860-01cb2d513f8f}{the Flemish soil map}
+\href{https://www.geopunt.be/catalogus/datasetfolder/5c129f2d-4498-4bc3-8860-01cb2d513f8f}{the Flemish soil map} # nolint
 attributes at a given coordinate,
-by using the affiliated WFS service provided by DOV. The user can pick the
-properties of interest. See the examples section to see how to obtain a full
-list of possible properties of interest.
+by using the affiliated WFS service provided by DOV.
+The user can pick the properties of interest.
+See the examples section to see how to obtain a full list of possible
+properties of interest.
 Coordinates should be given in the 'Belge 1972 / Belgian Lambert 72'
 (\href{https://epsg.io/31370}{EPSG:31370}) coordinate reference system.
-When outside the Flemish region, an NA value is given for each of the properties.
+When outside the Flemish region, an NA value is given for each of the
+properties.
 }
 \examples{
 \dontrun{
@@ -41,16 +44,22 @@ library(ows4R)
 library(purrr)
 wfs <- "https://www.dov.vlaanderen.be/geoserver/bodemkaart/bodemtypes/wfs"
 wfs_client <- WFSClient$new(wfs,
-                            serviceVersion = "1.1.0")
+  serviceVersion = "1.1.0"
+)
 wfs_client$
   getCapabilities()$
   findFeatureTypeByName("bodemkaart:bodemtypes")$
   getDescription() \%>\%
-  map_chr(function(x){x$getName()})
+  map_chr(function(x) {
+    x$getName()
+  })
 
 extract_soil_map_data(173995.67, 212093.44,
-                         properties_of_interest = c("Eenduidige_legende",
-                                                    "Textuurklasse"))
+  properties_of_interest = c(
+    "Eenduidige_legende",
+    "Textuurklasse"
+  )
+)
 }
 }
 \seealso{

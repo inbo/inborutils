@@ -1,0 +1,87 @@
+{
+  "title": "inborutils: Collection of Useful R Utilities",
+  "version": "0.3.0",
+  "description": "While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all individual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.",
+  "creators": [
+    {
+      "name": "Van Calster, Hans",
+      "orcid": "https://orcid.org/0000-0001-8595-8426"
+    },
+    {
+      "name": "Oldoni, Damiano",
+      "orcid": "https://orcid.org/0000-0003-3445-7562"
+    },
+    {
+      "name": "Van Hoey, Stijn",
+      "orcid": "https://orcid.org/0000-0001-6413-3185"
+    }
+  ],
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "communities": [
+    {
+      "identifier": "inbo"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Brosens, Dimitri",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0002-0846-9116"
+    },
+    {
+      "name": "Desmet, Peter",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0002-8442-8025"
+    },
+    {
+      "name": "Huysentruyt, Frank",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0002-3071-9126"
+    },
+    {
+      "name": "Onkelinx, Thierry",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0001-8804-4216"
+    },
+    {
+      "name": "Vanderhaeghe, Floris",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0002-6378-6229"
+    },
+    {
+      "name": "Verschelde, Pieter",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0002-9199-421X"
+    },
+    {
+      "name": "De Bie, Els",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0001-7679-743X"
+    },
+    {
+      "name": "Noé, Nicolas",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0002-9503-4750"
+    },
+    {
+      "name": "Lommelen, Els",
+      "type": "ProjectMember",
+      "orcid": "https://orcid.org/0000-0002-3481-5684"
+    },
+    {
+      "name": "Research Institute for Nature and Forest",
+      "type": "RightsHolder"
+    },
+    {
+      "name": "Van Calster, Hans",
+      "type": "ContactPerson",
+      "orcid": "https://orcid.org/0000-0001-8595-8426"
+    }
+  ],
+  "language": "eng",
+  "keywords": [
+    "R package"
+  ]
+}

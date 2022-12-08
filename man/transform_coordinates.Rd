@@ -2,12 +2,12 @@
 % Please edit documentation in R/transform_coordinates.R
 \name{transform_coordinates}
 \alias{transform_coordinates}
-\title{Transform x-y coordinates from data.frame columns.}
+\title{Transform x-y coordinates from \code{data.frame} columns.}
 \usage{
 transform_coordinates(df, col_x, col_y, crs_input, crs_output)
 }
 \arguments{
-\item{df}{A data.frame with a x and y coordinate column.}
+\item{df}{A \code{data.frame} with a x and y coordinate column.}
 
 \item{col_x, col_y}{Column names or positions of the x and y
 column. They are passed to \code{\link[tidyselect]{vars_pull}}.
@@ -15,20 +15,22 @@ These arguments are passed by expression and support
 \code{\link{quasiquotation}}
 (you can unquote column names or column positions).}
 
-\item{crs_input}{Projection string of class CRS-class (\code{sp} compatible)
-or crs-class (\code{sf} compatible) defining the current CRS.}
+\item{crs_input}{Projection string of class \code{CRS-class}
+(\code{sp} compatible) or \code{crs-class} (\code{sf} compatible) defining the
+current \code{CRS}.}
 
-\item{crs_output}{Projection string of class CRS-class (\code{sp} compatible)
-or crs-class (\code{sf} compatible) defining the CRS to convert to.}
+\item{crs_output}{Projection string of class \code{CRS-class}
+(\code{sp} compatible) or \code{crs-class} (\code{sf} compatible) defining the
+\code{CRS} to convert to.}
 }
 \value{
-A data.frame with the same columns, but transformed coordinates for
+A \code{data.frame} with the same columns, but transformed coordinates for
 the x and y column values.
 }
 \description{
-This function extracts x-y coordinates from a data.frame by means of the
-given coordinate reference system (CRS), transforms them to the new CRS and
-assign them back to the data.frame columns.
+This function extracts x-y coordinates from a \code{data.frame} by means of the
+given coordinate reference system (\code{CRS}), transforms them to the new \code{CRS}
+and assign them back to the \code{data.frame} columns.
 }
 \examples{
 library(sf)
@@ -43,40 +45,54 @@ data_pts <- data.frame(
 if (requireNamespace("sp")) {
   sp_crs1 <- sp::CRS("+init=epsg:4269")
   sp_crs2 <- sp::CRS("+init=epsg:3857")
-  transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-    crs_input = sp_crs1, crs_output = sp_crs2)
+  transform_coordinates(data_pts,
+    col_x = "lon", col_y = "lat",
+    crs_input = sp_crs1, crs_output = sp_crs2
+  )
 }
 # crs-class (use sf package)
 sf_crs1 <- st_crs(4269)
 sf_crs2 <- st_crs(3857)
-transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = "lon", col_y = "lat",
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 
 if (requireNamespace("sp")) {
   # input projection is CRS-class (sp) and output projection crs-class (sf)
-  transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-    crs_input = sp_crs1, crs_output = sf_crs2)
+  transform_coordinates(data_pts,
+    col_x = "lon", col_y = "lat",
+    crs_input = sp_crs1, crs_output = sf_crs2
+  )
   # input projection is crs-class (spf and output projection CRS-class (sp)
-  transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-    crs_input = sf_crs1, crs_output = sp_crs2)
+  transform_coordinates(data_pts,
+    col_x = "lon", col_y = "lat",
+    crs_input = sf_crs1, crs_output = sp_crs2
+  )
 }
 
 # use names (character) of x-y columns
-transform_coordinates(data_pts, col_x = "lon", col_y = "lat",
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = "lon", col_y = "lat",
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 # use NSE of x-y columns
-transform_coordinates(data_pts, col_x = lon, col_y = lat,
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = lon, col_y = lat,
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 # use position of x-y columns
-transform_coordinates(data_pts, col_x = 3, col_y = 2,
-  crs_input = sf_crs1, crs_output = sf_crs2)
+transform_coordinates(data_pts,
+  col_x = 3, col_y = 2,
+  crs_input = sf_crs1, crs_output = sf_crs2
+)
 
 }
 \seealso{
 Other GIS_utilities: 
+\code{\link{get_coverage_wcs}()},
+\code{\link{get_feature_wfs}()},
 \code{\link{guess_crs}()},
-\code{\link{guess_projection}()},
-\code{\link{plot_coordinates_on_map}()},
-\code{\link{reproject_coordinates}()}
+\code{\link{plot_coordinates_on_map}()}
 }
 \concept{GIS_utilities}

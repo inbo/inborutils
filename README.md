@@ -1,7 +1,9 @@
 # inborutils package
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/inbo/inborutils/workflows/R-CMD-check/badge.svg)](https://github.com/inbo/inborutils/actions)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+![`runiverse-name`](https://inbo.r-universe.dev/badges/:name)
+![`runiverse-package`](https://inbo.r-universe.dev/badges/inborutils)
 <!-- badges: end -->
 
 This `inborutils` package provides a collection of useful R utilities and snippets that we consider recyclable for multiple projects. The functions are either out of scope or just not mature enough to include as extensions to existing packages. 
@@ -10,21 +12,21 @@ Some of these functions will be targeted to INBO usage itself, but maybe some of
 
 ## Installation
 
-Install `inborutils` from inbo.r-universe:
+Install `inborutils` from `inbo.r-universe`:
 
 ```r
 install.packages("inborutils", repos = c(inbo = "https://inbo.r-universe.dev", 
                                          CRAN = "https://cloud.r-project.org"))
 ```
 
-Or you can install `inborutils` from github with:
+Or you can install `inborutils` from GitHub with:
 
 ```r
 # install.packages("devtools")
 devtools::install_github("inbo/inborutils")
 ```
 
-When succesfull, load it as usual:
+When successful, load it as usual:
 
 ```r
 library(inborutils)

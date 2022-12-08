@@ -1,6 +1,7 @@
 #' Get data from a Zenodo archive
 #'
-#' This function will download an entire archive from Zenodo (\url{https://zenodo.org}).
+#' This function will download an entire archive from Zenodo
+#' (\url{https://zenodo.org}).
 #' It only works for Zenodo created DOI (not when the DOI is for
 #' example derived from Zookeys.)
 #'
@@ -9,7 +10,9 @@
 #'
 #' @param path Path where the data must be downloaded.
 #' Defaults to the working directory.
-#' @param doi a doi pointer to the Zenodo archive starting with '10.5281/zenodo.'. See examples.
+#' @param doi a doi pointer to the Zenodo archive starting with
+#' '10.5281/zenodo.'.
+#' See examples.
 #' @param parallel Logical (\code{FALSE} by default).
 #' If \code{TRUE}, will run a number of parallel processes, each downloading
 #' another file.
@@ -57,7 +60,6 @@ download_zenodo <- function(doi,
                             path = ".",
                             parallel = FALSE,
                             quiet = FALSE) {
-
   assert_that(is.string(doi), is.string(path))
   assert_that(is.flag(parallel), noNA(parallel), is.flag(quiet), noNA(quiet))
 
@@ -67,17 +69,17 @@ download_zenodo <- function(doi,
   record <- str_remove(doi, fixed("10.5281/zenodo."))
 
   # Retrieve file name by records call
-  base_url <- 'https://zenodo.org/api/records/'
+  base_url <- "https://zenodo.org/api/records/"
   req <- curl_fetch_memory(paste0(base_url, record))
   content <- fromJSON(rawToChar(req$content))
 
   # Calculate total file size
   totalsize <- sum(content$files$size) %>%
-                human_filesize()
+    human_filesize()
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
-  filenames <- str_match(file_urls, ".+/([^/]+)")[,2]
+  filenames <- str_match(file_urls, ".+/([^/]+)")[, 2]
   destfiles <- file.path(path, filenames)
 
   # extract check-sum(s)
@@ -85,61 +87,69 @@ download_zenodo <- function(doi,
 
   # download files
   if (!quiet) {
-  message("Will download ",
-          (nrfiles <- length(filenames)),
-          " file",
-          ifelse(nrfiles > 1, "s", ""),
-          " (total size: ",
-          totalsize,
-          ") from https://doi.org/",
-          doi,
-          " (",
-          content$metadata$title,
-          "; version: ",
-          ifelse(!is.null(content$metadata$version),
-                 content$metadata$version,
-                 content$metadata$relations$version[1, 1]
-          ),
-          ")\n"
-  )
+    message(
+      "Will download ",
+      (nrfiles <- length(filenames)),
+      " file",
+      ifelse(nrfiles > 1, "s", ""),
+      " (total size: ",
+      totalsize,
+      ") from https://doi.org/",
+      doi,
+      " (",
+      content$metadata$title,
+      "; version: ",
+      ifelse(!is.null(content$metadata$version),
+        content$metadata$version,
+        content$metadata$relations$version[1, 1]
+      ),
+      ")\n"
+    )
   }
 
   if (parallel) {
-
     nr_nodes <- min(10, length(file_urls))
 
-    if (!quiet) message("Initializing parallel download on ",
-                         nr_nodes,
-                         " R session nodes...\n")
+    if (!quiet) {
+      message(
+        "Initializing parallel download on ",
+        nr_nodes,
+        " R session nodes...\n"
+      )
+    }
 
     clus <- makeCluster(nr_nodes)
 
     if (!quiet) {
-    message("Starting parallel downloads. ",
-            "This may take a while (and I can't show you the overall progress).\n",
-            "Be patient...\n")
+      message(
+        "Starting parallel downloads. ",
+        "This may take a while (and I can't show you the overall progress).\n",
+        "Be patient...\n"
+      )
     }
 
-    clusterMap(clus,
-               function(src, dest) {
-                 curl_download(url = src,
-                               destfile = dest,
-                               quiet = quiet)
-                 },
-               file_urls,
-               destfiles)
+    clusterMap(
+      clus,
+      function(src, dest) {
+        curl_download(
+          url = src,
+          destfile = dest,
+          quiet = quiet
+        )
+      },
+      file_urls,
+      destfiles
+    )
 
     stopCluster(clus)
 
     if (!quiet) message("Ended parallel downloads.")
-
   } else {
-
     mapply(curl_download,
-             file_urls,
-             destfiles,
-             MoreArgs = list(quiet = quiet))
-
+      file_urls,
+      destfiles,
+      MoreArgs = list(quiet = quiet)
+    )
   }
 
   # check each of the files
@@ -152,17 +162,23 @@ download_zenodo <- function(doi,
     md5 <- unname(md5sum(destfile))
     zenodo_md5 <- str_split(file_md5[i], ":")[[1]][2]
     if (all.equal(md5, zenodo_md5)) {
-      if (!quiet) message(filename,
-                          " was downloaded and its integrity verified (md5sum: ",
-                          md5,
-                          ")")
+      if (!quiet) {
+        message(
+          filename,
+          " was downloaded and its integrity verified (md5sum: ",
+          md5,
+          ")"
+        )
+      }
     } else {
-      warning("Incorrect download! md5sum ",
-              md5,
-              " for file",
-              filename,
-              " does not match the Zenodo archived md5sum ",
-              zenodo_md5)
+      warning(
+        "Incorrect download! md5sum ",
+        md5,
+        " for file",
+        filename,
+        " does not match the Zenodo archived md5sum ",
+        zenodo_md5
+      )
     }
   }
 }
@@ -202,21 +218,22 @@ human_filesize <- function(x) {
   assert_that(all(x %% 1 == 0 & x >= 0))
   magnitude <-
     log(x, base = 1024) %>%
-    floor %>%
+    floor() %>%
     pmin(8)
   unit <- factor(magnitude,
-                 levels = 0:8,
-                 labels = c(
-                          "B",
-                          "KiB",
-                          "MiB",
-                          "GiB",
-                          "TiB",
-                          "PiB",
-                          "EiB",
-                          "ZiB",
-                          "YiB")
-                 )
+    levels = 0:8,
+    labels = c(
+      "B",
+      "KiB",
+      "MiB",
+      "GiB",
+      "TiB",
+      "PiB",
+      "EiB",
+      "ZiB",
+      "YiB"
+    )
+  )
   size <- (x / 1024^magnitude) %>% round(1)
   return(paste(size, unit))
 }

@@ -2,22 +2,24 @@
 % Please edit documentation in R/read_knmi_data.R
 \name{read_knmi_data}
 \alias{read_knmi_data}
-\title{Read KNMI datafile (precipitation) as data.frame}
+\title{Read \code{KNMI} datafile (precipitation) as \code{data.frame}}
 \usage{
 read_knmi_data(filename, n_max = Inf)
 }
 \arguments{
-\item{filename}{path/filename of the KMI datafile}
+\item{filename}{path/filename of the \code{KNMI} datafile}
 
-\item{n_max}{int shortcut for testing, loading just a section of the data}
+\item{n_max}{integer; shortcut for testing, loading just a section of the
+data}
 }
 \value{
-data.frame with the headers location_name, datetime (UTC), value,
-unit, variable_name, latitude, longitude and source_filename
+\code{data.frame} with the headers \code{location_name}, \code{datetime} (UTC),
+\code{value}, \code{unit}, \code{variable_name}, \code{latitude}, \code{longitude} and
+\code{source_filename}
 }
 \description{
 Remark that this function is specifically to extract the precipitation (RH)
-data, coordinates are extracted from the header of the KNMI data file
+data, coordinates are extracted from the header of the \code{KNMI} data file
 }
 \examples{
 \dontrun{

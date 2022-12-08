@@ -12,7 +12,7 @@ setup_codingclub_session(
 )
 }
 \arguments{
-\item{session_date}{The date of the coding-club session, in the "YYYYMMDD"
+\item{session_date}{The date of the coding-club session, in the \code{"YYYYMMDD"}
 format. Default: actual date}
 
 \item{root_dir}{Root directory where source and data subdirectories are
@@ -23,7 +23,7 @@ located. Default: \verb{./}}
 \item{data_rel_path}{Relative path for data files. Default: \code{data}}
 }
 \description{
-This function will populate the content of /src and /data
+This function will populate the content of \verb{/src} and \verb{/data}
 directories for a specific coding club session, the date of which is passed
 as a parameter. Directories are created if needed. Files are downloaded
 if not already present.

@@ -9,16 +9,16 @@ plot_label_splitter(label, maxlength)
 \arguments{
 \item{label}{A character array (the label)}
 
-\item{maxlength}{When the label exceeds this length, it will be splitted into
+\item{maxlength}{When the label exceeds this length, it will be split into
 a two-line label}
 }
 \description{
 When a label exceeds the maximum length as defined by the user, the function
-splits the text/label on the first space after the center of the string. This
-is very useful for long labels in a plot
+splits the text/label on the first space after the centre of the string.
+This is very useful for long labels in a plot
 }
 \details{
-The function can be easily applied to a data.frame by using e.g. sapply
+The function can be easily applied to a \code{data.frame} by using e.g. \code{sapply}
 }
 \examples{
 plot_label_splitter("Exotic long label", 10)

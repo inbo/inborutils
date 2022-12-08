@@ -26,9 +26,9 @@ Leaflet map with coordinates added as dots.
 }
 \description{
 This function plots x/y coordinates from a data.frame on a (leaflet) map. The
-coordinates are first converted to WGS84 in order to map them correctly on
+coordinates are first converted to \code{WGS84} in order to map them correctly on
 the leaflet map (@seealso \code{\link[=transform_coordinates]{transform_coordinates()}}). To do this, the
-original Coordinate Reference System (CRS) is asked.
+original Coordinate Reference System (\code{CRS}) is asked.
 }
 \examples{
 \dontrun{
@@ -42,8 +42,8 @@ data_pts <- data.frame(
 
 # projection is of class CRS-class (sp)
 if (requireNamespace("sp")) {
-proj_crs_sp <- CRS("+init=epsg:4269")
-plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
+  proj_crs_sp <- CRS("+init=epsg:4269")
+  plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sp)
 }
 
 # projection is of class crs-class (sf)
@@ -52,15 +52,16 @@ plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf)
 
 # customize circles
 plot_coordinates_on_map(data_pts, "lon", "lat", proj_crs_sf,
-  radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.75)
+  radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.75
+)
 }
 
 }
 \seealso{
 Other GIS_utilities: 
+\code{\link{get_coverage_wcs}()},
+\code{\link{get_feature_wfs}()},
 \code{\link{guess_crs}()},
-\code{\link{guess_projection}()},
-\code{\link{reproject_coordinates}()},
 \code{\link{transform_coordinates}()}
 }
 \concept{GIS_utilities}

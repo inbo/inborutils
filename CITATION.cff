@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+authors:
+- family-names: Van Calster
+  given-names: Hans
+  orcid: https://orcid.org/0000-0001-8595-8426
+- family-names: Oldoni
+  given-names: Damiano
+  orcid: https://orcid.org/0000-0003-3445-7562
+- family-names: Van Hoey
+  given-names: Stijn
+  orcid: https://orcid.org/0000-0001-6413-3185
+contact:
+- email: hans.vancalster@inbo.be
+  family-names: Van Calster
+  given-names: Hans
+- email: info@inbo.be
+  name: Research Institute for Nature and Forest
+title: 'inborutils: Collection of Useful R Utilities'
+version: 0.3.0
+abstract: While working on research projects, typical small functionalities are useful
+  across these projects. Instead of copy-pasting these functions in all individual
+  project repositories/folders, this package collects these functions for reuse by
+  ourself and - if useful - others as well.
+license: MIT + file LICENSE
+type: software
+repository-code: https://github.com/inbo/inborutils
+identifiers:
+- type: url
+  value: https://inbo.github.io/inborutils/
+keywords: R package
