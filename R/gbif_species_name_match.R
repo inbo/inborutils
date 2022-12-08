@@ -18,7 +18,7 @@
 #' For more information on the name matching API of GBIF on which rgbif relies,
 #' see <https://www.gbif.org/developer/species/#searching>.
 #'
-#' @param df data.frame with species information
+#' @param df `data.frame` with species information
 #' @param name char column name of the column containing the names used for the
 #'   name matching with the GBIF taxonomic backbone. Default: "name".
 #' @param gbif_terms list of valid GBIF terms to add as additional columns to
