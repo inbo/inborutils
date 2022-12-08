@@ -10,6 +10,8 @@
   package)
 * Removed `guess_projection`: use `guess_crs` instead
 * Removed `reproject_coordinates`: use `transform_coordinates` instead
+* Superseded `gbif_species_name_match` function by
+  `rgbif::name_backbone_checklist()`
 
 # inborutils 0.2.1
 
