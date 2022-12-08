@@ -49,6 +49,7 @@ Imports:
     iterators,
     jsonlite,
     leaflet,
+    lifecycle,
     lubridate,
     parallel,
     purrr,
