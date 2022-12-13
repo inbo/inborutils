@@ -64,8 +64,6 @@ guess_crs(data, "x", "y")
 crsuggest::guess_crs() for a (better) alternative
 
 Other GIS_utilities: 
-\code{\link{get_coverage_wcs}()},
-\code{\link{get_feature_wfs}()},
 \code{\link{plot_coordinates_on_map}()},
 \code{\link{transform_coordinates}()}
 }

@@ -1,10 +1,6 @@
 # inborutils 0.3.0
 
 * Implemented `checklist` R package checks
-* New function `get_features_wfs` to get features (vector data) from a Web
-  Feature Service (`WFS`)
-* New function `get_coverage_wcs` to get raster data from a Web Coverage Service
-  (`WCS`)
 * Fixed a bug in `csv_to_sqlite` that occurred when passing `col_names` to `...`
 * Removed `inboveg_*` and `florabank_*` defunct functions (moved to `inbodb`
   package)
