@@ -1,87 +1,89 @@
 {
   "title": "inborutils: Collection of Useful R Utilities",
   "version": "0.3.0",
-  "description": "While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all individual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.",
+  "license": "MIT",
+  "upload_type": "software",
+  "description": "<p>While working on research projects, typical small functionalities are\nuseful across these projects. Instead of copy-pasting these functions in\nall individual project repositories/folders, this package collects these\nfunctions for reuse by ourself and - if useful - others as well.<\/p>",
+  "keywords": [
+    "helper functions",
+    "utilities",
+    "coding club"
+  ],
+  "language": "eng",
+  "contributors": [
+    {
+      "name": "Van Calster, Hans",
+      "orcid": "0000-0001-8595-8426",
+      "type": "ContactPerson"
+    },
+    {
+      "name": "Brosens, Dimitri",
+      "orcid": "0000-0002-0846-9116",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Desmet, Peter",
+      "orcid": "0000-0002-8442-8025",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Huysentruyt, Frank",
+      "orcid": "0000-0002-3071-9126",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Onkelinx, Thierry",
+      "orcid": "0000-0001-8804-4216",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Vanderhaeghe, Floris",
+      "orcid": "0000-0002-6378-6229",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Verschelde, Pieter",
+      "orcid": "0000-0002-9199-421X",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "De Bie, Els",
+      "orcid": "0000-0001-7679-743X",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Noé, Nicolas",
+      "orcid": "0000-0002-9503-4750",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Lommelen, Els",
+      "orcid": "0000-0002-3481-5684",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Research Institute for Nature and Forest (INBO)",
+      "type": "RightsHolder"
+    }
+  ],
   "creators": [
     {
       "name": "Van Calster, Hans",
-      "orcid": "https://orcid.org/0000-0001-8595-8426"
+      "orcid": "0000-0001-8595-8426"
     },
     {
       "name": "Oldoni, Damiano",
-      "orcid": "https://orcid.org/0000-0003-3445-7562"
+      "orcid": "0000-0003-3445-7562"
     },
     {
       "name": "Van Hoey, Stijn",
-      "orcid": "https://orcid.org/0000-0001-6413-3185"
+      "orcid": "0000-0001-6413-3185"
     }
   ],
-  "upload_type": "software",
   "access_right": "open",
-  "license": "MIT",
   "communities": [
     {
       "identifier": "inbo"
     }
-  ],
-  "contributors": [
-    {
-      "name": "Brosens, Dimitri",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-0846-9116"
-    },
-    {
-      "name": "Desmet, Peter",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-8442-8025"
-    },
-    {
-      "name": "Huysentruyt, Frank",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-3071-9126"
-    },
-    {
-      "name": "Onkelinx, Thierry",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0001-8804-4216"
-    },
-    {
-      "name": "Vanderhaeghe, Floris",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-6378-6229"
-    },
-    {
-      "name": "Verschelde, Pieter",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-9199-421X"
-    },
-    {
-      "name": "De Bie, Els",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0001-7679-743X"
-    },
-    {
-      "name": "Noé, Nicolas",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-9503-4750"
-    },
-    {
-      "name": "Lommelen, Els",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-3481-5684"
-    },
-    {
-      "name": "Research Institute for Nature and Forest",
-      "type": "RightsHolder"
-    },
-    {
-      "name": "Van Calster, Hans",
-      "type": "ContactPerson",
-      "orcid": "https://orcid.org/0000-0001-8595-8426"
-    }
-  ],
-  "language": "eng",
-  "keywords": [
-    "R package"
   ]
 }

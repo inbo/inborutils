@@ -26,7 +26,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-9503-4750")),
     person("Els", "Lommelen", , "els.lommelen@inbo.be", role = "ctb",
            comment = c(ORCID = "0000-0002-3481-5684")),
-    person("Research Institute for Nature and Forest", , , "info@inbo.be", role = c("cph", "fnd"))
+    person("Research Institute for Nature and Forest (INBO)", , , "info@inbo.be", role = c("cph", "fnd"))
   )
 Description: While working on research projects, typical small
     functionalities are useful across these projects. Instead of
@@ -79,6 +79,8 @@ Suggests:
     testthat
 VignetteBuilder: 
     knitr
+Config/checklist/communities: inbo
+Config/checklist/keywords: helper functions; utilities; coding club
 Encoding: UTF-8
 Language: en-GB
 LazyData: true
