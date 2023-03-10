@@ -31,7 +31,7 @@ details.}
 \value{
 a tibble data.frame with GBIF information as additional columns. If
 none of the taxa in  \code{df} is matched, only the columns \code{confidence},
-\code{matchType} and \code{synonym} are added. This behavior is inherited by
+\code{matchType} and \code{synonym} are added. This behaviour is inherited by
 \code{rgbif::name_backbone}.
 }
 \description{
@@ -39,7 +39,7 @@ none of the taxa in  \code{df} is matched, only the columns \code{confidence},
 
 Development on \code{gbif_species_name_match()} is complete, and for new code we
 strongly recommend switching to \code{rgbif::name_backbone_checklist()}, which is
-easier to use, more featureful, and still under active development.
+easier to use, has more features, and still under active development.
 This functions extends an existing dataframe with additional columns provided
 by the GBIF taxonomic backbone and matched on the species (scientific) name,
 which need to be an available column in the dataframe.

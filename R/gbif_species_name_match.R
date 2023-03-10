@@ -5,7 +5,7 @@
 #'
 #' Development on `gbif_species_name_match()` is complete, and for new code we
 #' strongly recommend switching to `rgbif::name_backbone_checklist()`, which is
-#' easier to use, more featureful, and still under active development.
+#' easier to use, has more features, and still under active development.
 
 #' This functions extends an existing dataframe with additional columns provided
 #' by the GBIF taxonomic backbone and matched on the species (scientific) name,
@@ -14,7 +14,7 @@
 #' This function is essentially a wrapper around the existing rgbif
 #' `name_backbone` and extends the application to a data.frame. Such extension
 #' has been added to rgbif via the function
-#' [rgbif::name_backbone_checklist](https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html).
+#' [rgbif::name_backbone_checklist](https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html). # nolint
 #' For more information on the name matching API of GBIF on which rgbif relies,
 #' see <https://www.gbif.org/developer/species/#searching>.
 #'
@@ -32,7 +32,7 @@
 #'
 #' @return a tibble data.frame with GBIF information as additional columns. If
 #'   none of the taxa in  `df` is matched, only the columns `confidence`,
-#'   `matchType` and `synonym` are added. This behavior is inherited by
+#'   `matchType` and `synonym` are added. This behaviour is inherited by
 #'   `rgbif::name_backbone`.
 #'
 #' @export
