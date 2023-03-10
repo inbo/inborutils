@@ -37,7 +37,7 @@ Other contributors:
   \item Els De Bie \email{els.debie@inbo.be} (\href{https://orcid.org/0000-0001-7679-743X}{ORCID}) [contributor]
   \item Nicolas Noé \email{nicolas.noe@inbo.be} (\href{https://orcid.org/0000-0002-9503-4750}{ORCID}) [contributor]
   \item Els Lommelen \email{els.lommelen@inbo.be} (\href{https://orcid.org/0000-0002-3481-5684}{ORCID}) [contributor]
-  \item Research Institute for Nature and Forest \email{info@inbo.be} [copyright holder, funder]
+  \item Research Institute for Nature and Forest (INBO) \email{info@inbo.be} [copyright holder, funder]
 }
 
 }

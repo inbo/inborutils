@@ -47,7 +47,7 @@ which need to be an available column in the dataframe.
 This function is essentially a wrapper around the existing rgbif
 \code{name_backbone} and extends the application to a data.frame. Such extension
 has been added to rgbif via the function
-\href{https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html}{rgbif::name_backbone_checklist}.
+\href{https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html}{rgbif::name_backbone_checklist}. # nolint
 For more information on the name matching API of GBIF on which rgbif relies,
 see \url{https://www.gbif.org/developer/species/#searching}.
 }
