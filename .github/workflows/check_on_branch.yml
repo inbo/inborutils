@@ -18,3 +18,5 @@ jobs:
       contents: read
     steps:
       - uses: inbo/actions/check_pkg@checklist-0.3.0
+        with:
+          aptget: libudunits2-dev
