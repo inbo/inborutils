@@ -49,7 +49,6 @@ Imports:
     iterators,
     jsonlite,
     leaflet,
-    lifecycle,
     lubridate,
     parallel,
     purrr,
@@ -60,11 +59,9 @@ Imports:
     sf,
     stats,
     stringr,
-    terra,
     tibble,
     tidyr,
-    tidyselect,
-    xml2
+    tidyselect
 Suggests:
     drat,
     ggplot2,
