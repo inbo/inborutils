@@ -26,10 +26,7 @@
 #' mow_data <- read_mow_data(file_path)
 #' }
 read_mow_data <- function(filename, n_max = Inf) {
-  # Extract data from header by reading the header lines
-  # Apparently, the encoding for MOW data is not UTF8, the ISO is derived from
-  # the way mu was rendered in the conductivity files
-  mow_con <- file(filename, "r", encoding = "ISO-8859-15")
+  mow_con <- file(filename, "r", encoding = "UTF-8")
   header_it <- ireadLines(mow_con)
   line <- nextElem(header_it)
   cnt <- 1
