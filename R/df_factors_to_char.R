@@ -13,11 +13,11 @@
 #'
 #' @export
 #' @importFrom dplyr %>% mutate_each_ funs
-df_factors_to_char <- function(rp){
-    factors <- sapply(rp, is.factor)
-    if (any(factors)) {
-        rp <- rp %>%
-            mutate_each_(funs(as.character), vars = names(factors)[factors])
-    }
-    return(rp)
+df_factors_to_char <- function(rp) {
+  factors <- sapply(rp, is.factor)
+  if (any(factors)) {
+    rp <- rp %>%
+      mutate_each_(funs(as.character), vars = names(factors)[factors])
+  }
+  return(rp)
 }

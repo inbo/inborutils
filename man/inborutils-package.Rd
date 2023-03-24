@@ -6,13 +6,13 @@
 \alias{inborutils-package}
 \title{inborutils: Collection of Useful R Utilities}
 \description{
-While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all indidivual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
+While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all individual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/inbo/inborutils}
-  \item \url{https://inbo.github.io/inborutils}
+  \item \url{https://inbo.github.io/inborutils/}
   \item Report bugs at \url{https://github.com/inbo/inborutils/issues}
 }
 
@@ -37,7 +37,7 @@ Other contributors:
   \item Els De Bie \email{els.debie@inbo.be} (\href{https://orcid.org/0000-0001-7679-743X}{ORCID}) [contributor]
   \item Nicolas Noé \email{nicolas.noe@inbo.be} (\href{https://orcid.org/0000-0002-9503-4750}{ORCID}) [contributor]
   \item Els Lommelen \email{els.lommelen@inbo.be} (\href{https://orcid.org/0000-0002-3481-5684}{ORCID}) [contributor]
-  \item Research Institute for Nature and Forest (INBO) \email{info@inbo.be} [copyright holder]
+  \item Research Institute for Nature and Forest (INBO) \email{info@inbo.be} [copyright holder, funder]
 }
 
 }

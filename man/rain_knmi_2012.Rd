@@ -3,19 +3,19 @@
 \docType{data}
 \name{rain_knmi_2012}
 \alias{rain_knmi_2012}
-\title{Example data.frame with KNMI downloaded data}
+\title{Example \code{data.frame} with \code{KNMI} downloaded data}
 \format{
-A data frame with 1536 rows and 9 variables:
+A \code{data.frame} with 1536 rows and 9 variables:
 \itemize{
-\item{value: measured value}
-\item{datetime: datetime of the measurement}
-\item{unit: unit (mm)}
-\item{variable_name: precipitation}
-\item{longitude: coordinate}
-\item{latitude: coordinate}
-\item{location_name: station name}
-\item{source_filename: filename from which the data was read}
-\item{quality_code: empty string as KNMI does not provide this}
+\item{\code{value}: measured value}
+\item{\code{datetime}: \code{datetime} of the measurement}
+\item{\code{unit}: unit (mm)}
+\item{\code{variable_name}: precipitation}
+\item{\code{longitude}: coordinate}
+\item{\code{latitude}: coordinate}
+\item{\code{location_name}: station name}
+\item{\code{source_filename}: filename from which the data was read}
+\item{\code{quality_code}: empty string as \code{KNMI} does not provide this}
 }
 }
 \usage{
@@ -23,7 +23,7 @@ rain_knmi_2012
 }
 \description{
 A dataset containing the rainfall from January 1st till February 1st for
-Vlissingen and Westdorpe, as downloaded from KNMI
+\code{Vlissingen} and \code{Westdorpe}, as downloaded from \code{KNMI}
 }
 \seealso{
 Other datasets: 

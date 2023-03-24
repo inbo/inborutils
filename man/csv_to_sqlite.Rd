@@ -2,7 +2,7 @@
 % Please edit documentation in R/csv_to_sqlite.R
 \name{csv_to_sqlite}
 \alias{csv_to_sqlite}
-\title{Save a delimited text table into a single table sqlite database}
+\title{Save a delimited text table into a single table \code{sqlite} database}
 \usage{
 csv_to_sqlite(
   csv_file,
@@ -18,9 +18,9 @@ csv_to_sqlite(
 \arguments{
 \item{csv_file}{Name of the text file to convert.}
 
-\item{sqlite_file}{Name of the newly created sqlite file.}
+\item{sqlite_file}{Name of the newly created \code{sqlite} file.}
 
-\item{table_name}{Name of the table to store the data table in the sqlite
+\item{table_name}{Name of the table to store the data table in the \code{sqlite}
 database.}
 
 \item{delim}{Text file delimiter (default ",").}
@@ -35,14 +35,15 @@ individual columns (default 1000).}
 \item{...}{Further arguments to be passed to \code{read_delim}.}
 }
 \value{
-a SQLite database
+a \code{SQLite} database
 }
 \description{
-The table can be a comma separated (csv) or a tab separated (tsv) or any
+The table can be a comma separated (\code{csv}) or a tab separated (\code{tsv}) or any
 other delimited text file. The file is read in chunks. Each chunk is copied
-in the same sqlite table database before the next chunk is loaded into
-memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R}
-to learn more about.
+in the same \code{sqlite} table database before the next chunk is loaded into
+memory.
+See the INBO tutorial \href{https://inbo.github.io/tutorials/tutorials/r_large_data_files_handling/}{Handling large files in R}
+to learn more.
 }
 \section{Remark}{
 
@@ -59,15 +60,19 @@ csv.name <- "2016-04-20-processed-logs-big-file-example.csv"
 db.name <- "2016-04-20-processed-logs-big-file-example.db"
 # download the CSV file example
 csv.url <- paste("https://s3-eu-west-1.amazonaws.com/lw-birdtracking-data/",
-                 csv.name, ".gz", sep = "")
+  csv.name, ".gz",
+  sep = ""
+)
 download.file(csv.url, destfile = paste0(csv.name, ".gz"))
 gunzip(paste0(csv.name, ".gz"))
 # Make a SQLite database
 sqlite_file <- "example2.sqlite"
 table_name <- "birdtracks"
-csv_to_sqlite(csv_file = csv.name,
-              sqlite_file = sqlite_file,
-              table_name =table_name)
+csv_to_sqlite(
+  csv_file = csv.name,
+  sqlite_file = sqlite_file,
+  table_name = table_name
+)
 # Get access to SQLite database
 my_db <- src_sqlite(sqlite_file, create = FALSE)
 bird_tracking <- tbl(my_db, "birdtracks")

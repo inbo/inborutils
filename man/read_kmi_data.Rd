@@ -2,21 +2,23 @@
 % Please edit documentation in R/read_kmi_data.R
 \name{read_kmi_data}
 \alias{read_kmi_data}
-\title{Load KMI data as data.frame}
+\title{Load \code{KMI} data as data.frame}
 \usage{
 read_kmi_data(filename, n_max = Inf)
 }
 \arguments{
-\item{filename}{path/filename of the KMI datafile}
+\item{filename}{path/filename of the \code{KMI} datafile}
 
-\item{n_max}{int shortcut for testing, loading just a section of the data}
+\item{n_max}{integer; shortcut for testing, loading just a section of the
+data}
 }
 \value{
-data.frame with the headers location_name, datetime (UTC), value,
-unit,variable_name, latitude, longitude and source_filename
+\code{data.frame} with the headers \code{location_name}, \code{datetime} (UTC),
+\code{value}, \code{unit}, \code{variable_name}, \code{latitude}, \code{longitude} and
+\code{source_filename}
 }
 \description{
-Load KMI data as data.frame
+Load \code{KMI} data as data.frame
 }
 \examples{
 \dontrun{

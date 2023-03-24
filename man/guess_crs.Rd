@@ -17,27 +17,27 @@ guess_crs(
 \arguments{
 \item{df}{data.frame with a x and y coordinate column}
 
-\item{col_x}{(char) name of the x (longitude) column}
+\item{col_x}{(character) name of the x (longitude) column}
 
-\item{col_y}{(char) name of the y (latitude) column}
+\item{col_y}{(character) name of the y (latitude) column}
 
-\item{belgium}{(bool) If TRUE, coordinates are expected to be in Belgium}
+\item{belgium}{(logical) If \code{TRUE}, coordinates are expected to be in Belgium}
 
-\item{crs_try}{(list) EPSG codes of the different CRS to evaluate
+\item{crs_try}{(list) \code{EPSG} codes of the different CRS to evaluate
 By default, the following six CRS are added to the map:
 \itemize{
 \item{"EPSG:4326"}{WGS 84,
-http://spatialreference.org/ref/epsg/wgs-84/}
+https://spatialreference.org/ref/epsg/wgs-84/}
 \item{"EPSG:31370"}{Belge 1972/Belgian Lambert 72,
-http://spatialreference.org/ref/epsg/31370/}
+https://spatialreference.org/ref/epsg/31370/}
 \item{"EPSG:28992"}{Amersfoort/Rijksdriehoek nieuw,
-http://spatialreference.org/ref/epsg/28992/}
+https://spatialreference.org/ref/epsg/28992/}
 \item{"EPSG:32631"}{WGS 84 / UTM zone 31N,
-http://spatialreference.org/ref/epsg/32631/}
+https://spatialreference.org/ref/epsg/32631/}
 \item{"EPSG:3812"}{ETRS89/Belgian Lambert 2008,
-http://spatialreference.org/ref/epsg/3812/}
+https://spatialreference.org/ref/epsg/3812/}
 \item{"EPSG:3035"}{ETRS89 / ETRS-LAEA,
-http://spatialreference.org/ref/epsg/3035/}
+https://spatialreference.org/ref/epsg/3035/}
 }}
 }
 \description{
@@ -50,8 +50,9 @@ Custom projections can be provided by the user as well.
 \details{
 For each of the given CRS, the coordinates columns are given the
 the specified CRS In a next step, these CRS are converted to
-wgs84 and plotted on a openstreetmap background with leaflet. The interactive
-map provides the possibility to select/unselect specific layers.
+\code{wgs84} and plotted on a \code{openstreetmap} background with leaflet.
+The interactive map provides the possibility to select/unselect specific
+layers.
 }
 \examples{
 \dontrun{
@@ -63,9 +64,7 @@ guess_crs(data, "x", "y")
 crsuggest::guess_crs() for a (better) alternative
 
 Other GIS_utilities: 
-\code{\link{guess_projection}()},
 \code{\link{plot_coordinates_on_map}()},
-\code{\link{reproject_coordinates}()},
 \code{\link{transform_coordinates}()}
 }
 \concept{GIS_utilities}

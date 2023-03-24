@@ -1,27 +1,41 @@
 Package: inborutils
 Title: Collection of Useful R Utilities
-Version: 0.2.1
-Description: While working on research projects, typical small functionalities 
-    are useful across these projects. Instead of copy-pasting these functions in 
-    all indidivual project repositories/folders, this package collects these 
-    functions for reuse by ourself and - if useful - others as well.
+Version: 0.3.0
 Authors@R: c(
-    person("Hans", "Van Calster", role = c("aut", "cre"), email = "hans.vancalster@inbo.be", comment = c(ORCID = "0000-0001-8595-8426")),
-    person("Damiano", "Oldoni", role = "aut", email = "damiano.oldoni@inbo.be", comment = c(ORCID = "0000-0003-3445-7562")),
-    person("Stijn", "Van Hoey", role = "aut", email = "stijnvanhoey@gmail.com", comment = c(ORCID = "0000-0001-6413-3185")),
-    person("Dimitri", "Brosens", role = "ctb", email = "dimitri.brosens@inbo.be", comment = c(ORCID = "0000-0002-0846-9116")),
-    person("Peter", "Desmet", role = "ctb", email = "peter.desmet@inbo.be", comment = c(ORCID = "0000-0002-8442-8025")),
-    person("Frank", "Huysentruyt", role = "ctb", email = "frank.huysentruyt@inbo.be", comment = c(ORCID = "0000-0002-3071-9126")),
-    person("Thierry", "Onkelinx", role = "ctb", email = "thierry.onkelinx@inbo.be", comment = c(ORCID = "0000-0001-8804-4216")),
-    person("Floris", "Vanderhaeghe", role = "ctb", email = "floris.vanderhaeghe@inbo.be", comment = c(ORCID = "0000-0002-6378-6229")),
-    person("Pieter", "Verschelde", role = "ctb", email = "pieter.verschelde@inbo.be", comment = c(ORCID = "0000-0002-9199-421X")),
-    person("Els", "De Bie", role = "ctb", email = "els.debie@inbo.be", comment = c(ORCID = "0000-0001-7679-743X")),
-    person("Nicolas", "Noé", role = "ctb", email = "nicolas.noe@inbo.be", comment = c(ORCID = "0000-0002-9503-4750")),
-    person("Els", "Lommelen", role = c("ctb"), email = "els.lommelen@inbo.be", comment = c(ORCID = "0000-0002-3481-5684")),
-    person("Research Institute for Nature and Forest (INBO)", role = "cph", email = "info@inbo.be")
-    )
+    person("Hans", "Van Calster", , "hans.vancalster@inbo.be", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8595-8426")),
+    person("Damiano", "Oldoni", , "damiano.oldoni@inbo.be", role = "aut",
+           comment = c(ORCID = "0000-0003-3445-7562")),
+    person("Stijn", "Van Hoey", , "stijnvanhoey@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0001-6413-3185")),
+    person("Dimitri", "Brosens", , "dimitri.brosens@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-0846-9116")),
+    person("Peter", "Desmet", , "peter.desmet@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-8442-8025")),
+    person("Frank", "Huysentruyt", , "frank.huysentruyt@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-3071-9126")),
+    person("Thierry", "Onkelinx", , "thierry.onkelinx@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0001-8804-4216")),
+    person("Floris", "Vanderhaeghe", , "floris.vanderhaeghe@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-6378-6229")),
+    person("Pieter", "Verschelde", , "pieter.verschelde@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-9199-421X")),
+    person("Els", "De Bie", , "els.debie@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0001-7679-743X")),
+    person("Nicolas", "Noé", , "nicolas.noe@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-9503-4750")),
+    person("Els", "Lommelen", , "els.lommelen@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-3481-5684")),
+    person("Research Institute for Nature and Forest (INBO)", , , "info@inbo.be", role = c("cph", "fnd"))
+  )
+Description: While working on research projects, typical small
+    functionalities are useful across these projects. Instead of
+    copy-pasting these functions in all individual project
+    repositories/folders, this package collects these functions for reuse
+    by ourself and - if useful - others as well.
 License: MIT + file LICENSE
-URL: https://github.com/inbo/inborutils, https://inbo.github.io/inborutils
+URL: https://github.com/inbo/inborutils,
+    https://inbo.github.io/inborutils/
 BugReports: https://github.com/inbo/inborutils/issues
 Depends:
     R (>= 3.4.0)
@@ -49,19 +63,23 @@ Imports:
     tidyr,
     tidyselect
 Suggests:
+    drat,
+    ggplot2,
     glue,
+    htmlwidgets,
     knitr,
     lifecycle,
+    mockery,
     odbc,
     rmarkdown,
     sp,
-    testthat,
-    ggplot2,
-    htmlwidgets,
-    drat,
-    mockery
-LazyData: true
+    testthat
+VignetteBuilder: 
+    knitr
+Config/checklist/communities: inbo
+Config/checklist/keywords: helper functions; utilities; coding club
 Encoding: UTF-8
-VignetteBuilder: knitr
+Language: en-GB
+LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3

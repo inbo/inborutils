@@ -3,13 +3,13 @@
 \docType{data}
 \name{coordinate_example}
 \alias{coordinate_example}
-\title{Example data.frame with coordinates}
+\title{Example \code{data.frame} with coordinates}
 \format{
-A data frame with 52 rows and 3 variables:
+A \code{data.frame} with 52 rows and 3 variables:
 \itemize{
-\item{id: resource identifier}
-\item{latitude: Latitude of the coordinates}
-\item{longitude: Longitude of the coordinates}
+\item{\code{id}: resource identifier}
+\item{\code{latitude}: Latitude of the coordinates}
+\item{\code{longitude}: Longitude of the coordinates}
 }
 }
 \usage{

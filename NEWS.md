@@ -1,6 +1,17 @@
+# inborutils 0.3.0
+
+* Implemented `checklist` R package checks
+* Fixed a bug in `csv_to_sqlite` that occurred when passing `col_names` to `...`
+* Removed `inboveg_*` and `florabank_*` defunct functions (moved to `inbodb`
+  package)
+* Removed `guess_projection`: use `guess_crs` instead
+* Removed `reproject_coordinates`: use `transform_coordinates` instead
+* Superseded `gbif_species_name_match` function by
+  `rgbif::name_backbone_checklist()`
+
 # inborutils 0.2.1
 
-* Fixed url to download knmi data. Thanks to @ViktorHartman
+* Fixed url to download `knmi` data. Thanks to @ViktorHartman
 
 # inborutils 0.2.0
 

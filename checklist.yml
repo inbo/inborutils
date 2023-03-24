@@ -1,0 +1,32 @@
+description: Configuration file for checklist::check_pkg()
+package: yes
+allowed:
+  warnings:
+  - motivation: this is intended
+    value: 'documented but unexported functions: append_to_sqlite, get_name_gbif,
+      inborutils, inborutils-defunct, inborutils-deprecated, inborutils-package, mow_header_split'
+  notes:
+  - motivation: package will not be submitted to cran
+    value: |-
+      checking CRAN incoming feasibility ... NOTE
+      Maintainer: 'Hans Van Calster <hans.vancalster@inbo.be>'
+
+      New submission
+required:
+- CITATION
+- DESCRIPTION
+- R CMD check
+- checklist
+- codemeta
+- documentation
+- filename conventions
+- folder conventions
+- license
+- lintr
+- repository secret
+- spelling
+spelling:
+  default: en-GB
+  ignore:
+  - .github
+  - LICENSE.md
