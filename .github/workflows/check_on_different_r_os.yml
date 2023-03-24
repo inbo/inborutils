@@ -58,7 +58,7 @@ jobs:
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'
         run: |
-          brew install fribidi udunits
+          brew install fribidi udunits gdal
 
       - name: Install linux system dependencies
         if: runner.os == 'Linux'
