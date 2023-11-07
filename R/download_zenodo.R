@@ -79,7 +79,7 @@ download_zenodo <- function(doi,
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
-  filenames <- content$files$key
+  filenames <- basename(content$files$key)
   destfiles <- file.path(path, filenames)
 
   # extract check-sum(s)
