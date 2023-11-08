@@ -79,7 +79,7 @@ download_zenodo <- function(doi,
 
   # extract individual file names and urls
   file_urls <- content$files$links$self
-  filenames <- str_match(file_urls, ".+/([^/]+)")[, 2]
+  filenames <- basename(content$files$key)
   destfiles <- file.path(path, filenames)
 
   # extract check-sum(s)
@@ -161,7 +161,7 @@ download_zenodo <- function(doi,
     destfile <- destfiles[i]
     md5 <- unname(md5sum(destfile))
     zenodo_md5 <- str_split(file_md5[i], ":")[[1]][2]
-    if (all.equal(md5, zenodo_md5)) {
+    if (identical(md5, zenodo_md5)) {
       if (!quiet) {
         message(
           filename,

@@ -18,25 +18,25 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Hans Van Calster \email{hans.vancalster@inbo.be} (\href{https://orcid.org/0000-0001-8595-8426}{ORCID})
+\strong{Maintainer}: Hans Van Calster \email{hans.vancalster@inbo.be} (\href{https://orcid.org/0000-0001-8595-8426}{ORCID}) (Research Institute for Nature and Forest (INBO))
 
 Authors:
 \itemize{
-  \item Damiano Oldoni \email{damiano.oldoni@inbo.be} (\href{https://orcid.org/0000-0003-3445-7562}{ORCID})
-  \item Stijn Van Hoey \email{stijnvanhoey@gmail.com} (\href{https://orcid.org/0000-0001-6413-3185}{ORCID})
+  \item Damiano Oldoni \email{damiano.oldoni@inbo.be} (\href{https://orcid.org/0000-0003-3445-7562}{ORCID}) (Research Institute for Nature and Forest (INBO))
+  \item Stijn Van Hoey \email{stijnvanhoey@gmail.com} (\href{https://orcid.org/0000-0001-6413-3185}{ORCID}) (Research Institute for Nature and Forest (INBO))
 }
 
 Other contributors:
 \itemize{
-  \item Dimitri Brosens \email{dimitri.brosens@inbo.be} (\href{https://orcid.org/0000-0002-0846-9116}{ORCID}) [contributor]
-  \item Peter Desmet \email{peter.desmet@inbo.be} (\href{https://orcid.org/0000-0002-8442-8025}{ORCID}) [contributor]
-  \item Frank Huysentruyt \email{frank.huysentruyt@inbo.be} (\href{https://orcid.org/0000-0002-3071-9126}{ORCID}) [contributor]
-  \item Thierry Onkelinx \email{thierry.onkelinx@inbo.be} (\href{https://orcid.org/0000-0001-8804-4216}{ORCID}) [contributor]
-  \item Floris Vanderhaeghe \email{floris.vanderhaeghe@inbo.be} (\href{https://orcid.org/0000-0002-6378-6229}{ORCID}) [contributor]
-  \item Pieter Verschelde \email{pieter.verschelde@inbo.be} (\href{https://orcid.org/0000-0002-9199-421X}{ORCID}) [contributor]
-  \item Els De Bie \email{els.debie@inbo.be} (\href{https://orcid.org/0000-0001-7679-743X}{ORCID}) [contributor]
-  \item Nicolas Noé \email{nicolas.noe@inbo.be} (\href{https://orcid.org/0000-0002-9503-4750}{ORCID}) [contributor]
-  \item Els Lommelen \email{els.lommelen@inbo.be} (\href{https://orcid.org/0000-0002-3481-5684}{ORCID}) [contributor]
+  \item Dimitri Brosens \email{dimitri.brosens@inbo.be} (\href{https://orcid.org/0000-0002-0846-9116}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Peter Desmet \email{peter.desmet@inbo.be} (\href{https://orcid.org/0000-0002-8442-8025}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Frank Huysentruyt \email{frank.huysentruyt@inbo.be} (\href{https://orcid.org/0000-0002-3071-9126}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Thierry Onkelinx \email{thierry.onkelinx@inbo.be} (\href{https://orcid.org/0000-0001-8804-4216}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Floris Vanderhaeghe \email{floris.vanderhaeghe@inbo.be} (\href{https://orcid.org/0000-0002-6378-6229}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Pieter Verschelde \email{pieter.verschelde@inbo.be} (\href{https://orcid.org/0000-0002-9199-421X}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Els De Bie \email{els.debie@inbo.be} (\href{https://orcid.org/0000-0001-7679-743X}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Nicolas Noé \email{nicolas.noe@inbo.be} (\href{https://orcid.org/0000-0002-9503-4750}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
+  \item Els Lommelen \email{els.lommelen@inbo.be} (\href{https://orcid.org/0000-0002-3481-5684}{ORCID}) (Research Institute for Nature and Forest (INBO)) [contributor]
   \item Research Institute for Nature and Forest (INBO) \email{info@inbo.be} [copyright holder, funder]
 }
 

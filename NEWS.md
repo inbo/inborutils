@@ -1,3 +1,7 @@
+# inborutils 0.3.1
+
+* Fixed a bug in `download_zenodo()`
+
 # inborutils 0.3.0
 
 * Implemented `checklist` R package checks
