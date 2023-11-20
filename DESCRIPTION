@@ -1,6 +1,6 @@
 Package: inborutils
 Title: Collection of Useful R Utilities
-Version: 0.3.1
+Version: 0.4.0
 Authors@R: c(
     person("Hans", "Van Calster", , "hans.vancalster@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8595-8426", affiliation = "Research Institute for Nature and Forest (INBO)")),
