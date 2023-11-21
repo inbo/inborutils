@@ -13,11 +13,9 @@
 #' @param doi a doi pointer to the Zenodo archive starting with
 #' '10.5281/zenodo.'.
 #' See examples.
-#' @param parallel Logical (\code{FALSE} by default).
-#' If \code{TRUE}, will run a number of parallel processes, each downloading
-#' another file.
-#' This is useful when multiple large files are present in the Zenodo
-#' record, which otherwise would be downloaded sequentially.
+#' @param parallel Logical.
+#' If \code{TRUE} (the default), files will be
+#' downloaded concurrently for multi-file records.
 #' Of course, the operation is limited by bandwidth and traffic limitations.
 #' @param quiet Logical (\code{FALSE} by default).
 #' Do you want to suppress informative messages (not warnings)?
@@ -36,10 +34,6 @@
 #' is.string
 #' is.flag
 #' noNA
-#' @importFrom parallel
-#' makeCluster
-#' clusterMap
-#' stopCluster
 #'
 #' @export
 #' @family download_functions
@@ -58,7 +52,7 @@
 #' }
 download_zenodo <- function(doi,
                             path = ".",
-                            parallel = FALSE,
+                            parallel = TRUE,
                             quiet = FALSE) {
   assert_that(is.string(doi), is.string(path))
   assert_that(is.flag(parallel), noNA(parallel), is.flag(quiet), noNA(quiet))
@@ -107,43 +101,12 @@ download_zenodo <- function(doi,
     )
   }
 
-  if (parallel) {
-    nr_nodes <- min(10, length(file_urls))
-
-    if (!quiet) {
-      message(
-        "Initializing parallel download on ",
-        nr_nodes,
-        " R session nodes...\n"
-      )
-    }
-
-    clus <- makeCluster(nr_nodes)
-
-    if (!quiet) {
-      message(
-        "Starting parallel downloads. ",
-        "This may take a while (and I can't show you the overall progress).\n",
-        "Be patient...\n"
-      )
-    }
-
-    clusterMap(
-      clus,
-      function(src, dest) {
-        curl_download(
-          url = src,
-          destfile = dest,
-          quiet = quiet
-        )
-      },
-      file_urls,
-      destfiles
+  if (length(file_urls) > 1 && parallel) {
+    curl::multi_download(
+      urls = file_urls,
+      destfiles = destfiles,
+      progress = !quiet
     )
-
-    stopCluster(clus)
-
-    if (!quiet) message("Ended parallel downloads.")
   } else {
     mapply(curl_download,
       file_urls,

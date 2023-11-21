@@ -1,3 +1,8 @@
+# inborutils 0.4.0
+
+* Improved the parallel download method in `download_zenodo()` and made it the
+  default
+
 # inborutils 0.3.1
 
 * Fixed a bug in `download_zenodo()`

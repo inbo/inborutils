@@ -1,6 +1,6 @@
 {
   "title": "inborutils: Collection of Useful R Utilities",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "license": "MIT",
   "upload_type": "software",
   "description": "<p>While working on research projects, typical small functionalities are\nuseful across these projects. Instead of copy-pasting these functions in\nall individual project repositories/folders, this package collects these\nfunctions for reuse by ourself and - if useful - others as well.<\/p>",

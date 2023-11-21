@@ -2,12 +2,12 @@ citHeader("To cite `inborutils` in publications please use:")
 # begin checklist entry
 bibentry(
   bibtype = "Manual",
-  title = "inborutils: Collection of Useful R Utilities. Version 0.3.1",
+  title = "inborutils: Collection of Useful R Utilities. Version 0.4.0",
   author = c( author = c(person(given = "Hans", family = "Van Calster"), person(given = "Damiano", family = "Oldoni"), person(given = "Stijn", family = "Van Hoey"))),
   year = 2023,
   url = "https://inbo.github.io/inborutils/",
   abstract = "While working on research projects, typical small functionalities are useful across these projects. Instead of copy-pasting these functions in all individual project repositories/folders, this package collects these functions for reuse by ourself and - if useful - others as well.",
-  textVersion = "Van Calster, Hans; Oldoni, Damiano; Van Hoey, Stijn (2023) inborutils: Collection of Useful R Utilities. Version 0.3.1. https://inbo.github.io/inborutils/",
+  textVersion = "Van Calster, Hans; Oldoni, Damiano; Van Hoey, Stijn (2023) inborutils: Collection of Useful R Utilities. Version 0.4.0. https://inbo.github.io/inborutils/",
   keywords = "helper functions; utilities; coding club",
 )
 # end checklist entry
