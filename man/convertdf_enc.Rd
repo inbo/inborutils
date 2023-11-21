@@ -10,9 +10,9 @@ convertdf_enc(x, from = "", to = "UTF-8", sub = NA, colnames = FALSE)
 \item{x}{An object with the \code{data.frame}
 class (such as \code{data.frame} or \code{sf})}
 
-\item{from}{a character string describing the current encoding.}
+\item{from}{A character string describing the current encoding.}
 
-\item{to}{a character string describing the target encoding.}
+\item{to}{A character string describing the target encoding.}
 
 \item{sub}{character string.  If not \code{NA} it is used to replace
     any non-convertible bytes in the input.  (This would normally be a
