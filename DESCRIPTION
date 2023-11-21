@@ -72,7 +72,7 @@ Suggests:
     odbc,
     rmarkdown,
     sp,
-    testthat (>= 3.0.0),
+    testthat,
     withr
 VignetteBuilder: 
     knitr
